@@ -14,9 +14,12 @@ export const actionCreators = {
   }
 }
 
+// Initial state of the store
+const initialState = { credentials: '', }
+
 // Function to handle actions and update the state of the store
-export const reducer = (state = {}, action) => {
-  // const {todos} = state
+export const reducer = (state = initialState, action) => {
+  const {credentials} = state
   const {type, payload} = action
 
   switch (type) {

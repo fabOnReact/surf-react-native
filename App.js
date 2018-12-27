@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { AppRegistry } from 'react-native'
 import { connect } from 'react-redux'
 
-import { actionsCreators } from './authenticationRedux' 
+import { actionCreators } from './authenticationRedux' 
 import { Text } from 'react-native'
 import Input from './Input'
 
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
   credentials: state.credentials,
 })
 
-export default class App extends Component {
+class App extends Component {
   loginUser = (text) => {
     const {dispatch} = this.props
     dispatch(actionCreators.login(text))
@@ -26,3 +26,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default connect(mapStateToProps) (App)

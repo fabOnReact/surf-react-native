@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 // Import the reducer and create a store
 import { reducer } from './authenticationRedux'
 const store = createStore(reducer)
+console.log(store)
 
 // Import the App container component
 import App from './App';

@@ -3,7 +3,10 @@ import { TextInput, StyleSheet } from 'react-native'
 
 export default class Input extends Component {
   state = { text: '', }
-  onChangeText = (text) => this.setState({text})
+  onChangeText = (text) => { 
+    this.setState({text})
+    console.log(this.state.text)
+  }
 
   onSubmitEditing = () => {
     const {onSubmitEditing} = this.props
@@ -11,6 +14,7 @@ export default class Input extends Component {
 
     if (!text) return
 
+    console.log(text)
     onSubmitEditing(text)
     this.setState({text: ''})
   }
