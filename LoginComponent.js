@@ -1,26 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { login } from './redux/actions'
 import { View, StyleSheet, Text } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-})
-
 class LoginComponent extends Component {
-  constructor(props){
-    super(props)
-    this.state = { user: '' }
-  }
-
-  loginUser = (text) => {
-    const {dispatch} = this.props
-    dispatch(actionAuthentication.login(text))
-  }
+  //loginUser = (text) => {
+  //  const {dispatch} = this.props
+  //  dispatch(actionAuthentication.login(text))
+  //}
 
   handleSubmit() {
-    const { user } = this.state
-    loginUser({ user })
+  //  const { user } = this.state
+  //  loginUser({ user })
   }
 
   render() {
@@ -42,4 +34,4 @@ class LoginComponent extends Component {
 
 const styles = StyleSheet.create({})
 
-export default connect(mapStateToProps) (LoginComponent)
+//export default connect(null, { login }) (LoginComponent)
