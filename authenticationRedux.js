@@ -5,34 +5,34 @@ export const types = {
 }
 
 // Helper functions to dispatch actions, optionally with payloads
-export const actionCreators = {
-  login: (credentials) => {
-    return {type: types.LOGIN, payload: credentials}
+export const actionAuthentication = {
+  login: (user) => {
+    return {type: types.LOGIN, payload: user}
   },
-  logout: (credentials) => {
-    return {type: types.LOGOUT, payload: credentials}
+  logout: (user) => {
+    return {type: types.LOGOUT, payload: user}
   }
 }
 
 // Initial state of the store
-const initialState = { credentials: '', }
+const initialState = { user: 'testing', }
 
 // Function to handle actions and update the state of the store
 export const reducer = (state = initialState, action) => {
-  const {credentials} = state
+  const {user} = state
   const {type, payload} = action
 
   switch (type) {
     case types.LOGIN: {
       return {
         ...state,
-        credentials: [payload, ...credentials],
+        user: [payload, ...user],
       }
     }
     case types.LOGOUT: {
             return {
         ...state,
-        credentials: [payload, ...credentials], 
+        user: [payload, ...user], 
       }
     }
   }

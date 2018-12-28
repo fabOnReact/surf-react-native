@@ -1,30 +1,17 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { AppRegistry } from 'react-native'
-import { connect } from 'react-redux'
 
 import { actionCreators } from './authenticationRedux' 
-import { Text } from 'react-native'
 import Input from './Input'
+import LoginComponent from './LoginComponent';
 
-const mapStateToProps = (state) => ({
-  credentials: state.credentials,
-})
-
-class App extends Component {
-  loginUser = (text) => {
-    const {dispatch} = this.props
-    dispatch(actionCreators.login(text))
-  }
-  
+export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Text>Welcome to React Native!</Text>
-        <Text>Welcome to React Native!</Text>
-        <Input placeholder={"Just a test"} onSubmitEditing={this.loginUser} />
+        <LoginComponent />
       </React.Fragment>
     )
   }
 }
 
-export default connect(mapStateToProps) (App)
