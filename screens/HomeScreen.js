@@ -4,18 +4,19 @@ import {
   StyleSheet, View, AsyncStorage
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import { styles } from './styles';
 
 export default class HomeScreen extends Component {
   static navigationOptions = { title: 'Welcome to the app!', }
 
   _showMoreApp = () => {
-    const { navigation } = this.navigation;
+    const { navigation } = this.props;
     navigation.navigate('Other');
   }
 
   _signOutAsync = async () => {
     await AsyncStorage.clear();
-    const { navigation } = this.navigation;
+    const { navigation } = this.props;
     navigation.navigate('Auth');
   }
 
@@ -31,10 +32,10 @@ export default class HomeScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   }
+// });

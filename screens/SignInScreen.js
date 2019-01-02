@@ -13,6 +13,7 @@ import { styles } from './styles';
 
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
+  static const { navigation } = this.props;
 
   state = { email: '', password: '' };
 
@@ -34,10 +35,27 @@ export default class SignInScreen extends Component {
   */
 
   _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    const { navigation } = this.props;
-    navigation.navigate('App');
+    // perform AJAX request
+
+    // AJAX request returns token
+    const token = "a_test_token"
+
+    // AJAX request returns error
+    const errors = "wrong credentials"
+
+    if (errors) {
+      renderErrors();
+    } else {
+      saveToken();
+    };
   };
+
+  renderErrors = () => {}
+
+  saveToken = async () => {
+    await AsyncStorage.setItem('userToken', token);
+    navigation.navigate('App');
+  }
 
   render() {
     const { email, password } = this.state;
@@ -45,6 +63,7 @@ export default class SignInScreen extends Component {
     return (
       <React.Fragment>
         <View style={styles.container}>
+          <Text>Test</Text>
           <Text>Login</Text>
           <Input
             style={styles.textInput}
