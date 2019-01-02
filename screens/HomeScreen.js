@@ -1,22 +1,33 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, ActivityIndicator, View } from 'react-native'
+/* eslint no-underscore-dangle: 0 */
+import React, { Component } from 'react';
+import {
+  StyleSheet, View, AsyncStorage
+} from 'react-native';
+import { Button } from 'react-native-elements';
 
 export default class HomeScreen extends Component {
-  state = { signedIn: false }
+  static navigationOptions = { title: 'Welcome to the app!', }
 
-  componentDidMount() {
-    this.props.navigation.navigate(this.state.signedIn ? 'Main' : 'SignUp')
+  _showMoreApp = () => {
+    const { navigation } = this.navigation;
+    navigation.navigate('Other');
+  }
+
+  _signOutAsync = async () => {
+    await AsyncStorage.clear();
+    const { navigation } = this.navigation;
+    navigation.navigate('Auth');
   }
 
   render() {
-    return(
+    return (
       <React.Fragment>
         <View style={styles.container}>
-          <Text>Loading</Text>
-          <ActivityIndicator size="large" />
+          <Button title="Show me more of the app" onPress={this._showMoreApp} />
+          <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
         </View>
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -26,4 +37,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

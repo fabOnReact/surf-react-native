@@ -1,28 +1,23 @@
-import React, { Component } from 'react'
-import { AppRegistry } from 'react-native'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+// import React from 'react';
+// import { AppRegistry } from 'react-native';
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 
-import HomeScreen from './screens/HomeScreen'
-import SignUpScreen from './screens/SignUpScreen'
-import LoginScreen from './screens/LoginScreen'
-import MainScreen from './screens/MainScreen'
+import AuthLoadingScreen from './screens/AuthLoadingScreen';
+import HomeScreen from './screens/HomeScreen';
+// import SignUpScreen from './screens/SignUpScreen';
+import SignInScreen from './screens/SignInScreen';
+import MainScreen from './screens/MainScreen';
 
-const AppNavigator = createStackNavigator(
+const AppStack = createStackNavigator({ Home: HomeScreen, Main: MainScreen });
+const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+
+export default createAppContainer(createSwitchNavigator(
   {
-    Home: HomeScreen,
-    SignUp: SignUpScreen,
-    Login: LoginScreen,
-    Main: MainScreen
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
   },
-  { 
-    initialRouteName: "Home"
+  {
+    initialRouteName: 'AuthLoading',
   }
-);
-
-const AppContainer = createAppContainer(AppNavigator);
-
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
-  }
-}
+));

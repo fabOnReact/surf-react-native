@@ -1,19 +1,21 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
-export default class Main extends React.Component { 
+export default class MainScreen extends React.Component {
   state = { currentUser: null }
 
   render() {
-    const { currentUser } = this.state
+    const { currentUser } = this.state;
 
     return (
       <View style={styles.container}>
         <Text>
-          Hi {currentUser && currentUser.email}!
+          Hi
+          { currentUser && currentUser.email }
+          !
         </Text>
       </View>
-    )
+    );
   }
 }
 
@@ -23,4 +25,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }
-})
+});

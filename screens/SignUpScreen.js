@@ -1,53 +1,51 @@
-import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import React from 'react';
+import {
+  Text, View
+} from 'react-native';
+import { Input, Button } from 'react-native-elements';
+import { styles } from './AuthLoadingScreen';
 
-export default class SignUp extends React.Component {
-  state = {user: {email: '', password: ''}, errorMessage: null, signedIn: false}
+export default class SignUpScreen extends React.Component {
+  state = {
+    email: '', password: ''
+  }
 
   handleSignUp = () => {
-    console.log('handleSignUp')
+    console.log('handleSignUp');
   }
 
   render() {
+    const { email, password } = this.state;
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <Text>Sign Up</Text>
-        {this.state.errorMessage &&
-            <Text style={{ color: red }}>
-              {this.state.errorMessage}
-            </Text>}
-        <TextInput
+        <Input
           placeholder="Email"
           autocapitalize="none"
           style={styles.textInput}
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email} />
-        <TextInput
+          onChangeText={text => this.setState({ email: text })}
+          value={email}
+        />
+        <Input
           secureTextEntry
           placeholder="Password"
           autoCapitalize="none"
           style={styles.textInput}
-          onChangeText={passwod => this.setState({ password })}
-          value={this.state.password} />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
-        <Button title="Already have an account? Login"
-          onPress={() => this.props.navigation.navigate('Login')} />
+          onChangeText={text => this.setState({ password: text })}
+          value={password}
+        />
+        <Button
+          title="Sign Up"
+          onPress={this.handleSignUp}
+          buttonStyle={styles.button}
+        />
+        <Button
+          title="Already have an account? Login"
+          onPress={() => navigation.navigate('Login')}
+          buttonStyle={styles.button}
+        />
       </View>
-    )
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  textInput: {
-    height: 40,
-    width: '90%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
-  }
-})
