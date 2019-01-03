@@ -11,59 +11,65 @@ import {
 import { styles } from './styles';
 // import { login } from '../redux/actions';
 
+function ErrorMessage(props) {
+  const { message } = props;
+  return (
+    <View style={styles.errorContainer}>
+      <Text style={styles.errorText}>{ message }</Text>
+    </View>
+  );
+}
+
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
-  static const { navigation } = this.props;
 
-  state = { email: '', password: '' };
+  state = { email: '', password: '', errors: '' };
 
-  /*
-  login = () => {
-    this.props.login(this.state.user)
-    this.setState({ user: {email: '', password: ''}})
-  }
-
-  changeEmail(email){
-    new_state = {email: email, password: this.state.user.password}
-    this.setState({user: new_state})
-  }
-
-  changePassword(password){
-    new_state = {email: this.state.user.email, password: password}
-    this.setState({user: new_state})
-  }
-  */
-
-  _signInAsync = async () => {
+  // curl --data "user[email]=ezio@email.com&user[password]=fabrizio" 0.0.0.0:3000/users/sign_in.json
+  signInAsync = async () => {
+    const { navigation } = this.props;
     // perform AJAX request
 
     // AJAX request returns token
-    const token = "a_test_token"
+    const token = 'a_test_token';
 
     // AJAX request returns error
-    const errors = "wrong credentials"
-
-    if (errors) {
-      renderErrors();
+    const errorMessage = '';
+    console.log(this.state.email);
+    console.log(this.state.password);
+    response = this.createUserSession();
+    if (errorMessage) {
+      this.setState({ errors: errorMessage });
     } else {
-      saveToken();
-    };
+      await AsyncStorage.setItem('userToken', token);
+      navigation.navigate('App');
+    }
   };
 
-  renderErrors = () => {}
-
-  saveToken = async () => {
-    await AsyncStorage.setItem('userToken', token);
-    navigation.navigate('App');
+  createUserSession = async () => {
+    const { email, password } = this.state;
+    try {
+      let response = await fetch('http://192.168.1.24:3000/users/sign_in.json', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+        body: JSON.stringify({user: { email: 'ezio@email.com', password: 'fabrizio', }}),
+      });
+      let responseJson = await response.json();
+      console.log(responseJson);
+      return responseJson
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, errors } = this.state;
     const { navigation } = this.props;
+    const message = '';
     return (
       <React.Fragment>
+        { message ? <ErrorMessage message={message} /> : null }
         <View style={styles.container}>
-          <Text>Test</Text>
           <Text>Login</Text>
           <Input
             style={styles.textInput}
@@ -82,7 +88,7 @@ export default class SignInScreen extends Component {
           />
           <Button
             title="Login"
-            onPress={this._signInAsync}
+            onPress={this.signInAsync}
             buttonStyle={styles.button}
           />
           <Button
