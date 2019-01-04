@@ -1,46 +1,26 @@
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-import {
-  Text, View, AsyncStorage
-} from 'react-native';
-import {
-  Input,
-  Button
-} from 'react-native-elements';
+import { Text, View, AsyncStorage } from 'react-native';
+import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
+import { host, headers } from '../redux/constants'
+import { ErrorMessage } form './StatelessComponents'
 // import { login } from '../redux/actions';
-
-function ErrorMessage(props) {
-  const { message } = props;
-  return (
-    <View style={styles.errorContainer}>
-      <Text style={styles.errorText}>{ message }</Text>
-    </View>
-  );
-}
 
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
 
   state = { email: '', password: '', errors: '' };
 
-  // curl --data "user[email]=ezio@email.com&user[password]=fabrizio" 0.0.0.0:3000/users/sign_in.json
-  signInAsync = () => {
-    // perform AJAX request
-    this.createUserSession();
-    // AJAX request returns error
-    
-  };
-
   createUserSession = async () => {
     const { navigation } = this.props;
     const { email, password } = this.state;
     try {
-      const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
+      // const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
       const body = JSON.stringify({ user: { email: email, password: password, }})
       const options = { method: 'POST', headers: headers, body: body,}
-      let response = await fetch('http://192.168.1.33:3000/users/sign_in.json', options );
+      let response = await fetch(host + '/users/sign_in.json', options );
       
       // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
       const responseJson = await response.json();
@@ -82,7 +62,7 @@ export default class SignInScreen extends Component {
           />
           <Button
             title="Login"
-            onPress={this.signInAsync}
+            onPress={this.createUserSession}
             buttonStyle={styles.button}
           />
           <Button
