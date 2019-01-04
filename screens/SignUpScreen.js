@@ -3,7 +3,7 @@ import {
   Text, View
 } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { styles } from './AuthLoadingScreen';
+import { styles } from './styles';
 
 export default class SignUpScreen extends React.Component {
   state = {

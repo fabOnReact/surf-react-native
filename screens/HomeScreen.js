@@ -11,7 +11,7 @@ export default class HomeScreen extends Component {
 
   _showMoreApp = () => {
     const { navigation } = this.props;
-    navigation.navigate('Other');
+    navigation.navigate('Main');
   }
 
   _signOutAsync = async () => {
