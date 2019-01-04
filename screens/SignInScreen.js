@@ -26,49 +26,43 @@ export default class SignInScreen extends Component {
   state = { email: '', password: '', errors: '' };
 
   // curl --data "user[email]=ezio@email.com&user[password]=fabrizio" 0.0.0.0:3000/users/sign_in.json
-  signInAsync = async () => {
-    const { navigation } = this.props;
+  signInAsync = () => {
     // perform AJAX request
-
-    // AJAX request returns token
-    const token = 'a_test_token';
-
+    this.createUserSession();
     // AJAX request returns error
-    const errorMessage = '';
-    console.log(this.state.email);
-    console.log(this.state.password);
-    response = this.createUserSession();
-    if (errorMessage) {
-      this.setState({ errors: errorMessage });
-    } else {
-      await AsyncStorage.setItem('userToken', token);
-      navigation.navigate('App');
-    }
+    
   };
 
   createUserSession = async () => {
+    const { navigation } = this.props;
     const { email, password } = this.state;
     try {
-      let response = await fetch('http://192.168.1.24:3000/users/sign_in.json', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-        body: JSON.stringify({user: { email: 'ezio@email.com', password: 'fabrizio', }}),
-      });
-      let responseJson = await response.json();
-      console.log(responseJson);
-      return responseJson
+      const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
+      const body = JSON.stringify({ user: { email: email, password: password, }})
+      const options = { method: 'POST', headers: headers, body: body,}
+      let response = await fetch('http://192.168.1.33:3000/users/sign_in.json', options );
+      
+      // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
+      const responseJson = await response.json();
+      if (response.status == "200") { 
+        await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
+        navigation.navigate('App');
+      }
+      if (response.status == "401") {
+        this.setState({ errors: responseJson.error });
+        console.log(this.state.errors);
+      }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
   render() {
     const { email, password, errors } = this.state;
     const { navigation } = this.props;
-    const message = '';
     return (
       <React.Fragment>
-        { message ? <ErrorMessage message={message} /> : null }
+        { errors ? <ErrorMessage message={errors} /> : null }
         <View style={styles.container}>
           <Text>Login</Text>
           <Input

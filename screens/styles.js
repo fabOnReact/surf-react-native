@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     width: 220,
-    height: 40,
+    height: 50,
   },
   textInput: {
     height: 60,
