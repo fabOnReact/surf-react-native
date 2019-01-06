@@ -5,7 +5,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../redux/constants'
-import { ErrorMessage } form './StatelessComponents'
+import { ErrorMessage } from './StatelessComponents'
 // import { login } from '../redux/actions';
 
 export default class SignInScreen extends Component {
@@ -30,7 +30,6 @@ export default class SignInScreen extends Component {
       }
       if (response.status == "401") {
         this.setState({ errors: responseJson.error });
-        console.log(this.state.errors);
       }
     } catch (error) {
       console.log(error);
@@ -49,6 +48,7 @@ export default class SignInScreen extends Component {
             style={styles.textInput}
             autoCapitalize="none"
             placeholder="Email"
+            autoCapitalize = "none"
             onChangeText={text => this.setState({ email: text })}
             value={email}
           />
@@ -57,6 +57,7 @@ export default class SignInScreen extends Component {
             style={styles.textInput}
             autoCapitalize="none"
             placeholder="Password"
+            autoCapitalize = "none"
             onChangeText={text => this.setState({ password: text })}
             value={password}
           />

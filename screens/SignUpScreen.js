@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../redux/constants.js';
-import { ErrorMessage } form './StatelessComponents'
+import { ErrorMessage } from './StatelessComponents'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
@@ -21,19 +21,19 @@ export default class SignUpScreen extends React.Component {
       // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
       const responseJson = await response.json();
       console.log(response);
-      if (response.status == "200") { 
+
+      if (response.status == 201) { 
         await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
-        console.log(response);
         navigation.navigate('App');
       }
-      if (response.status == "422") {
-        const messages = "";
-        for (var element in responseJson) { errors += `the field ${element} ${responseJson[element]}, ` }
+
+      if (response.status == 422) {
+        var messages = "";
+        for (var element in responseJson) { messages += `the field ${element} ${responseJson[element]}, ` }
         this.setState({ errors: messages });
-        console.log(this.state.errors);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (errors) {
+      console.log(errors);
     }
   }
 
@@ -46,8 +46,9 @@ export default class SignUpScreen extends React.Component {
         <View style={styles.container}>
           <Text>Sign Up</Text>
           <Input
-            placeholder="Email"
+            placeholder="Email" 
             autocapitalize="none"
+            autoCapitalize = "none"
             style={styles.textInput}
             onChangeText={text => this.setState({ email: text })}
             value={email}
@@ -56,6 +57,8 @@ export default class SignUpScreen extends React.Component {
             secureTextEntry
             placeholder="Password"
             autoCapitalize="none"
+            keyboardType="email-address"
+            autoCapitalize = "none"
             style={styles.textInput}
             onChangeText={text => this.setState({ password: text })}
             value={password}
