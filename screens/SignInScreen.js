@@ -5,7 +5,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../redux/constants'
-import { ErrorMessage } from './StatelessComponents'
+import { ErrorMessage } from '../components/ErrorMessage'
 // import { login } from '../redux/actions';
 
 export default class SignInScreen extends Component {

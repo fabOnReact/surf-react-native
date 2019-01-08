@@ -3,7 +3,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../redux/constants.js';
-import { ErrorMessage } from './StatelessComponents'
+import { ErrorMessage } from '../components/ErrorMessage'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
@@ -13,12 +13,10 @@ export default class SignUpScreen extends React.Component {
     const { navigation } = this.props;
     const { email, password } = this.state;
     try {
-      // const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
       const body = JSON.stringify({ user: { email: email, password: password, }})
       const options = { method: 'POST', headers: headers, body: body,}
       let response = await fetch(host + '/users', options );
-      
-      // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
+     
       const responseJson = await response.json();
       console.log(response);
 
@@ -38,6 +36,7 @@ export default class SignUpScreen extends React.Component {
   }
 
   render() {
+    console.log('test');
     const { email, password, errors } = this.state;
     const { navigation } = this.props;
     return (
