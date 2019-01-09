@@ -5393,6 +5393,13 @@ react-native-elements@^1.0.0-beta7:
     opencollective-postinstall "^2.0.0"
     prop-types "^15.5.8"
 
+react-native-fit-image@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.5.4.tgz#73d2fccc7ad902cf2ffcd008a2a74749ad50134a"
+  integrity sha512-wNHlGdDWsUU31qlM5SsvZrMH4eXBZt586FQNXFRFuOiXVqdA++6Xait7aiZ+5vxglgqLf+zzSnoICn0NEvDfrw==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.12.tgz#99a22f90212df299245357dbd3a9a01c788f310b"

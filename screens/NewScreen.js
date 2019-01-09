@@ -10,7 +10,10 @@ export default class NewScreen extends Component {
     const { navigation } = this.props;
     return (
       <React.Fragment>
-          <Text>New Screen</Text>
+        <View style={{flex: 1}}>
+          <ScrollView>main</ScrollView>
+          <View><Text>footer</Text></View>
+        </View>
           <Button
             title="Index"
             onPress={() => navigation.navigate('Index')}

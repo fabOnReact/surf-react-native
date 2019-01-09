@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     width: 220,
     height: 50,
   },
+  buttonAbsolute: {
+    position: 'absolute',
+    bottom:0,
+    right:1,    
+  },
   textInput: {
     height: 60,
     borderColor: 'gray',

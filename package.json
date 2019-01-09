@@ -13,6 +13,7 @@
     "react-devtools": "^3.4.3",
     "react-native": "0.57.8",
     "react-native-elements": "^1.0.0-beta7",
+    "react-native-fit-image": "^1.5.4",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.9",
