@@ -60,7 +60,7 @@ export default class IndexScreen extends Component {
     console.log(json)
     const keys = Object.keys(json)
     const listItems = keys.map((key) => 
-      <Post post={json[key]} />
+      <Post key={key} post={json[key]} />
     );
     this.setState({ list: listItems})
     console.log("this.state.list", this.state.list)
