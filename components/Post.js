@@ -7,13 +7,10 @@ export function Post(props) {
   // const { description } = props;
   return (
     <View>
-    {/*
       <Text>{ post.description }</Text>
       <Text>{ post.latitude }</Text>
       <Text>{ post.longitude }</Text>
       <Text>{ post.picture.url }</Text>
-      */}
-      <Text>{post.description}</Text>
     </View>
   );
 }

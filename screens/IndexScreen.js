@@ -11,7 +11,7 @@ export default class IndexScreen extends Component {
 
   constructor(props){
     super(props);
-    this.state = { posts: '', errors: '' }; 
+    this.state = { posts: '', errors: '', list: '' }; 
   }
 
 
@@ -33,8 +33,8 @@ export default class IndexScreen extends Component {
       const responseJson = await response.json();
 
       if (response.status == 200) { 
-        this.setState({ posts: responseJson })
-        // console.log(this.state.posts)
+        // this.setState({ posts: responseJson })
+        this.createList(responseJson);
       }
 
       if (response.status == 422) {
@@ -54,17 +54,33 @@ export default class IndexScreen extends Component {
     navigation.navigate('Auth');
   }
 
+  createList = (json) => {
+    // list = Object.keys(this.state.posts).map(function(key) { return <Post />; })
+    // const numbers = [1,2,3,4,5];
+    console.log(json)
+    const keys = Object.keys(json)
+    const listItems = keys.map((key) => 
+      <Post post={json[key]} />
+    );
+    this.setState({ list: listItems})
+    console.log("this.state.list", this.state.list)
+  }
+
   render() {
     console.log('render')
     const { navigation } = this.props;
     const { posts } = this.state;
-    console.log("this.state.posts[0]", this.state.posts[0]);
-    // if (posts != "") {const post = <Post post={this.state.props[0]} />}
+    // console.log("this.state.posts[0]", this.state.posts[0]);
+    // You need to loop the posts. 
+    // if (posts != "") { this.createList() }
 
     return (
       <React.Fragment>
+        {/* posts != "" && Object.keys(posts).map(key => return <Post post={"test"} />; ) ) */}
+        {/* posts != "" && ...posts.map(post => console.log("the key is ", post)) */}
         { posts != "" && <Post post={posts[0]} />}
         <View style={styles.container}>
+          { this.state.list != "" && this.state.list }
           <Button 
             title="New Picture" 
             onPress={() => navigation.navigate('New')}
