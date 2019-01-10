@@ -6,6 +6,7 @@ import { host, headers } from '../redux/constants.js';
 import { styles } from './styles';
 import { Post } from '../components/Post';
 import { Container, Content } from 'native-base';
+import Dimensions from 'Dimensions';
 
 export default class IndexScreen extends Component {
   static navigationOptions = { title: 'The surf today', }
@@ -42,7 +43,7 @@ export default class IndexScreen extends Component {
   createPosts = (json) => {
     const keys = Object.keys(json)
     const postItems = keys.map((key) => 
-      <Post key={key} post={json[key]} />
+      <Post key={key} post={json[key]} height={this.windowHeight} />
     );
     this.setState({ posts: postItems})
   }
@@ -51,12 +52,13 @@ export default class IndexScreen extends Component {
     console.log('render')
     const { navigation } = this.props;
     const { posts } = this.state;
+    this.windowHeight = (Dimensions.get('window').height - 253) / 2;
 
     return (
       <React.Fragment>
       <View style={{flex:1}}>
         <Container style={styles.cardContainer} >
-          <Content>{ posts != "" && posts }</Content>
+          <Content style={{flex:1}}>{ posts != "" && posts }</Content>
         </Container>
         <Icon
           containerStyle={styles.buttonAbsolute}

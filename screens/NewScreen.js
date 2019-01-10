@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
+import { RNCamera } from 'react-native-camera';
 
 export default class NewScreen extends Component {
 

@@ -5497,6 +5497,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-camera@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.8.0.tgz#e4749b112b99ce04c60f581d24624cd413d2d14a"
+  integrity sha512-fJPSbCZ4ZWI+1kQ2Y41ed0fr3Bnw+qo6eb8uv3HcTkGzBJ1OCzLIcAhpXLhizyiyY9nwSuMy9asQKS3Tun8eXA==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
