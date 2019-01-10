@@ -5,8 +5,9 @@ import { createStore } from 'redux'
 import { authentication } from './redux/actions'
 
 // Import the App container component
-import App from './App';
+import { App } from './App';
 
+/*
 // create redux store
 const store = createStore(
   authentication,
@@ -14,11 +15,16 @@ const store = createStore(
 )
 
 // Pass the store into the provider
+*/
 import {name as appName} from './app.json';
+
+/*
 const AppWithStore = () => (
   <Provider store={store}>
     <App />
   </Provider>
 )
+*/
 
-AppRegistry.registerComponent(appName, () => AppWithStore);
+
+// AppRegistry.registerComponent(appName, () => App);
