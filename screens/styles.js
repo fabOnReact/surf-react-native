@@ -8,6 +8,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  cardContainer: {
+    marginTop: 10,
+    marginRight: 6,
+    marginLeft: 6,
+  },  
   button: {
     width: 220,
     height: 50,

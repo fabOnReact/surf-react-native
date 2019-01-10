@@ -1,10 +1,11 @@
 /* eslint no-underscore-dangle: 0 */
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, AsyncStorage, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { host, headers } from '../redux/constants.js';
 import { styles } from './styles';
 import { Post } from '../components/Post';
+import { Container, Content } from 'native-base';
 
 export default class IndexScreen extends Component {
   static navigationOptions = { title: 'The surf today', }
@@ -36,11 +37,7 @@ export default class IndexScreen extends Component {
     }
   }
 
-  /* _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    const { navigation } = this.props;
-    navigation.navigate('Auth');
-  } */
+
 
   createPosts = (json) => {
     const keys = Object.keys(json)
@@ -57,14 +54,19 @@ export default class IndexScreen extends Component {
 
     return (
       <React.Fragment>
-        <ScrollView>
-          { posts != "" && posts }
-          <Button 
-            title="New Picture" 
-            onPress={() => navigation.navigate('New')}
-            buttonStyle={styles.buttonAbsolute}
-          />
-        </ScrollView>
+      <View style={{flex:1}}>
+        <Container style={styles.cardContainer} >
+          <Content>{ posts != "" && posts }</Content>
+        </Container>
+        <Icon
+          containerStyle={styles.buttonAbsolute}
+          name='camera-alt' 
+          size={35}
+          color='#3333ff'
+          reverse={true}
+          onPress={() => navigation.navigate('New')}
+        />         
+      </View>
       </React.Fragment>
     );
   }
