@@ -32,7 +32,6 @@ export default class NewScreen extends Component {
                   reverse={true}
                   size={35}
                   backgroundColor="transparent"
-                  onPress={() => this.takePicture}
                 />                  
               </TouchableOpacity>
             </View>
