@@ -1,19 +1,22 @@
+import Dimensions from 'Dimensions';
+
 import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
+    height: Dimensions.get('window').height,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'black'
+    backgroundColor: 'transparent',
   },
   preview: {
+    height: Dimensions.get('window').height,
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    height: 500,
   },
   capture: {
     flex: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     borderRadius: 5,
     padding: 15,
     paddingHorizontal: 20,

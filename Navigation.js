@@ -5,7 +5,7 @@ import NewScreen from './screens/NewScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 
-const AppStack = createStackNavigator({ Index: IndexScreen, New: NewScreen }); 
+const AppStack = createStackNavigator({ New: NewScreen }); // Index: IndexScreen, 
 const AuthStack = createStackNavigator({ SignUp: SignUpScreen, SignIn: SignInScreen });
 
 const AppNavigator = createSwitchNavigator(
