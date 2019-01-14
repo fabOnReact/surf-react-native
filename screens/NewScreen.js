@@ -28,7 +28,7 @@ export default class NewScreen extends Component {
                 <Icon
                   containerStyle={styles.buttonAbsolute}
                   name='camera' 
-                  color="blue"
+                  color="#4d79ff"
                   reverse={true}
                   size={35}
                   backgroundColor="transparent"
@@ -40,12 +40,21 @@ export default class NewScreen extends Component {
     );
   }
 
+
   takePicture = async function() {
-    if (this.camera) {
-      console.log(this.camera);
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options)
-      console.log(data.uri);
-    }
+    const options = { quality: 0.5, base64: true };
+    const data = await this.camera.takePictureAsync(options);
+    PicturePath = data.uri;
+    console.log(data);
+    this.storePicture()
   };
+
+  storePicture = async function(){
+    var data = new FormData();
+    data.append('picture', { uri: PicturePath, name: 'selfie.jpg', type: 'image/jpg'});
+    const headers = { Accept: 'application/json', 'Content-Type': 'multipart/form-data;', Authorization: 'Bearer ' + 'SECRET_OAUTH2_TOKEN_IF_AUTH' }    
+    const config = { method: 'POST', headers: headers, body: data }; 
+    const response = await fetch('https://postman-echo.com/post', config)
+    console.log(response)
+  }
 }
