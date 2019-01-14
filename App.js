@@ -1,34 +1,19 @@
-// import React from 'react';
-// import { AppRegistry } from 'react-native';
-/*
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
+import React, { Component } from 'react';
+import { Text } from 'react-native';
+import { AppContainer } from './Navigation';
 
-import AuthLoadingScreen from './screens/AuthLoadingScreen';
-import IndexScreen from './screens/IndexScreen';
-import NewScreen from './screens/NewScreen';
-import SignUpScreen from './screens/SignUpScreen';
-import SignInScreen from './screens/SignInScreen';
-
-
-const AppStack = createStackNavigator({ New: NewScreen }); //Index: IndexScreen, 
-const AuthStack = createStackNavigator({ SignUp: SignUpScreen, SignIn: SignInScreen });
-
-export default createAppContainer(createSwitchNavigator(
-  {
-    AuthLoading: AuthLoadingScreen,
-    App: AppStack,
-    Auth: AuthStack,
-  },
-  {
-    initialRouteName: 'AuthLoading',
+type Props = {};
+export default class App extends Component<Props> {
+  render() {
+    return <AppContainer />; 
   }
-));
-*/
+}
 
-/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
+//AppRegistry.registerComponent(appName, () => App);
+
+/*
 import React, { Component } from 'react';
 import { AppRegistry, TouchableOpacity, Text, View, ScrollView } from 'react-native';
-// import { Input, Button } from 'react-native-elements';
 import { styles } from './screens/NewStyles';
 import { RNCamera } from 'react-native-camera';
 import {name as appName} from './app.json';
@@ -65,6 +50,7 @@ export default class App extends Component {
 
   takePicture = async function() {
     if (this.camera) {
+      console.log(this.camera);
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options)
       console.log(data.uri);
@@ -73,3 +59,4 @@ export default class App extends Component {
 }
 
 AppRegistry.registerComponent(appName, () => App);
+*/
