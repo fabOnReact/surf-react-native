@@ -1,6 +1,6 @@
 /* eslint no-underscore-dangle: 0 */
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, AsyncStorage, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { host, headers } from '../redux/constants.js';
 import { styles } from './styles';

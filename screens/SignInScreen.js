@@ -26,6 +26,7 @@ export default class SignInScreen extends Component {
       const responseJson = await response.json();
       if (response.status == "200") { 
         await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
+        await AsyncStorage.setItem('userEmail', email); 
         navigation.navigate('App');
       }
       if (response.status == "401") {
@@ -76,5 +77,3 @@ export default class SignInScreen extends Component {
     );
   }
 }
-
-// export default connect(null, { login }) (Login)
