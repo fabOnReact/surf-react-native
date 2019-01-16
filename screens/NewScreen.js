@@ -44,23 +44,25 @@ export default class NewScreen extends Component {
     AsyncStorage.clear()
     this.props.navigation.navigate('Auth')
     */
-    const options = { quality: 0.5, base64: false };
+    const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
-    Uri = picture.uri;
-    console.log('picture', picture);
+    Picture = picture.base64
     this.storePicture()
   };
 
   storePicture = async function(){
     const userToken = await AsyncStorage.getItem('userToken');
     const userEmail = await AsyncStorage.getItem('userEmail'); 
-    const formdata = new FormData();
-    formdata.append({ post: {path: Uri, name: 'test.jpg', type: 'image/jpg' }})
-    // var data = { post: { uri: PicturePath, name: 'selfie.jpg', type: 'image/jpg'}};
-    const headers = { Accept: 'application/json', 'Content-Type': 'multipart/form-data;', 'X-User-Email': userEmail, 'X-User-Token': userToken }    
-    const config = { method: 'POST', headers: headers, body: formdata }; 
+
+    const data = new FormData();
+    data.append('post[picture][path]', Picture); //{picture: {path: Uri, name: 'test.jpeg', type: 'image/jpeg' }}
+    data.append('post[picture][name]', 'test.png'); 
+    data.append('post[picture][type]', 'image/png');
+    data.append('post[picture][flags]', 'r');
+    const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
+    const config = { method: 'POST', headers: headers, body: data }; 
     console.log('config', config)
-    const response = await fetch(host + "/posts.json", config)  ``
+    const response = await fetch(host + "/posts.json", config)
     console.log(response)
   }
 }
