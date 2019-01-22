@@ -17,7 +17,7 @@ export default class IndexScreen extends Component {
     this.state = { posts: '', errors: '' }; 
   }
 
-  componentWillMount(){ 
+  componentWillMount(){
     this.fetchPosts(); 
     Orientation.lockToPortrait();
    }
