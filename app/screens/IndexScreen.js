@@ -7,6 +7,7 @@ import { styles } from './styles';
 import { Post } from '../components/Post';
 import { Container, Content } from 'native-base';
 import Dimensions from 'Dimensions';
+import Orientation from 'react-native-orientation-locker';
 
 export default class IndexScreen extends Component {
   static navigationOptions = { title: 'The surf today', }
@@ -16,7 +17,10 @@ export default class IndexScreen extends Component {
     this.state = { posts: '', errors: '' }; 
   }
 
-  componentWillMount(){ this.fetchPosts(); }
+  componentWillMount(){ 
+    this.fetchPosts(); 
+    Orientation.lockToPortrait();
+   }
 
   fetchPosts = async () => {
     try {

@@ -5558,6 +5558,11 @@ react-native-keyboard-aware-scroll-view@0.8.0:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-orientation-locker@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-orientation-locker/-/react-native-orientation-locker-1.1.1.tgz#1192fc9b0571c9bdf749633d553104f7bbc72c16"
+  integrity sha512-JFypx9gJulWT0H3izHMMZgQikeELtYTZDQbrip1RI3bnY7V1vY5uZ0XsmKCR2BSWXWXfx8wLBa69QpI9+CA8rw==
+
 react-native-safe-area-view@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.11.0.tgz#4f3dda43c2bace37965e7c6aef5fc83d4f19d174"
