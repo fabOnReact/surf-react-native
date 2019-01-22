@@ -1,78 +1,78 @@
-/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import React from 'react';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
-import { host, headers } from '../redux/constants'
+import { host, headers } from '../config/constants.js';
 import { ErrorMessage } from '../components/ErrorMessage'
-// import { login } from '../redux/actions';
 
-export default class SignInScreen extends Component {
-  static navigationOptions = { title: 'Sign In', }
-
+export default class SignUpScreen extends React.Component {
+  static navigationOptions = { title: 'Sign Up', };
   state = { email: '', password: '', errors: '' };
 
-  createUserSession = async () => {
+  createUserRegistration = async () => {
     const { navigation } = this.props;
     const { email, password } = this.state;
     try {
-      // const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
       const body = JSON.stringify({ user: { email: email, password: password, }})
       const options = { method: 'POST', headers: headers, body: body,}
-      let response = await fetch(host + '/users/sign_in.json', options );
-      
-      // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
+      let response = await fetch(host + '/users', options );
+     
       const responseJson = await response.json();
-      if (response.status == "200") { 
+      console.log(response);
+
+      if (response.status == 201) { 
         await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
-        await AsyncStorage.setItem('userEmail', email); 
         navigation.navigate('App');
       }
-      if (response.status == "401") {
-        this.setState({ errors: responseJson.error });
+
+      if (response.status == 422) {
+        var messages = "";
+        for (var element in responseJson) { messages += `the field ${element} ${responseJson[element]}, ` }
+        this.setState({ errors: messages });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (errors) {
+      console.log(errors);
     }
   }
 
   render() {
+    console.log('test');
     const { email, password, errors } = this.state;
     const { navigation } = this.props;
     return (
-      <React.Fragment>
+      <React.Fragment>    
         { errors ? <ErrorMessage message={errors} /> : null }
         <View style={styles.container}>
-          <Text>Login</Text>
+          <Text>Sign Up</Text>
           <Input
-            style={styles.textInput}
-            autoCapitalize="none"
-            placeholder="Email"
+            placeholder="Email" 
+            autocapitalize="none"
             autoCapitalize = "none"
+            style={styles.textInput}
             onChangeText={text => this.setState({ email: text })}
             value={email}
           />
           <Input
             secureTextEntry
-            style={styles.textInput}
-            autoCapitalize="none"
             placeholder="Password"
+            autoCapitalize="none"
+            keyboardType="email-address"
             autoCapitalize = "none"
+            style={styles.textInput}
             onChangeText={text => this.setState({ password: text })}
             value={password}
           />
           <Button
-            title="Login"
-            onPress={this.createUserSession}
+            title="Sign Up"
+            onPress={this.createUserRegistration}
             buttonStyle={styles.button}
           />
           <Button
-            title="Don't have an account? Sign Up"
-            onPress={() => navigation.navigate('SignUp')}
+            title="Already have an account? Login"
+            onPress={() => navigation.navigate('SignIn')}
             buttonStyle={styles.button}
           />
-        </View>
+        </View>      
       </React.Fragment>
     );
   }

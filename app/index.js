@@ -5,7 +5,7 @@ import { AppRegistry } from 'react-native'
 import App from './App';
 
 // Pass the store into the provider
-import {name as appName} from './app.json';
+import {name as appName} from '../app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 

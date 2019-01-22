@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
-import { host, headers } from '../redux/constants.js';
+import { host, headers } from '../config/constants.js';
 import { styles } from './styles';
 import { Post } from '../components/Post';
 import { Container, Content } from 'native-base';
@@ -20,10 +20,10 @@ export default class IndexScreen extends Component {
 
   fetchPosts = async () => {
     try {
-      console.log('fetch_posts');
       const options = { method: 'GET', headers: headers,};
       let response = await fetch(host + '/posts.json', options );
       const responseJson = await response.json();
+      console.log(response)
 
       if (response.status == 200) { this.createPosts(responseJson); }
 
@@ -49,7 +49,6 @@ export default class IndexScreen extends Component {
   }
 
   render() {
-    console.log('render')
     const { navigation } = this.props;
     const { posts } = this.state;
     this.windowHeight = (Dimensions.get('window').height - 253) / 2;
