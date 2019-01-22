@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { styles } from './styles';
-import { host } from '../redux/constants.js';
+import { host } from '../config/constants.js';
 import FitImage from 'react-native-fit-image';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 

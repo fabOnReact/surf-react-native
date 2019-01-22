@@ -2,10 +2,10 @@
 import { AppRegistry } from 'react-native'
 
 // Import the App container component
-import App from './App';
+import App from './app/App';
 
 // Pass the store into the provider
-import {name as appName} from '../app.json';
+import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 
