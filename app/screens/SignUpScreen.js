@@ -22,6 +22,7 @@ export default class SignUpScreen extends React.Component {
 
       if (response.status == 201) { 
         await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
+        await AsyncStorage.setItem('userEmail', email); 
         navigation.navigate('App');
       }
 

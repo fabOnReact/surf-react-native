@@ -34,6 +34,8 @@ export default class NewScreen extends Component {
     data.append('post[picture][name]', `test_${timestamp}.png`); 
     data.append('post[picture][type]', 'image/png');
     const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
+    console.log(userEmail)
+    console.log(userToken)
     const config = { method: 'POST', headers: headers, body: data }; 
     const response = await fetch(host + "/posts.json", config)
     console.log(response)
@@ -50,6 +52,7 @@ export default class NewScreen extends Component {
             style={styles.preview}
             type={RNCamera.Constants.Type.back}
             flashMode={RNCamera.Constants.FlashMode.on}
+            captureAudio={false}
             permissionDialogTitle={'Permission to use camera'}
             permissionDialogMessage={'We need your permission to use your camera phone'}> 
             <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center', backgroundColor: 'transparent'}}>
