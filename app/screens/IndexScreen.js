@@ -18,7 +18,7 @@ export default class IndexScreen extends Component {
   }
 
   componentWillMount(){
-    this.fetchPosts(); 
+    // this.fetchPosts(); 
     Orientation.lockToPortrait();
    }
 
@@ -42,8 +42,6 @@ export default class IndexScreen extends Component {
     }
   }
 
-
-
   createPosts = (json) => {
     const keys = Object.keys(json)
     const postItems = keys.map((key) => 
@@ -53,6 +51,7 @@ export default class IndexScreen extends Component {
   }
 
   render() {
+    this.fetchPosts();
     const { navigation } = this.props;
     const { posts } = this.state;
     this.windowHeight = (Dimensions.get('window').height - 253) / 2;
