@@ -1,12 +1,10 @@
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants'
 import { ErrorMessage } from '../components/ErrorMessage'
-// import { login } from '../redux/actions';
 
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
