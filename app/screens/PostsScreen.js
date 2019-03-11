@@ -9,6 +9,7 @@ import { Container, Content } from 'native-base';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
 import { MenuButtons, Item } from './../components/MenuButtons';
+import { NavigationEvents } from 'react-navigation';
 
 export default class PostsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -16,7 +17,7 @@ export default class PostsScreen extends Component {
       title: 'The surf today', 
       headerRight: (
         <MenuButtons>
-          <Item title='person' iconName='person' onPress={() => navigation.navigate('User') } />
+          <Item title='person' iconName='person' onPress={() => navigation.navigate('Profile') } />
         </MenuButtons>
       ),
     };
@@ -27,9 +28,9 @@ export default class PostsScreen extends Component {
     this.state = { posts: '', errors: '' }; 
   }
 
-  componentWillMount(){
-    Orientation.lockToPortrait();
-  }
+  // componentWillMount(){
+  //   Orientation.lockToPortrait();
+  // }
 
   fetchPosts = async () => {
     try {
@@ -59,13 +60,14 @@ export default class PostsScreen extends Component {
   }
 
   render() {
-    this.fetchPosts();
     const { navigation } = this.props;
     const { posts } = this.state;
+    Orientation.lockToPortrait();
     this.windowHeight = (Dimensions.get('window').height - 253) / 2;
 
     return (
       <React.Fragment>
+      <NavigationEvents onWillFocus={payload => this.fetchPosts() } />
       <View style={{flex:1}}>
         <Container style={styles.cardContainer} >
           <Content style={{flex:1}}>{ posts != "" && posts }</Content>
