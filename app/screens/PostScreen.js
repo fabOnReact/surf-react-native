@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, ScrollView, AsyncStorage } from 'react-native';
-import { styles } from './NewStyles';
+import { styles } from './PostStyles';
 import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import { host } from '../config/constants'
 import Orientation from 'react-native-orientation-locker';
 import ClientDate from '../lib/client_date'
 
-export default class NewScreen extends Component {
+export default class PostScreen extends Component {
 
   componentDidMount() {
     Orientation.lockToLandscapeLeft();

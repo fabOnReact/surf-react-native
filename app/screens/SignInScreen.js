@@ -17,12 +17,10 @@ export default class SignInScreen extends Component {
     const { navigation } = this.props;
     const { email, password } = this.state;
     try {
-      // const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
       const body = JSON.stringify({ user: { email: email, password: password, }})
       const options = { method: 'POST', headers: headers, body: body,}
       let response = await fetch(host + '/users/sign_in.json', options );
       
-      // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
       const responseJson = await response.json();
       if (response.status == "200") { 
         await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
