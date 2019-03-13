@@ -5,6 +5,7 @@ import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
@@ -68,6 +69,12 @@ export default class SignInScreen extends Component {
             onPress={() => navigation.navigate('SignUp')}
             buttonStyle={styles.button}
           />
+          <GoogleSigninButton
+            style={{ width: 192, height: 48 }}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={this._signIn}
+            disabled={this.state.isSigninInProgress} />
         </View>
       </React.Fragment>
     );
