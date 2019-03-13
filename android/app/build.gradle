@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-google-signin')
     compile project(':react-native-orientation-locker')
     compile project(':react-native-camera')
     compile project(':react-native-vector-icons')
@@ -152,3 +153,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

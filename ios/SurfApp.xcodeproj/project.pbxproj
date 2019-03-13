@@ -75,6 +75,7 @@
 		F0FD6133D1DD4E4594DF0671 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B36A4D9DD4A209AA608B8 /* EvilIcons.ttf */; };
 		F7F0F71F90714841BB255E3C /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FA51017CF44F5E9F3720CA /* MaterialCommunityIcons.ttf */; };
 		FDFEBB63EBFE491EB1531676 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 145B58627D91462798FF616D /* FontAwesome5_Brands.ttf */; };
+		09A8F980FBDE42608A434A61 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E04E350F1449A48B18F046 /* libRNGoogleSignin.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -457,6 +458,8 @@
 		FA3F3681CDA34C85B421108B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		FE3E926E344D4DFDB63F61AC /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		FF31E15F472F45E3B3570603 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		9BE1001DBE5B4CCE999EFD19 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C3E04E350F1449A48B18F046 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,6 +491,7 @@
 				64E6177E7084459F9A86CCE0 /* libRNVectorIcons.a in Frameworks */,
 				3BD94274C33746438A3CCABA /* libRNCamera.a in Frameworks */,
 				141D84414E2045BC96573FD7 /* libRCTOrientation.a in Frameworks */,
+				09A8F980FBDE42608A434A61 /* libRNGoogleSignin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +768,7 @@
 				F15786A569C844A39B9FD011 /* RNVectorIcons.xcodeproj */,
 				E4BBB6BECF234C9DA1E22D40 /* RNCamera.xcodeproj */,
 				F6ADADFF1820427F8233AED1 /* RCTOrientation.xcodeproj */,
+				9BE1001DBE5B4CCE999EFD19 /* RNGoogleSignin.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1476,12 +1481,14 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = SurfAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1510,12 +1517,14 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = SurfAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1545,6 +1554,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = SurfApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1572,6 +1582,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = SurfApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1605,11 +1616,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = "SurfApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1646,11 +1659,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = "SurfApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1686,11 +1701,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = "SurfApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1726,11 +1743,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-orientation-locker/iOS/RCTOrientation",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = "SurfApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
