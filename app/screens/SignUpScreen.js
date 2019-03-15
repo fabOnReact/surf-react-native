@@ -4,7 +4,7 @@ import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants.js';
 import { ErrorMessage } from '../components/ErrorMessage';
-import Api from '../lib/api_request'
+import { getPosts, createUser } from '../lib/api_request'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
@@ -28,7 +28,7 @@ export default class SignUpScreen extends React.Component {
   createUserRegistration = () => {
     const { email, password } = this.state;
     const body = JSON.stringify({ user: { email: email, password: password, }})
-    Api.createUser(this.saveCredentials, this.triggerErrors, body)
+    createUser(this.saveCredentials, this.triggerErrors, body)
   }
 
   render() {
