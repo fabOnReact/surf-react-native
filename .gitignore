@@ -59,4 +59,5 @@ buck-out/
 # Added from developer
 .notes
 .cutout
-config/
+app/config/secrets.js
+android/app/google-services.json
