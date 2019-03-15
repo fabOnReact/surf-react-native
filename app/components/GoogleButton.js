@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Alert, Button } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import type { User } from 'react-native-google-signin';
-import { config } from '../config/constants';
+import { config } from '../config/secrets.js';
 import Api from '../lib/api_request';
 
 type ErrorWithCode = Error & { code?: string };
