@@ -3,41 +3,35 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants.js';
-import { ErrorMessage } from '../components/ErrorMessage'
+import { ErrorMessage } from '../components/ErrorMessage';
+import Api from '../lib/api_request'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
   state = { email: '', password: '', errors: '' };
 
-  createUserRegistration = async () => {
+  saveCredentials = async (json) => {
     const { navigation } = this.props;
-    const { email, password } = this.state;
-    try {
-      const body = JSON.stringify({ user: { email: email, password: password, }})
-      const options = { method: 'POST', headers: headers, body: body,}
-      let response = await fetch(host + '/users', options );
-     
-      const responseJson = await response.json();
-      console.log(response);
+    await AsyncStorage.setItem('userToken', json.authentication_token); 
+    await AsyncStorage.setItem('userEmail', json.email); 
+    navigation.navigate('App');
+  }
 
-      if (response.status == 201) { 
-        await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
-        await AsyncStorage.setItem('userEmail', email); 
-        navigation.navigate('App');
-      }
-
-      if (response.status == 422) {
-        var messages = "";
-        for (var element in responseJson) { messages += `the field ${element} ${responseJson[element]}, ` }
-        this.setState({ errors: messages });
-      }
-    } catch (errors) {
-      console.log(errors);
+  triggerErrors = (json) => {
+    var messages = "";
+    for (var element in json) { 
+      messages += `the field ${element} ${json[element]}, ` 
     }
+    this.setState({ errors: messages });
+  }
+
+  createUserRegistration = () => {
+    const { email, password } = this.state;
+    const body = JSON.stringify({ user: { email: email, password: password, }})
+    Api.createUser(this.saveCredentials, this.triggerErrors, body)
   }
 
   render() {
-    console.log('test');
     const { email, password, errors } = this.state;
     const { navigation } = this.props;
     return (
