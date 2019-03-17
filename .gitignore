@@ -60,4 +60,3 @@ buck-out/
 .notes
 .cutout
 app/config/secrets.js
-android/app/google-services.json
