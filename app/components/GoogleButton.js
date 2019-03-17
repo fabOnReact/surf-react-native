@@ -27,8 +27,6 @@ export default class GoogleButton extends Component<{}, State> {
   }
 
   _configureGoogleSignIn() {
-    api = new Api()
-    api.getPosts(userCreated, authenticationFailed)
     GoogleSignin.configure({
       webClientId: config.webClientId,
       offlineAccess: true,
