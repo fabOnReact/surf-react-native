@@ -15,6 +15,7 @@ export default class SignInScreen extends Component {
   createUserSession = async () => {
     const { navigation } = this.props;
     const { email, password } = this.state;
+    // to be refactored 
     try {
       const body = JSON.stringify({ user: { email: email, password: password, }})
       const options = { method: 'POST', headers: headers, body: body,}

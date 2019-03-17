@@ -4,3 +4,9 @@ export default class ClientDate extends Date {
 		this.iso = this.toISOString();
     }
 }
+
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;

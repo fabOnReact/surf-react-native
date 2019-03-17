@@ -20,25 +20,26 @@ export default class PostScreen extends Component {
   takePicture = async function() {
     const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
-    Picture = picture.base64
-    this.storePicture()
+    // Picture = picture.base64
+    this.storePicture(picture.base64)
   };
 
-  storePicture = async function() {
+  storePicture = async function(pic) {
     const userToken = await AsyncStorage.getItem('userToken');
     const userEmail = await AsyncStorage.getItem('userEmail'); 
-    const data = new FormData();
-    const timestamp = new ClientDate().iso;
-    console.log(timestamp);
-    data.append('post[picture][file]', Picture);
-    data.append('post[picture][name]', `test_${timestamp}.png`); 
-    data.append('post[picture][type]', 'image/png');
-    const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
-    console.log(userEmail)
-    console.log(userToken)
-    const config = { method: 'POST', headers: headers, body: data }; 
-    const response = await fetch(host + "/posts.json", config)
-    console.log(response)
+    const picture = new Picture(pic)
+    // const data = new FormData();
+    // const timestamp = new ClientDate().iso;
+    // data.append('post[picture][file]', Picture);
+    // data.append('post[picture][name]', `test_${timestamp}.png`); 
+    // data.append('post[picture][type]', 'image/png');
+    // const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
+    // const config = { method: 'POST', headers: headers, body: data }; 
+    // createPost({
+    //   picture: picture,
+    //   params: { userEmail: userEmail, userToken: userToken },
+    // })
+    // const response = await fetch(host + "/posts.json", config)
   }
 
   render() {
