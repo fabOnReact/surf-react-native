@@ -121,7 +121,6 @@ export default class GoogleButton extends Component<{}, State> {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      api = new Api()
       this.setState({ userInfo, error: null });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
