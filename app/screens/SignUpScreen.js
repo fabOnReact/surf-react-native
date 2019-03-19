@@ -25,10 +25,10 @@ export default class SignUpScreen extends React.Component {
     this.setState({ errors: messages });
   }
 
-  createUserRegistration = () => {
+  createUserRegistration = async () => {
     const { email, password } = this.state;
-    const body = JSON.stringify({ user: { email: email, password: password, }})
-    createUser(this.saveCredentials, this.triggerErrors, body)
+    const body = JSON.stringify({ user: { email: email, password: password }})
+    await createUser(this.saveCredentials, this.triggerErrors, body)
   }
 
   render() {
