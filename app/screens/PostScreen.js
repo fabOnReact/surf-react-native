@@ -23,11 +23,6 @@ export default class PostScreen extends Component {
   takePicture = async function() {
     const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
-    Picture = picture.base64
-    this.storePicture()
-  };
-
-  storePicture = async function() {
     const credentials = { 
       userToken: await AsyncStorage.getItem('userToken'),
       userEmail: await AsyncStorage.getItem('userEmail'),
@@ -35,39 +30,11 @@ export default class PostScreen extends Component {
     const data = new FormData();
     const timestamp = new ClientDate().iso;
     console.log(timestamp);
-    data.append('post[picture][file]', Picture);
+    data.append('post[picture][file]', picture.base64);
     data.append('post[picture][name]', `test_${timestamp}.png`);
     data.append('post[picture][type]', 'image/png');
-    // const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
-    // const config = { method: 'POST', headers: headers, body: data };
-    // const config = { method: 'POST', body: data };
-    // await createPost(config, credentials)
     await createPost(data, credentials)
-    // const response = await fetch(host + "/posts.json", config)
-  }
-
-
-  //  takePicture = async () => {
-  //    const options = { quality: 0.5, base64: true };
-  //    const picture = await this.camera.takePictureAsync(options);
-  //    const userEmail = await AsyncStorage.getItem('userEmail')
-  //    const userToken = await AsyncStorage.getItem('userToken')
-  //    const credentials = {
-  //      userEmail: userEmail,
-  //      userToken: userToken,
-  //    }
-  //    // const credentials = {
-  //    //   "X-User-Email": userEmail, 
-  //    //   "X-User-Token": userToken, 
-  //    // }
-  //    // const credentials = {
-  //    //   userEmail: await AsyncStorage.getItem('userEmail'),
-  //    //   userToken: await AsyncStorage.getItem('userToken'),
-  //    // }
-  //    createPost(picture, credentials)
-  //    // params = getPostParams(picture)
-  //    // createPost(params)
-  //  };
+  };
 
   render() {
     const { navigation } = this.props;
