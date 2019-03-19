@@ -27,13 +27,18 @@ const createUser = (success, failure, body) => {
     .catch(error => console.error(error_message, error));
 }
 
-const createPost = async (data, credentials) => {
+const getFromStorage = async (item) => {
+  const entry = await AsyncStorage.getItem(item)
+  return entry
+}
+
+const createPost = async (data) => {
   config = { method: 'POST', body: data }
   config["headers"] = { 
     'Accept': " application/json",
     'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 
-    'X-User-Email': credentials.userEmail, 
-    'X-User-Token': credentials.userToken, 
+    'X-User-Email': await getFromStorage('userEmail'),
+    'X-User-Token': await getFromStorage('userToken'),
     'accept-encoding': "gzip, deflate"
   }
 

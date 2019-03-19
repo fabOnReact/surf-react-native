@@ -23,16 +23,12 @@ export default class PostScreen extends Component {
   takePicture = async function() {
     const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
-    const credentials = { 
-      userToken: await AsyncStorage.getItem('userToken'),
-      userEmail: await AsyncStorage.getItem('userEmail'),
-    }
     const data = new FormData();
     const timestamp = new ClientDate().iso;
     data.append('post[picture][file]', picture.base64);
     data.append('post[picture][name]', `test_${timestamp}.png`);
     data.append('post[picture][type]', 'image/png');
-    await createPost(data, credentials)
+    await createPost(data)
   };
 
   render() {
