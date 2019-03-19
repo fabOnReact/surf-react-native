@@ -5,7 +5,10 @@ import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import { host } from '../config/constants'
 import Orientation from 'react-native-orientation-locker';
-import ClientDate from '../lib/client_date'
+// import Picture from '../lib/picture'
+import Post from '../lib/api'
+import { createPost, getData, getPostParams } from '../lib/api'
+import ClientDate from '../lib/client_date';
 
 export default class PostScreen extends Component {
 
@@ -20,27 +23,47 @@ export default class PostScreen extends Component {
   takePicture = async function() {
     const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
-    // Picture = picture.base64
-    this.storePicture(picture.base64)
+    Picture = picture.base64
+    this.storePicture()
   };
 
-  storePicture = async function(pic) {
+  storePicture = async function() {
     const userToken = await AsyncStorage.getItem('userToken');
-    const userEmail = await AsyncStorage.getItem('userEmail'); 
-    const picture = new Picture(pic)
-    // const data = new FormData();
-    // const timestamp = new ClientDate().iso;
-    // data.append('post[picture][file]', Picture);
-    // data.append('post[picture][name]', `test_${timestamp}.png`); 
-    // data.append('post[picture][type]', 'image/png');
-    // const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
-    // const config = { method: 'POST', headers: headers, body: data }; 
-    // createPost({
-    //   picture: picture,
-    //   params: { userEmail: userEmail, userToken: userToken },
-    // })
-    // const response = await fetch(host + "/posts.json", config)
+    const userEmail = await AsyncStorage.getItem('userEmail');
+    const data = new FormData();
+    const timestamp = new ClientDate().iso;
+    console.log(timestamp);
+    data.append('post[picture][file]', Picture);
+    data.append('post[picture][name]', `test_${timestamp}.png`);
+    data.append('post[picture][type]', 'image/png');
+    const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
+    const config = { method: 'POST', headers: headers, body: data };
+    const response = await fetch(host + "/posts.json", config)
+    console.log(response)
   }
+
+
+  //  takePicture = async () => {
+  //    const options = { quality: 0.5, base64: true };
+  //    const picture = await this.camera.takePictureAsync(options);
+  //    const userEmail = await AsyncStorage.getItem('userEmail')
+  //    const userToken = await AsyncStorage.getItem('userToken')
+  //    const credentials = {
+  //      userEmail: userEmail,
+  //      userToken: userToken,
+  //    }
+  //    // const credentials = {
+  //    //   "X-User-Email": userEmail, 
+  //    //   "X-User-Token": userToken, 
+  //    // }
+  //    // const credentials = {
+  //    //   userEmail: await AsyncStorage.getItem('userEmail'),
+  //    //   userToken: await AsyncStorage.getItem('userToken'),
+  //    // }
+  //    createPost(picture, credentials)
+  //    // params = getPostParams(picture)
+  //    // createPost(params)
+  //  };
 
   render() {
     const { navigation } = this.props;
