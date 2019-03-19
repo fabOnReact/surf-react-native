@@ -28,18 +28,22 @@ export default class PostScreen extends Component {
   };
 
   storePicture = async function() {
-    const userToken = await AsyncStorage.getItem('userToken');
-    const userEmail = await AsyncStorage.getItem('userEmail');
+    const credentials = { 
+      userToken: await AsyncStorage.getItem('userToken'),
+      userEmail: await AsyncStorage.getItem('userEmail'),
+    }
     const data = new FormData();
     const timestamp = new ClientDate().iso;
     console.log(timestamp);
     data.append('post[picture][file]', Picture);
     data.append('post[picture][name]', `test_${timestamp}.png`);
     data.append('post[picture][type]', 'image/png');
-    const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
-    const config = { method: 'POST', headers: headers, body: data };
-    const response = await fetch(host + "/posts.json", config)
-    console.log(response)
+    // const headers = { 'Accept': " application/json", 'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 'X-User-Email': userEmail, 'X-User-Token': userToken, 'accept-encoding': "gzip, deflate"}
+    // const config = { method: 'POST', headers: headers, body: data };
+    // const config = { method: 'POST', body: data };
+    // await createPost(config, credentials)
+    await createPost(data, credentials)
+    // const response = await fetch(host + "/posts.json", config)
   }
 
 
