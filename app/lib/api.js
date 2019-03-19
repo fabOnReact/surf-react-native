@@ -36,7 +36,6 @@ const createPost = async (data, credentials) => {
     'X-User-Token': credentials.userToken, 
     'accept-encoding': "gzip, deflate"
   }
-  console.log(config)
 
   fetch(host + "/posts.json", config)
     .then(response => { console.log(response) })

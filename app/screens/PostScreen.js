@@ -7,7 +7,7 @@ import { host } from '../config/constants'
 import Orientation from 'react-native-orientation-locker';
 // import Picture from '../lib/picture'
 import Post from '../lib/api'
-import { createPost, getData, getPostParams } from '../lib/api'
+import { createPost } from '../lib/api'
 import ClientDate from '../lib/client_date';
 
 export default class PostScreen extends Component {
@@ -29,7 +29,6 @@ export default class PostScreen extends Component {
     }
     const data = new FormData();
     const timestamp = new ClientDate().iso;
-    console.log(timestamp);
     data.append('post[picture][file]', picture.base64);
     data.append('post[picture][name]', `test_${timestamp}.png`);
     data.append('post[picture][type]', 'image/png');
