@@ -4,7 +4,7 @@ import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants.js';
 import { ErrorMessage } from '../components/ErrorMessage';
-import { getPosts, createUser } from '../lib/api_request'
+import { createUser } from '../lib/api'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };

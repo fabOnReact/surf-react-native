@@ -3,7 +3,7 @@ import { AppRegistry, StyleSheet, Text, View, Alert, Button } from 'react-native
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import type { User } from 'react-native-google-signin';
 import { config } from '../config/secrets.js';
-import Api from '../lib/api_request';
+import Api from '../lib/api';
 
 type ErrorWithCode = Error & { code?: string };
 
@@ -63,7 +63,7 @@ export default class GoogleButton extends Component<{}, State> {
         <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
           Welcome {userInfo.user.name}
         </Text>
-        <Text>Your user info: {JSON.stringify(userInfo.serverAuthCode)}</Text>
+        <Text>Your user info: {JSON.stringify(userInfo.user)}</Text>
 
         <Button onPress={this._signOut} title="Log out" />
       </View>
