@@ -4,13 +4,6 @@ import { AsyncStorage } from 'react-native';
 const error_message = 'api call failed with the following error: '
 const host = "http://192.168.1.53:3000";
 
-const getPosts = (success, failure) => {
-  fetch(`${Api.host()}/posts.json`)
-    .then(response => response.json())
-    .then(json => success(JSON.stringify(json)))
-    .catch(error => failure('api call failed with the following error: ', error));
-}
-
 const createUser = (success, failure, body) => {
   const options = { method: 'POST', headers: headers, body: body,}
   const headers = { 
@@ -30,6 +23,13 @@ const createUser = (success, failure, body) => {
 const getFromStorage = async (item) => {
   const entry = await AsyncStorage.getItem(item)
   return entry
+}
+
+const getPosts = (success, failure) => {
+  fetch(`${Api.host()}/posts.json`)
+    .then(response => response.json())
+    .then(json => success(JSON.stringify(json)))
+    .catch(error => failure('api call failed with the following error: ', error));
 }
 
 const createPost = async (data) => {
