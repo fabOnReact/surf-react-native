@@ -11,7 +11,6 @@ export const createUser = (success, failure, body) => {
   }
   const options = { method: 'POST', headers: headers, body: body }
 
-  console.log(options)
   fetch(host + "/users.json", options)
     .then(response => { 
       console.log(response)
@@ -48,5 +47,3 @@ export const createPost = async (data) => {
     .then(response => { console.log(response) })
     .catch(error => console.error(error_message, error))
 }
-
-// export { getPosts, createUser };
