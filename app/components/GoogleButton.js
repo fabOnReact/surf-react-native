@@ -28,8 +28,10 @@ export default class GoogleButton extends Component<{}, State> {
 
   _configureGoogleSignIn() {
     GoogleSignin.configure({
+      scopes: ['email', 'profile'],
       webClientId: config.webClientId,
       offlineAccess: true,
+      iosClientId: '289517847235-fkvas36olv4bnjk64414rbs1rlj7bt1p.apps.googleusercontent.com'
     });
   }
 
