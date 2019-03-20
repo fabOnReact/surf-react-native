@@ -1,0 +1,30 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SurfApp' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for SurfApp
+  pod 'GoogleSignIn', '~> 4.4.0'
+  pod 'Firebase/Core'
+
+  target 'SurfAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'SurfApp-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for SurfApp-tvOS
+
+  target 'SurfApp-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
