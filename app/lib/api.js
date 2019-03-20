@@ -2,11 +2,11 @@ import ClientDate from './client_date';
 import { AsyncStorage } from 'react-native';
 
 const error_message = 'api call failed with the following error: '
-const host = "http://192.168.1.53:3000";
+const host = "http://192.168.1.25:3000";
 
 export const createUser = (success, failure, body) => {
   const headers = { 
-    "Accept": " application/json",
+    "Accept": "application/json",
     "Content-Type": "application/json" 
   }
   const options = { method: 'POST', headers: headers, body: body }
