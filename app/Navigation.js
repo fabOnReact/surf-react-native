@@ -6,7 +6,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import ProfileScreen from './screens/ProfileScreen.js';
 
-const AppStack = createStackNavigator({ Index: IndexScreen, New: NewScreen });
+const AppStack = createStackNavigator({ Index: PostsScreen, New: PostScreen, Profile: ProfileScreen });
 const AuthStack = createStackNavigator({ SignUp: SignUpScreen, SignIn: SignInScreen });
 
 const AppNavigator = createSwitchNavigator(
