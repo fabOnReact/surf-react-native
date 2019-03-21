@@ -3,6 +3,7 @@ package com.surfapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.smixx.reactnativeicons.ReactNativeIcons;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import org.wonday.orientation.OrientationPackage;
 import org.reactnative.camera.RNCameraPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeIcons(),
             new RNGoogleSigninPackage(),
             new OrientationPackage(),
             new RNCameraPackage(),
