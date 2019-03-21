@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Alert, Button } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import type { User } from 'react-native-google-signin';
-import { config } from '../config/secrets.js';
+import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
 import Api from '../lib/api';
 
 type ErrorWithCode = Error & { code?: string };
@@ -29,9 +29,9 @@ export default class GoogleButton extends Component<{}, State> {
   _configureGoogleSignIn() {
     GoogleSignin.configure({
       scopes: ['email', 'profile'],
-      webClientId: config.webClientId,
+      webClientId: WEB_CLIENT_ID,
       offlineAccess: true,
-      iosClientId: '289517847235-fkvas36olv4bnjk64414rbs1rlj7bt1p.apps.googleusercontent.com'
+      iosClientId: IOS_CLIENT_ID
     });
   }
 
