@@ -1,12 +1,11 @@
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants'
 import { ErrorMessage } from '../components/ErrorMessage'
-// import { login } from '../redux/actions';
+import GoogleButton from '../components/GoogleButton'
 
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
@@ -16,13 +15,13 @@ export default class SignInScreen extends Component {
   createUserSession = async () => {
     const { navigation } = this.props;
     const { email, password } = this.state;
+    // to be refactored 
     try {
       // const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }
       const body = JSON.stringify({ user: { email: email, password: password, }})
       const options = { method: 'POST', headers: headers, body: body,}
       let response = await fetch(host + '/users/sign_in.json', options );
       
-      // ({user: { email: 'ezio@email.com', password: 'fabrizio', }}),});
       const responseJson = await response.json();
       if (response.status == "200") { 
         await AsyncStorage.setItem('userToken', responseJson.authentication_token); 
@@ -72,6 +71,7 @@ export default class SignInScreen extends Component {
             onPress={() => navigation.navigate('SignUp')}
             buttonStyle={styles.button}
           />
+          <GoogleButton />
         </View>
       </React.Fragment>
     );

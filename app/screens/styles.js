@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  text: {
+    fontSize: 20
+  },
   cardContainer: {
     marginTop: 10,
     marginRight: 6,

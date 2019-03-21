@@ -1,6 +1,6 @@
 export default class ClientDate extends Date { 
-    constructor() {
-		super();
-		this.iso = this.toISOString();
-    }
+  constructor() {
+    super();
+    this.iso = this.toISOString();
+  }
 }

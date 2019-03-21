@@ -1,0 +1,8 @@
++ google authentication
++ itunes authentication
++ geolocalization
++ info on landing page
++ slide menu
++ test the app on iphone
++ publish the app to itunes, google store
++ facebook authentication
