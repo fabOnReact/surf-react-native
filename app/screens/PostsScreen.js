@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Text, AsyncStorage } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
-import { host, headers } from '../config/constants.js';
+import { getPosts } from '../lib/api'
 import { styles } from './styles';
 import { Post } from '../components/Post';
 import { Container, Content } from 'native-base';
@@ -28,29 +28,6 @@ export default class PostsScreen extends Component {
     this.state = { posts: '', errors: '' }; 
   }
 
-  // componentWillMount(){
-  //   Orientation.lockToPortrait();
-  // }
-
-  fetchPosts = async () => {
-    try {
-      const options = { method: 'GET', headers: headers,};
-      let response = await fetch(host + '/posts.json', options );
-      const responseJson = await response.json();
-
-      if (response.status == 200) { this.createPosts(responseJson); }
-
-      if (response.status == 422) {
-        var messages = "";
-        for (var element in responseJson) { messages += `the field ${element} ${responseJson[element]}, ` }
-        this.setState({ errors: messages });
-      }
-    
-    } catch (errors) {
-      console.log(errors);
-    }
-  }
-
   createPosts = (json) => {
     const keys = Object.keys(json)
     const postItems = keys.map((key) => 
@@ -67,7 +44,7 @@ export default class PostsScreen extends Component {
 
     return (
       <React.Fragment>
-      <NavigationEvents onWillFocus={payload => this.fetchPosts() } />
+      <NavigationEvents onWillFocus={payload => getPosts(this.createPosts) } />
       <View style={{flex:1}}>
         <Container style={styles.cardContainer} >
           <Content style={{flex:1}}>{ posts != "" && posts }</Content>

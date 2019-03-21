@@ -26,11 +26,16 @@ const getFromStorage = async (item) => {
   return entry
 }
 
-export const getPosts = (success, failure) => {
-  fetch(`${Api.host()}/posts.json`)
+export const getPosts = (success) => {
+  const headers = { 
+    "Accept": "application/json",
+    "Content-Type": "application/json" 
+  }
+  const config = { method: 'GET', headers: headers }
+  fetch(host + "/posts.json", config)
     .then(response => response.json())
-    .then(json => success(JSON.stringify(json)))
-    .catch(error => failure('api call failed with the following error: ', error));
+    .then(json => success(json))
+    .catch(error => console.error('api call failed with the following error: ', error));
 }
 
 export const createPost = async (data) => {
