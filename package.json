@@ -48,6 +48,9 @@
     "preset": "react-native",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    }
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|my-project|react-native-button|native-base-shoutem-theme|react-native-easy-grid|react-native-drawer|react-native-vector-icons|native-base|react-native-keyboard-aware-scroll-view|react-native-iphone-x-helper|react-native-keyboard-aware-scroll-view|react-native-elements|react-native-status-bar-height|react-native-ratings|react-native-orientation-locker|react-navigation-header-buttons|react-native-platform-touchable)/)"
+    ]
   }
 }

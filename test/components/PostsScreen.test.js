@@ -1,10 +1,14 @@
 import React from 'react'
-import Post from '../../app/components/Post'
+import PostsScreen from '../../app/screens/PostsScreen'
 import renderer from 'react-test-renderer'
 
+jest.mock('react-native-orientation-locker', () => {
+  class Orientation {
+    lockToPortrait = () => { return true }
+  }
+})
+
 test('updates state.posts with the json output', () => {
-  //  posts = new PostsScreen()
-  //  json = [{}]
-  //  posts.createPosts(json)
-  //  expect(posts.state.posts).toBe("")
+  const posts = renderer.create(<PostsScreen />).toJSON();
+  expect(posts).toMatchSnapshot();
 });
