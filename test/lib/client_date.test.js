@@ -1,4 +1,4 @@
-import ClientDate from '../app/lib/client_date'
+import ClientDate from '../../app/lib/client_date'
 
 test('returns the correct date', () => {
   date = new ClientDate('December 17, 1995 03:24:00')
