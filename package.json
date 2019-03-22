@@ -45,6 +45,9 @@
     "react-test-renderer": "^16.8.4"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }
