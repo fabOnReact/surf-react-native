@@ -42,7 +42,8 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.0",
     "metro-react-native-babel-preset": "^0.53.1",
-    "react-test-renderer": "^16.8.4"
+    "react-test-renderer": "^16.8.4",
+    "reactotron-react-native": "^3.2.1"
   },
   "jest": {
     "preset": "react-native",

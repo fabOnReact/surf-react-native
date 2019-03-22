@@ -4613,6 +4613,11 @@ minizlib@^1.1.1:
   dependencies:
     minipass "^2.2.1"
 
+mitt@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-1.1.3.tgz#528c506238a05dce11cd914a741ea2cc332da9b8"
+  integrity sha512-mUDCnVNsAi+eD6qA0HkRkwYczbLHJ49z17BGe2PYRhZL4wpZUFZGJHU7/5tmvohoma+Hdn0Vh/oJTiPEmgSruA==
+
 mixin-deep@^1.2.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
@@ -5845,6 +5850,20 @@ react@16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
+reactotron-core-client@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.5.0.tgz#f32c60d10122a6f0d7b82e823f065c5ca40da301"
+  integrity sha512-7XgB0wJfBwQDdb358GXwGU/qvX6/t/G2+EGDK1sseMffY5LZBR5/S2zyF+p3u7OJ/LoCGjRjXhgVuXfac6C9fg==
+
+reactotron-react-native@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-3.2.1.tgz#6f45c51b44e379b81b70880303e6d72c4261af92"
+  integrity sha512-XhhxwyYpkvnpgFIAs4Byq+A1BfivJFtIY0SxCde+Sn3v+FVMFQJn3HSwxHdvhwSByLJK7KoPOOfs1N3/XalCYQ==
+  dependencies:
+    mitt "^1.1.3"
+    reactotron-core-client "^2.5.0"
+    rn-host-detect "^1.1.5"
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"
@@ -6153,6 +6172,11 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-host-detect@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/rn-host-detect/-/rn-host-detect-1.1.5.tgz#fbecb982b73932f34529e97932b9a63e58d8deb6"
+  integrity sha512-ufk2dFT3QeP9HyZ/xTuMtW27KnFy815CYitJMqQm+pgG3ZAtHBsrU8nXizNKkqXGy3bQmhEoloVbrfbvMJMqkg==
 
 rsvp@^3.3.3:
   version "3.6.2"
