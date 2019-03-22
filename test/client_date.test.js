@@ -1,23 +1,6 @@
-import Picture from '../app/lib/picture';
-import { AsyncStorage } from 'react-native';
-const sum = require('../app/lib/client_date');
-function FormDataMock() {
-  this = jest.fn(x => { return "picture"} )
-  this.append = jest.fn();
-}
-global.FormData = FormDataMock
+import ClientDate from '../app/lib/client_date'
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
-
-test('create form data instance', () => {
-  const picture = new Picture('test');
-  expect(picture.data).toBeInstanceOf(FormDataMock)
-});
-
-// Complete FormDataMock
-test('set form data instance', () => {
-  const picture = new Picture('test');
-  expect(picture.data).toBe("post[picture][type]")
+test('returns the correct date', () => {
+  date = new ClientDate('December 17, 1995 03:24:00')
+  expect(date.iso).toBe("1995-12-17T02:24:00.000Z")
 });
