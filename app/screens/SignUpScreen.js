@@ -3,7 +3,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { host, headers } from '../config/constants.js';
-import { ErrorMessage } from '../components/ErrorMessage';
+import { ErrorMessage, getErrors } from '../components/ErrorMessage';
 import { createUser } from '../lib/api'
 
 export default class SignUpScreen extends React.Component {
@@ -18,11 +18,7 @@ export default class SignUpScreen extends React.Component {
   }
 
   triggerErrors = (json) => {
-    var messages = "";
-    for (var element in json) { 
-      messages += `the field ${element} ${json[element]}, ` 
-    }
-    this.setState({ errors: messages });
+    this.setState({ errors: getErrors(json) });
   }
 
   createUserRegistration = async () => {
