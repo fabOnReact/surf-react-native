@@ -266,6 +266,7 @@ module.exports = {
     "wrap-regex": "off",
     "yield-star-spacing": "off",
     yoda: "off",
+    "no-console": 0,
     "react/jsx-one-expression-per-line": "none"|"literal"|"single-child" 
   },
   'globals': {
