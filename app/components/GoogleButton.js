@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Alert, Button } from 'react-native';
+import { StyleSheet, Text, View, Alert, Button } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import type { User } from 'react-native-google-signin';
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
@@ -25,6 +25,40 @@ export default class GoogleButton extends Component<{}, State> {
     this._configureGoogleSignIn();
     await this._getCurrentUser();
   }
+
+  _signIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      this.setState({ userInfo, error: null });
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        Alert.alert('cancelled');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        Alert.alert('in progress');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        Alert.alert('play services not available or outdated');
+      } else {
+        Alert.alert('Something went wrong', error.toString());
+        this.setState({
+          error,
+        });
+      }
+    }
+  };
+
+  _signOut = async () => {
+    try { 
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+
+      this.setState({ userInfo: null, error: null });
+    } catch (error) {
+      this.setState({
+        error,
+      });
+    }
+  };
 
   _configureGoogleSignIn() {
     GoogleSignin.configure({
@@ -60,12 +94,13 @@ export default class GoogleButton extends Component<{}, State> {
   }
 
   renderUserInfo(userInfo) {
+    console.warn(JSON.stringify(userInfo))
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
           Welcome {userInfo.user.name}
         </Text>
-        <Text>Your user info: {JSON.stringify(userInfo.user)}</Text>
+        <Text>Your server auth code: {JSON.stringify(userInfo.serverAuthCode)}</Text>
 
         <Button onPress={this._signOut} title="Log out" />
       </View>
@@ -119,39 +154,6 @@ export default class GoogleButton extends Component<{}, State> {
     return <Text>{text}</Text>;
   }
 
-  _signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      this.setState({ userInfo, error: null });
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        Alert.alert('cancelled');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        Alert.alert('in progress');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert('play services not available or outdated');
-      } else {
-        Alert.alert('Something went wrong', error.toString());
-        this.setState({
-          error,
-        });
-      }
-    }
-  };
-
-  _signOut = async () => {
-    try { 
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-
-      this.setState({ userInfo: null, error: null });
-    } catch (error) {
-      this.setState({
-        error,
-      });
-    }
-  };
 }
 
 const styles = StyleSheet.create({

@@ -2,9 +2,9 @@ import React from 'react'
 import { Text, View, AsyncStorage } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
-import { host, headers } from '../config/constants.js'
 import { ErrorMessage, getErrors } from '../components/ErrorMessage';
 import { createUser } from '../lib/api'
+import GoogleButton from '../components/GoogleButton'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
@@ -31,14 +31,13 @@ export default class SignUpScreen extends React.Component {
     const { email, password, errors } = this.state;
     const { navigation } = this.props;
     return (
-      <React.Fragment>    
+      <React.Fragment>
         { errors ? <ErrorMessage message={errors} /> : null }
         <View style={styles.container}>
           <Text>Sign Up</Text>
           <Input
-            placeholder="Email" 
+            placeholder="Email"
             autocapitalize="none"
-            autoCapitalize = "none"
             style={styles.textInput}
             onChangeText={text => this.setState({ email: text })}
             value={email}
@@ -48,7 +47,6 @@ export default class SignUpScreen extends React.Component {
             placeholder="Password"
             autoCapitalize="none"
             keyboardType="email-address"
-            autoCapitalize = "none"
             style={styles.textInput}
             onChangeText={text => this.setState({ password: text })}
             value={password}
@@ -63,7 +61,8 @@ export default class SignUpScreen extends React.Component {
             onPress={() => navigation.navigate('SignIn')}
             buttonStyle={styles.button}
           />
-        </View>      
+          <GoogleButton />
+        </View>
       </React.Fragment>
     );
   }

@@ -13,8 +13,8 @@ export default class SignInScreen extends Component {
   saveCredentials = async (json) => {
     const { navigation } = this.props;
     const { email } = this.state;
-    await AsyncStorage.setItem('userToken', json.authentication_token); 
-    await AsyncStorage.setItem('userEmail', email); 
+    await AsyncStorage.setItem('userToken', json.authentication_token);
+    await AsyncStorage.setItem('userEmail', email);
     navigation.navigate('App');
   }
 
@@ -24,7 +24,7 @@ export default class SignInScreen extends Component {
 
   createUserSession = async () => {
     const { email, password } = this.state;
-    const body = JSON.stringify({ user: { email: email, password: password, }})
+    const body = JSON.stringify({ user: { email, password } })
     createSession(this.saveCredentials, this.triggerErrors, body)
   }
 
@@ -40,7 +40,6 @@ export default class SignInScreen extends Component {
             style={styles.textInput}
             autoCapitalize="none"
             placeholder="Email"
-            autoCapitalize = "none"
             onChangeText={text => this.setState({ email: text })}
             value={email}
           />
@@ -49,7 +48,6 @@ export default class SignInScreen extends Component {
             style={styles.textInput}
             autoCapitalize="none"
             placeholder="Password"
-            autoCapitalize = "none"
             onChangeText={text => this.setState({ password: text })}
             value={password}
           />
