@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Alert, Button } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import type { User } from 'react-native-google-signin';
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
-import Api from '../lib/api';
+// import Api from '../lib/api';
 
 type ErrorWithCode = Error & { code?: string };
 
@@ -82,17 +82,6 @@ export default class GoogleButton extends Component<{}, State> {
     }
   }
 
-  render() {
-    const { userInfo } = this.state;
-
-    const body = userInfo ? this.renderUserInfo(userInfo) : this.renderSignInButton();
-    return (
-      <React.Fragment>
-        {body}
-      </React.Fragment>
-    );
-  }
-
   renderUserInfo(userInfo) {
     console.warn(JSON.stringify(userInfo))
     return (
@@ -154,6 +143,16 @@ export default class GoogleButton extends Component<{}, State> {
     return <Text>{text}</Text>;
   }
 
+  render() {
+    const { userInfo } = this.state;
+
+    const body = userInfo ? this.renderUserInfo(userInfo) : this.renderSignInButton();
+    return (
+      <React.Fragment>
+        {body}
+      </React.Fragment>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
