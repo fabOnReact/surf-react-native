@@ -1,9 +1,7 @@
-/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import React, { Component } from 'react';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
-import { host, headers } from '../config/constants'
 import { ErrorMessage, getErrors } from '../components/ErrorMessage'
 import { createSession } from '../lib/api'
 import GoogleButton from '../components/GoogleButton'

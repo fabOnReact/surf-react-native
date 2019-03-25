@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import React from 'react'
+import { Text, View, AsyncStorage } from 'react-native'
+import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
-import { host, headers } from '../config/constants.js';
+import { host, headers } from '../config/constants.js'
 import { ErrorMessage, getErrors } from '../components/ErrorMessage';
 import { createUser } from '../lib/api'
 
@@ -12,8 +12,8 @@ export default class SignUpScreen extends React.Component {
 
   saveCredentials = async (json) => {
     const { navigation } = this.props;
-    await AsyncStorage.setItem('userToken', json.authentication_token); 
-    await AsyncStorage.setItem('userEmail', json.email); 
+    await AsyncStorage.setItem('userToken', json.authentication_token);
+    await AsyncStorage.setItem('userEmail', json.email);
     navigation.navigate('App');
   }
 
@@ -23,7 +23,7 @@ export default class SignUpScreen extends React.Component {
 
   createUserRegistration = async () => {
     const { email, password } = this.state;
-    const body = JSON.stringify({ user: { email: email, password: password }})
+    const body = JSON.stringify({ user: { email, password } })
     await createUser(this.saveCredentials, this.triggerErrors, body)
   }
 
