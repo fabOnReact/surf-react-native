@@ -1,5 +1,7 @@
-import { AsyncStorage } from 'react-native';
-import { host } from '../config/constants';
+import { AsyncStorage, Alert } from 'react-native'
+import { GoogleSignin, statusCodes } from 'react-native-google-signin'
+import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
+import { host } from '../config/constants'
 
 const headers = { 
   "Accept": "application/json",
@@ -27,6 +29,29 @@ export const createUser = (success, failure, body) => {
     .catch(error => error_message(error));
 }
 
+export const getGoogleUser = async (success, failure) => {
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    success(userInfo)
+    // this.setState({ userInfo, error: null });
+  } catch (error) {
+    failure(error)
+    //    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //      Alert.alert('cancelled');
+    //    } else if (error.code === statusCodes.IN_PROGRESS) {
+    //      Alert.alert('in progress');
+    //    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //      Alert.alert('play services not available or outdated');
+    //    } else {
+    //      Alert.alert('Something went wrong', error.toString());
+    //      this.setState({
+    //        error,
+    //      });
+    //    }
+  }
+}
+
 export const createSession = (success, failure, body) => {
   const options = { method: 'POST', headers: headers, body: body }
 
@@ -37,6 +62,15 @@ export const createSession = (success, failure, body) => {
       else { failure(json) }
     })
     .catch(error => error_message(error));
+}
+
+export const configureGoogleSignIn = () => {
+  GoogleSignin.configure({
+    scopes: ['email', 'profile'],
+    webClientId: WEB_CLIENT_ID,
+    offlineAccess: true,
+    iosClientId: IOS_CLIENT_ID
+  });
 }
 
 export const getPosts = (success) => {

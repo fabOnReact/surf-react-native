@@ -61,7 +61,7 @@ export default class SignUpScreen extends React.Component {
             onPress={() => navigation.navigate('SignIn')}
             buttonStyle={styles.button}
           />
-          <GoogleButton />
+          <GoogleButton errors={errors} saveCredentials={this.saveCredentials} />
         </View>
       </React.Fragment>
     );

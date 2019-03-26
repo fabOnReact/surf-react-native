@@ -14,7 +14,9 @@ export default class SignInScreen extends Component {
     const { navigation } = this.props;
     const { email } = this.state;
     await AsyncStorage.setItem('userToken', json.authentication_token);
-    await AsyncStorage.setItem('userEmail', email);
+    await AsyncStorage.setItem('userEmail', json.email);
+    console.warn(json.email)
+    console.warn(json.authentification_token)
     navigation.navigate('App');
   }
 
@@ -61,7 +63,7 @@ export default class SignInScreen extends Component {
             onPress={() => navigation.navigate('SignUp')}
             buttonStyle={styles.button}
           />
-          <GoogleButton />
+          <GoogleButton errors={errors} saveCredentials={this.saveCredentials} />
         </View>
       </React.Fragment>
     );

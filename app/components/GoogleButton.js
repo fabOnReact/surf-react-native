@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Alert, Button } from 'react-native';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import type { User } from 'react-native-google-signin';
-import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
-// import Api from '../lib/api';
+// import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
+import { configureGoogleSignIn, getGoogleUser } from '../lib/api';
 
-type ErrorWithCode = Error & { code?: string };
+// type ErrorWithCode = Error & { code?: string };
 
 type State = { 
-  error: ?ErrorWithCode,
+  // error: ?ErrorWithCode,
   userInfo: ?User,
 };
 
@@ -17,84 +17,99 @@ export default class GoogleButton extends Component<{}, State> {
     super(props);
     this.state = {
       userInfo: null,
-      error: null,
+      // error: null,
     };
   }
 
   async componentDidMount() {
-    this._configureGoogleSignIn();
-    await this._getCurrentUser();
+    configureGoogleSignIn();
+    // await this._getCurrentUser();
   }
 
-  _signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      this.setState({ userInfo, error: null });
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        Alert.alert('cancelled');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        Alert.alert('in progress');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert('play services not available or outdated');
-      } else {
-        Alert.alert('Something went wrong', error.toString());
-        this.setState({
-          error,
-        });
-      }
-    }
-  };
+  success = (userInfo) => {
+    // this.setState({ userInfo, error: null })
+    // refactor method saveCredentials in SignUp/InScreen
+    createUser(saveCredentials, failure, body)
+  }
+
+  failure = (error) => {
+    console.warn(error)
+    // this.props.errors = error
+  }
+
+  signIn = () => {
+    getGoogleUser(this.success, this.failure)
+  }
+
+  //  _signIn = async () => {
+  //    try {
+  //      await GoogleSignin.hasPlayServices();
+  //      const userInfo = await GoogleSignin.signIn();
+  //      this.setState({ userInfo, error: null });
+  //    } catch (error) {
+  //      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+  //        Alert.alert('cancelled');
+  //      } else if (error.code === statusCodes.IN_PROGRESS) {
+  //        Alert.alert('in progress');
+  //      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+  //        Alert.alert('play services not available or outdated');
+  //      } else {
+  //        Alert.alert('Something went wrong', error.toString());
+  //        this.setState({
+  //          error,
+  //        });
+  //      }
+  //    }
+  //  };
 
   _signOut = async () => {
     try { 
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
 
-      this.setState({ userInfo: null, error: null });
+      this.setState({ userInfo: null });
     } catch (error) {
-      this.setState({
-        error,
-      });
+      //      this.setState({
+      //        error,
+      //      });
     }
   };
 
-  _configureGoogleSignIn() {
-    GoogleSignin.configure({
-      scopes: ['email', 'profile'],
-      webClientId: WEB_CLIENT_ID,
-      offlineAccess: true,
-      iosClientId: IOS_CLIENT_ID
-    });
-  }
+  //  _configureGoogleSignIn() {
+  //    GoogleSignin.configure({
+  //      scopes: ['email', 'profile'],
+  //      webClientId: WEB_CLIENT_ID,
+  //      offlineAccess: true,
+  //      iosClientId: IOS_CLIENT_ID
+  //    });
+  // }
 
-  async _getCurrentUser() {
-    try {
-      const userInfo = await GoogleSignin.signInSilently();
-      this.setState({ userInfo, error: null });
-    } catch (error) {
-      const errorMessage =
-        error.code === statusCodes.SIGN_IN_REQUIRED ? 'Please sign in :)' : error.message;
-      this.setState({
-        error: new Error(errorMessage),
-      });
-    }
-  }
+  //  async _getCurrentUser() {
+  //    try {
+  //      const userInfo = await GoogleSignin.signInSilently();
+  //      this.setState({ userInfo, error: null });
+  //    } catch (error) {
+  //      const errorMessage =
+  //        error.code === statusCodes.SIGN_IN_REQUIRED ? 'Please sign in :)' : error.message;
+  //      this.setState({
+  //        error: new Error(errorMessage),
+  //      });
+  //    }
+  //  }
 
-  renderUserInfo(userInfo) {
-    console.warn(JSON.stringify(userInfo))
-    return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
-          Welcome {userInfo.user.name}
-        </Text>
-        <Text>Your server auth code: {JSON.stringify(userInfo.serverAuthCode)}</Text>
-
-        <Button onPress={this._signOut} title="Log out" />
-      </View>
-    );
-  }
+  //  renderUserInfo(userInfo) {
+  //    console.warn(JSON.stringify(userInfo))
+  //    return (
+  //      <View style={styles.container}>
+  //        <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
+  //          Welcome {userInfo.user.name}
+  //        </Text>
+  //        <Text>Your server auth code: {JSON.stringify(userInfo.serverAuthCode)}</Text>
+  //
+  //        <Button onPress={this._signOut} title="Log out" />
+  //      </View>
+  //    );
+  //  }
 
   renderIsSignedIn() {
     return (
@@ -108,31 +123,19 @@ export default class GoogleButton extends Component<{}, State> {
     );
   }
 
-  renderGetCurrentUser() {
-    return (
-      <Button
-        onPress={async () => {
-          const userInfo = await GoogleSignin.getCurrentUser();
-          Alert.alert('current user', userInfo ? JSON.stringify(userInfo.user) : 'null');
-        }}
-        title="get current user"
-      />
-    );
-  }
-
-  renderSignInButton() {
-    return (
-      <View style={styles.container}>
-        <GoogleSigninButton
-          style={{ width: 212, height: 48 }}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Auto}
-          onPress={this._signIn}
-        />
-        {this.renderError()}
-      </View>
-    );
-  }
+  //  renderSignInButton() {
+  //    return (
+  //      <View style={styles.container}>
+  //        <GoogleSigninButton
+  //          style={{ width: 212, height: 48 }}
+  //          size={GoogleSigninButton.Size.Wide}
+  //          color={GoogleSigninButton.Color.Auto}
+  //          onPress={this._signIn}
+  //        />
+  //        {this.renderError()}
+  //      </View>
+  //    );
+  //  }
 
   renderError() { 
     const { error } = this.state;
@@ -144,12 +147,20 @@ export default class GoogleButton extends Component<{}, State> {
   }
 
   render() {
-    const { userInfo } = this.state;
+    // const { userInfo } = this.state;
 
-    const body = userInfo ? this.renderUserInfo(userInfo) : this.renderSignInButton();
     return (
       <React.Fragment>
-        {body}
+        <View style={styles.container}>
+          <GoogleSigninButton
+            style={{ width: 212, height: 48 }}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Auto}
+            onPress={this.signIn}
+          />
+          {this.renderError()}
+          <Button onPress={this._signOut} title="Log out" />
+        </View>
       </React.Fragment>
     );
   }
