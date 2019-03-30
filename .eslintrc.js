@@ -267,6 +267,7 @@ module.exports = {
     "yield-star-spacing": "off",
     yoda: "off",
     "no-console": 0,
+    "import/no-unresolved": "off",
     "react/jsx-one-expression-per-line": "none"|"literal"|"single-child" 
   },
   'globals': {

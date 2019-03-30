@@ -8,7 +8,7 @@ const headers = {
   "Content-Type": "application/json" 
 }
 
-function errorMessage(error) { 
+export function errorMessage(error) { 
   console.error(`api call failed with the following error: ${error}`)
 }
 

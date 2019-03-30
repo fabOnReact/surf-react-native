@@ -2,30 +2,33 @@ import React, { Component } from 'react';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
-import { host, headers } from '../config/constants';
+// import { host, headers } from '../config/constants';
 
 export default class ProfileScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = { email: '', token: '' }
+    this.state = { email: '' }
   }
 
   componentWillMount = async () => {
-    token = await AsyncStorage.getItem('userToken')
-    email = await AsyncStorage.getItem('userEmail')
-    this.setState({ email: email, token: token })  
+    // let token = await AsyncStorage.getItem('userToken')
+    let email = await AsyncStorage.getItem('userEmail')
+    this.setState({ email })  
+  }
+
+  logout = async () => {
+    const { navigation } = this.props
+    await AsyncStorage.clear()
+    navigation.navigate('Auth');
   }
 
   update() {
     console.warn('Updated user');
   }
 
-  logout = async () => {
-    await AsyncStorage.clear()
-    this.props.navigation.navigate('Auth');
-  }
 
   render() {
+    const { email } = this.state
     return (
       <React.Fragment>
         <View style={styles.container}>
@@ -34,7 +37,7 @@ export default class ProfileScreen extends Component {
             style={styles.container}
             autoCapitalize="none"
             onChangeText={text => this.setState({ email: text })}
-            value={this.state.email}
+            value={email}
           />
           <Button
             title="Update User"

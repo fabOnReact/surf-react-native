@@ -1,15 +1,16 @@
 /* eslint no-underscore-dangle: 0 */
+/* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Text, AsyncStorage } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
-import { getPosts } from '../lib/api'
-import { styles } from './styles';
-import { Post } from '../components/Post';
+import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { Container, Content } from 'native-base';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
-import { MenuButtons, Item } from './../components/MenuButtons';
 import { NavigationEvents } from 'react-navigation';
+import { MenuButtons, Item } from '../components/MenuButtons';
+import { Post } from '../components/Post';
+import { styles } from './styles';
+import { getPosts } from '../lib/api'
 
 export default class PostsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -17,7 +18,7 @@ export default class PostsScreen extends Component {
       title: 'The surf today', 
       headerRight: (
         <MenuButtons>
-          <Item title='person' iconName='person' onPress={() => navigation.navigate('Profile') } />
+          <Item title='person' iconName='person' onPress={() => navigation.navigate('Profile')} />
         </MenuButtons>
       ),
     };
@@ -25,14 +26,14 @@ export default class PostsScreen extends Component {
 
   constructor(props){
     super(props);
-    this.state = { posts: '', errors: '' }; 
+    this.state = { posts: '' }; 
   }
 
   createPosts = (json) => {
     const keys = Object.keys(json)
-    const postItems = keys.map((key) => 
+    const postItems = keys.map((key) => (
       <Post key={key} post={json[key]} height={this.windowHeight} />
-    );
+    ));
     this.setState({ posts: postItems})
   }
 
@@ -41,23 +42,23 @@ export default class PostsScreen extends Component {
     const { posts } = this.state;
     Orientation.lockToPortrait();
     this.windowHeight = (Dimensions.get('window').height - 253) / 2;
-
+    /* eslint-disable no-unused-vars */
     return (
       <React.Fragment>
-      <NavigationEvents onWillFocus={payload => getPosts(this.createPosts) } />
-      <View style={{flex:1}}>
-        <Container style={styles.cardContainer} >
-          <Content style={{flex:1}}>{ posts != "" && posts }</Content>
-        </Container>
-        <Icon
-          containerStyle={styles.buttonAbsolute}
-          name='camera-alt' 
-          size={35}
-          color='#3333ff'
-          reverse={true}
-          onPress={() => navigation.navigate('New')}
-        />         
-      </View>
+        <NavigationEvents onWillFocus={payload => getPosts(this.createPosts)} />
+        <View style={{flex:1}}>
+          <Container style={styles.cardContainer}>
+            <Content style={{flex:1}}>{ posts != "" && posts }</Content>
+          </Container>
+          <Icon
+            containerStyle={styles.buttonAbsolute}
+            name='camera-alt' 
+            size={35}
+            color='#3333ff'
+            reverse
+            onPress={() => navigation.navigate('New')}
+          />         
+        </View>
       </React.Fragment>
     );
   }

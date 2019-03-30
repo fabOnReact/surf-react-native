@@ -1,11 +1,11 @@
 import React from 'react'
-import { Text, View, AsyncStorage } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
-import { ErrorMessage } from '../components/ErrorMessage';
-import Message from  '../lib/message'
-import { createUser } from '../lib/api'
-import GoogleButton from '../components/GoogleButton'
+import ErrorMessage from '../components/ErrorMessage';
+import Message from  '../lib/message' 
+import { createUser } from '../lib/api' 
+import GoogleButton from '../components/GoogleButton' 
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
@@ -49,10 +49,9 @@ export default class SignUpScreen extends React.Component {
           />
           <Input
             secureTextEntry
-            placeholder="Password"
-            autoCapitalize="none"
-            keyboardType="email-address"
             style={styles.textInput}
+            autoCapitalize="none"
+            placeholder="Password"
             onChangeText={text => this.setState({ password: text })}
             value={password}
           />

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
-import { ErrorMessage } from '../components/ErrorMessage'
+import ErrorMessage from '../components/ErrorMessage'
 import Message from '../lib/message'
 import { createSession } from '../lib/api'
 import GoogleButton from '../components/GoogleButton'
@@ -18,7 +18,6 @@ export default class SignInScreen extends Component {
 
   saveCredentials = async (json) => {
     const { navigation } = this.props;
-    const { email } = this.state;
     await AsyncStorage.setItem('userToken', json.authentication_token);
     await AsyncStorage.setItem('userEmail', json.email);
     navigation.navigate('App');

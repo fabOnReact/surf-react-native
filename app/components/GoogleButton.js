@@ -1,33 +1,35 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, Button } from 'react-native';
-import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
-import type { User } from 'react-native-google-signin';
+import { StyleSheet, View } from 'react-native';
+import { GoogleSigninButton, statusCodes } from 'react-native-google-signin';
+// import type { User } from 'react-native-google-signin';
 import { configureGoogleSignIn, getGoogleUser, createUser, errorMessage } from '../lib/api';
 
-export default class GoogleButton extends Component<{}, State> {
+export default class GoogleButton extends Component {
   async componentDidMount() {
     configureGoogleSignIn();
   }
 
   success = (userInfo) => {
+    const { saveCredentials } = this.props
     const { email } = userInfo.user
     const { accessToken } = userInfo
     let body = JSON.stringify({ user: { email, accessToken } })
-    createUser(this.props.saveCredentials, this.failure, body)
+    createUser(saveCredentials, this.failure, body)
   }
 
   failure = (error) => {
+    const { setErrors } = this.props
     switch(error.code) {
       case statusCodes.SIGN_IN_CANCELLED: {
-        this.props.setErrors({ error: 'Google Oauth Sign Up/In cancelled' })
+        setErrors({ error: 'Google Oauth Sign Up/In cancelled' })
         break
       }
       case statusCodes.IN_PROGRESS: {
-        this.props.setErrors({ error: 'Google Oauth Sign In in progress' })
+        setErrors({ error: 'Google Oauth Sign In in progress' })
         break
       }
       case statusCodes.PLAY_SERVICES_NOT_AVAILABLE: {
-        this.props.setErrors({ error: 'please install/update google play' })
+        setErrors({ error: 'please install/update google play' })
         break
       }
       default: {
