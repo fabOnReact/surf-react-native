@@ -8,7 +8,7 @@ import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
 import { NavigationEvents } from 'react-navigation';
 import { MenuButtons, Item } from '../components/MenuButtons';
-import { Post } from '../components/Post';
+import Post from '../components/Post';
 import { styles } from './styles';
 import { getPosts } from '../lib/api'
 
