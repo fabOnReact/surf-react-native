@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
-import { ErrorMessage, getErrors } from '../components/ErrorMessage'
+import { ErrorMessage } from '../components/ErrorMessage'
+import Message from '../lib/message'
 import { createSession } from '../lib/api'
 import GoogleButton from '../components/GoogleButton'
 
@@ -10,24 +11,27 @@ export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
   state = { email: '', password: '', errors: '' };
 
+  constructor(props) {
+    super(props)
+    this.setErrors = this.setErrors.bind(this)
+  }
+
   saveCredentials = async (json) => {
     const { navigation } = this.props;
     const { email } = this.state;
     await AsyncStorage.setItem('userToken', json.authentication_token);
     await AsyncStorage.setItem('userEmail', json.email);
-    console.warn(json.email)
-    console.warn(json.authentification_token)
     navigation.navigate('App');
   }
 
-  triggerErrors = (json) => {
-    this.setState({ errors: getErrors(json) });
+  setErrors = (obj) => {
+    this.setState({ errors: new Message(obj).errors });
   }
 
   createUserSession = async () => {
     const { email, password } = this.state;
     const body = JSON.stringify({ user: { email, password } })
-    createSession(this.saveCredentials, this.triggerErrors, body)
+    createSession(this.saveCredentials, this.setErrors, body)
   }
 
   render() {
@@ -37,7 +41,6 @@ export default class SignInScreen extends Component {
       <React.Fragment>
         { errors ? <ErrorMessage message={errors} /> : null }
         <View style={styles.container}>
-          <Text>Login</Text>
           <Input
             style={styles.textInput}
             autoCapitalize="none"
@@ -63,7 +66,7 @@ export default class SignInScreen extends Component {
             onPress={() => navigation.navigate('SignUp')}
             buttonStyle={styles.button}
           />
-          <GoogleButton errors={errors} saveCredentials={this.saveCredentials} />
+          <GoogleButton saveCredentials={this.saveCredentials} setErrors={this.setErrors} />
         </View>
       </React.Fragment>
     );

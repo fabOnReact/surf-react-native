@@ -1,5 +1,5 @@
 import { AsyncStorage, Alert } from 'react-native'
-import { GoogleSignin, statusCodes } from 'react-native-google-signin'
+import { GoogleSignin } from 'react-native-google-signin'
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv'
 import { host } from '../config/constants'
 
@@ -8,7 +8,7 @@ const headers = {
   "Content-Type": "application/json" 
 }
 
-function error_message(error) { 
+function errorMessage(error) { 
   console.error(`api call failed with the following error: ${error}`)
 }
 
@@ -26,7 +26,7 @@ export const createUser = (success, failure, body) => {
       if (response.status == 201) { success(json) }
       else { failure(json) }
     })
-    .catch(error => error_message(error));
+    .catch(error => errorMessage(error));
 }
 
 export const getGoogleUser = async (success, failure) => {
@@ -34,21 +34,8 @@ export const getGoogleUser = async (success, failure) => {
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
     success(userInfo)
-    // this.setState({ userInfo, error: null });
   } catch (error) {
     failure(error)
-    //    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-    //      Alert.alert('cancelled');
-    //    } else if (error.code === statusCodes.IN_PROGRESS) {
-    //      Alert.alert('in progress');
-    //    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-    //      Alert.alert('play services not available or outdated');
-    //    } else {
-    //      Alert.alert('Something went wrong', error.toString());
-    //      this.setState({
-    //        error,
-    //      });
-    //    }
   }
 }
 
@@ -61,7 +48,7 @@ export const createSession = (success, failure, body) => {
       if (response.status == 200) { success(json) }
       else { failure(json) }
     })
-    .catch(error => error_message(error));
+    .catch(error => errorMessage(error));
 }
 
 export const configureGoogleSignIn = () => {
@@ -78,7 +65,7 @@ export const getPosts = (success) => {
   fetch(host + "/posts.json", config)
     .then(response => response.json())
     .then(json => success(json))
-    .catch(error => error_message(error));
+    .catch(error => errorMessage(error));
 }
 
 export const createPost = async (data) => {
@@ -93,5 +80,5 @@ export const createPost = async (data) => {
 
   fetch(host + "/posts.json", config)
     .then(response => { console.log(response) })
-    .catch(error => error_message(error))
+    .catch(error => errorMessage(error))
 }

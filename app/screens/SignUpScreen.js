@@ -2,13 +2,19 @@ import React from 'react'
 import { Text, View, AsyncStorage } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
-import { ErrorMessage, getErrors } from '../components/ErrorMessage';
+import { ErrorMessage } from '../components/ErrorMessage';
+import Message from  '../lib/message'
 import { createUser } from '../lib/api'
 import GoogleButton from '../components/GoogleButton'
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
   state = { email: '', password: '', errors: '' };
+
+  constructor(props) {
+    super(props)
+    this.setErrors = this.setErrors.bind(this)
+  }
 
   saveCredentials = async (json) => {
     const { navigation } = this.props;
@@ -17,14 +23,14 @@ export default class SignUpScreen extends React.Component {
     navigation.navigate('App');
   }
 
-  triggerErrors = (json) => {
-    this.setState({ errors: getErrors(json) });
+  setErrors = (obj) => {
+    this.setState({ errors: new Message(obj).errors });
   }
 
   createUserRegistration = async () => {
     const { email, password } = this.state;
     const body = JSON.stringify({ user: { email, password } })
-    await createUser(this.saveCredentials, this.triggerErrors, body)
+    await createUser(this.saveCredentials, this.setErrors, body)
   }
 
   render() {
@@ -34,7 +40,6 @@ export default class SignUpScreen extends React.Component {
       <React.Fragment>
         { errors ? <ErrorMessage message={errors} /> : null }
         <View style={styles.container}>
-          <Text>Sign Up</Text>
           <Input
             placeholder="Email"
             autocapitalize="none"
@@ -61,7 +66,7 @@ export default class SignUpScreen extends React.Component {
             onPress={() => navigation.navigate('SignIn')}
             buttonStyle={styles.button}
           />
-          <GoogleButton errors={errors} saveCredentials={this.saveCredentials} />
+          <GoogleButton saveCredentials={this.saveCredentials} setErrors={this.setErrors} />
         </View>
       </React.Fragment>
     );
