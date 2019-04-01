@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Container, Content } from 'native-base';
 import Dimensions from 'Dimensions';
@@ -26,40 +26,62 @@ export default class PostsScreen extends Component {
 
   constructor(props){
     super(props);
-    this.state = { posts: '' }; 
+    this.state = { data: '', page: 1, refreshing: false }; 
   }
 
-  createPosts = (json) => {
-    const keys = Object.keys(json)
-    const postItems = keys.map((key) => (
-      <Post key={key} post={json[key]} height={this.windowHeight} />
-    ));
-    this.setState({ posts: postItems})
+  setData = (json) => {
+    const { data } = this.state
+    this.setState({ data: [...data, ...json], refreshing: false })
+  }
+
+  handleRefresh = () => {
+    this.setState({
+      page: 1,
+      refreshing: true,
+    })
+    getPosts(this.setData, this.params)
+  }
+
+  handleLoadMore = () => {
+    this.setState({
+      page: this.state.page + 1,
+    }, () => {
+      getPosts(this.setData, this.params)
+    })
+  }
+
+  get params () {
+    const { page } = this.state;
+    return `?page=${page}&per_page=5`
   }
 
   render() {
     const { navigation } = this.props;
-    const { posts } = this.state;
+    const { data } = this.state;
     Orientation.lockToPortrait();
-    this.windowHeight = (Dimensions.get('window').height - 253) / 2;
-    const page = 1
-    const params = `?page=${page}&per_page=5`
+    this.windowHeight = (Dimensions.get('window').height - 240) / 2;
     return (
       <React.Fragment>
-        <NavigationEvents onWillFocus={payload => getPosts(this.createPosts, params)} />
-        <View style={{flex:1}}>
-          <Container style={styles.cardContainer}>
-            <Content style={{flex:1}}>{ posts != "" && posts }</Content>
-          </Container>
-          <Icon
-            containerStyle={styles.buttonAbsolute}
-            name='camera-alt' 
-            size={35}
-            color='#3333ff'
-            reverse
-            onPress={() => navigation.navigate('New')}
-          />         
-        </View>
+        <NavigationEvents onWillFocus={payload => getPosts(this.setData, this.params)} />
+        <FlatList
+          data={this.state.data} 
+          keyExtractor={item => item.id.toString()}
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh}
+          onEndReached={this.handleLoadMore}
+          onEndThreshold={0}
+          renderItem={({ item }) => (
+            <Post post={item} height={this.windowHeight} />
+          )}
+        />
+        <Icon
+          containerStyle={styles.buttonAbsolute}
+          name='camera-alt' 
+          size={35}
+          color='#3333ff'
+          reverse
+          onPress={() => navigation.navigate('New')}
+        />         
       </React.Fragment>
     );
   }
