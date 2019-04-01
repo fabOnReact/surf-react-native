@@ -42,10 +42,11 @@ export default class PostsScreen extends Component {
     const { posts } = this.state;
     Orientation.lockToPortrait();
     this.windowHeight = (Dimensions.get('window').height - 253) / 2;
-    /* eslint-disable no-unused-vars */
+    const page = 1
+    const params = `?page=${page}&per_page=5`
     return (
       <React.Fragment>
-        <NavigationEvents onWillFocus={payload => getPosts(this.createPosts)} />
+        <NavigationEvents onWillFocus={payload => getPosts(this.createPosts, params)} />
         <View style={{flex:1}}>
           <Container style={styles.cardContainer}>
             <Content style={{flex:1}}>{ posts != "" && posts }</Content>

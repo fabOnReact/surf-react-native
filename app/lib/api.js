@@ -60,9 +60,9 @@ export const configureGoogleSignIn = () => {
   });
 }
 
-export const getPosts = (success) => {
+export const getPosts = (success, params) => {
   const config = { method: 'GET', headers: headers }
-  fetch(host + "/posts.json", config)
+  fetch(`${host}/posts.json${params}`, config)
     .then(response => response.json())
     .then(json => success(json))
     .catch(error => errorMessage(error));
