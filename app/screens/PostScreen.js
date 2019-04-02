@@ -4,18 +4,28 @@ import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
 import { styles } from './PostStyles';
-// import Picture from '../lib/picture'
-import { createPost } from '../lib/api'
+import { createPost, errorMessage } from '../lib/api'
 import ClientDate from '../lib/client_date';
 
 export default class PostScreen extends Component {
   constructor(props) {
     super(props)
     this.takePicture = this.takePicture.bind(this)
+    this.state = { latitude: null, longitude: null }
   }
 
   componentDidMount() {
     Orientation.lockToLandscapeLeft();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => errorMessage(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   componentWillUnmount() {
@@ -23,6 +33,7 @@ export default class PostScreen extends Component {
   }
 
   takePicture = async function() {
+    const { latitude, longitude } = this.state;
     const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
     const data = new FormData();
@@ -30,6 +41,8 @@ export default class PostScreen extends Component {
     data.append('post[picture][file]', picture.base64);
     data.append('post[picture][name]', `test_${timestamp}.png`);
     data.append('post[picture][type]', 'image/png');
+    data.append('post[latitude]', latitude);
+    data.append('post[longitude]', longitude);
     await createPost(data)
   };
 
