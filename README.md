@@ -1,10 +1,22 @@
 # SurfNative
-React Native application for surfcheck app
+React Native application for [surfcheck app](https://github.com/fabriziobertoglio1987/surfcheck).
+
+## Installation Instruction
+Start your android/ios emulator
+
+```
+git checkout git@github.com:fabriziobertoglio1987/surfnative.git
+react-native start
+# for android
+react-native run-android
+# for ios
+react-native run-ios
+```
 
 ## Main App Features
 * Native application available for Iphone and Android
 * Authentication via email/password or Google Account
-* Taking picture and Uploading them to a backend server
+* Takes pictures and Uploades them to a backend server
 * Recording geolocation of picture
 * Listing surfspots pictures filtered by location, date, likes etc..
 * Notifing users based on their location/preferences
