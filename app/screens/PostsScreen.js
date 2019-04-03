@@ -27,6 +27,11 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: '', page: 1, refreshing: false }; 
+    this.refreshPage = this.refreshPage.bind(this)
+  }
+
+  componentWillMount() {
+    this.windowHeight = (Dimensions.get('window').height - 240) / 2;
   }
 
   setData = (json) => {
@@ -55,14 +60,17 @@ export default class PostsScreen extends Component {
     return `?page=${page}&per_page=5`
   }
 
+  _triggerPageRefresh() {
+    Orientation.lockToPortrait();
+    getPosts(this.setData, this.params)
+  }
+
   render() {
     const { navigation } = this.props;
     const { data } = this.state;
-    Orientation.lockToPortrait();
-    this.windowHeight = (Dimensions.get('window').height - 240) / 2;
     return (
       <React.Fragment>
-        <NavigationEvents onWillFocus={payload => getPosts(this.setData, this.params)} />
+        <NavigationEvents onWillFocus={payload => this._triggerPageRefresh() } />
         <FlatList
           data={this.state.data} 
           keyExtractor={item => item.id.toString()}

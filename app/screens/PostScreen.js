@@ -28,10 +28,6 @@ export default class PostScreen extends Component {
     );
   }
 
-  componentWillUnmount() {
-    Orientation.lockToPortrait();
-  }
-
   takePicture = async function() {
     const { latitude, longitude } = this.state;
     const options = { quality: 0.5, base64: true };
