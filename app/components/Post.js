@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { Card, CardItem, Text, Button, Icon, Left, Body } from 'native-base';
+import { Card, CardItem, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import { host } from '../config/constants';
 
 export default function Post(props) {
@@ -18,6 +18,9 @@ export default function Post(props) {
           <Body>
             <Text>{ post.city }</Text>
           </Body>
+          <Right>
+            <Text>{ post.date }</Text>
+          </Right>
         </Left>
       </CardItem>
     </Card> 
