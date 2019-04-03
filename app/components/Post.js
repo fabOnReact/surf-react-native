@@ -16,7 +16,7 @@ export default function Post(props) {
             <Icon active name="thumbs-up" />
           </Button>
           <Body>
-            <Text>{ post.description }</Text>
+            <Text>{ post.city }</Text>
           </Body>
         </Left>
       </CardItem>
