@@ -8,6 +8,7 @@ import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
 import { NavigationEvents } from 'react-navigation';
 import { MenuButtons, Item } from '../components/MenuButtons';
+import Location from '../components/Location';
 import Post from '../components/Post';
 import { styles } from './styles';
 import { getPosts } from '../lib/api'
@@ -26,17 +27,21 @@ export default class PostsScreen extends Component {
 
   constructor(props){
     super(props);
-    this.state = { data: '', page: 1, refreshing: false }; 
-    this.refreshPage = this.refreshPage.bind(this)
-  }
-
-  componentWillMount() {
+    this.setLocation = this.setLocation.bind(this)
+    this.state = { data: '', page: 1, refreshing: false, latitude: null, longitude: null }; 
     this.windowHeight = (Dimensions.get('window').height - 240) / 2;
   }
 
   setData = (json) => {
     const { data } = this.state
     this.setState({ data: [...data, ...json], refreshing: false })
+  }
+
+  setLocation(coords) {
+    this.setState({
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    });
   }
 
   handleRefresh = () => {
@@ -70,6 +75,7 @@ export default class PostsScreen extends Component {
     const { data } = this.state;
     return (
       <React.Fragment>
+        <Location setLocation={this.setLocation} />
         <NavigationEvents onWillFocus={payload => this._triggerPageRefresh() } />
         <FlatList
           data={this.state.data} 

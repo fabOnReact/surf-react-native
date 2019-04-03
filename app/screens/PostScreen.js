@@ -4,28 +4,27 @@ import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
 import { styles } from './PostStyles';
-import { createPost, errorMessage } from '../lib/api'
+import Location from '../components/Location';
+import { createPost } from '../lib/api';
 import ClientDate from '../lib/client_date';
 
 export default class PostScreen extends Component {
   constructor(props) {
     super(props)
     this.takePicture = this.takePicture.bind(this)
+    this.setLocation = this.setLocation.bind(this)
     this.state = { latitude: null, longitude: null }
   }
 
   componentDidMount() {
     Orientation.lockToLandscapeLeft();
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      },
-      (error) => errorMessage(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
+  }
+
+  setLocation(coords) {
+    this.setState({
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    });
   }
 
   takePicture = async function() {
@@ -45,6 +44,7 @@ export default class PostScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Location setLocation={this.setLocation} />
         <RNCamera
           ref={ref => {
             this.camera = ref;
