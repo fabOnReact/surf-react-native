@@ -32,9 +32,14 @@ export default class PostsScreen extends Component {
     this.windowHeight = (Dimensions.get('window').height - 240) / 2;
   }
 
-  setData = (json) => {
+  addData = (json) => {
     const { data } = this.state
     this.setState({ data: [...data, ...json], refreshing: false })
+  }
+
+  setData = (json) => {
+    const { data } = this.state
+    this.setState({ data: json, refreshing: false })
   }
 
   setLocation(coords) {
@@ -44,31 +49,35 @@ export default class PostsScreen extends Component {
     });
   }
 
-  handleRefresh = () => {
-    this.setState({
-      page: 1,
-      refreshing: true,
-    })
-    getPosts(this.setData, this.params)
-  }
-
-  handleLoadMore = () => {
-    this.setState({
-      page: this.state.page + 1,
-    }, () => {
+  _handleRefresh = () => {
+    this.setState({ page: 1, refreshing: true, }, () => {
       getPosts(this.setData, this.params)
     })
   }
 
+  _handleLoadMore = () => {
+    const { page } = this.state
+    this.setState({ page: page + 1, }, () => {
+      getPosts(this.addData, this.params)
+    })
+  }
+
   get params () {
-    const { page } = this.state;
-    return `?page=${page}&per_page=5`
+    const { page, longitude, latitude } = this.state;
+    return `?page=${page}&per_page=2&longitude=${longitude}&latitude=${latitude}`
   }
 
   _triggerPageRefresh() {
     Orientation.lockToPortrait();
     getPosts(this.setData, this.params)
   }
+
+  _onEndReached = () => {
+    if (!this.onEndReachedCalledDuringMomentum) {
+      this._handleLoadMore()
+      this.onEndReachedCalledDuringMomentum = true;
+    }
+  };
 
   render() {
     const { navigation } = this.props;
@@ -81,9 +90,10 @@ export default class PostsScreen extends Component {
           data={this.state.data} 
           keyExtractor={item => item.id.toString()}
           refreshing={this.state.refreshing}
-          onRefresh={this.handleRefresh}
-          onEndReached={this.handleLoadMore}
-          onEndThreshold={0}
+          onRefresh={this._handleRefresh}
+          onEndReached={this._onEndReached}
+          onEndReachedThreshold={0.5}
+          onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
           renderItem={({ item }) => (
             <Post post={item} height={this.windowHeight} />
           )}
