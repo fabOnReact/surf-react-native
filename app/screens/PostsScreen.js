@@ -50,6 +50,7 @@ export default class PostsScreen extends Component {
   }
 
   _handleRefresh = () => {
+    Orientation.lockToPortrait();
     this.setState({ page: 1, refreshing: true, }, () => {
       getPosts(this.setData, this.params)
     })
@@ -64,12 +65,7 @@ export default class PostsScreen extends Component {
 
   get params () {
     const { page, longitude, latitude } = this.state;
-    return `?page=${page}&per_page=2&longitude=${longitude}&latitude=${latitude}`
-  }
-
-  _triggerPageRefresh() {
-    Orientation.lockToPortrait();
-    getPosts(this.setData, this.params)
+    return `?page=${page}&per_page=3&longitude=${longitude}&latitude=${latitude}`
   }
 
   _onEndReached = () => {
@@ -85,7 +81,7 @@ export default class PostsScreen extends Component {
     return (
       <React.Fragment>
         <Location setLocation={this.setLocation} />
-        <NavigationEvents onWillFocus={payload => this._triggerPageRefresh() } />
+        <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
         <FlatList
           data={this.state.data} 
           keyExtractor={item => item.id.toString()}

@@ -13,11 +13,15 @@ export default class PostScreen extends Component {
     super(props)
     this.takePicture = this.takePicture.bind(this)
     this.setLocation = this.setLocation.bind(this)
-    this.state = { latitude: null, longitude: null }
+    this.state = { latitude: null, longitude: null, isMounted: true}
   }
 
   componentDidMount() {
     Orientation.lockToLandscapeLeft();
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false })
   }
 
   setLocation(coords) {
@@ -44,7 +48,7 @@ export default class PostScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Location setLocation={this.setLocation} />
+        <Location setLocation={this.setLocation} isMounted={this.state.isMounted} />
         <RNCamera
           ref={ref => {
             this.camera = ref;

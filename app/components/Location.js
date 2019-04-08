@@ -4,6 +4,7 @@ import { errorMessage } from '../lib/api';
 export default class Location extends Component {
   constructor(props) {
     super(props)
+    if (!this.props.isMounted) { return }
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.props.setLocation(position.coords)
