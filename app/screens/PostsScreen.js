@@ -27,9 +27,13 @@ export default class PostsScreen extends Component {
 
   constructor(props){
     super(props);
-    this.setLocation = this.setLocation.bind(this)
     this.state = { data: '', page: 1, refreshing: false, latitude: null, longitude: null }; 
+    this._setLocation()
     this.windowHeight = (Dimensions.get('window').height - 240) / 2;
+  }
+
+  componentWillMount() {
+    this._handleRefresh()
   }
 
   addData = (json) => {
@@ -42,15 +46,20 @@ export default class PostsScreen extends Component {
     this.setState({ data: json, refreshing: false })
   }
 
-  setLocation(coords) {
-    this.setState({
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-    });
+  _setLocation = function() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({ 
+          latitude: position.coords.latitude, 
+          longitude: position.coords.longitude, 
+        });
+      },
+      (error) => errorMessage(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   _handleRefresh = () => {
-    Orientation.lockToPortrait();
     this.setState({ page: 1, refreshing: true, }, () => {
       getPosts(this.setData, this.params)
     })
@@ -80,8 +89,7 @@ export default class PostsScreen extends Component {
     const { data } = this.state;
     return (
       <React.Fragment>
-        <Location setLocation={this.setLocation} />
-        <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
+        {/*<NavigationEvents onWillFocus={payload => this._handleRefresh() } />*/}
         <FlatList
           data={this.state.data} 
           keyExtractor={item => item.id.toString()}

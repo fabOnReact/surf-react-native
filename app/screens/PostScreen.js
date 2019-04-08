@@ -11,9 +11,9 @@ import ClientDate from '../lib/client_date';
 export default class PostScreen extends Component {
   constructor(props) {
     super(props)
-    this.takePicture = this.takePicture.bind(this)
-    this.setLocation = this.setLocation.bind(this)
-    this.state = { latitude: null, longitude: null, isMounted: true}
+    this._takePicture = this._takePicture.bind(this)
+    this._setLocation()
+    this.state = { latitude: null, longitude: null }
   }
 
   componentDidMount() {
@@ -21,17 +21,23 @@ export default class PostScreen extends Component {
   }
 
   componentWillUnmount() {
-    this.setState({ isMounted: false })
+    Orientation.lockToPortrait();
   }
 
-  setLocation(coords) {
-    this.setState({
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-    });
+  _setLocation = function() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({ 
+          latitude: position.coords.latitude, 
+          longitude: position.coords.longitude, 
+        });
+      },
+      (error) => errorMessage(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
-  takePicture = async function() {
+  _takePicture = async function() {
     const { latitude, longitude } = this.state;
     const options = { quality: 0.5, base64: true };
     const picture = await this.camera.takePictureAsync(options);
@@ -48,7 +54,6 @@ export default class PostScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Location setLocation={this.setLocation} isMounted={this.state.isMounted} />
         <RNCamera
           ref={ref => {
             this.camera = ref;
@@ -62,7 +67,7 @@ export default class PostScreen extends Component {
         >
           <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center', backgroundColor: 'transparent'}}>
             <TouchableOpacity
-              onPress={this.takePicture}
+              onPress={this._takePicture}
               style={styles.capture}
             >
               <Icon
