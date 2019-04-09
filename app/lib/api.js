@@ -60,8 +60,18 @@ export const configureGoogleSignIn = () => {
   });
 }
 
-export const getPosts = (success, params) => {
-  const config = { method: 'GET', headers: headers }
+
+const getCredentials = async () => {
+  let credentials = { 
+    'X-User-Email': await AsyncStorage.getItem('userEmail'),
+    'X-User-Token': await AsyncStorage.getItem('userToken'),
+  } 
+  return credentials
+}
+
+export const getPosts = async (success, params) => {
+  let credentials = await getCredentials()
+  let config = { method: 'GET', headers: {...headers, ...credentials} }
   fetch(`${host}/posts.json${params}`, config)
     .then(response => response.json())
     .then(json => success(json))
@@ -69,16 +79,26 @@ export const getPosts = (success, params) => {
 }
 
 export const createPost = async (data) => {
+  let credentials = await getCredentials()
   const config = { method: 'POST', body: data }
+  let boundary = Math.random().toString().substr(2)
+  headers['Content-Type'] = `multipart/form-data;${boundary}` 
   config["headers"] = { 
-    'Accept': " application/json",
-    'Content-Type': "multipart/form-data; boundary=--------------------------329710892316545763789878", 
-    'X-User-Email': await getFromStorage('userEmail'),
-    'X-User-Token': await getFromStorage('userToken'),
-    'accept-encoding': "gzip, deflate"
+    ...headers, 
+    ...credentials, 
+    "accept-encoding": "gzip, deflate"
   }
 
   fetch(host + "/posts.json", config)
     .then(response => { console.log(response) })
     .catch(error => errorMessage(error))
+}
+
+export const updatePost = async (options) => {
+  let credentials = await getCredentials()
+  let config = { method: 'PUT', headers: { ...headers, ...credentials }, body: options.body}
+  fetch(`${host}/posts/${options.id}.json`, config)
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(error => errorMessage(error));
 }
