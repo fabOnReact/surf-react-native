@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
 import { styles } from './PostStyles';
 import Location from '../components/Location';
-import { createPost } from '../lib/api';
+import { createPost, errorMessage } from '../lib/api';
 import ClientDate from '../lib/client_date';
 
 export default class PostScreen extends Component {

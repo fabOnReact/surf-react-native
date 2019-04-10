@@ -11,7 +11,7 @@ import { MenuButtons, Item } from '../components/MenuButtons';
 import Location from '../components/Location';
 import Post from '../components/Post';
 import { styles } from './styles';
-import { getPosts } from '../lib/api'
+import { getPosts, errorMessage } from '../lib/api'
 
 export default class PostsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -92,7 +92,9 @@ export default class PostsScreen extends Component {
         {/*<NavigationEvents onWillFocus={payload => this._handleRefresh() } />*/}
         <FlatList
           data={this.state.data} 
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={item => {item.id.toString();
+            console.warn(item.id); 
+          }}
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
