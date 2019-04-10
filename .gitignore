@@ -60,5 +60,5 @@ buck-out/
 .notes
 .cutout
 android/app/google-services.json
-.env
 app/config/constants.js
+.env*
