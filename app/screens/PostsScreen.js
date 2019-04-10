@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Container, Content } from 'native-base';
 import Dimensions from 'Dimensions';
@@ -54,7 +54,15 @@ export default class PostsScreen extends Component {
           longitude: position.coords.longitude, 
         });
       },
-      (error) => errorMessage(error),
+      (error) => { 
+        console.warn(error) 
+        Alert.alert(
+          'Location Services',
+          'Please enable manually location services from your phone settings',
+          [{text: 'Dismiss'}],
+          {cancelable: true},
+        );
+      },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
   }
@@ -92,16 +100,14 @@ export default class PostsScreen extends Component {
         {/*<NavigationEvents onWillFocus={payload => this._handleRefresh() } />*/}
         <FlatList
           data={this.state.data} 
-          keyExtractor={item => {item.id.toString();
-            console.warn(item.id); 
-          }}
+          keyExtractor={(item, index) => index.toString() }
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.5}
           onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
-          renderItem={({ item }) => (
-            <Post post={item} height={this.windowHeight} />
+          renderItem={({ item, index }) => (
+            <Post key={index} post={item} height={this.windowHeight} />
           )}
         />
         <Icon
