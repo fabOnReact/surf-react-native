@@ -27,13 +27,12 @@ export default class PostsScreen extends Component {
 
   constructor(props){
     super(props);
-    this.state = { data: '', page: 1, refreshing: false, latitude: null, longitude: null }; 
-    this._setLocation()
+    this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
     this.windowHeight = (Dimensions.get('window').height - 240) / 2;
   }
 
   componentWillMount() {
-    this._handleRefresh()
+    this._setLocation()
   }
 
   addData = (json) => {
@@ -52,16 +51,16 @@ export default class PostsScreen extends Component {
         this.setState({ 
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
-        });
+        }, () => this._handleRefresh());
       },
       (error) => { 
-        console.warn(error) 
         Alert.alert(
           'Location Services',
           'Please enable manually location services from your phone settings',
           [{text: 'Dismiss'}],
           {cancelable: true},
         );
+        this._handleRefresh();
       },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );

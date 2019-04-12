@@ -81,8 +81,7 @@ export const getPosts = async (success, params) => {
 export const createPost = async (data) => {
   let credentials = await getCredentials()
   const config = { method: 'POST', body: data }
-  let boundary = Math.random().toString().substr(2)
-  headers['Content-Type'] = `multipart/form-data;${boundary}` 
+  headers['Content-Type'] = "multipart/form-data;"
   config["headers"] = { 
     ...headers, 
     ...credentials, 
