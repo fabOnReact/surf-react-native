@@ -1,5 +1,5 @@
 # SurfNative
-React Native application for [surfcheck app](https://github.com/fabriziobertoglio1987/surfcheck).
+React Native application for [surfcheck app](https://github.com/fabriziobertoglio1987/surfbackend).
 
 ## Installation Instruction
 Start your android/ios emulator
