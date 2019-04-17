@@ -15,14 +15,15 @@ import { getPosts, errorMessage } from '../lib/api'
 
 export default class PostsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'The surf today', 
-      headerRight: (
-        <MenuButtons>
-          <Item title='person' iconName='person' onPress={() => navigation.navigate('Profile')} />
-        </MenuButtons>
-      ),
-    };
+    headerMode: null 
+    //  return {
+    //    title: 'The surf today', 
+    //    headerRight: (
+    //      <MenuButtons>
+    //        <Item title='person' iconName='person' onPress={() => navigation.navigate('Profile')} />
+    //      </MenuButtons>
+    //    ),
+    //  };
   };
 
   constructor(props){
