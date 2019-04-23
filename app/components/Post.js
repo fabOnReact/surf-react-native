@@ -27,23 +27,8 @@ export default class Post extends Component {
     const { post, height } = this.props
     const iconColor = liked ? "blue" : "black"
     return (
-      <Card>
-        <CardItem cardBody>
-          <Image source={{uri: host + post.picture.url }} style={{height: height, width: null, flex: 2}} />
-        </CardItem>
-        <CardItem>
-          <Left>
-            <Button transparent>
-              <Icon name="thumbs-up" onPress={this._liked} style={{color: iconColor }}/>
-            </Button>
-            <Body>
-              <Text>{ post.city }</Text>
-            </Body>
-            <Right>
-              <Text>{ post.date }</Text>
-            </Right>
-          </Left>
-        </CardItem>
+      <Card transparent>
+        <Image source={{uri: host + post.picture.url }} style={{height: height, width: null, flex: 2, borderRadius: 9}} />
       </Card> 
     );
   }
