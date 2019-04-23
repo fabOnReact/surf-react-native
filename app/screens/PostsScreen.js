@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { StatusBar, View, Text, FlatList, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Container, Content } from 'native-base';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
 import { NavigationEvents } from 'react-navigation';
@@ -89,7 +90,7 @@ export default class PostsScreen extends Component {
     const { data } = this.state;
     return (
       <React.Fragment>
-        <StatusBar backgroundColor="blue" barStyle="light-content" />
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
         {/*<NavigationEvents onWillFocus={payload => this._handleRefresh() } />*/}
         <FlatList
           data={this.state.data} 
@@ -104,13 +105,28 @@ export default class PostsScreen extends Component {
           )}
         />
         <Icon
-          containerStyle={styles.buttonAbsolute}
-          name='camera-alt' 
-          size={35}
-          color='#3333ff'
-          reverse
+          containerStyle={styles.buttonLeft}
+          name='map' 
+          size={40}
+          color='#ffffff'
           onPress={() => navigation.navigate('New')}
-        />         
+        />
+        <Text style={styles.textLeft}>Map</Text>
+        <Icon
+          containerStyle={styles.buttonAbsolute}
+          name='radio-button-unchecked' 
+          size={60}
+          color='#ffffff'
+          onPress={() => navigation.navigate('New')}
+        />
+        <Icon
+          containerStyle={styles.buttonRight}
+          name='grain' 
+          size={40}
+          color='#ffffff'
+          onPress={() => navigation.navigate('New')}
+        />
+        <Text style={styles.textRight}>Discover</Text>
       </React.Fragment>
     );
   }
