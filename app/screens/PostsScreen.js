@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert } from 'react-native';
+import { StatusBar, View, Text, FlatList, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Container, Content } from 'native-base';
 import Dimensions from 'Dimensions';
@@ -16,14 +16,6 @@ import { getPosts, errorMessage } from '../lib/api'
 export default class PostsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     headerMode: null 
-    //  return {
-    //    title: 'The surf today', 
-    //    headerRight: (
-    //      <MenuButtons>
-    //        <Item title='person' iconName='person' onPress={() => navigation.navigate('Profile')} />
-    //      </MenuButtons>
-    //    ),
-    //  };
   };
 
   constructor(props){
@@ -97,6 +89,7 @@ export default class PostsScreen extends Component {
     const { data } = this.state;
     return (
       <React.Fragment>
+        <StatusBar backgroundColor="blue" barStyle="light-content" />
         {/*<NavigationEvents onWillFocus={payload => this._handleRefresh() } />*/}
         <FlatList
           data={this.state.data} 
