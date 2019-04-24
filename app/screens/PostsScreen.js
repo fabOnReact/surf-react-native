@@ -106,7 +106,8 @@ export default class PostsScreen extends Component {
         />
         <Icon
           containerStyle={styles.buttonLeft}
-          name='map' 
+          name='location-pin' 
+          type='entypo'
           size={40}
           color='#ffffff'
           onPress={() => navigation.navigate('New')}
@@ -114,8 +115,9 @@ export default class PostsScreen extends Component {
         <Text style={styles.textLeft}>Map</Text>
         <Icon
           containerStyle={styles.buttonAbsolute}
-          name='radio-button-unchecked' 
-          size={60}
+          name='ios-radio-button-off'
+          type='ionicon'
+          size={70}
           color='#ffffff'
           onPress={() => navigation.navigate('New')}
         />
