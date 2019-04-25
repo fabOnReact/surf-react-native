@@ -8,46 +8,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  text: {
-    fontSize: 20
-  },
-  cardContainer: {
-    marginTop: 10,
-    marginRight: 6,
-    marginLeft: 6,
-  },  
-  button: {
-    width: 220,
-    height: 50,
-  },
-  buttonAbsolute: {
-    position: 'absolute',
-    bottom:40,
-    right:"50%",    
-    transform: [{translateX: 30}]
-  },
-  buttonLeft: {
-    position: 'absolute',
-    bottom:35,
-    left:20,    
-  },
-  textLeft: {
-    position: 'absolute',
-    bottom:20,
-    left:25,
-    color: 'white',
-  },
-  buttonRight: {
-    position: 'absolute',
-    bottom:35,
-    right:20,    
-  },
-  textRight: {
-    position: 'absolute',
-    bottom:20,
-    right:15,
-    color: 'white',
-  },
   textInput: {
     height: 60,
     borderColor: 'gray',
