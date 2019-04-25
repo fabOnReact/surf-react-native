@@ -1,19 +1,23 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
-import PostsScreen from './screens/PostsScreen';
-import PostScreen from './screens/PostScreen';
+import MainScreen from './screens/MainScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 const AppStack = createStackNavigator({ 
-  Index: { 
-    screen: PostsScreen,
+  // Index: { 
+  //   screen: PostsScreen,
+  //   navigationOptions: ({navigation}) => ({
+  //     header: null,
+  //   }),
+  // },
+  Main: {
+    screen: MainScreen,
     navigationOptions: ({navigation}) => ({
       header: null,
     }),
-  },
-  New: PostScreen, Profile: ProfileScreen 
+  }, Profile: ProfileScreen
 });
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen });
