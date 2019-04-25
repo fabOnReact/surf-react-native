@@ -17,11 +17,11 @@ export default class PostScreen extends Component {
   }
 
   componentDidMount() {
-    Orientation.lockToLandscapeLeft();
+    // Orientation.lockToLandscapeLeft();
   }
 
   componentWillUnmount() {
-    Orientation.lockToPortrait();
+    // Orientation.lockToPortrait();
   }
 
   _setLocation = function() {

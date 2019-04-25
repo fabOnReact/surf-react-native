@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, AsyncStorage } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
-// import { host, headers } from '../config/constants';
+import { profile } from './styles/ProfileStyles';
 
 export default class ProfileScreen extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class ProfileScreen extends Component {
     return (
       <React.Fragment>
         <View style={styles.container}>
-          <Text style={styles.text}>Profile</Text>
+          <Text style={profile.text}>Profile</Text>
           <Input
             style={styles.container}
             autoCapitalize="none"
