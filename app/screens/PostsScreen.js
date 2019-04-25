@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import { StatusBar, View, Text, FlatList, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Container, Content } from 'native-base';
-// import Icon from 'react-native-vector-icons/Ionicons';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
+import Swiper from 'react-native-swiper';
 import { NavigationEvents } from 'react-navigation';
 import { MenuButtons, Item } from '../components/MenuButtons';
 import Location from '../components/Location';
@@ -85,51 +85,65 @@ export default class PostsScreen extends Component {
     }
   };
 
+  //<NavigationEvents onWillFocus={payload => this._handleRefresh() } />
+  
   render() {
     const { navigation } = this.props;
     const { data } = this.state;
     return (
-      <React.Fragment>
-        <StatusBar backgroundColor="white" barStyle="dark-content" />
-        {/*<NavigationEvents onWillFocus={payload => this._handleRefresh() } />*/}
-        <FlatList
-          data={this.state.data} 
-          keyExtractor={(item, index) => index.toString() }
-          refreshing={this.state.refreshing}
-          onRefresh={this._handleRefresh}
-          onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.5}
-          onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
-          renderItem={({ item, index }) => (
-            <Post key={index} post={item} height={this.windowHeight} />
-          )}
-        />
-        <Icon
-          containerStyle={styles.buttonLeft}
-          name='location-pin' 
-          type='entypo'
-          size={40}
-          color='#ffffff'
-          onPress={() => navigation.navigate('New')}
-        />
-        <Text style={styles.textLeft}>Map</Text>
-        <Icon
-          containerStyle={styles.buttonAbsolute}
-          name='ios-radio-button-off'
-          type='ionicon'
-          size={70}
-          color='#ffffff'
-          onPress={() => navigation.navigate('New')}
-        />
-        <Icon
-          containerStyle={styles.buttonRight}
-          name='grain' 
-          size={40}
-          color='#ffffff'
-          onPress={() => navigation.navigate('New')}
-        />
-        <Text style={styles.textRight}>Discover</Text>
-      </React.Fragment>
+      <Swiper 
+        showsPagination={false} 
+        loop={false}
+        index={1}
+      >
+        <View>
+          <Text>Top View</Text>
+        </View>
+        <View style={{flex:1}}>
+          <StatusBar backgroundColor="white" barStyle="dark-content" />
+          <FlatList
+            data={this.state.data} 
+            keyExtractor={(item, index) => index.toString() }
+            refreshing={this.state.refreshing}
+            onRefresh={this._handleRefresh}
+            onEndReached={this._onEndReached}
+            onEndReachedThreshold={0.5}
+            onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+            pagingEnabled={true}
+            renderItem={({ item, index }) => (
+              <Post key={index} post={item} height={this.windowHeight} />
+            )}
+          />
+          <Icon
+            containerStyle={styles.buttonLeft}
+            name='location-pin' 
+            type='entypo'
+            size={40}
+            color='#ffffff'
+            onPress={() => navigation.navigate('New')}
+          />
+          <Text style={styles.textLeft}>Map</Text>
+          <Icon
+            containerStyle={styles.buttonAbsolute}
+            name='ios-radio-button-off'
+            type='ionicon'
+            size={70}
+            color='#ffffff'
+            onPress={() => navigation.navigate('New')}
+          />
+          <Icon
+            containerStyle={styles.buttonRight}
+            name='grain' 
+            size={40}
+            color='#ffffff'
+            onPress={() => navigation.navigate('New')}
+          />
+          <Text style={styles.textRight}>Discover</Text>
+        </View>
+        <View>
+          <Text>View on the bottom</Text>
+        </View>
+      </Swiper>
     );
   }
 }
