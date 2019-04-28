@@ -2,13 +2,11 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
 import { View, Text, FlatList, Alert } from 'react-native';
+import { Icon } from 'react-native-elements';
 import Dimensions from 'Dimensions';
-// import { Container, Content } from 'native-base';
-// import Orientation from 'react-native-orientation-locker';
-// import { NavigationEvents } from 'react-navigation';
-// import { MenuButtons, Item } from './MenuButtons';
 import Location from './Location';
 import Post from './Post';
+import Navbar from './Navbar';
 import { getPosts, errorMessage } from '../lib/api';
 
 export default class PostsScreen extends Component {
@@ -78,25 +76,31 @@ export default class PostsScreen extends Component {
     }
   };
 
+  navigateToCamera = () => {
+    this.props.navigation.navigate('New')
+  }
+
   //<NavigationEvents onWillFocus={payload => this._handleRefresh() } />
-  
   render() {
-    // const { navigation } = this.props;
+    const { navigation } = this.props;
     const { data } = this.state;
     return (
-      <FlatList
-        data={this.state.data} 
-        keyExtractor={(item, index) => index.toString() }
-        refreshing={this.state.refreshing}
-        onRefresh={this._handleRefresh}
-        onEndReached={this._onEndReached}
-        onEndReachedThreshold={0.5}
-        onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
-        pagingEnabled={true}
-        renderItem={({ item, index }) => (
-          <Post key={index} post={item} height={this.windowHeight} />
-        )}
-      />
+      <React.Fragment>
+        <FlatList
+          data={this.state.data} 
+          keyExtractor={(item, index) => index.toString() }
+          refreshing={this.state.refreshing}
+          onRefresh={this._handleRefresh}
+          onEndReached={this._onEndReached}
+          onEndReachedThreshold={0.5}
+          onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+          pagingEnabled={true}
+          renderItem={({ item, index }) => (
+            <Post key={index} post={item} height={this.windowHeight} />
+          )}
+        />
+        <Navbar action={this.navigateToCamera} />
+      </React.Fragment>
     );
   }
 }
