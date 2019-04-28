@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { StyleSheet } from 'react-native';
 
-export const navbar = StyleSheet.create({
+export const navstyles = StyleSheet.create({
   buttonAbsolute: {
     position: 'absolute',
     bottom:40,
