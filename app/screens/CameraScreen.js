@@ -8,7 +8,7 @@ import Location from '../components/Location';
 import { createPost, errorMessage } from '../lib/api';
 import ClientDate from '../lib/client_date';
 
-export default class PostScreen extends Component {
+export default class CameraScreen extends Component {
   constructor(props) {
     super(props)
     this._takePicture = this._takePicture.bind(this)
