@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
 import { styles } from './PostStyles';
 import Location from '../components/Location';
+import Navbar from '../components/Navbar';
 import { createPost, errorMessage } from '../lib/api';
 import ClientDate from '../lib/client_date';
 
 export default class CameraScreen extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      borderBottomWidth: 0,
+      backgroundColor: 'rgba(0,0,0,0.0)',
+      elevation: 0,
+    },
+    headerTransparent: true,
+    headerTintColor: '#000',
+  };
   constructor(props) {
     super(props)
     this._takePicture = this._takePicture.bind(this)
@@ -65,21 +75,7 @@ export default class CameraScreen extends Component {
           permissionDialogTitle='Permission to use camera'
           permissionDialogMessage='We need your permission to use your camera phone'
         >
-          <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center', backgroundColor: 'transparent'}}>
-            <TouchableOpacity
-              onPress={this._takePicture}
-              style={styles.capture}
-            >
-              <Icon
-                containerStyle={styles.buttonAbsolute}
-                name='camera' 
-                color="#4d79ff"
-                reverse
-                size={35}
-                backgroundColor="transparent"
-              />                  
-            </TouchableOpacity>
-          </View>
+          <Navbar action={this._takePicture} />
         </RNCamera>
       </View>
     );
