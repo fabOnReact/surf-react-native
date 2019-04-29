@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
 import { styles } from './PostStyles';
 import Location from '../components/Location';
-import Navbar from '../components/Navbar';
+import { buttons } from '../components/styles/ButtonStyles';
 import { createPost, errorMessage } from '../lib/api';
 import ClientDate from '../lib/client_date';
 
 export default class CameraScreen extends Component {
   static navigationOptions = {
     headerStyle: {
-      borderBottomWidth: 0,
       backgroundColor: 'rgba(0,0,0,0.0)',
-      elevation: 0,
     },
+    headerTintColor: 'white',
     headerTransparent: true,
-    headerTintColor: '#000',
   };
+
   constructor(props) {
     super(props)
     this._takePicture = this._takePicture.bind(this)
@@ -75,7 +74,15 @@ export default class CameraScreen extends Component {
           permissionDialogTitle='Permission to use camera'
           permissionDialogMessage='We need your permission to use your camera phone'
         >
-          <Navbar action={this._takePicture} />
+          <Icon
+            containerStyle={navstyles.buttonAbsolute}
+            name='ios-radio-button-off'
+            type='ionicon'
+            size={65}
+            color='#ffffff'
+            underlayColor='transparent'
+            onPress={this._takePicture}
+          />
         </RNCamera>
       </View>
     );

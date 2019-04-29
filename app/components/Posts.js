@@ -6,7 +6,7 @@ import { Icon } from 'react-native-elements';
 import Dimensions from 'Dimensions';
 import Location from './Location';
 import Post from './Post';
-import Navbar from './Navbar';
+import { buttons } from './styles/ButtonStyles';
 import { getPosts, errorMessage } from '../lib/api';
 
 export default class PostsScreen extends Component {
@@ -99,7 +99,23 @@ export default class PostsScreen extends Component {
             <Post key={index} post={item} height={this.windowHeight} />
           )}
         />
-        <Navbar action={this.navigateToCamera} />
+        <Icon
+          containerStyle={buttons.buttonAbsolute}
+          name='ios-radio-button-off'
+          type='ionicon'
+          size={65}
+          color='#ffffff'
+          underlayColor='transparent'
+          onPress={() => navigation.navigate("Camera") }
+        />
+        <Icon
+          containerStyle={buttons.buttonRight}
+          name='user-circle'
+          type='font-awesome'
+          size={30}
+          color='#ffffff'
+          onPress={() => navigation.navigate("Profile") }
+        />
       </React.Fragment>
     );
   }
