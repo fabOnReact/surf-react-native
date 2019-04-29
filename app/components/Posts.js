@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert } from 'react-native';
+import { View, Text, FlatList, Alert, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Dimensions from 'Dimensions';
 import Location from './Location';
@@ -13,7 +13,7 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
-    this.windowHeight = (Dimensions.get('window').height - 240) / 2;
+    this.windowHeight = (Dimensions.get('window').height ) / 3 - 17;
   }
 
   componentWillMount() {
@@ -94,19 +94,18 @@ export default class PostsScreen extends Component {
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.5}
           onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
-          pagingEnabled={true}
           renderItem={({ item, index }) => (
             <Post key={index} post={item} height={this.windowHeight} />
           )}
         />
         <Icon
-          containerStyle={buttons.buttonAbsolute}
-          name='ios-radio-button-off'
-          type='ionicon'
-          size={65}
+          containerStyle={buttons.buttonLeft}
+          name='compass'
+          type='material-community'
+          size={36}
           color='#ffffff'
           underlayColor='transparent'
-          onPress={() => navigation.navigate("Camera") }
+          onPress={() => navigation.navigate("Profile") }
         />
         <Icon
           containerStyle={buttons.buttonRight}
@@ -114,7 +113,19 @@ export default class PostsScreen extends Component {
           type='font-awesome'
           size={30}
           color='#ffffff'
+          underlayColor='transparent'
           onPress={() => navigation.navigate("Profile") }
+        />
+        <Icon
+          containerStyle={buttons.buttonAbsolute}
+          name='camera-retro'
+          type='font-awesome'
+          size={40}
+          color='white'
+          iconStyle={{color: 'black'}}
+          underlayColor='transparent'
+          reverse
+          onPress={() => navigation.navigate("Camera") }
         />
       </React.Fragment>
     );
