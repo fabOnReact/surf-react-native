@@ -75,10 +75,10 @@ export default class CameraScreen extends Component {
           permissionDialogMessage='We need your permission to use your camera phone'
         >
           <Icon
-            containerStyle={navstyles.buttonAbsolute}
+            containerStyle={buttons.buttonAbsolute}
             name='ios-radio-button-off'
             type='ionicon'
-            size={65}
+            size={80}
             color='#ffffff'
             underlayColor='transparent'
             onPress={this._takePicture}

@@ -32,7 +32,7 @@ export default class ProfileScreen extends Component {
     return (
       <React.Fragment>
         <View style={styles.container}>
-          <Text style={profile.text}>Profile</Text>
+          <Text style={profile.text}>Your Profile</Text>
           <Input
             style={styles.container}
             autoCapitalize="none"
@@ -40,13 +40,14 @@ export default class ProfileScreen extends Component {
             value={email}
           />
           <Button
-            title="Update User"
-            onPress={this.update}
-            buttonStyle={styles.button}
-          />
-          <Button
             title="Logout"
             onPress={this.logout}
+            buttonStyle={styles.button}
+          />
+          {/*
+          <Button
+            title="Update User"
+            onPress={this.update}
             buttonStyle={styles.button}
           />
           <Button
@@ -54,6 +55,7 @@ export default class ProfileScreen extends Component {
             onPress={this.delete}
             buttonStyle={styles.button}
           />
+          */}
         </View>
       </React.Fragment>
     );
