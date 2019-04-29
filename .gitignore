@@ -62,3 +62,4 @@ buck-out/
 android/app/google-services.json
 app/config/constants.js
 .env*
+app/config
