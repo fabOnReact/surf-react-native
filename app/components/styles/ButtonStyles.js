@@ -4,30 +4,18 @@ import { StyleSheet } from 'react-native';
 export const buttons = StyleSheet.create({
   buttonAbsolute: {
     position: 'absolute',
-    bottom:40,
+    bottom:10,
     right:"50%",    
-    transform: [{translateX: 30}]
+    transform: [{translateX: 50}]
   },
   buttonLeft: {
     position: 'absolute',
-    bottom:35,
-    left:20,    
-  },
-  textLeft: {
-    position: 'absolute',
-    bottom:20,
-    left:25,
-    color: 'white',
+    top:16,
+    left:15,    
   },
   buttonRight: {
     position: 'absolute',
     top:20,
     right:15,    
-  },
-  textRight: {
-    position: 'absolute',
-    bottom:20,
-    right:15,
-    color: 'white',
   },
 })
