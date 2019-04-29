@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  button: {
+    width: 220,
+    height: 50,
+  },
   textInput: {
     height: 60,
     borderColor: 'gray',
