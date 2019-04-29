@@ -12,7 +12,7 @@ const AppStack = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: null,
     }),
-  }, New: CameraScreen, Profile: ProfileScreen
+  }, Camera: CameraScreen, Profile: ProfileScreen
 });
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen });
