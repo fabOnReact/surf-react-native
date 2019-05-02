@@ -80,7 +80,7 @@ export default class PostsScreen extends Component {
     this.props.navigation.navigate('New')
   }
 
-  //<NavigationEvents onWillFocus={payload => this._handleRefresh() } />
+  // <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
   render() {
     const { navigation } = this.props;
     const { data } = this.state;
@@ -117,7 +117,7 @@ export default class PostsScreen extends Component {
           onPress={() => navigation.navigate("Profile") }
         />
         <Icon
-          containerStyle={buttons.buttonAbsolute}
+          containerStyle={buttons.buttonReverseAbsolute}
           name='camera-retro'
           type='font-awesome'
           size={40}
