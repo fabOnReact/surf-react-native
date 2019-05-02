@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export const buttons = StyleSheet.create({
   buttonReverseAbsolute: {
@@ -16,12 +16,12 @@ export const buttons = StyleSheet.create({
   },
   buttonLeft: {
     position: 'absolute',
-    top:16,
+    top:Platform.OS === 'ios' ? 76 : 20,
     left:15,    
   },
   buttonRight: {
     position: 'absolute',
-    top:20,
+    top:Platform.OS === 'ios' ? 76 : 20,
     right:15,    
   },
 })
