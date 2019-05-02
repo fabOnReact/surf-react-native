@@ -16,12 +16,12 @@ export const buttons = StyleSheet.create({
   },
   buttonLeft: {
     position: 'absolute',
-    top:Platform.OS === 'ios' ? 76 : 20,
+    bottom:20,
     left:15,    
   },
   buttonRight: {
     position: 'absolute',
-    top:Platform.OS === 'ios' ? 76 : 20,
+    bottom: 29,
     right:15,    
   },
 })
