@@ -25,14 +25,6 @@ export default class CameraScreen extends Component {
     this.state = { latitude: null, longitude: null }
   }
 
-  componentDidMount() {
-    // Orientation.lockToLandscapeLeft();
-  }
-
-  componentWillUnmount() {
-    // Orientation.lockToPortrait();
-  }
-
   _setLocation = function() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
