@@ -2,6 +2,7 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
 import { View, Text, FlatList, Alert, TouchableOpacity } from 'react-native';
+import { Header } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import Dimensions from 'Dimensions';
 import Location from './Location';
@@ -13,7 +14,7 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
-    this.windowHeight = (Dimensions.get('window').height ) / 3 - 17;
+    this.windowHeight = (Dimensions.get('window').height - Header.HEIGHT) / 3 - 15;
   }
 
   componentWillMount() {
