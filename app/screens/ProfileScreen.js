@@ -5,13 +5,16 @@ import { styles } from './styles';
 import { profile } from './styles/ProfileStyles';
 
 export default class ProfileScreen extends Component {
+  static navigationOptions = {
+    title: 'Profile',
+  };
+
   constructor(props) {
     super(props)
     this.state = { email: '' }
   }
 
   componentWillMount = async () => {
-    // let token = await AsyncStorage.getItem('userToken')
     let email = await AsyncStorage.getItem('userEmail')
     this.setState({ email })  
   }
@@ -32,7 +35,6 @@ export default class ProfileScreen extends Component {
     return (
       <React.Fragment>
         <View style={styles.container}>
-          <Text style={profile.text}>Your Profile</Text>
           <Input
             style={styles.container}
             autoCapitalize="none"
