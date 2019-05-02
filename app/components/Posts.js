@@ -14,7 +14,7 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
-    this.windowHeight = (Dimensions.get('window').height - Header.HEIGHT) / 3 - 15;
+    this.windowHeight = (Dimensions.get('window').height - Header.HEIGHT) / 3;
   }
 
   componentWillMount() {
