@@ -84,7 +84,7 @@ export default class PostsScreen extends Component {
   // <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
   render() {
     const { navigation } = this.props;
-    const { data } = this.state;
+    const { data, latitude, longitude } = this.state;
     return (
       <React.Fragment>
         <FlatList
@@ -106,7 +106,7 @@ export default class PostsScreen extends Component {
           size={36}
           color='#ffffff'
           underlayColor='transparent'
-          onPress={() => navigation.navigate("Map") }
+          onPress={() => navigation.navigate("Map", { lon: longitude, lat: latitude }) }
         />
         <Icon
           containerStyle={buttons.buttonRight}
