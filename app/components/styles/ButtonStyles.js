@@ -21,7 +21,7 @@ export const buttons = StyleSheet.create({
   },
   buttonRight: {
     position: 'absolute',
-    bottom: 29,
+    bottom: 21,
     right:15,    
   },
 })

@@ -106,7 +106,7 @@ export default class PostsScreen extends Component {
           size={36}
           color='#ffffff'
           underlayColor='transparent'
-          onPress={() => navigation.navigate("Profile") }
+          onPress={() => navigation.navigate("Map") }
         />
         <Icon
           containerStyle={buttons.buttonRight}
