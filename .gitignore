@@ -63,3 +63,4 @@ android/app/google-services.json
 app/config/constants.js
 .env*
 app/config
+android/app/src/main/res/values/api_keys.xml
