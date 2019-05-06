@@ -56,7 +56,7 @@ export default class MapScreen extends Component {
         }}
         provider={PROVIDER_GOOGLE}
         // showUserLocation={true}
-        showCompass={true}
+        showCompass={false}
       >
         { data && data.map((spot, index) => <Spot key={index} data={spot} /> )}
       </MapView>
