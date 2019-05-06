@@ -8,7 +8,7 @@ import Dimensions from 'Dimensions';
 import Location from './Location';
 import Post from './Post';
 import { buttons } from './styles/ButtonStyles';
-import { getPosts, errorMessage } from '../lib/api';
+import { getResources, errorMessage } from '../lib/api';
 
 export default class PostsScreen extends Component {
   constructor(props){
@@ -54,14 +54,14 @@ export default class PostsScreen extends Component {
 
   _handleRefresh = () => {
     this.setState({ page: 1, refreshing: true, }, () => {
-      getPosts(this.setData, this.params)
+      getResources(this.setData, this.params, "posts")
     })
   }
 
   _handleLoadMore = () => {
     const { page } = this.state
     this.setState({ page: page + 1, }, () => {
-      getPosts(this.addData, this.params)
+      getResources(this.addData, this.params, "posts")
     })
   }
 
