@@ -48,7 +48,6 @@ export default class MapScreen extends Component {
   get params () {
     const { mapBoundaries } = this.state;
     // const { southWest, northEast } = this.state.mapBoundaries;
-    console.warn(jQuery.param(mapBoundaries))
     // refactor based on 
     // https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object#
     return `?south_west[latitude]=${southWest.latitude}&south_west[longitude]=${southWest.longitude}&north_east[latitude]=${northEast.latitude}&north_east[longitude]=${northEast.longitude}`

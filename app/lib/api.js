@@ -1,21 +1,15 @@
-import { AsyncStorage, Alert } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 import { host } from '../config/constants';
-import { getFromStorage, errorMessage } from './support';
+import { getFromStorage, errorMessage, getCredentials, headers } from './support';
 
-const headers = { 
-  "Accept": "application/json",
-  "Content-Type": "application/json" 
-}
-
-export const createUser = (success, failure, body) => {
+export const createResource = (success, failure, body, settings) => {
   const options = { method: 'POST', headers: headers, body: body }
 
-  fetch(host + "/users.json", options)
+  fetch(`${host}/${settings.endpoint}.json`, options)
     .then(response => { 
       let json = JSON.parse(response._bodyInit);
-      if (response.status == 201) { success(json) }
+      if (response.status == settings.responseStatus) { success(json) }
       else { failure(json) }
     })
     .catch(error => errorMessage(error));
@@ -36,15 +30,12 @@ export const createPost = async (data) => {
     .catch(error => errorMessage(error))
 }
 
-export const createSession = (success, failure, body) => {
-  const options = { method: 'POST', headers: headers, body: body }
-
-  fetch(host + "/users/sign_in.json", options)
-    .then(response => { 
-      let json = JSON.parse(response._bodyInit);
-      if (response.status == 200) { success(json) }
-      else { failure(json) }
-    })
+export const getResources = async (success, params, endpoint) => {
+  let credentials = await getCredentials()
+  let config = { method: 'GET', headers: {...headers, ...credentials} }
+  fetch(`${host}/${endpoint}.json${params}`, config)
+    .then(response => response.json())
+    .then(json => success(json))
     .catch(error => errorMessage(error));
 }
 
@@ -65,23 +56,6 @@ export const configureGoogleSignIn = () => {
     offlineAccess: true,
     iosClientId: IOS_CLIENT_ID
   });
-}
-
-const getCredentials = async () => {
-  let credentials = { 
-    'X-User-Email': await AsyncStorage.getItem('userEmail'),
-    'X-User-Token': await AsyncStorage.getItem('userToken'),
-  } 
-  return credentials
-}
-
-export const getResources = async (success, params, endpoint) => {
-  let credentials = await getCredentials()
-  let config = { method: 'GET', headers: {...headers, ...credentials} }
-  fetch(`${host}/${endpoint}.json${params}`, config)
-    .then(response => response.json())
-    .then(json => success(json))
-    .catch(error => errorMessage(error));
 }
 
 export const updatePost = async (options) => {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GoogleSigninButton, statusCodes } from 'react-native-google-signin';
-// import type { User } from 'react-native-google-signin';
-import { configureGoogleSignIn, getGoogleUser, createUser } from '../lib/api';
-import { errorMessage } from '../lib/support';
+import { configureGoogleSignIn, getGoogleUser, createResource } from '../lib/api';
+import { errorMessage, userSettings } from '../lib/support';
 
 export default class GoogleButton extends Component {
   async componentDidMount() {
@@ -15,7 +14,7 @@ export default class GoogleButton extends Component {
     const { email } = userInfo.user
     const { accessToken } = userInfo
     let body = JSON.stringify({ user: { email, accessToken } })
-    createUser(saveCredentials, this.failure, body)
+    createResource(saveCredentials, this.failure, body, userSettings)
   }
 
   failure = (error) => {

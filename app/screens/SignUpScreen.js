@@ -3,9 +3,10 @@ import { View, AsyncStorage } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
 import ErrorMessage from '../components/ErrorMessage';
-import Message from  '../lib/message' 
-import { createUser } from '../lib/api' 
-import GoogleButton from '../components/GoogleButton' 
+import Message from  '../lib/message';
+import { createResource } from '../lib/api' ;
+import { userSettings } from '../lib/support';
+import GoogleButton from '../components/GoogleButton';
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = { title: 'Sign Up', };
@@ -30,7 +31,8 @@ export default class SignUpScreen extends React.Component {
   createUserRegistration = async () => {
     const { email, password } = this.state;
     const body = JSON.stringify({ user: { email, password } })
-    await createUser(this.saveCredentials, this.setErrors, body)
+    let settings = { endpoint: "users", responseStatus: 201 }
+    await createResource(this.saveCredentials, this.setErrors, body, userSettings)
   }
 
   render() {
