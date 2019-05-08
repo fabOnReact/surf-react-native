@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+
 export const userSettings = { endpoint: "users", responseStatus: 201 }
 export const sessionSettings = { endpoint: "users/sign_in", responseStatus: 200 }
 export const headers = { "Accept": "application/json", "Content-Type": "application/json" }
@@ -20,7 +21,7 @@ export const getCredentials = async () => {
   return credentials
 }
 
-serialize = function(obj, prefix) {
+export const serialize = (obj, prefix) => {
   var str = [],
     p;
   for (p in obj) {
