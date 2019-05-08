@@ -61,7 +61,10 @@ export default class MapScreen extends Component {
 
   renderMarker = (data) => {
     return (
-      <Marker key={data.id || Math.random()} coordinate={data.location}>
+      <Marker key={data.id || Math.random()}
+        coordinate={data.location}
+        title={data.name}
+      >
         <Image source={require('../images/surfboard.png')}
           style={{ height: 30, width: 30 }}
         />
