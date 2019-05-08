@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Card, CardItem, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import { updatePost, errorMessage } from '../lib/api' 
+import { updatePost } from '../lib/api' 
 import { host } from '../config/constants';
+import { errorMessage } from '../lib/support';
 
 export default class Post extends Component {
   constructor(props) {

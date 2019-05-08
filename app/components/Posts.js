@@ -8,7 +8,8 @@ import Dimensions from 'Dimensions';
 import Location from './Location';
 import Post from './Post';
 import { buttons } from './styles/ButtonStyles';
-import { getResources, errorMessage } from '../lib/api';
+import { getResources } from '../lib/api';
+import { errorMessage } from '../lib/support';
 
 export default class PostsScreen extends Component {
   constructor(props){

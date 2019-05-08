@@ -6,7 +6,8 @@ import Orientation from 'react-native-orientation-locker';
 import { styles } from './PostStyles';
 import Location from '../components/Location';
 import { buttons } from '../components/styles/ButtonStyles';
-import { createPost, errorMessage } from '../lib/api';
+import { createPost } from '../lib/api';
+import { errorMessage  } from '../lib/support';
 import ClientDate from '../lib/client_date';
 
 export default class CameraScreen extends Component {
