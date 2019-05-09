@@ -68,14 +68,14 @@ export default class PostsScreen extends Component {
 
   get params () {
     const { page, longitude, latitude } = this.state;
-    return `?page=${page}&per_page=3&longitude=${longitude}&latitude=${latitude}`
+    return `?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
   }
 
   _onEndReached = () => {
-    if (!this.onEndReachedCalledDuringMomentum) {
+    // if (!this.onEndReachedCalledDuringMomentum) {
       this._handleLoadMore()
-      this.onEndReachedCalledDuringMomentum = true;
-    }
+    //this.onEndReachedCalledDuringMomentum = true;
+    //}
   };
 
   navigateToCamera = () => {
@@ -95,7 +95,7 @@ export default class PostsScreen extends Component {
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.5}
-          onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+          // onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
           renderItem={({ item, index }) => (
             <Post key={index} post={item} height={this.windowHeight} />
           )}
