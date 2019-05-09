@@ -6,7 +6,7 @@ import ClusteredMapView from 'react-native-maps-super-cluster';
 import { getResources } from '../lib/api';
 import { styles } from './styles/MapStyles';
 import { serialize } from '../lib/support';
-import Coordinates from '../lib/coordinates';
+import Map from '../lib/map';
 
 export default class MapScreen extends Component {
   static navigationOptions = {
@@ -27,26 +27,25 @@ export default class MapScreen extends Component {
   }
 
   getMarkers = () => {
-    this.ref.getMapRef().getMapBoundaries().then((data) => {
+    this.ref.getMapRef().getMapBoundaries().then((coords) => {
       const { boundaries } = this.state
       const { southWest, northEast } = boundaries 
       if (southWest != null) { 
-        const coordinates = new Coordinates(
-          data, 
-          boundaries
-        ) 
-        if (coordinates.zoomOut) { 
-          // AJAX Request 
-        } else if (coordinates.moving(this.position)) { 
-          this.position = boundaries;
-          // AJAX Request
+        const map = new Map(coords, this.position) 
+        if (map.zoomOut) { 
+          this.position = coords
+          // getResources(this.setData, this.corners, "locations")
+          console.warn("zoomOut")
+        } else if (map.noZoom && map.moved) { 
+          this.position = coords
+          // getResources(this.setData, this.corners, "locations")
+          console.warn("moving")
         }
+      } else if (southWest == null) {
+        this.setState({ boundaries: coords }) 
+        this.position = coords 
+        // getResources(this.setData, this.corners, "locations")
       }
-      else { 
-        this.position = data 
-      }
-      this.setState({ boundaries: data }) 
-      // AJAX request for first load
     })
   }
 
@@ -56,8 +55,7 @@ export default class MapScreen extends Component {
   }
 
   get corners() {
-    const { mapBoundaries } = this.state;
-    return `?${serialize(mapBoundaries)}`
+    return `?${serialize(this.position)}`
   }
 
   renderCluster = (cluster, onPress) => {
