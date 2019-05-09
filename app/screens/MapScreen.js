@@ -26,10 +26,33 @@ export default class MapScreen extends Component {
   }
 
   getMarkers = () => {
-    this.ref.getMapRef().getMapBoundaries().then((data) => { 
-      this.setState({ mapBoundaries: data }, () => { 
-        getResources(this.setData, this.corners, "locations")
-      })
+    this.ref.getMapRef().getMapBoundaries().then((data) => {
+      const { southWest, northEast } = this.state.mapBoundaries; 
+      if (southWest != null) { 
+        // Check if there is no zoom in/out
+        let height = northEast.latitude - southWest.latitude
+        let new_height = data.northEast.latitude - data.southWest.latitude
+        // let new_width = data.northEast.longitude - data.southWest.longitude
+        // let width = northEast.longitude - southWest.longitude
+        // call method and add markers
+        let delta = new_height / height
+        if (delta  > 6) { 
+          // user zoom out
+          console.warn("zoom out") 
+        } else if (0.5 < delta < 1.5) {
+          // detect longitude scroll
+          let scrollLeft = data.southWest.longitude > this.position.northEast.longitude
+          // save this.position to check next movement
+          // this.position = { 
+        }
+
+        // this.setState({ mapBoundaries: data }, () => { 
+        //   getResources(this.setData, this.corners, "locations")
+        // })
+      }
+      this.setState({ mapBoundaries: data }) 
+      // call method to add markers if it is null
+      // refactoring
     })
   }
 
