@@ -6,6 +6,7 @@ import ClusteredMapView from 'react-native-maps-super-cluster';
 import { getResources } from '../lib/api';
 import { styles } from './styles/MapStyles';
 import { serialize } from '../lib/support';
+import Coordinates from '../lib/coordinates';
 
 export default class MapScreen extends Component {
   static navigationOptions = {
@@ -22,37 +23,30 @@ export default class MapScreen extends Component {
     const lat = navigation.getParam('lat', -8)
     const lon = navigation.getParam('lon', 115)
     let empty = [{ name: '', location: { latitude: 0, longitude: 0 }}]
-    this.state = { data: empty, latitude: lat, longitude: lon, mapBoundaries: { southWest: null, northEast: null }}
+    this.state = { data: empty, latitude: lat, longitude: lon, boundaries: { southWest: null, northEast: null }}
   }
 
   getMarkers = () => {
     this.ref.getMapRef().getMapBoundaries().then((data) => {
-      const { southWest, northEast } = this.state.mapBoundaries; 
+      const { boundaries } = this.state
+      const { southWest, northEast } = boundaries 
       if (southWest != null) { 
-        // Check if there is no zoom in/out
-        let height = northEast.latitude - southWest.latitude
-        let new_height = data.northEast.latitude - data.southWest.latitude
-        // let new_width = data.northEast.longitude - data.southWest.longitude
-        // let width = northEast.longitude - southWest.longitude
-        // call method and add markers
-        let delta = new_height / height
-        if (delta  > 6) { 
-          // user zoom out
-          console.warn("zoom out") 
-        } else if (0.5 < delta < 1.5) {
-          // detect longitude scroll
-          let scrollLeft = data.southWest.longitude > this.position.northEast.longitude
-          // save this.position to check next movement
-          // this.position = { 
+        const coordinates = new Coordinates(
+          data, 
+          boundaries
+        ) 
+        if (coordinates.zoomOut) { 
+          // AJAX Request 
+        } else if (coordinates.moving(this.position)) { 
+          this.position = boundaries;
+          // AJAX Request
         }
-
-        // this.setState({ mapBoundaries: data }, () => { 
-        //   getResources(this.setData, this.corners, "locations")
-        // })
       }
-      this.setState({ mapBoundaries: data }) 
-      // call method to add markers if it is null
-      // refactoring
+      else { 
+        this.position = data 
+      }
+      this.setState({ boundaries: data }) 
+      // AJAX request for first load
     })
   }
 
