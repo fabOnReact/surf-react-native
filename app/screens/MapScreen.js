@@ -30,21 +30,16 @@ export default class MapScreen extends Component {
     this.ref.getMapRef().getMapBoundaries().then((coords) => {
       const { boundaries } = this.state
       const { southWest, northEast } = boundaries 
-      if (southWest != null) { 
+      if (this.position) { 
         const map = new Map(coords, this.position) 
-        if (map.zoomOut) { 
+        if (map.change) { 
           this.position = coords
-          // getResources(this.setData, this.corners, "locations")
-          console.warn("zoomOut")
-        } else if (map.noZoom && map.moved) { 
-          this.position = coords
-          // getResources(this.setData, this.corners, "locations")
-          console.warn("moving")
+          getResources(this.setData, this.corners, "locations")
         }
-      } else if (southWest == null) {
+      } else {
         this.setState({ boundaries: coords }) 
         this.position = coords 
-        // getResources(this.setData, this.corners, "locations")
+        getResources(this.setData, this.corners, "locations")
       }
     })
   }

@@ -9,11 +9,15 @@ export default class Map {
   }
 
   get zoomOut() { return this._delta > 6; }
+  get change() { return this.zoomOut || (this.noZoom && this.shift); }
   get noZoom() { return 0.5 < this._delta < 1.5; }
 
-  get moved() {
+  get shift() {
     return (
-      this.scrollRight || this.scrollLeft || this.scrollTop || this.scrollBottom
+      this.scrollRight ||
+      this.scrollLeft ||
+      this.scrollTop ||
+      this.scrollBottom
     )
    }
 
