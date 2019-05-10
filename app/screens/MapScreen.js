@@ -4,9 +4,10 @@ import { Icon } from 'react-native-elements';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import ClusteredMapView from 'react-native-maps-super-cluster';
 import { getResources } from '../lib/api';
-import { styles } from './styles/MapStyles';
-import { serialize } from '../lib/support';
 import Map from '../lib/map';
+import Spot from '../components/Spot';
+import { serialize } from '../lib/support';
+import { styles } from './styles/MapStyles';
 
 export default class MapScreen extends Component {
   static navigationOptions = {
@@ -22,12 +23,12 @@ export default class MapScreen extends Component {
     const { navigation } = this.props;
     const lat = navigation.getParam('lat', -8)
     const lon = navigation.getParam('lon', 115)
-    let empty = [{ name: '', location: { latitude: 0, longitude: 0 }}]
-    this.state = { data: empty, latitude: lat, longitude: lon, boundaries: { southWest: null, northEast: null }}
+    // let empty = [{ name: '', location: { latitude: 0, longitude: 0 }}]
+    this.state = { data: [], latitude: lat, longitude: lon, boundaries: { southWest: null, northEast: null }}
   }
 
   getMarkers = () => {
-    this.ref.getMapRef().getMapBoundaries().then((coords) => {
+    this.ref.getMapBoundaries().then((coords) => {
       const { boundaries } = this.state
       const { southWest, northEast } = boundaries 
       if (this.position) { 
@@ -45,7 +46,7 @@ export default class MapScreen extends Component {
   }
 
   setData = (json) => {
-    thi.setState({ data: json })
+    this.setState({ data: json })
   }
 
   addData = (json) => {
@@ -89,26 +90,32 @@ export default class MapScreen extends Component {
     )
   }
 
+  renderSpot() {
+    return <Spot key={data.id} data={data} />;
+  }
+
   render() {
     const { data, latitude, longitude } = this.state;
     const region = { 
       latitude: latitude,
       longitude: longitude,
-      latitudeDelta: 1,
-      longitudeDelta: 1
+      latitudeDelta: 0.5,
+      longitudeDelta: 0.5
     }
 
     return (
-      <ClusteredMapView
+      <MapView
         style={{flex: 1}}
         data={this.state.data}
         initialRegion={region}
         ref={(r) => this.ref = r}
         renderMarker={this.renderMarker}
-        renderCluster={this.renderCluster} 
+        // renderCluster={this.renderCluster} 
         showCompass={false}
-        // onRegionChangeComplete={this.getMarkers}
-      />
+        onRegionChangeComplete={this.getMarkers}
+      >
+        { data && data.map((data) => <Spot key={data.id} data={data} /> )}
+      </MapView>
     )
   }
 }
