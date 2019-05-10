@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import ClusteredMapView from 'react-native-maps-super-cluster';
 import { getResources } from '../lib/api';
 import Map from '../lib/map';
 import Spot from '../components/Spot';
@@ -23,16 +22,16 @@ export default class MapScreen extends Component {
     const { navigation } = this.props;
     const lat = navigation.getParam('lat', -8)
     const lon = navigation.getParam('lon', 115)
-    // let empty = [{ name: '', location: { latitude: 0, longitude: 0 }}]
     this.state = { data: [], latitude: lat, longitude: lon, boundaries: { southWest: null, northEast: null }}
   }
 
-  getMarkers = () => {
+  handleRegionChange = () => {
     this.ref.getMapBoundaries().then((coords) => {
       const { boundaries } = this.state
       const { southWest, northEast } = boundaries 
       if (this.position) { 
         const map = new Map(coords, this.position) 
+        console.warn(map.overview)
         if (map.change) { 
           this.position = coords
           getResources(this.setData, this.corners, "locations")
@@ -58,38 +57,6 @@ export default class MapScreen extends Component {
     return `?${serialize(this.position)}`
   }
 
-  renderCluster = (cluster, onPress) => {
-    const pointCount = cluster.pointCount,
-      coordinate = cluster.coordinate,
-      clusterId = cluster.clusterId
-
-    const clusteringEngine = this.ref.getClusteringEngine(),
-          clusteredPoints = clusteringEngine.getLeaves(clusterId, 100)
-
-    return (
-      <Marker identifier={`cluster-${clusterId}`} coordinate={coordinate} onPress={onPress}>
-        <View style={styles.clusterContainer}>
-          <Text style={styles.clusterText}>
-            {pointCount}
-          </Text>
-        </View>
-      </Marker>
-    )
-  }
-
-  renderMarker = (data) => {
-    return (
-      <Marker key={data.id || Math.random()}
-        coordinate={data.location}
-        title={data.name}
-      >
-        {/*<Image source={require('../images/surfboard.png')}
-          style={{ height: 30, width: 30 }}
-        />*/}
-      </Marker>
-    )
-  }
-
   renderSpot() {
     return <Spot key={data.id} data={data} />;
   }
@@ -110,9 +77,8 @@ export default class MapScreen extends Component {
         initialRegion={region}
         ref={(r) => this.ref = r}
         renderMarker={this.renderMarker}
-        // renderCluster={this.renderCluster} 
         showCompass={false}
-        onRegionChangeComplete={this.getMarkers}
+        onRegionChangeComplete={this.handleRegionChange}
       >
         { data && data.map((data) => <Spot key={data.id} data={data} /> )}
       </MapView>
