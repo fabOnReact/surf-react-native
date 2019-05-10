@@ -24,7 +24,6 @@ export default class MapScreen extends Component {
     const lon = navigation.getParam('lon', 115)
     let empty = [{ name: '', location: { latitude: 0, longitude: 0 }}]
     this.state = { data: empty, latitude: lat, longitude: lon, boundaries: { southWest: null, northEast: null }}
-    getResources(this.setData, this.corners, "locations")
   }
 
   getMarkers = () => {
@@ -55,8 +54,7 @@ export default class MapScreen extends Component {
   }
 
   get corners() {
-    // return `?${serialize(this.position)}`
-    return ""
+    return `?${serialize(this.position)}`
   }
 
   renderCluster = (cluster, onPress) => {
