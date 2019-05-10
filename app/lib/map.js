@@ -13,7 +13,6 @@ export default class Map {
   get noZoom() { return 0.5 < this._delta < 1.5; }
 
   get shift() {
-    console.warn(this.scrollRight || this.scrollLeft || this.scrollTop || this.scrollBottom)
     return (
       this.scrollRight || this.scrollLeft || this.scrollTop || this.scrollBottom
     )
