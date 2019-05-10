@@ -24,6 +24,7 @@ export default class MapScreen extends Component {
     const lon = navigation.getParam('lon', 115)
     let empty = [{ name: '', location: { latitude: 0, longitude: 0 }}]
     this.state = { data: empty, latitude: lat, longitude: lon, boundaries: { southWest: null, northEast: null }}
+    getResources(this.setData, this.corners, "locations")
   }
 
   getMarkers = () => {
@@ -45,18 +46,26 @@ export default class MapScreen extends Component {
   }
 
   setData = (json) => {
+    thi.setState({ data: json })
+  }
+
+  addData = (json) => {
     const { data } = this.state
-    this.setState({ data: json })
+    this.setState({ data: [...data, ...json] })
   }
 
   get corners() {
-    return `?${serialize(this.position)}`
+    // return `?${serialize(this.position)}`
+    return ""
   }
 
   renderCluster = (cluster, onPress) => {
     const pointCount = cluster.pointCount,
       coordinate = cluster.coordinate,
       clusterId = cluster.clusterId
+
+    const clusteringEngine = this.ref.getClusteringEngine(),
+          clusteredPoints = clusteringEngine.getLeaves(clusterId, 100)
 
     return (
       <Marker identifier={`cluster-${clusterId}`} coordinate={coordinate} onPress={onPress}>
@@ -75,9 +84,9 @@ export default class MapScreen extends Component {
         coordinate={data.location}
         title={data.name}
       >
-        <Image source={require('../images/surfboard.png')}
+        {/*<Image source={require('../images/surfboard.png')}
           style={{ height: 30, width: 30 }}
-        />
+        />*/}
       </Marker>
     )
   }
@@ -100,7 +109,7 @@ export default class MapScreen extends Component {
         renderMarker={this.renderMarker}
         renderCluster={this.renderCluster} 
         showCompass={false}
-        onRegionChangeComplete={this.getMarkers}
+        // onRegionChangeComplete={this.getMarkers}
       />
     )
   }
