@@ -4,14 +4,15 @@ export default class Map {
     this._coord = coords
     this._position = position
     const height = northEast.latitude - southWest.latitude
-    const newHeight = coords.northEast.latitude - coords.southWest.latitude
-    this._delta = newHeight / height
+    this._newHeight = coords.northEast.latitude - coords.southWest.latitude
+    this._delta = this._newHeight / height
   }
 
-  get zoomOut() { return this._delta > 6; }
-  get change() { return this.zoomOut || (this.noZoom && this.shift); }
+  get zoomOut() { return this._delta > 5; }
+  get zoomIn() { return this._delta > 0.1 }
+  get shouldUpdate() { return this.zoomIn || this.zoomOut || (this.noZoom && this.shift); }
   get noZoom() { return 0.5 < this._delta < 1.5; }
-  get overview() { return height }
+  get inOverview() { return this._newHeight > 10 }
 
   get shift() {
     return (
