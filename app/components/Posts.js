@@ -2,9 +2,7 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
 import { View, Text, FlatList, Alert, TouchableOpacity } from 'react-native';
-import { Header } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import Dimensions from 'Dimensions';
 import Location from './Location';
 import Post from './Post';
 import { buttons } from './styles/ButtonStyles';
@@ -15,7 +13,6 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
-    this.windowHeight = (Dimensions.get('window').height - Header.HEIGHT) / 3;
   }
 
   componentWillMount() {
@@ -85,7 +82,7 @@ export default class PostsScreen extends Component {
   // <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
   render() {
     const { navigation } = this.props;
-    const { data, latitude, longitude } = this.state;
+    const { data, latitude } = this.state;
     return (
       <React.Fragment>
         <FlatList
@@ -97,7 +94,7 @@ export default class PostsScreen extends Component {
           onEndReachedThreshold={0.5}
           // onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
           renderItem={({ item, index }) => (
-            <Post key={index} post={item} height={this.windowHeight} />
+            <Post key={index} post={item} />
           )}
         />
         <Icon
@@ -105,8 +102,7 @@ export default class PostsScreen extends Component {
           name='compass'
           type='material-community'
           size={36}
-          color='#ffffff'
-          underlayColor='transparent'
+          color='white'
           onPress={() => navigation.navigate("Map", { lon: longitude, lat: latitude }) }
         />
         <Icon
@@ -114,8 +110,8 @@ export default class PostsScreen extends Component {
           name='user-circle'
           type='font-awesome'
           size={30}
-          color='#ffffff'
-          underlayColor='transparent'
+          color='white'
+          reverseColor='black'
           onPress={() => navigation.navigate("Profile") }
         />
         <Icon
@@ -124,8 +120,8 @@ export default class PostsScreen extends Component {
           type='font-awesome'
           size={40}
           color='white'
-          iconStyle={{color: 'black'}}
-          underlayColor='transparent'
+          iconColor='black'
+          reverseColor='black'
           reverse
           onPress={() => navigation.navigate("Camera") }
         />
