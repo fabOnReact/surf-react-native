@@ -46,7 +46,7 @@ export default class CameraScreen extends Component {
     const data = new FormData();
     const timestamp = new ClientDate().iso;
     data.append('post[picture][file]', picture.base64);
-    data.append('post[picture][name]', `test_${timestamp}.png`);
+    data.append('post[picture][name]', `${timestamp}.png`);
     data.append('post[picture][type]', 'image/png');
     data.append('post[latitude]', latitude);
     data.append('post[longitude]', longitude);

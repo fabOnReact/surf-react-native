@@ -14,14 +14,22 @@ export const buttons = StyleSheet.create({
     right:"50%",    
     transform: [{translateX: 36}]
   },
-  buttonLeft: {
+  containerLeft: {
     position: 'absolute',
     bottom:20,
     left:15,    
   },
-  buttonRight: {
+  buttonLeft: {
+    height: 30,
+    width: 30
+  },
+  containerRight: {
     position: 'absolute',
     bottom: 21,
     right:15,    
+  },
+  buttonRight: {
+    height: 30,
+    width: 30
   },
 })

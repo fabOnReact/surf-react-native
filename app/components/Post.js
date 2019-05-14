@@ -54,7 +54,7 @@ export default class Post extends Component {
     const iconColor = liked ? "blue" : "black"
     return (
       <Card transparent>
-        <Image source={{uri: host + post.picture.url }} style={this.state.style} />
+        <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
       </Card> 
     );
   }

@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Alert, TouchableOpacity, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Location from './Location';
 import Post from './Post';
@@ -97,23 +97,22 @@ export default class PostsScreen extends Component {
             <Post key={index} post={item} />
           )}
         />
-        <Icon
-          containerStyle={buttons.buttonLeft}
-          name='compass'
-          type='material-community'
-          size={36}
-          color='white'
-          onPress={() => navigation.navigate("Map", { lon: longitude, lat: latitude }) }
-        />
-        <Icon
-          containerStyle={buttons.buttonRight}
-          name='user-circle'
-          type='font-awesome'
-          size={30}
-          color='white'
-          reverseColor='black'
+        <TouchableOpacity 
           onPress={() => navigation.navigate("Profile") }
-        />
+          style={buttons.containerRight}>
+          <Image 
+            style={buttons.buttonRight} 
+            source={require('../images/profile-user.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("Map") }
+          style={buttons.containerLeft}>
+          <Image 
+            style={buttons.buttonLeft} 
+            source={require('../images/planet-earth.png')}
+          />
+        </TouchableOpacity>
         <Icon
           containerStyle={buttons.buttonReverseAbsolute}
           name='camera-retro'
