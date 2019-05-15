@@ -6,6 +6,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import MapScreen from './screens/MapScreen';
+import WebViewScreen from './screens/WebViewScreen';
 
 const AppStack = createStackNavigator({ 
   Main: {
@@ -13,7 +14,7 @@ const AppStack = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: null,
     }),
-  }, Camera: CameraScreen, Profile: ProfileScreen, Map: MapScreen
+  }, Camera: CameraScreen, Profile: ProfileScreen, Map: MapScreen, WebView: WebViewScreen
 });
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen });

@@ -25,13 +25,9 @@ export default class ProfileScreen extends Component {
     navigation.navigate('Auth');
   }
 
-  update() {
-    console.warn('Updated user');
-  }
-
-
   render() {
     const { email } = this.state
+    const { navigation } = this.props
     return (
       <React.Fragment>
         <View style={styles.container}>
@@ -43,17 +39,17 @@ export default class ProfileScreen extends Component {
           />
           <Button
             title="Logout"
-            onPress={this.logout}
+            onPress={() => this.props.this.logout}
             buttonStyle={styles.button}
           />
           <Button
             title="Privacy Policy"
-            onPress={this.privacy}
+            onPress={() => navigation.navigate("WebView", { path: "/pages/privacy" })}
             buttonStyle={styles.button}
           />
           <Button
             title="Credits"
-            onPress={this.credits}
+            onPress={() => navigation.navigate("WebView", { path: "/pages/credits" })}
             buttonStyle={styles.button}
           />
         </View>
