@@ -7,17 +7,18 @@ import Posts from '../components/Posts';
 export default class MainScreen extends Component {
   iosPosts() {
     return ( 
-      <SafeAreaView>
+      <SafeAreaView style={{flex:1}}>
         <Posts navigation={this.props.navigation} />
       </SafeAreaView>
     )
   }
 
   render() {
+    const ios10 = Platform.OS === 'ios'
     return (
       <React.Fragment>
         <StatusBar backgroundColor="white" barStyle="dark-content" />
-        { Platform.OS === 'ios' ? this.iosPosts() : <Posts navigation={this.props.navigation} /> }
+        { ios10 ? this.iosPosts() : <Posts navigation={this.props.navigation} /> } 
       </React.Fragment>
     )
   }
