@@ -150,6 +150,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-webview')
     compile project(':react-native-maps')
     compile project(':react-native-icons')
     compile project(':react-native-google-signin')
