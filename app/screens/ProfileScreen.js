@@ -46,18 +46,16 @@ export default class ProfileScreen extends Component {
             onPress={this.logout}
             buttonStyle={styles.button}
           />
-          {/*
           <Button
-            title="Update User"
-            onPress={this.update}
+            title="Privacy Policy"
+            onPress={this.privacy}
             buttonStyle={styles.button}
           />
           <Button
-            title="Delete User"
-            onPress={this.delete}
+            title="Credits"
+            onPress={this.credits}
             buttonStyle={styles.button}
           />
-          */}
         </View>
       </React.Fragment>
     );
