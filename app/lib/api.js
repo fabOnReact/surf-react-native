@@ -30,24 +30,13 @@ export const createPost = async (data) => {
     .catch(error => errorMessage(error))
 }
 
-export const getResources = async (setData, params, endpoint, navigation) => {
+export const getResources = async (success, params, endpoint) => {
   let credentials = await getCredentials()
   let config = { method: 'GET', headers: {...headers, ...credentials} }
   fetch(`${host}/${endpoint}.json${params}`, config)
-    .then(response => handleResponse(setData, response, navigation))
-    .catch(error => errorMessage(error))
-}
-
-export const handleResponse = async (setData, response, navigation) => {
-  switch (response.status) {
-    case 401:
-      await AsyncStorage.clear()
-      navigation.navigate('Auth');
-    case 200:
-    case 201:
-      json = await response.json()
-      setData(json)
-  }
+    .then(response => success(response))
+    // .then(json => success(json))
+    // .catch(error => errorMessage(error))
 }
 
 export const getGoogleUser = async (success, failure) => {

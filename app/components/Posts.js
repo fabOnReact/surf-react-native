@@ -24,8 +24,15 @@ export default class PostsScreen extends Component {
     this.setState({ data: [...data, ...json], refreshing: false })
   }
 
-  setData = async () => {
-    this.setState({ data: [...json], refreshing: false })
+  setData = async (response) => {
+    const { data } = this.state 
+    if (response.status === 401) {
+      await AsyncStorage.clear()
+      navigation.navigate('Auth');
+    } else {
+      json = await response.json()
+      this.setState({ data: json, refreshing: false })
+    }
   }
 
   _setLocation = function() {
@@ -50,15 +57,16 @@ export default class PostsScreen extends Component {
   }
 
   _handleRefresh = () => {
-    const { navigation } = this.props;
+    const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      getResources(this.setData, this.params, "posts", navigation)
+      getResources(this.setData, this.params, "posts")
     })
   }
 
   _handleLoadMore = () => {
     const { page } = this.state
-    this.setState({ page: page + 1, }, () => {
+    const { navigation } = this.props
+    this.setState({ page: page + 1 }, () => {
       getResources(this.addData, this.params, "posts")
     })
   }
@@ -91,8 +99,7 @@ export default class PostsScreen extends Component {
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.5}
-          // onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+          onEndReachedThreshold={0}
           renderItem={({ item, index }) => (
             <Post key={index} post={item} />
           )}

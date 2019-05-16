@@ -46,7 +46,8 @@ export default class MapScreen extends Component {
     })
   }
 
-  setData = (json) => {
+  setData = async (response) => {
+    json = await response.json()
     this.setState({ data: json })
   }
 
