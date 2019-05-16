@@ -13,6 +13,7 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
+    getResources(this.setData, this.params, "posts")
   }
 
   componentWillMount() {
@@ -79,7 +80,6 @@ export default class PostsScreen extends Component {
     this.props.navigation.navigate('New')
   }
 
-  // <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
   render() {
     const { navigation } = this.props;
     const { data, latitude } = this.state;
@@ -92,7 +92,6 @@ export default class PostsScreen extends Component {
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.5}
-          // onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
           renderItem={({ item, index }) => (
             <Post key={index} post={item} />
           )}
