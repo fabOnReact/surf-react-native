@@ -18,13 +18,8 @@ export default class Post extends Component {
     this.state = { liked: post.liked, style: this.stylePortrait }
   }
 
-  componentWillMount() {
-    Orientation.addOrientationListener(this._imageStyles)
-  }
-
-  componentWillUnmount() {
-    Orientation.removeOrientationListener((orientation) => {});
-  }
+  componentWillMount() { Orientation.addOrientationListener(this._imageStyles) } 
+  componentWillUnmount() { Orientation.removeOrientationListener(this._imageStyles) }
 
   _imageStyles = (orientation) => {
     if (orientation != 'PORTRAIT') { 
