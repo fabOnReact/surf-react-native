@@ -35,3 +35,4 @@ export const serialize = (obj, prefix) => {
   }
   return str.join("&");
 }
+

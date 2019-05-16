@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Location from './Location';
 import Post from './Post';
@@ -12,7 +12,7 @@ import { errorMessage } from '../lib/support';
 export default class PostsScreen extends Component {
   constructor(props){
     super(props);
-    this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
+    this.state = { data: [], page: 1, refreshing: false, latitude: '', longitude: '' };
   }
 
   componentWillMount() {
@@ -24,9 +24,8 @@ export default class PostsScreen extends Component {
     this.setState({ data: [...data, ...json], refreshing: false })
   }
 
-  setData = (json) => {
-    const { data } = this.state
-    this.setState({ data: json, refreshing: false })
+  setData = async () => {
+    this.setState({ data: [...json], refreshing: false })
   }
 
   _setLocation = function() {
@@ -51,8 +50,9 @@ export default class PostsScreen extends Component {
   }
 
   _handleRefresh = () => {
+    const { navigation } = this.props;
     this.setState({ page: 1, refreshing: true, }, () => {
-      getResources(this.setData, this.params, "posts")
+      getResources(this.setData, this.params, "posts", navigation)
     })
   }
 
