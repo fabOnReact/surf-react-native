@@ -1,19 +1,18 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Location from './Location';
 import Post from './Post';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
-import { errorMessage } from '../lib/support';
+import { errorMessage, logOutUser } from '../lib/support';
 
 export default class PostsScreen extends Component {
   constructor(props){
     super(props);
-    this.state = { data: '', page: 1, refreshing: false, latitude: '', longitude: '' };
-    getResources(this.setData, this.params, "posts")
+    this.state = { data: [], page: 1, refreshing: false, latitude: '', longitude: '' };
   }
 
   componentWillMount() {
@@ -25,9 +24,13 @@ export default class PostsScreen extends Component {
     this.setState({ data: [...data, ...json], refreshing: false })
   }
 
-  setData = (json) => {
-    const { data } = this.state
-    this.setState({ data: json, refreshing: false })
+  setData = async (json) => {
+    const { data } = this.state 
+    const { navigation } = this.props
+    if (json["error"] != null) { logOutUser(navigation) }
+    else {
+      this.setState({ data: json, refreshing: false })
+    }
   }
 
   _setLocation = function() {
@@ -52,6 +55,7 @@ export default class PostsScreen extends Component {
   }
 
   _handleRefresh = () => {
+    const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
       getResources(this.setData, this.params, "posts")
     })
@@ -59,7 +63,8 @@ export default class PostsScreen extends Component {
 
   _handleLoadMore = () => {
     const { page } = this.state
-    this.setState({ page: page + 1, }, () => {
+    const { navigation } = this.props
+    this.setState({ page: page + 1 }, () => {
       getResources(this.addData, this.params, "posts")
     })
   }
@@ -80,6 +85,7 @@ export default class PostsScreen extends Component {
     this.props.navigation.navigate('New')
   }
 
+  // <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
   render() {
     const { navigation } = this.props;
     const { data, latitude } = this.state;
@@ -91,7 +97,7 @@ export default class PostsScreen extends Component {
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={0}
           renderItem={({ item, index }) => (
             <Post key={index} post={item} />
           )}

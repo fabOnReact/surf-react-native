@@ -36,7 +36,7 @@ export const getResources = async (success, params, endpoint) => {
   fetch(`${host}/${endpoint}.json${params}`, config)
     .then(response => response.json())
     .then(json => success(json))
-    .catch(error => errorMessage(error));
+    .catch(error => errorMessage(error))
 }
 
 export const getGoogleUser = async (success, failure) => {

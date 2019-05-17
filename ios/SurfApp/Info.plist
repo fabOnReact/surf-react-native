@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string/>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.289517847235-fkvas36olv4bnjk64414rbs1rlj7bt1p</string>
@@ -34,8 +34,6 @@
 		</dict>
 		<dict/>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -54,9 +52,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please take a picture of the surf conditions :)</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Grant SurfCheck access right to your photo library?</string>
 	<key>NSPhotoLibraryUsageDescription</key>

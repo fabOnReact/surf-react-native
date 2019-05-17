@@ -4,7 +4,8 @@ import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import ErrorMessage from '../components/ErrorMessage'
 import Message from '../lib/message'
-import { createSession } from '../lib/api'
+import { createResource } from '../lib/api'
+import { sessionSettings } from '../lib/support'
 import GoogleButton from '../components/GoogleButton'
 
 export default class SignInScreen extends Component {
@@ -30,7 +31,7 @@ export default class SignInScreen extends Component {
   createUserSession = async () => {
     const { email, password } = this.state;
     const body = JSON.stringify({ user: { email, password } })
-    createSession(this.saveCredentials, this.setErrors, body)
+    createResource(this.saveCredentials, this.setErrors, body, sessionSettings)
   }
 
   render() {
@@ -42,8 +43,8 @@ export default class SignInScreen extends Component {
         <View style={styles.container}>
           <Input
             style={styles.textInput}
-            autoCapitalize="none"
             placeholder="Email"
+            autoCapitalize="none"
             onChangeText={text => this.setState({ email: text })}
             value={email}
           />
