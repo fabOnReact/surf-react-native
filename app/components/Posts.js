@@ -90,7 +90,7 @@ export default class PostsScreen extends Component {
     const { navigation } = this.props;
     const { data, latitude } = this.state;
     return (
-      <React.Fragment>
+      <View style={{flex:1}}>
         <FlatList
           data={this.state.data} 
           keyExtractor={(item, index) => index.toString() }
@@ -129,7 +129,7 @@ export default class PostsScreen extends Component {
           reverse
           onPress={() => navigation.navigate("Camera") }
         />
-      </React.Fragment>
+      </View>
     );
   }
 }
