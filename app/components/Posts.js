@@ -13,6 +13,7 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { data: [], page: 1, refreshing: false, latitude: '', longitude: '' };
+    getResources(this.setData, this.params, "posts")
   }
 
   componentWillMount = () => {
