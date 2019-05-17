@@ -7,6 +7,7 @@ import Message from '../lib/message'
 import { createResource } from '../lib/api'
 import { sessionSettings } from '../lib/support'
 import GoogleButton from '../components/GoogleButton'
+import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 
 export default class SignInScreen extends Component {
   static navigationOptions = { title: 'Sign In', }
