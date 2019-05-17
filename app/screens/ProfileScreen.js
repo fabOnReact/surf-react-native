@@ -21,7 +21,6 @@ export default class ProfileScreen extends Component {
 
   logout = async () => {
     const { navigation } = this.props
-    console.warn('logout')
     await AsyncStorage.clear()
     navigation.navigate('Auth');
   }
