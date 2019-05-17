@@ -9,7 +9,7 @@ export default class Map {
   }
 
   get zoomOut() { return this._delta > 5; }
-  get zoomIn() { return this._delta > 0.1 }
+  get zoomIn() { return 0.5 > this._delta > 0.1 }
   get shouldUpdate() { return this.zoomIn || this.zoomOut || (this.noZoom && this.shift); }
   get noZoom() { return 0.5 < this._delta < 1.5; }
   get inOverview() { return this._newHeight > 10 }
