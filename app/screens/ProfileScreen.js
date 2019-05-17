@@ -21,6 +21,7 @@ export default class ProfileScreen extends Component {
 
   logout = async () => {
     const { navigation } = this.props
+    console.warn('logout')
     await AsyncStorage.clear()
     navigation.navigate('Auth');
   }
@@ -39,7 +40,7 @@ export default class ProfileScreen extends Component {
           />
           <Button
             title="Logout"
-            onPress={() => this.props.this.logout}
+            onPress={() => this.logout()}
             buttonStyle={styles.button}
           />
           <Button

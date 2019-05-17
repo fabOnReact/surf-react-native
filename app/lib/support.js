@@ -10,7 +10,7 @@ export const getFromStorage = async (item) => {
 }
 
 export function errorMessage(error) { 
-  console.error(`api call failed with the following error: ${error}`)
+  console.error(error)
 }
 
 export const getCredentials = async () => {
@@ -34,9 +34,4 @@ export const serialize = (obj, prefix) => {
     }
   }
   return str.join("&");
-}
-
-export const logOutUser = async (navigation) => {
-  await AsyncStorage.clear()
-  navigation.navigate('Auth');
 }

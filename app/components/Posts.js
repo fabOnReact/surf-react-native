@@ -7,7 +7,7 @@ import Location from './Location';
 import Post from './Post';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
-import { errorMessage, logOutUser } from '../lib/support';
+import { errorMessage } from '../lib/support';
 
 export default class PostsScreen extends Component {
   constructor(props){
@@ -27,7 +27,10 @@ export default class PostsScreen extends Component {
   setData = async (json) => {
     const { data } = this.state 
     const { navigation } = this.props
-    if (json["error"] != null) { logOutUser(navigation) }
+    if (json["error"] != null) { 
+      await AsyncStorage.clear()
+      navigation.navigate('Auth');
+    }
     else {
       this.setState({ data: json, refreshing: false })
     }
@@ -75,10 +78,7 @@ export default class PostsScreen extends Component {
   }
 
   _onEndReached = () => {
-    // if (!this.onEndReachedCalledDuringMomentum) {
-      this._handleLoadMore()
-    //this.onEndReachedCalledDuringMomentum = true;
-    //}
+    this._handleLoadMore()
   };
 
   navigateToCamera = () => {
@@ -97,7 +97,7 @@ export default class PostsScreen extends Component {
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={0.5}
           renderItem={({ item, index }) => (
             <Post key={index} post={item} />
           )}
