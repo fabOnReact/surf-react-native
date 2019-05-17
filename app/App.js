@@ -1,6 +1,8 @@
 import React from 'react';
 import { AppContainer } from './Navigation';
 
-export default function App() {
-  return <AppContainer />;
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
 }
