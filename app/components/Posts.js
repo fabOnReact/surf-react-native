@@ -7,7 +7,7 @@ import Location from './Location';
 import Post from './Post';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
-import { errorMessage } from '../lib/support';
+import { errorMessage, logOutUser } from '../lib/support';
 
 export default class PostsScreen extends Component {
   constructor(props){
@@ -24,13 +24,11 @@ export default class PostsScreen extends Component {
     this.setState({ data: [...data, ...json], refreshing: false })
   }
 
-  setData = async (response) => {
+  setData = async (json) => {
     const { data } = this.state 
-    if (response.status === 401) {
-      await AsyncStorage.clear()
-      navigation.navigate('Auth');
-    } else {
-      json = await response.json()
+    const { navigation } = this.props
+    if (json["error"] != null) { logOutUser(navigation) }
+    else {
       this.setState({ data: json, refreshing: false })
     }
   }
