@@ -15,7 +15,7 @@ export default class PostsScreen extends Component {
     this.state = { data: [], page: 1, refreshing: false, latitude: '', longitude: '' };
   }
 
-  componentWillMount() {
+  componentWillMount = () => {
     this._setLocation()
   }
 
