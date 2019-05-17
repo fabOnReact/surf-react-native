@@ -36,17 +36,19 @@ export default class MapScreen extends Component {
         } 
         if (map.shouldUpdate) { 
           this.position = coords
+          console.warn('ajax call')
           getResources(this.setData, this.corners, "locations")
         }
       } else {
         this.setState({ boundaries: coords }) 
         this.position = coords 
+        console.warn('ajax call')
         getResources(this.setData, this.corners, "locations")
       }
     })
   }
 
-  setData = (json) => {
+  setData = async (json) => {
     this.setState({ data: json })
   }
 

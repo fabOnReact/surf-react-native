@@ -31,7 +31,7 @@ export default class SignUpScreen extends React.Component {
   createUserRegistration = async () => {
     const { email, password } = this.state;
     const body = JSON.stringify({ user: { email, password } })
-    let settings = { endpoint: "users", responseStatus: 201 }
+    // let settings = { endpoint: "users", responseStatus: 201 }
     await createResource(this.saveCredentials, this.setErrors, body, userSettings)
   }
 
@@ -44,7 +44,7 @@ export default class SignUpScreen extends React.Component {
         <View style={styles.container}>
           <Input
             placeholder="Email"
-            autocapitalize="none"
+            autoCapitalize="none"
             style={styles.textInput}
             onChangeText={text => this.setState({ email: text })}
             value={email}

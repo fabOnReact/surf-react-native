@@ -35,3 +35,8 @@ export const serialize = (obj, prefix) => {
   }
   return str.join("&");
 }
+
+export const logOutUser = async (navigation) => {
+  await AsyncStorage.clear()
+  navigation.navigate('Auth');
+}

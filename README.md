@@ -41,5 +41,3 @@ react-native run-ios
   - app/lib: javascript classes which do not use react, responsible for api calls or for handling logic not-relevant to react
 
 The [backend](https://github.com/fabriziobertoglio1987/surfbackend) is built with ruby on rails, hosting both web application and json-api. 
-
-

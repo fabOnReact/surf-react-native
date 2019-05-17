@@ -20,8 +20,8 @@ export const buttons = StyleSheet.create({
     left:15,    
   },
   buttonLeft: {
-    height: 30,
-    width: 30
+    height: 40,
+    width: 40
   },
   containerRight: {
     position: 'absolute',
@@ -29,7 +29,7 @@ export const buttons = StyleSheet.create({
     right:15,    
   },
   buttonRight: {
-    height: 30,
-    width: 30
+    height: 40,
+    width: 40
   },
 })
