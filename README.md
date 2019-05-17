@@ -42,11 +42,4 @@ react-native run-ios
 
 The [backend](https://github.com/fabriziobertoglio1987/surfbackend) is built with ruby on rails, hosting both web application and json-api. 
 
-## Notes
-• TODO configure react-native-vector-icons
-• TODO configure react-native-maps
-• TODO test and maybe configure react-native-orientation for iphone
-• TODO IOS Icon https://github.com/bamlab/generator-rn-toolbox/tree/master/generators/assets#generate-splashscreens
-• TODO ios react-native-webview
-• TODO add user agent check for iphones in application helper
 
