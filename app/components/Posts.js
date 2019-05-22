@@ -27,7 +27,7 @@ export default class PostsScreen extends Component {
 
   setData = async (json) => {
     const { data } = this.state 
-    const { navigation } = this.props
+    const { navigation, loaded } = this.props
     if (json["error"] != null) { 
       await AsyncStorage.clear()
       navigation.navigate('Auth');
@@ -35,6 +35,7 @@ export default class PostsScreen extends Component {
     else {
       this.setState({ data: json, refreshing: false })
     }
+    loaded()
   }
 
   _setLocation = function() {

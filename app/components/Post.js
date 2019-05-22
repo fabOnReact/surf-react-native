@@ -14,7 +14,7 @@ export default class Post extends Component {
     const { post } = this.props
     this.style = { flex: 2, borderRadius: 9, width: null }
     this.height = Dimensions.get('window').height - Header.HEIGHT
-    this.width = Dimensions.get('window').width - Header.HEIGHT
+    this.width = Dimensions.get('window').width - Header.HEIGHT/2
     this.state = { liked: post.liked, style: this.stylePortrait }
   }
 
