@@ -34,6 +34,8 @@
 		</dict>
 		<dict/>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
