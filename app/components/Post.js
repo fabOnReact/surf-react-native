@@ -7,6 +7,7 @@ import Orientation from 'react-native-orientation';
 import { updatePost } from '../lib/api' 
 import { host } from '../config/constants';
 import { errorMessage } from '../lib/support';
+import { styles } from  './styles/PostStyles';
 
 export default class Post extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ export default class Post extends Component {
     return (
       <Card transparent>
         <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
+        <Text style={styles.overlayText}>4 Ft.</Text>
       </Card> 
     );
   }
