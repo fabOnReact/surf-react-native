@@ -87,7 +87,6 @@ export default class PostsScreen extends Component {
     this.props.navigation.navigate('New')
   }
 
-  // <NavigationEvents onWillFocus={payload => this._handleRefresh() } />
   render() {
     const { navigation } = this.props;
     const { data, latitude } = this.state;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Card, CardItem, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Card, CardItem, Text, Button, Icon, Left, Body, Right, View } from 'native-base';
 import { Header } from 'react-navigation';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation';
@@ -47,11 +47,18 @@ export default class Post extends Component {
   render() {
     const { liked } = this.state
     const { post, height } = this.props
+    const waveHeight = post.forecast[0].waveHeight[0].value
+    const location = post.location
     const iconColor = liked ? "blue" : "black"
     return (
       <Card transparent>
         <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
-        <Text style={styles.overlayText}>4 Ft.</Text>
+        <View style={[styles.wrapper, styles.wrapperLeft]}>  
+          <Text style={styles.overlayText}>{ waveHeight } m</Text>
+        </View>    
+        <View style={[styles.wrapper, styles.wrapperCenter]}>
+          <Text style={styles.overlayText}>{ location }</Text>
+        </View>
       </Card> 
     );
   }
