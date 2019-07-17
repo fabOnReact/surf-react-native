@@ -41,7 +41,7 @@ export default class CameraScreen extends Component {
 
   _takePicture = async function() {
     const { latitude, longitude } = this.state;
-    const options = { quality: 0.5, base64: true };
+    const options = { quality: 0.5, base64: true, forceUpOrientation: true, fixOrientation: true };
     const picture = await this.camera.takePictureAsync(options);
     const data = new FormData();
     const timestamp = new ClientDate().iso;
