@@ -110,6 +110,9 @@ android {
               keyPassword PRODUCTION_SURFCHECK_RELEASE_KEY_PASSWORD
           }
       }
+      defaultConfig {
+        missingDimensionStrategy 'react-native-camera', 'general'
+      }
       config {
       }
     }
