@@ -47,14 +47,14 @@ export default class Post extends Component {
   render() {
     const { liked } = this.state
     const { post, height } = this.props
-    const waveHeight = post.forecast.waveHeight[0].value
     const location = post.location
+    const waveHeight = location.forecast.waveHeight[0].value
     const iconColor = liked ? "blue" : "black"
     return (
       <Card transparent>
         <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
-        <View style={[styles.wrapper, styles.wrapperLeft]}>  
-          <Text style={styles.overlayText}>{ waveHeight } m at { location }</Text>
+        <View style={[styles.wrapper]}>  
+          <Text style={styles.overlayText}>{ waveHeight } m at { location.name }</Text>
         </View>
       </Card> 
     );

@@ -1,20 +1,23 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+  }, 
   overlayText: {
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
+    textShadowColor: 'rgb(0, 0, 0)',
+    textShadowOffset: {width: -2, height: 2},
+    textShadowRadius: 1    
   }, 
   wrapper: {
     position: 'absolute',
-    backgroundColor: 'red',
-    borderRadius: 150,
-    width: 100,
-    height: 40,
-    justifyContent: 'center',
+    width: "100%",
     alignItems: 'center',
-    bottom: 20,
+    bottom: 5,
   },
   wrapperLeft: {
     left: 20,
