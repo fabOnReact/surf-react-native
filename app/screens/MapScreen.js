@@ -65,8 +65,8 @@ export default class MapScreen extends Component {
     const region = { 
       latitude: latitude,
       longitude: longitude,
-      latitudeDelta: 11,
-      longitudeDelta: 11
+      latitudeDelta: 1,
+      longitudeDelta: 1 
     }
 
     return (
