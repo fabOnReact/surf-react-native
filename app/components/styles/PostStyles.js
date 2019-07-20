@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
+    textAlign: 'justify',
     textShadowColor: 'rgb(0, 0, 0)',
     textShadowOffset: {width: -2, height: 2},
     textShadowRadius: 1    
