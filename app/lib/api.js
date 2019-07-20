@@ -30,10 +30,10 @@ export const createPost = async (data) => {
     .catch(error => errorMessage(error))
 }
 
-export const getResources = async (success, params, endpoint) => {
+export const getResources = async (success, path) => {
   let credentials = await getCredentials()
   let config = { method: 'GET', headers: {...headers, ...credentials} }
-  fetch(`${host}/${endpoint}.json${params}`, config)
+  fetch(`${host}/${path}`, config)
     .then(response => response.json())
     .then(json => success(json))
     .catch(error => errorMessage(error))

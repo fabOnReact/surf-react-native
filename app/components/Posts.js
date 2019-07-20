@@ -5,6 +5,7 @@ import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } fr
 import { Icon } from 'react-native-elements';
 import Location from './Location';
 import Post from './Post';
+import Header from './Header';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
@@ -12,29 +13,36 @@ import { errorMessage } from '../lib/support';
 export default class PostsScreen extends Component {
   constructor(props){
     super(props);
-    this.state = { data: [], page: 1, refreshing: false, latitude: '', longitude: '' };
-    getResources(this.setData, this.params, "posts")
+    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '' };
+    getResources(this.setPosts, this.path("posts"))
   }
 
   componentWillMount = () => {
     this._setLocation()
   }
 
-  addData = (json) => {
-    const { data } = this.state
-    this.setState({ data: [...data, ...json], refreshing: false })
+  addPosts = (json) => {
+    const { posts } = this.state
+    this.setState({ posts: [...posts, ...json], refreshing: false })
   }
 
-  setData = async (json) => {
-    const { data } = this.state 
+  setPosts = async (json) => {
+    const { posts } = this.state 
     const { navigation, loaded } = this.props
     if (json["error"] != null) { 
       await AsyncStorage.clear()
       navigation.navigate('Auth');
     }
     else {
-      this.setState({ data: json, refreshing: false })
+      this.setState({ posts: json, refreshing: false })
     }
+    loaded()
+  }
+
+  setLocations = async (json) => {
+    const { locations } = this.state
+    const { loaded } = this.props
+    this.setState({ locations: json })
     loaded()
   }
 
@@ -62,7 +70,8 @@ export default class PostsScreen extends Component {
   _handleRefresh = () => {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      getResources(this.setData, this.params, "posts")
+      getResources(this.setPosts, this.path("posts"))
+      getResources(this.setLocations, this.path("locations"))
     })
   }
 
@@ -70,13 +79,26 @@ export default class PostsScreen extends Component {
     const { page } = this.state
     const { navigation } = this.props
     this.setState({ page: page + 1 }, () => {
-      getResources(this.addData, this.params, "posts")
+      getResources(this.addPosts, this.path("posts"))
     })
   }
 
-  get params () {
+  path(endpoint) {
     const { page, longitude, latitude } = this.state;
-    return `?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
+    switch (endpoint) {
+      case "posts":
+        return `${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
+        break
+      case "locations": 
+        return `${endpoint}.json?longitude=${longitude}&latitude=${latitude}`
+        break
+      default: 
+        console.warn(`sorry, ${endpoint} does not exist`)
+    }
+  }
+
+  get locationsQuery () {
+    const { longitude, latitude } = this.props;
   }
 
   _onEndReached = () => {
@@ -89,11 +111,12 @@ export default class PostsScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { data, latitude } = this.state;
+    const { posts, locations, latitude, longitude } = this.state;
     return (
       <View style={{flex:1}}>
+        <Header data={locations} />
         <FlatList
-          data={this.state.data} 
+          data={posts} 
           keyExtractor={(item, index) => index.toString() }
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}

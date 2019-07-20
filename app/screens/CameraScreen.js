@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
-import { styles } from './PostStyles';
+import { styles } from './styles/CameraStyles';
 import Location from '../components/Location';
 import { buttons } from '../components/styles/ButtonStyles';
 import { createPost } from '../lib/api';

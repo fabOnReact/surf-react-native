@@ -36,12 +36,12 @@ export default class MapScreen extends Component {
         } 
         if (map.shouldUpdate) { 
           this.position = coords
-          getResources(this.setData, this.corners, "locations")
+          getResources(this.setData, this.corners)
         }
       } else {
         this.setState({ boundaries: coords }) 
         this.position = coords 
-        getResources(this.setData, this.corners, "locations")
+        getResources(this.setData, this.corners)
       }
     })
   }
@@ -57,7 +57,7 @@ export default class MapScreen extends Component {
 
   get corners() {
     const { inOverview } = this.state
-    return `?${serialize(this.position)}&inOverview=${inOverview}`
+    return `locations?${serialize(this.position)}&inOverview=${inOverview}`
   }
 
   render() {
