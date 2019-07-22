@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { WebView } from 'react-native-webview';
 import { host } from '../config/constants';
 
-export default class MapScreen extends Component {
+export default class WebViewScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('title', ''),
+    };
+  };
+
   render() {
     const { navigation } = this.props
     const path = navigation.getParam('path', '')

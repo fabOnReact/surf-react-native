@@ -14,7 +14,7 @@ export default class ProfileScreen extends Component {
     this.state = { email: '' }
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     let email = await AsyncStorage.getItem('userEmail')
     this.setState({ email })  
   }
@@ -44,12 +44,12 @@ export default class ProfileScreen extends Component {
           />
           <Button
             title="Privacy Policy"
-            onPress={() => navigation.navigate("WebView", { path: "/pages/privacy" })}
+            onPress={() => navigation.navigate("WebView", { path: "/pages/privacy", title: "Privacy" })}
             buttonStyle={styles.button}
           />
           <Button
             title="Credits"
-            onPress={() => navigation.navigate("WebView", { path: "/pages/credits" })}
+            onPress={() => navigation.navigate("WebView", { path: "/pages/credits", title: "Credits" })}
             buttonStyle={styles.button}
           />
         </View>
