@@ -9,19 +9,24 @@ export default class Forecast extends Component {
     this.state = { data: null }
   }
 
-  renderForecast (row) {
+  renderRow (row) {
     const { forecast } = row
     return (
       <Text key={row.id}>{ forecast && forecast.waveHeight[0].value } mt. at <Text style={{color:'red'}}>{ row.name }</Text> (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
     )
   }
 
-  render () { 
-    const { data, index } = this.props
+  renderForecast (data) {
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: "center"}}>{ data && index == 0 && data.map((row) => this.renderForecast(row))}</Text>
+        <Text style={{textAlign: "center"}}>{ data &&  data.map((row) => this.renderRow(row))}</Text>
       </View>
     )
+  }
+
+  render () { 
+    const { data, index } = this.props
+    if (index == 0) { return this.renderForecast(data); }
+    else { return null; }
   }
 }
