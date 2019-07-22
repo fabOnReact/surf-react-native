@@ -2,9 +2,12 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
 import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { Card } from 'native-base';
 import { Icon } from 'react-native-elements';
+import { Header } from 'react-navigation';
 import Location from './Location';
 import Post from './Post';
+import Forecast from './Forecast';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
@@ -13,11 +16,14 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '' };
-    getResources(this.setPosts, this.path("posts"))
+    // console.warn(Header.HEIGHT)
   }
 
   componentWillMount = () => {
     this._setLocation()
+  }
+  componentDidMount = () => {
+    getResources(this.setPosts, this.path("posts"))
   }
 
   addPosts = (json) => {
@@ -89,7 +95,7 @@ export default class PostsScreen extends Component {
         return `${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
         break
       case "locations": 
-        return `${endpoint}.json?longitude=${longitude}&latitude=${latitude}`
+        return `${endpoint}.json?page=1&per_page=6&longitude=${longitude}&latitude=${latitude}`
         break
       default: 
         console.warn(`sorry, ${endpoint} does not exist`)
@@ -121,8 +127,12 @@ export default class PostsScreen extends Component {
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.5}
+          extraData={locations}
           renderItem={({ item, index }) => (
-            <Post key={index} post={item} locations={locations} index={index} />
+            <Card trasparent>            
+              <Forecast data={locations} index={index} />
+              <Post key={index} post={item} index={index} />
+            </Card>
           )}
         />
         <TouchableOpacity 

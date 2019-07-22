@@ -4,7 +4,6 @@ import { Card, CardItem, Text, Button, Icon, Left, Body, Right, View } from 'nat
 import { Header } from 'react-navigation';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation';
-import Forecast from './Forecast';
 import { updatePost } from '../lib/api' 
 import { host } from '../config/constants';
 import { errorMessage } from '../lib/support';
@@ -13,15 +12,19 @@ import { styles } from  './styles/PostStyles';
 export default class Post extends Component {
   constructor(props) {
     super(props)
-    const { post } = this.props
-    this.style = { flex: 2, borderRadius: 9, width: null }
-    this.height = Dimensions.get('window').height - Header.HEIGHT
-    this.width = Dimensions.get('window').width - Header.HEIGHT/2
-    this.state = { liked: post.liked, style: this.stylePortrait }
+    // console.warn(Header.HEIGHT)
+    this.state = { liked: null, style: '' }
   }
 
   componentWillMount() { Orientation.addOrientationListener(this._imageStyles) } 
   componentWillUnmount() { Orientation.removeOrientationListener(this._imageStyles) }
+  componentDidMount() {
+    const { post } = this.props
+    this.style = { flex: 2, borderRadius: 9, width: null }
+    this.height = Dimensions.get('window').height - Header.HEIGHT
+    this.width = Dimensions.get('window').width - Header.HEIGHT/2
+    this.setState({ liked: post.liked, style: this.stylePortrait })
+  }
 
   _imageStyles = (orientation) => {
     if (orientation != 'PORTRAIT') { 
@@ -32,7 +35,7 @@ export default class Post extends Component {
   }
 
   get stylePortrait() { return { ...this.style, height: this.height/3 }}
-  get styleLandscape() { return { ...this.style, height: this.width }}
+  get styleLandscape() { return { ...this.style, width: this.width }}
 
   _liked = () => {
     const { post } = this.props
@@ -47,18 +50,17 @@ export default class Post extends Component {
 
   render() {
     const { liked } = this.state
-    const { post, height, locations, index } = this.props
+    const { post, height, index } = this.props
     const location = post.location
     const forecast = location.forecast
     const iconColor = liked ? "blue" : "black"
     return (
-      <Card transparent>
-        <Forecast data={locations} index={index} />
+      <React.Fragment>
         <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
         <View style={[styles.wrapper]}>  
           <Text style={styles.overlayText}>{ forecast && forecast.waveHeight[0].value } mt. at { location.name }</Text>
         </View>
-      </Card> 
+      </React.Fragment>
     );
   }
 }

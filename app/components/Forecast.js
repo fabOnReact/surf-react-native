@@ -12,7 +12,7 @@ export default class Forecast extends Component {
   renderRow (row) {
     const { forecast } = row
     return (
-      <Text key={row.id}>{ forecast && forecast.waveHeight[0].value } mt. at <Text style={{color:'red'}}>{ row.name }</Text> (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
+      <Text key={row.id}>{ forecast && forecast.waveHeight[0].value } mt. at <Text style={{color:'red'}}>{ row.name }</Text> with id { row.id } (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
     )
   }
 
