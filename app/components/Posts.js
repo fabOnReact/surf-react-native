@@ -5,7 +5,6 @@ import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } fr
 import { Icon } from 'react-native-elements';
 import Location from './Location';
 import Post from './Post';
-import Header from './Header';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
@@ -13,7 +12,7 @@ import { errorMessage } from '../lib/support';
 export default class PostsScreen extends Component {
   constructor(props){
     super(props);
-    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '' };
+    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '' };
     getResources(this.setPosts, this.path("posts"))
   }
 
@@ -113,8 +112,8 @@ export default class PostsScreen extends Component {
     const { navigation } = this.props;
     const { posts, locations, latitude, longitude } = this.state;
     return (
+      <React.Fragment>
       <View style={{flex:1}}>
-        <Header data={locations} />
         <FlatList
           data={posts} 
           keyExtractor={(item, index) => index.toString() }
@@ -123,7 +122,7 @@ export default class PostsScreen extends Component {
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.5}
           renderItem={({ item, index }) => (
-            <Post key={index} post={item} />
+            <Post key={index} post={item} locations={locations} index={index} />
           )}
         />
         <TouchableOpacity 
@@ -154,6 +153,7 @@ export default class PostsScreen extends Component {
           onPress={() => navigation.navigate("Camera") }
         />
       </View>
+      </React.Fragment>
     );
   }
 }

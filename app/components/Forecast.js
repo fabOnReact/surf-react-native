@@ -16,10 +16,6 @@ export default class Forecast extends Component {
     )
   }
 
-  componentWillReceiveProps(nextProps) {
-    // console.warn(nextProps.data)
-  }
-
   render () { 
     const { data, index } = this.props
     return (

@@ -4,6 +4,7 @@ import { Card, CardItem, Text, Button, Icon, Left, Body, Right, View } from 'nat
 import { Header } from 'react-navigation';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation';
+import Forecast from './Forecast';
 import { updatePost } from '../lib/api' 
 import { host } from '../config/constants';
 import { errorMessage } from '../lib/support';
@@ -46,15 +47,16 @@ export default class Post extends Component {
 
   render() {
     const { liked } = this.state
-    const { post, height } = this.props
+    const { post, height, locations, index } = this.props
     const location = post.location
-    const waveHeight = location.forecast.waveHeight[0].value
+    const forecast = location.forecast
     const iconColor = liked ? "blue" : "black"
     return (
       <Card transparent>
+        <Forecast data={locations} index={index} />
         <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
         <View style={[styles.wrapper]}>  
-          <Text style={styles.overlayText}>{ waveHeight } m at { location.name }</Text>
+          <Text style={styles.overlayText}>{ forecast && forecast.waveHeight[0].value } mt. at { location.name }</Text>
         </View>
       </Card> 
     );
