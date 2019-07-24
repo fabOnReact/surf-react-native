@@ -109,6 +109,10 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - ReactNativePermissions (1.2.0):
+    - React
+  - RNCAsyncStorage (1.5.1):
+    - React
   - RNVectorIcons (6.4.2):
     - React
   - yoga (0.57.8.React)
@@ -129,6 +133,8 @@ DEPENDENCIES:
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - ReactNativePermissions (from `../node_modules/react-native-permissions`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -159,6 +165,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
+  ReactNativePermissions:
+    :path: "../node_modules/react-native-permissions"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -182,9 +192,11 @@ SPEC CHECKSUMS:
   React: adbac0757ce35e92fbd447ab98c810209d27d9b0
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
   react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
+  ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
+  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   yoga: 74cdf036c30820443b25ade59916236b1e95ee93
 
-PODFILE CHECKSUM: 688f6ce0264a4d7aa47fbccb5154960e50b3bfce
+PODFILE CHECKSUM: c187ed11c1b89fbd3dce6ad67ce01461fbf22d66
 
 COCOAPODS: 1.7.3

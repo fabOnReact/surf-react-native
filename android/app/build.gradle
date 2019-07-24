@@ -159,6 +159,7 @@ android {
 }
 
 dependencies {
+    compile project(':@react-native-community_async-storage')
     compile project(':react-native-android-location-services-dialog-box')
     compile project(':react-native-webview')
     compile project(':react-native-maps')
