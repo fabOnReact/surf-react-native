@@ -2,6 +2,7 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
 import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import Permissions from 'react-native-permissions';
 import { Card } from 'native-base';
 import { Icon } from 'react-native-elements';
 import { Header } from 'react-navigation';
@@ -15,12 +16,39 @@ import { errorMessage } from '../lib/support';
 export default class PostsScreen extends Component {
   constructor(props){
     super(props);
-    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '' };
-    // console.warn(Header.HEIGHT)
+    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '', locationPermission: null };
   }
 
-  componentWillMount = () => {
+  componentDidMount() {
+    Permissions.check('location', {type: 'whenInUse'}).then(response => {
+      this.setState({locationPermission: response});
+    }, () => {
+      console.warn(this.state.locationPermission)
+    });
     this._setLocation()
+  }
+
+  _requestPermission = () => {
+    Permissions.request('location', {type: 'whenInUse'}).then(response => {
+      this.setState({locationPermission: response})
+    });
+  }
+  
+  _alertForLocationPermission() {
+    Alert.alert(
+      'Can we access your location?',
+      'We need access so can select the most relevant forecast information for you',
+      [
+        {
+          text: 'No',
+          onPress: () => console.warn('Permission denied'),
+          style: 'cancel',
+        },
+        this.state.locationPermission == 'undetermined'
+          ? {text: 'Yes', onPress: this._requestPermission}
+          : {text: 'Open Settings', onPress: Permissions.openSettings},
+      ],
+    );
   }
 
   addPosts = (json) => {
@@ -32,6 +60,7 @@ export default class PostsScreen extends Component {
     const { posts } = this.state 
     const { navigation, loaded } = this.props
     if (json["error"] != null) { 
+      console.warn(json["error"])
       await AsyncStorage.clear()
       navigation.navigate('Auth');
     }
@@ -43,9 +72,7 @@ export default class PostsScreen extends Component {
 
   setLocations = async (json) => {
     const { locations } = this.state
-    const { loaded } = this.props
     this.setState({ locations: json })
-    loaded()
   }
 
   _setLocation = function() {
@@ -54,18 +81,16 @@ export default class PostsScreen extends Component {
         this.setState({ 
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
-        }, () => this._handleRefresh());
+        }, () => {
+          getResources(this.setLocations, this.path("locations"))
+          this._handleRefresh()
+        });
       },
       (error) => { 
-        Alert.alert(
-          'Location Services',
-          'Please enable manually location services from your phone settings',
-          [{text: 'Dismiss'}],
-          {cancelable: true},
-        );
+        this._alertForLocationPermission()
         this._handleRefresh();
       },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 1000 },
     );
   }
 
@@ -73,7 +98,6 @@ export default class PostsScreen extends Component {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
       getResources(this.setPosts, this.path("posts"))
-      getResources(this.setLocations, this.path("locations"))
     })
   }
 
