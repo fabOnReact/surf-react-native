@@ -22,9 +22,6 @@ export default class PostsScreen extends Component {
   componentWillMount = () => {
     this._setLocation()
   }
-  componentDidMount = () => {
-    getResources(this.setPosts, this.path("posts"))
-  }
 
   addPosts = (json) => {
     const { posts } = this.state

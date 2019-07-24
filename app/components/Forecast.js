@@ -19,7 +19,7 @@ export default class Forecast extends Component {
   renderForecast (data) {
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: "center"}}>{ data &&  data.map((row) => this.renderRow(row))}</Text>
+        <Text style={{textAlign: ""}}>{ data &&  data.map((row) => this.renderRow(row))}</Text>
       </View>
     )
   }
