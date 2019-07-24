@@ -1,12 +1,37 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, Platform, StyleSheet } from 'react-native';
+import { BackHandler, DeviceEventEmitter, View, Text, StatusBar, Platform, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Swiper from 'react-native-swiper';
 import Posts from '../components/Posts';
+import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
+
+LocationServicesDialogBox.checkLocationServicesIsEnabled({
+    message: "<h2 style='color: #0af13e'>Use Location ?</h2>This app wants to change your device settings:<br/><br/>Use GPS, Wi-Fi, and cell network for location<br/><br/><a href='#'>Learn more</a>",
+    ok: "YES",
+    cancel: "NO",
+    enableHighAccuracy: true, 
+    showDialog: true, 
+    openLocationServices: true, 
+    preventOutSideTouch: false, 
+    preventBackClick: false, 
+    providerListener: false 
+}).then(function(success) {
+    console.warn(success); 
+}).catch((error) => {
+    console.warn(error.message); 
+});
+
+DeviceEventEmitter.addListener('locationProviderStatusChange', function(status) { 
+    console.warn(status); 
+});
 
 export default class MainScreen extends Component {
   state = { spinner: true };
+
+  componentWillUnmount() {
+      LocationServicesDialogBox.stopListener(); 
+  }
 
   pageIsLoaded = () => { 
     this.setState({ spinner: false }) 
