@@ -152,7 +152,7 @@ export default class PostsScreen extends Component {
           renderItem={({ item, index }) => (
             <Card trasparent>            
               <Forecast data={locations} index={index} />
-              <Post key={index} post={item} index={index} />
+              <Post key={index} post={item} index={index} navigation={navigation} />
             </Card>
           )}
         />

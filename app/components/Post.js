@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { Card, CardItem, Text, Button, Icon, Left, Body, Right, View } from 'native-base';
 import { Header } from 'react-navigation';
 import Dimensions from 'Dimensions';
@@ -12,7 +12,6 @@ import { styles } from  './styles/PostStyles';
 export default class Post extends Component {
   constructor(props) {
     super(props)
-    // console.warn(Header.HEIGHT)
     this.state = { liked: null, style: '' }
   }
 
@@ -50,16 +49,18 @@ export default class Post extends Component {
 
   render() {
     const { liked } = this.state
-    const { post, height, index } = this.props
+    const { post, height, index, navigation } = this.props
     const location = post.location
     const forecast = location.forecast
     const iconColor = liked ? "blue" : "black"
     return (
       <React.Fragment>
-        <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
-        <View style={[styles.wrapper]}>  
-          <Text style={styles.overlayText}>{ forecast && forecast.waveHeight[0].value } mt. at { location.name }</Text>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Show', { post: post })}>
+          <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
+          <View style={[styles.wrapper]}>  
+            <Text style={styles.overlayText}>{ forecast && forecast.waveHeight } mt. at { location.name }</Text>
+          </View>
+        </TouchableOpacity>
       </React.Fragment>
     );
   }
