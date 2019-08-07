@@ -12,6 +12,7 @@ import Forecast from './Forecast';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
+import { posts_fixtures } from '../../test/fixtures/posts.js';
 
 export default class PostsScreen extends Component {
   constructor(props){
@@ -65,7 +66,8 @@ export default class PostsScreen extends Component {
       navigation.navigate('Auth');
     }
     else {
-      this.setState({ posts: json, refreshing: false })
+      // this.setState({ posts: json, refreshing: false })
+      this.setState({ posts: posts_fixtures, refreshing: false })
     }
     loaded()
   }
@@ -82,7 +84,7 @@ export default class PostsScreen extends Component {
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
         }, () => {
-          getResources(this.setLocations, this.path("locations"))
+          // getResources(this.setLocations, this.path("locations"))
           this._handleRefresh()
         });
       },
@@ -97,7 +99,8 @@ export default class PostsScreen extends Component {
   _handleRefresh = () => {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      getResources(this.setPosts, this.path("posts"))
+      // getResources(this.setPosts, this.path("posts"))
+      this.setPosts({}) 
     })
   }
 
@@ -105,7 +108,7 @@ export default class PostsScreen extends Component {
     const { page } = this.state
     const { navigation } = this.props
     this.setState({ page: page + 1 }, () => {
-      getResources(this.addPosts, this.path("posts"))
+      // getResources(this.addPosts, this.path("posts"))
     })
   }
 
