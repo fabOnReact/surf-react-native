@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { H1, H2, H3, H4 } from 'native-base';
+import Tide from '../components/Tide';
+import Waves from '../components/Waves';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import { styles } from './styles/ShowStyles';
 
@@ -14,8 +16,8 @@ export default class ShowScreen extends Component {
   render() {
     const { navigation } = this.props;
     const post = navigation.getParam('post')
-    const { latitude, longitude, forecast } = post.location
-    const { swellHeight, waveHeight, windSpeed, windDirection, waveDirection } = forecast
+    const { latitude, longitude, tide, daily, hourly } = post.location
+    const { swellHeight, waveHeight, windSpeed, windDirection, waveDirection } = hourly
     const host = "https://maps.googleapis.com/maps/api/staticmap"
     const options = "zoom=11&&size=300x300&maptype=satellite"
     const uri = `${host}?center=${latitude},${longitude}&${options}&key=${GOOGLE_MAPS_API_KEY}`
@@ -57,6 +59,7 @@ export default class ShowScreen extends Component {
             ]}
           />
         </View>
+        <Tide />
       </React.Fragment>
     )
   }
