@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Image } from 'react-native';
 import { H1, H2, H3, H4 } from 'native-base';
-import Tide from '../components/Tide';
-import Waves from '../components/Waves';
+import Chart from '../components/Chart';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import { styles } from './styles/ShowStyles';
 import { posts_fixtures } from '../../test/fixtures/posts.js';
@@ -20,6 +19,8 @@ export default class ShowScreen extends Component {
     const post = posts_fixtures[0]
     const { latitude, longitude, tide, daily, hourly } = post.location
     const { swellHeight, waveHeight, windSpeed, windDirection, waveDirection } = hourly
+    var { hours, seaLevels } = tide
+    hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     const host = "https://maps.googleapis.com/maps/api/staticmap"
     const options = "zoom=11&&size=400x300&maptype=satellite"
     const uri = `${host}?center=${latitude},${longitude}&${options}&key=${GOOGLE_MAPS_API_KEY}`
@@ -62,8 +63,10 @@ export default class ShowScreen extends Component {
               ]}
             />
           </View>
-          <Tide data={post.location.tide} />
-          <Waves data={post.location.daily} />
+          <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 24h Tide mt.</H3>
+          <Chart values={seaLevels} labels={hours} bezier={false} margin={50} />
+          <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 7 days forecast in mt.</H3>
+          <Chart values={daily.waveHeight} labels={daily.days} bezier={true} margin={0} />
         </ScrollView>
       </React.Fragment>
     )

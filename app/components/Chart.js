@@ -3,31 +3,26 @@ import { H1, H2, H3, H4 } from 'native-base';
 import { LineChart } from 'react-native-chart-kit'
 import { Dimensions } from 'react-native'
 
-export default class Tide extends Component {
+export default class Chart extends Component {
   render() {
-    var { hours, seaLevels } = this.props.data
+    const { values, labels, bezier, margin } = this.props
+    const screenWidth = Dimensions.get('window').width - margin
     const chartConfig = {
       backgroundGradientFrom: 'white',
       backgroundGradientTo: 'white',
       color: (opacity = 1) => `rgba(23, 79, 23)`,
-      decimalPlaces: 0,
+      decimalPlaces: 1,
       strokeWidth: 0,
     }
-    const screenWidth = Dimensions.get('window').width - 50
-    const beginning = new Date(hours[0]).getHours()
-    const end = new Date(hours.slice(-1)).getHours()
-    hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
-    const labels = hours.map(( time) => new Date(time).getHours())
-    const data = {
-      labels: hours,
+    const data= {
+      labels: labels,
       datasets: [{
-        data: seaLevels,
+        data: values,
         strokeWidth: 2 
       }]
     }
     return (
       <React.Fragment>
-        <H3 style={{ textAlign: 'center', marginTop: 10 }}>Next 24h Tide mt.</H3>
         <LineChart
           data={data}
           width={screenWidth}
@@ -36,6 +31,7 @@ export default class Tide extends Component {
           withInnerLines={false}
           withOuterLines={false}
           withDots={false}
+          bezier={bezier}
         />
       </React.Fragment>
     )
