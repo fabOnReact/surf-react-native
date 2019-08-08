@@ -66,8 +66,8 @@ export default class PostsScreen extends Component {
       navigation.navigate('Auth');
     }
     else {
-      // this.setState({ posts: json, refreshing: false })
-      this.setState({ posts: posts_fixtures, refreshing: false })
+      this.setState({ posts: json, refreshing: false })
+      // this.setState({ posts: posts_fixtures, refreshing: false })
     }
     loaded()
   }
@@ -84,7 +84,7 @@ export default class PostsScreen extends Component {
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
         }, () => {
-          // getResources(this.setLocations, this.path("locations"))
+          getResources(this.setLocations, this.path("locations"))
           this._handleRefresh()
         });
       },
@@ -99,8 +99,7 @@ export default class PostsScreen extends Component {
   _handleRefresh = () => {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      // getResources(this.setPosts, this.path("posts"))
-      this.setPosts({}) 
+      getResources(this.setPosts, this.path("posts"))
     })
   }
 
@@ -108,7 +107,7 @@ export default class PostsScreen extends Component {
     const { page } = this.state
     const { navigation } = this.props
     this.setState({ page: page + 1 }, () => {
-      // getResources(this.addPosts, this.path("posts"))
+      getResources(this.addPosts, this.path("posts"))
     })
   }
 
@@ -141,6 +140,7 @@ export default class PostsScreen extends Component {
   render() {
     const { navigation } = this.props;
     const { posts, locations, latitude, longitude } = this.state;
+    // const posts = posts_fixtures
     return (
       <React.Fragment>
       <View style={{flex:1}}>
