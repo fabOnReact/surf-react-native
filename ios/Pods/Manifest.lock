@@ -113,6 +113,8 @@ PODS:
     - React
   - RNCAsyncStorage (1.5.1):
     - React
+  - RNSVG (9.6.2):
+    - React
   - RNVectorIcons (6.4.2):
     - React
   - yoga (0.57.8.React)
@@ -135,6 +137,7 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -169,6 +172,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -194,9 +199,10 @@ SPEC CHECKSUMS:
   react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
   ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
   RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
+  RNSVG: ff9b094e39dd4a437ebe17d1c7ceed286e75f426
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   yoga: 74cdf036c30820443b25ade59916236b1e95ee93
 
-PODFILE CHECKSUM: c187ed11c1b89fbd3dce6ad67ce01461fbf22d66
+PODFILE CHECKSUM: f37e607dc2ed437a0799174ecc3a0f11ac2f6d3f
 
 COCOAPODS: 1.7.3

@@ -38,6 +38,8 @@ target 'SurfApp' do
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   target 'SurfAppTests' do
     inherit! :search_paths
     # Pods for testing
