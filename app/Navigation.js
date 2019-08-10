@@ -10,13 +10,13 @@ import WebViewScreen from './screens/WebViewScreen';
 import ShowScreen from './screens/ShowScreen';
 
 const AppStack = createStackNavigator({ 
-  Show: ShowScreen,
   Index: {
     screen: IndexScreen,
     navigationOptions: ({navigation}) => ({
       header: null,
     }),
-  }, Camera: CameraScreen, Profile: ProfileScreen, Map: MapScreen, WebView: WebViewScreen
+  }, Camera: CameraScreen, Profile: ProfileScreen, Map: MapScreen, WebView: WebViewScreen,
+  Show: ShowScreen
 });
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen });
