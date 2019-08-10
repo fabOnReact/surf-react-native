@@ -51,14 +51,13 @@ export default class Post extends Component {
     const { liked } = this.state
     const { post, height, index, navigation } = this.props
     const location = post.location
-    const forecast = location.forecast
     const iconColor = liked ? "blue" : "black"
     return (
       <React.Fragment>
         <TouchableOpacity onPress={() => navigation.navigate('Show', { post: post })}>
           <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
           <View style={[styles.wrapper]}>  
-            <Text style={styles.overlayText}>{ forecast && forecast.waveHeight } mt. at { location.name }</Text>
+            <Text style={styles.overlayText}>{ location.hourly && location.hourly.waveHeight } mt. at { location.name }</Text>
           </View>
         </TouchableOpacity>
       </React.Fragment>

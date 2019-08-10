@@ -7,19 +7,18 @@ import { styles } from './styles/ShowStyles';
 import { posts_fixtures } from '../../test/fixtures/posts.js';
 
 export default class ShowScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   return {
-  //     title: navigation.getParam('post').location.name,
-  //   };
-  // };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('post').location.name,
+    };
+  };
 
   render() {
     const { navigation } = this.props;
-    // const post = navigation.getParam('post')
-    const post = posts_fixtures[0]
-    const { latitude, longitude, tide, daily, hourly } = post.location
+    const post = navigation.getParam('post')
+    const { latitude, longitude, tideChart, daily, hourly } = post.location
     const { swellHeight, waveHeight, windSpeed, windDirection, waveDirection } = hourly
-    var { hours, seaLevels } = tide
+    var { hours, seaLevels } = tideChart
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     const host = "https://maps.googleapis.com/maps/api/staticmap"
     const options = "zoom=11&&size=400x300&maptype=satellite"

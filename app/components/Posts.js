@@ -12,7 +12,7 @@ import Forecast from './Forecast';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
-import { posts_fixtures } from '../../test/fixtures/posts.js';
+// import { posts_fixtures } from '../../test/fixtures/posts.js';
 
 export default class PostsScreen extends Component {
   constructor(props){
@@ -67,7 +67,6 @@ export default class PostsScreen extends Component {
     }
     else {
       this.setState({ posts: json, refreshing: false })
-      // this.setState({ posts: posts_fixtures, refreshing: false })
     }
     loaded()
   }
@@ -84,14 +83,14 @@ export default class PostsScreen extends Component {
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
         }, () => {
-          // getResources(this.setLocations, this.path("locations"))
-          // this._handleRefresh()
-          this.props.loaded()
+          getResources(this.setLocations, this.path("locations"))
+          this._handleRefresh()
+          // this.props.loaded()
         });
       },
       (error) => { 
         this._alertForLocationPermission()
-        // this._handleRefresh();
+        this._handleRefresh();
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 1000 },
     );
@@ -100,7 +99,7 @@ export default class PostsScreen extends Component {
   _handleRefresh = () => {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      // getResources(this.setPosts, this.path("posts"))
+      getResources(this.setPosts, this.path("posts"))
     })
   }
 
@@ -108,7 +107,7 @@ export default class PostsScreen extends Component {
     const { page } = this.state
     const { navigation } = this.props
     this.setState({ page: page + 1 }, () => {
-      // getResources(this.addPosts, this.path("posts"))
+      getResources(this.addPosts, this.path("posts"))
     })
   }
 
@@ -140,9 +139,9 @@ export default class PostsScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    // const { posts, locations, latitude, longitude } = this.state;
-    const { locations, latitude, longitude } = this.state;
-    const posts = posts_fixtures
+    const { posts, locations, latitude, longitude } = this.state;
+    // const { locations, latitude, longitude } = this.state;
+    // const posts = posts_fixtures
     return (
       <React.Fragment>
       <View style={{flex:1}}>
