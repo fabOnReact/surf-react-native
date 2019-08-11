@@ -85,14 +85,13 @@ export default class PostsScreen extends Component {
         }, () => {
           getResources(this.setLocations, this.path("locations"))
           this._handleRefresh()
-          // this.props.loaded()
         });
       },
       (error) => { 
         this._alertForLocationPermission()
-        this._handleRefresh();
+        console.warn(error)
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 1000 },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
   }
 

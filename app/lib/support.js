@@ -35,3 +35,8 @@ export const serialize = (obj, prefix) => {
   }
   return str.join("&");
 }
+
+export function isPresent(obj) {
+  return !( Object.entries(obj).length === 0 && obj.constructor === Object )
+}
+

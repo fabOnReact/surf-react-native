@@ -6,7 +6,7 @@ import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation';
 import { updatePost } from '../lib/api' 
 import { host } from '../config/constants';
-import { errorMessage } from '../lib/support';
+import { errorMessage, isPresent } from '../lib/support';
 import { styles } from  './styles/PostStyles';
 
 export default class Post extends Component {
@@ -47,17 +47,29 @@ export default class Post extends Component {
     })
   }
 
+  _renderInfo() {
+    const { location } = this.props.post
+    const waveHeight = location.forecast.hourly
+    if (waveHeight) { return `${waveHeight} mt. at ${location.name}` }
+    else return location.name
+  }
+
   render() {
     const { liked } = this.state
-    const { post, height, index, navigation } = this.props
-    const location = post.location
+    const { navigation, post, height, index } = this.props
+    const { location } = post
+    const { forecast } = location
     const iconColor = liked ? "blue" : "black"
     return (
       <React.Fragment>
-        <TouchableOpacity onPress={() => navigation.navigate('Show', { post: post })}>
+        <TouchableOpacity 
+          onPress={() => { 
+            if (isPresent(forecast)) { navigation.navigate('Show', { post: post }) }
+          }}
+        >
           <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
           <View style={[styles.wrapper]}>  
-            <Text style={styles.overlayText}>{ location.hourly && location.hourly.waveHeight } mt. at { location.name }</Text>
+            <Text style={styles.overlayText}>{ this._renderInfo() }</Text>
           </View>
         </TouchableOpacity>
       </React.Fragment>

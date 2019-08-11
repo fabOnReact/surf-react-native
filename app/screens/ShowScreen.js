@@ -16,7 +16,8 @@ export default class ShowScreen extends Component {
   render() {
     const { navigation } = this.props;
     const post = navigation.getParam('post')
-    const { latitude, longitude, tideChart, daily, hourly } = post.location
+    const { latitude, longitude, forecast } = post.location
+    const { tideChart, daily, hourly } = forecast
     const { swellHeight, waveHeight, windSpeed, windDirection, waveDirection } = hourly
     var { hours, seaLevels } = tideChart
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
