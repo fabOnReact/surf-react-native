@@ -19,6 +19,8 @@ export default class ShowScreen extends Component {
     const { latitude, longitude, forecast } = post.location
     const { tideChart, daily, hourly } = forecast
     const { swellHeight, waveHeight, windSpeed, windDirection, waveDirection } = hourly
+    daily.waveHeight.pop()
+    daily.days.pop()
     var { hours, seaLevels } = tideChart
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     const host = "https://maps.googleapis.com/maps/api/staticmap"

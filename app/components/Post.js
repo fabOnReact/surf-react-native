@@ -49,7 +49,7 @@ export default class Post extends Component {
 
   _renderInfo() {
     const { location } = this.props.post
-    const waveHeight = location.forecast.hourly
+    const { waveHeight } = location.forecast.hourly
     if (waveHeight) { return `${waveHeight} mt. at ${location.name}` }
     else return location.name
   }
