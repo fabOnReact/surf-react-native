@@ -26,7 +26,7 @@ export const createPost = async (data) => {
   }
 
   fetch(host + "/posts.json", config)
-    .then(response => { console.log(response) })
+    .then(response => {}) // console.log(response) 
     .catch(error => errorMessage(error))
 }
 
@@ -58,11 +58,11 @@ export const configureGoogleSignIn = () => {
   });
 }
 
-export const updatePost = async (options) => {
-  let credentials = await getCredentials()
-  let config = { method: 'PUT', headers: { ...headers, ...credentials }, body: options.body}
-  fetch(`${host}/posts/${options.id}.json`, config)
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .catch(error => errorMessage(error));
-}
+// export const updatePost = async (options) => {
+//   let credentials = await getCredentials()
+//   let config = { method: 'PUT', headers: { ...headers, ...credentials }, body: options.body}
+//   fetch(`${host}/posts/${options.id}.json`, config)
+//     .then(response => response.json())
+//     .then(json => /* console.log(json) */ )
+//     .catch(error => errorMessage(error));
+// }

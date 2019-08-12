@@ -24,7 +24,7 @@ export default class PostsScreen extends Component {
     Permissions.check('location', {type: 'whenInUse'}).then(response => {
       this.setState({locationPermission: response});
     }, () => {
-      console.warn(this.state.locationPermission)
+      // console.warn(this.state.locationPermission)
     });
     this._setLocation()
   }
@@ -42,7 +42,7 @@ export default class PostsScreen extends Component {
       [
         {
           text: 'No',
-          onPress: () => console.warn('Permission denied'),
+          onPress: () => {}, // console.warn('Permission denied')
           style: 'cancel',
         },
         this.state.locationPermission == 'undetermined'
@@ -61,7 +61,7 @@ export default class PostsScreen extends Component {
     const { posts } = this.state 
     const { navigation, loaded } = this.props
     if (json["error"] != null) { 
-      console.warn(json["error"])
+      //console.warn(json["error"])
       await AsyncStorage.clear()
       navigation.navigate('Auth');
     }
@@ -89,7 +89,7 @@ export default class PostsScreen extends Component {
       },
       (error) => { 
         this._alertForLocationPermission()
-        console.warn(error)
+        // console.warn(error)
       },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
@@ -120,7 +120,7 @@ export default class PostsScreen extends Component {
         return `${endpoint}.json?page=1&per_page=6&longitude=${longitude}&latitude=${latitude}`
         break
       default: 
-        console.warn(`sorry, ${endpoint} does not exist`)
+        // console.warn(`sorry, ${endpoint} does not exist`)
     }
   }
 

@@ -43,7 +43,7 @@ export default class Post extends Component {
     this.setState({ liked: !liked }, () => { 
       let body = JSON.stringify({ post: { liked: this.state.liked}})
       let options = { id, body}
-      updatePost(options, this._success, this._failure)
+      // updatePost(options, this._success, this._failure)
     })
   }
 
@@ -67,7 +67,7 @@ export default class Post extends Component {
             if (isPresent(forecast)) { navigation.navigate('Show', { post: post }) }
           }}
         >
-          <Image source={{uri: post.picture.mobile.url }} style={this.state.style} />
+          <Image source={{uri: post.picture.card.url }} style={this.state.style} />
           <View style={[styles.wrapper]}>  
             <Text style={styles.overlayText}>{ this._renderInfo() }</Text>
           </View>
