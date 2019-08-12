@@ -34,7 +34,7 @@ export default class Post extends Component {
   }
 
   get stylePortrait() { return { ...this.style, height: this.height/3 }}
-  get styleLandscape() { return { ...this.style, width: this.width }}
+  get styleLandscape() { return { ...this.style, height: this.width }}
 
   _liked = () => {
     const { post } = this.props
