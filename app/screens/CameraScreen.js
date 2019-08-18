@@ -55,11 +55,11 @@ export default class CameraScreen extends Component {
 
   render() {
     return (
-      <ImageBackground 
+      {/*<ImageBackground 
         source={require('../images/bondi.jpg')}
-        style={{width: "100%", height: "100%"}}>
+        style={{width: "100%", height: "100%"}}>*/}
         <View style={styles.container}>
-            {/*<RNCamera
+          <RNCamera
             ref={ref => {
               this.camera = ref;
             }}
@@ -72,19 +72,19 @@ export default class CameraScreen extends Component {
               message: 'We need your permission to use your camera',
               buttonPositive: 'Ok',
               buttonNegative: 'Cancel',
-            }}>*/}
-            <Icon
-              containerStyle={buttons.buttonAbsolute}
-              name='ios-radio-button-off'
-              type='ionicon'
-              size={80}
-              color='#ffffff'
-              underlayColor='transparent'
-              onPress={this._takePicture}
-            />
-          {/*</RNCamera>*/}
+            }}>
+              <Icon
+                containerStyle={buttons.buttonAbsolute}
+                name='ios-radio-button-off'
+                type='ionicon'
+                size={80}
+                color='#ffffff'
+                underlayColor='transparent'
+                onPress={this._takePicture}
+              />
+          </RNCamera>
         </View>
-      </ImageBackground>
+      {/*</ImageBackground>*/}
     );
   }
 }
