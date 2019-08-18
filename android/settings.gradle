@@ -9,8 +9,6 @@ include ':react-native-webview'
 project(':react-native-webview').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webview/android')
 include ':react-native-maps'
 project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')
-include ':react-native-icons'
-project(':react-native-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-icons/android')
 include ':react-native-google-signin'
 project(':react-native-google-signin').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-google-signin/android')
 include ':react-native-orientation-locker'
@@ -25,3 +23,4 @@ include ':react-native-maps'
 project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')
 
 include ':app'
+

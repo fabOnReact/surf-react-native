@@ -139,9 +139,6 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
         }
-        variant.outputs.each { output ->
-            def versionCodes = ["armeabi-v7a":1, "x86":2, "arm64-v8a": 3]
-		}
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -164,7 +161,6 @@ dependencies {
     compile project(':react-native-android-location-services-dialog-box')
     compile project(':react-native-webview')
     compile project(':react-native-maps')
-    compile project(':react-native-icons')
     compile project(':react-native-google-signin')
     compile project(':react-native-orientation-locker')
     compile project(':react-native-camera')

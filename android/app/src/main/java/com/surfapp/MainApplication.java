@@ -8,7 +8,6 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.airbnb.android.react.maps.MapsPackage;
-import com.smixx.reactnativeicons.ReactNativeIcons;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import org.wonday.orientation.OrientationPackage;
 import org.reactnative.camera.RNCameraPackage;
@@ -39,7 +38,6 @@ public class MainApplication extends Application implements ReactApplication {
             new LocationServicesDialogBoxPackage(),
             new RNCWebViewPackage(),
             new MapsPackage(),
-            new ReactNativeIcons(),
             new RNGoogleSigninPackage(),
             new OrientationPackage(),
             new RNCameraPackage(),
