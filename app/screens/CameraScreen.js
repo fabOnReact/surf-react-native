@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
+import { TouchableOpacity, View, Text, StatusBar, ImageBackground } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
@@ -55,32 +55,36 @@ export default class CameraScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <RNCamera
-          ref={ref => {
-            this.camera = ref;
-          }}
-          style={styles.preview}
-          type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
-          captureAudio={false}
-          androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}>
-          <Icon
-            containerStyle={buttons.buttonAbsolute}
-            name='ios-radio-button-off'
-            type='ionicon'
-            size={80}
-            color='#ffffff'
-            underlayColor='transparent'
-            onPress={this._takePicture}
-          />
-        </RNCamera>
-      </View>
+      <ImageBackground 
+        source={require('../images/bondi.jpg')}
+        style={{width: "100%", height: "100%"}}>
+        <View style={styles.container}>
+            {/*<RNCamera
+            ref={ref => {
+              this.camera = ref;
+            }}
+            style={styles.preview}
+            type={RNCamera.Constants.Type.back}
+            flashMode={RNCamera.Constants.FlashMode.on}
+            captureAudio={false}
+            androidCameraPermissionOptions={{
+              title: 'Permission to use camera',
+              message: 'We need your permission to use your camera',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}>*/}
+            <Icon
+              containerStyle={buttons.buttonAbsolute}
+              name='ios-radio-button-off'
+              type='ionicon'
+              size={80}
+              color='#ffffff'
+              underlayColor='transparent'
+              onPress={this._takePicture}
+            />
+          {/*</RNCamera>*/}
+        </View>
+      </ImageBackground>
     );
   }
 }
