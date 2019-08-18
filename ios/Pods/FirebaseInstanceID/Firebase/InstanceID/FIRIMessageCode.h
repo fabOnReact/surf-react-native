@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, FIRInstanceIDMessageCode) {
   kFIRInstanceIDMessageCodeInstanceID014 = 3014,
   kFIRInstanceIDMessageCodeInstanceID015 = 3015,
   kFIRInstanceIDMessageCodeRefetchingTokenForAPNS = 3016,
+  kFIRInstanceIDMessageCodeInstanceID017 = 3017,
+  kFIRInstanceIDMessageCodeInstanceID018 = 3018,
   // FIRInstanceIDAuthService.m
   kFIRInstanceIDMessageCodeAuthService000 = 5000,
   kFIRInstanceIDMessageCodeAuthService001 = 5001,
@@ -65,17 +67,23 @@ typedef NS_ENUM(NSInteger, FIRInstanceIDMessageCode) {
   kFIRInstanceIDMessageCodeService004 = 7004,
   kFIRInstanceIDMessageCodeService005 = 7005,
   kFIRInstanceIDMessageCodeService006 = 7006,
+  kFIRInstanceIDInvalidNetworkSession = 7007,
+  kFIRInstanceIDInvalidSettingResponse = 7008,
   // FIRInstanceIDCheckinStore.m
   // DO NOT USE 8002, 8004 - 8008
   kFIRInstanceIDMessageCodeCheckinStore000 = 8000,
   kFIRInstanceIDMessageCodeCheckinStore001 = 8001,
   kFIRInstanceIDMessageCodeCheckinStore003 = 8003,
+  kFIRInstanceIDMessageCodeCheckinStoreCheckinPlistDeleted = 8009,
+  kFIRInstanceIDMessageCodeCheckinStoreCheckinPlistSaved = 8010,
   // FIRInstanceIDKeyPair.m
   // DO NOT USE 9001, 9003
   kFIRInstanceIDMessageCodeKeyPair000 = 9000,
   kFIRInstanceIDMessageCodeKeyPair002 = 9002,
   kFIRInstanceIDMessageCodeKeyPairMigrationError = 9004,
   kFIRInstanceIDMessageCodeKeyPairMigrationSuccess = 9005,
+  kFIRInstanceIDMessageCodeKeyPairNoLegacyKeyPair = 9006,
+
   // FIRInstanceIDKeyPairStore.m
   kFIRInstanceIDMessageCodeKeyPairStore000 = 10000,
   kFIRInstanceIDMessageCodeKeyPairStore001 = 10001,
@@ -151,5 +159,9 @@ typedef NS_ENUM(NSInteger, FIRInstanceIDMessageCode) {
   kFIRInstanceIDKeychainDeleteItemError = 23002,
   kFIRInstanceIDKeychainCreateKeyPairError = 23003,
   kFIRInstanceIDKeychainUpdateItemError = 23004,
+
+  // FIRInstanceIDStringEncoding.m
+  kFIRInstanceIDStringEncodingBufferUnderflow = 24000,
+  kFIRInstanceIDStringEncodingBufferOverflow = 24001,
 
 };

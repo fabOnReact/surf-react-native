@@ -16,14 +16,15 @@
 
 #import "FIRInstanceIDUtilities.h"
 
+#if TARGET_OS_IOS || TARGET_OS_TV
 #import <UIKit/UIKit.h>
+#endif
 #import <sys/utsname.h>
 
 #import <FirebaseCore/FIROptions.h>
 #import <GoogleUtilities/GULUserDefaults.h>
 #import "FIRInstanceID.h"
 #import "FIRInstanceIDConstants.h"
-#import "FIRInstanceIDDefines.h"
 #import "FIRInstanceIDLogger.h"
 
 // Convert the macro to a string
@@ -108,7 +109,7 @@ NSString *FIRInstanceIDDeviceModel() {
 
 // Get the system version from Firebase Core's App Environment Util
 NSString *FIRInstanceIDOperatingSystemVersion() {
-#if TARGET_OS_IOS
+#if TARGET_OS_IOS || TARGET_OS_TV
   return [UIDevice currentDevice].systemVersion;
 #elif TARGET_OS_OSX
   return [NSProcessInfo processInfo].operatingSystemVersionString;
@@ -186,7 +187,7 @@ NSString *FIRInstanceIDCurrentLocale() {
     return systemLanguage;
   }
 
-  if (@available(iOS 10.0, *)) {
+  if (@available(macOS 10.12, iOS 10.0, *)) {
     return [NSLocale currentLocale].languageCode;
   } else {
     return nil;
