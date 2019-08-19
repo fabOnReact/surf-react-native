@@ -53,16 +53,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSExceptionDomains</key>
-		<dict>
-			<key>192.168.0.100</key>
-			<true/>
-			<key>localhost</key>
-			<true/>
-			<key>192.168.0.100:3000</key>
-			<true/>
-			<key>localhost:3000</key>
-			<true/>
-		</dict>
+		<dict/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Please grant us the camera usage so that you can take pictures of the surfspot which will be published on my website and mobile app.</string>
