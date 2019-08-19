@@ -81,46 +81,52 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - React (0.58.6):
-    - React/Core (= 0.58.6)
+  - React (0.59.10):
+    - React/Core (= 0.59.10)
   - react-native-maps (0.24.2):
     - React
   - react-native-webview (5.8.2):
     - React
-  - React/Core (0.58.6):
-    - yoga (= 0.58.6.React)
-  - React/CxxBridge (0.58.6):
+  - React/Core (0.59.10):
+    - yoga (= 0.59.10.React)
+  - React/CxxBridge (0.59.10):
     - Folly (= 2018.10.22.00)
     - React/Core
     - React/cxxreact
     - React/jsiexecutor
-  - React/cxxreact (0.58.6):
+  - React/cxxreact (0.59.10):
     - boost-for-react-native (= 1.63.0)
+    - DoubleConversion
     - Folly (= 2018.10.22.00)
+    - glog
     - React/jsinspector
-  - React/DevSupport (0.58.6):
+  - React/DevSupport (0.59.10):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.58.6)
-  - React/jsi (0.58.6):
+  - React/fishhook (0.59.10)
+  - React/jsi (0.59.10):
+    - DoubleConversion
     - Folly (= 2018.10.22.00)
-  - React/jsiexecutor (0.58.6):
+    - glog
+  - React/jsiexecutor (0.59.10):
+    - DoubleConversion
     - Folly (= 2018.10.22.00)
+    - glog
     - React/cxxreact
     - React/jsi
-  - React/jsinspector (0.58.6)
-  - React/RCTAnimation (0.58.6):
+  - React/jsinspector (0.59.10)
+  - React/RCTAnimation (0.59.10):
     - React/Core
-  - React/RCTBlob (0.58.6):
+  - React/RCTBlob (0.59.10):
     - React/Core
-  - React/RCTImage (0.58.6):
+  - React/RCTImage (0.59.10):
     - React/Core
     - React/RCTNetwork
-  - React/RCTNetwork (0.58.6):
+  - React/RCTNetwork (0.59.10):
     - React/Core
-  - React/RCTText (0.58.6):
+  - React/RCTText (0.59.10):
     - React/Core
-  - React/RCTWebSocket (0.58.6):
+  - React/RCTWebSocket (0.59.10):
     - React/Core
     - React/fishhook
     - React/RCTBlob
@@ -132,7 +138,7 @@ PODS:
     - React
   - RNVectorIcons (6.4.2):
     - React
-  - yoga (0.58.6.React)
+  - yoga (0.59.10.React)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -217,14 +223,14 @@ SPEC CHECKSUMS:
   GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  React: 130b87b2d5e2baac646954282cab87be986d98fc
+  React: 36d0768f9e93be2473b37e7fa64f92c1d5341eef
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
   react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
   ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
   RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNSVG: ff9b094e39dd4a437ebe17d1c7ceed286e75f426
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
-  yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
+  yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
 PODFILE CHECKSUM: f37e607dc2ed437a0799174ecc3a0f11ac2f6d3f
 
