@@ -132,7 +132,7 @@ PODS:
     - React/RCTBlob
   - ReactNativePermissions (1.2.0):
     - React
-  - RNCAsyncStorage (1.5.1):
+  - RNCAsyncStorage (1.6.1):
     - React
   - RNSVG (9.6.2):
     - React
@@ -227,7 +227,7 @@ SPEC CHECKSUMS:
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
   react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
   ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
-  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
+  RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
   RNSVG: ff9b094e39dd4a437ebe17d1c7ceed286e75f426
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
