@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, AsyncStorage } from 'react-native';
+import { View } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import ErrorMessage from '../components/ErrorMessage'
@@ -20,6 +21,7 @@ export default class SignInScreen extends Component {
 
   saveCredentials = async (json) => {
     const { navigation } = this.props;
+    console.warn(json.authentication_token)
     await AsyncStorage.setItem('userToken', json.authentication_token);
     await AsyncStorage.setItem('userEmail', json.email);
     navigation.navigate('App');

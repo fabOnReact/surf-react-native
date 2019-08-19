@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, AsyncStorage } from 'react-native'
+import { View } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage';
 import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
 import ErrorMessage from '../components/ErrorMessage';

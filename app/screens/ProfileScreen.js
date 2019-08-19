@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import { Text, View } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Input, Button } from 'react-native-elements';
 import { styles } from './styles';
 import { profile } from './styles/ProfileStyles';

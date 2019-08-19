@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const userSettings = { endpoint: "users", responseStatus: 201 }
 export const sessionSettings = { endpoint: "users/sign_in", responseStatus: 200 }
@@ -10,7 +10,7 @@ export const getFromStorage = async (item) => {
 }
 
 export function errorMessage(error) { 
-  // console.error(error)
+  console.error(error)
 }
 
 export const getCredentials = async () => {

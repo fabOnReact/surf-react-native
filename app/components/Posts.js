@@ -1,7 +1,8 @@
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { View, Text, FlatList, Alert, TouchableOpacity, Image } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Permissions from 'react-native-permissions';
 import { Card } from 'native-base';
 import { Icon } from 'react-native-elements';

@@ -1,5 +1,12 @@
+<p align="center">
+  <img src="https://portfoliofabrizio.s3.eu-central-1.amazonaws.com/surfcheck.gif"/>
+</p>
+
 # SurfNative
 React Native application for [surfcheck app](https://github.com/fabriziobertoglio1987/surfbackend).
+
+- The [webapplication](https://surfcheck.xyz)
+- The api [endpoints, documentation and postman requests](https://documenter.getpostman.com/view/6379421/SVfH1CeA?version=latest). The api is public and free.
 
 ## Installation Instruction
 Start your android/ios emulator
