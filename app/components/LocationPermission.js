@@ -23,9 +23,9 @@ export default class LocationPermission extends Component {
     return Object.is(check.status, "enabled");
   }
   
-  componentWillUnmount() {
-      LocationServicesDialogBox.stopListener(); 
-  }  
+  // componentWillUnmount() {
+  //     LocationServicesDialogBox.stopListener(); 
+  // }  
 
   render() { return null; }
 }
