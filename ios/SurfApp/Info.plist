@@ -55,7 +55,13 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>192.168.0.100</key>
-			<string>true</string>
+			<true/>
+			<key>localhost</key>
+			<true/>
+			<key>192.168.0.100:3000</key>
+			<true/>
+			<key>localhost:3000</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
