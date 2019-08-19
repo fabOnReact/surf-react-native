@@ -8,9 +8,10 @@ export const createResource = (success, failure, body, settings) => {
 
   fetch(`${host}/${settings.endpoint}.json`, options)
     .then(response => { 
-      let json = JSON.parse(response._bodyInit);
-      if (response.status == settings.responseStatus) { success(json) }
-      else { failure(json) }
+      response.json().then(data => { 
+        if (response.status == settings.responseStatus) { success(data) }
+        else { failure(data) }
+      })
     })
     .catch(error => errorMessage(error));
 }
