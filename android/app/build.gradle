@@ -164,6 +164,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-camera')
     compile project(':react-native-svg')
     compile project(':@react-native-community_async-storage')
     compile project(':react-native-android-location-services-dialog-box')
@@ -171,12 +172,12 @@ dependencies {
     compile project(':react-native-maps')
     compile project(':react-native-google-signin')
     compile project(':react-native-orientation-locker')
-    compile project(':react-native-camera')
     compile project(':react-native-vector-icons')
     compile project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:0.59.10"
+    implementation project(':react-native-geolocation-service')
     // From node_modules
     implementation project(':react-native-maps')
 }
