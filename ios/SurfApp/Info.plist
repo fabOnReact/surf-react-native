@@ -35,7 +35,7 @@
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>0.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -45,10 +45,6 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
-    <key>NSContactsUsageDescription</key>
-    <string>My app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
-    <key>NSContactsUsageDescription </key>
-    <string>My app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -57,6 +53,10 @@
 	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Please grant us the camera usage so that you can take pictures of the surfspot which will be published on my website and mobile app.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>My app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
+	<key>NSContactsUsageDescription </key>
+	<string>My app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Please grant us the access to your gps to show information tailored to your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
