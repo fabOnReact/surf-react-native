@@ -40,6 +40,9 @@ target 'SurfApp' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
+  pod 'react-native-camera', path: '../node_modules/react-native-camera'
+
   target 'SurfAppTests' do
     inherit! :search_paths
     # Pods for testing
