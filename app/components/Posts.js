@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, Alert, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import Permissions from 'react-native-permissions';
+import Geolocation from 'react-native-geolocation-service';
 import { Card } from 'native-base';
 import { Icon } from 'react-native-elements';
 import { Header } from 'react-navigation';
@@ -13,44 +13,17 @@ import Forecast from './Forecast';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
-// import { posts_fixtures } from '../../test/fixtures/posts.js';
+import { posts_fixtures } from '../../test/fixtures/posts.js';
+import { locations_fixtures } from '../../test/fixtures/locations.js';
 
 export default class PostsScreen extends Component {
   constructor(props){
     super(props);
-    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '', locationPermission: null };
+    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '' };
   }
 
   componentDidMount() {
-    Permissions.check('location', {type: 'whenInUse'}).then(response => {
-      this.setState({locationPermission: response});
-    }, () => {
-      // console.warn(this.state.locationPermission)
-    });
     this._setLocation()
-  }
-
-  _requestPermission = () => {
-    Permissions.request('location', {type: 'whenInUse'}).then(response => {
-      this.setState({locationPermission: response})
-    });
-  }
-  
-  _alertForLocationPermission() {
-    Alert.alert(
-      'Can we access your location?',
-      'We need access so can select the most relevant forecast information for you',
-      [
-        {
-          text: 'No',
-          onPress: () => {}, // console.warn('Permission denied')
-          style: 'cancel',
-        },
-        this.state.locationPermission == 'undetermined'
-          ? {text: 'Yes', onPress: this._requestPermission}
-          : {text: 'Open Settings', onPress: Permissions.openSettings},
-      ],
-    );
   }
 
   addPosts = (json) => {
@@ -78,14 +51,15 @@ export default class PostsScreen extends Component {
   }
 
   _setLocation = function() {
-    navigator.geolocation.getCurrentPosition(
+    Geolocation.getCurrentPosition(
       (position) => {
         this.setState({ 
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
         }, () => {
-          getResources(this.setLocations, this.path("locations"))
-          this._handleRefresh()
+          // getResources(this.setLocations, this.path("locations"))
+          // this._handleRefresh()
+          this.props.loaded()
         });
       },
       (error) => { 
@@ -139,9 +113,10 @@ export default class PostsScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { posts, locations, latitude, longitude } = this.state;
-    // const { locations, latitude, longitude } = this.state;
-    // const posts = posts_fixtures
+    // const { posts, locations, latitude, longitude } = this.state;
+    const { latitude, longitude } = this.state;
+    const locations = locations_fixtures 
+    const posts = posts_fixtures
     return (
       <React.Fragment>
       <View style={{flex:1}}>
@@ -155,7 +130,9 @@ export default class PostsScreen extends Component {
           extraData={locations}
           renderItem={({ item, index }) => (
             <Card trasparent>            
-              <Forecast data={locations} index={index} />
+              <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations}) }>
+                <Forecast data={locations} index={index} />
+              </TouchableOpacity>
               <Post key={index} post={item} index={index} navigation={navigation} />
             </Card>
           )}
@@ -169,7 +146,7 @@ export default class PostsScreen extends Component {
           />
         </TouchableOpacity>
         <TouchableOpacity 
-          onPress={() => navigation.navigate("Map") }
+          onPress={() => navigation.navigate("Map", { lat: latitude, lon: longitude }) }
           style={buttons.containerLeft}>
           <Image 
             style={buttons.buttonLeft} 
