@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage';
 import { Input, Button } from 'react-native-elements'
 import { styles } from './styles';
+import Permissions from 'react-native-permissions';
 import ErrorMessage from '../components/ErrorMessage';
 import Message from  '../lib/message';
 import { createResource } from '../lib/api' ;
@@ -16,6 +17,15 @@ export default class SignUpScreen extends React.Component {
   constructor(props) {
     super(props)
     this.setErrors = this.setErrors.bind(this)
+  }
+
+  componentDidMount() {
+    Permissions.check('location', {type: 'whenInUse'}).then(response => {
+      this.setState({locationPermission: response});
+    }, () => {
+      // console.warn(this.state.locationPermission)
+    });
+    this._setLocation()
   }
 
   saveCredentials = async (json) => {

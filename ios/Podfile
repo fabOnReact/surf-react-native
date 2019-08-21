@@ -42,6 +42,9 @@ target 'SurfApp' do
 
   pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
   pod 'react-native-camera', path: '../node_modules/react-native-camera'
+  pod 'react-native-video/VideoCaching', :path => '../node_modules/react-native-video/react-native-video.podspec'
+
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
 
   target 'SurfAppTests' do
     inherit! :search_paths

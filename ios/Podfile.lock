@@ -1,6 +1,7 @@
 PODS:
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
+  - DVAssetLoaderDelegate (0.3.3)
   - Firebase/Core (6.6.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.1.0)
@@ -95,6 +96,13 @@ PODS:
     - React
   - react-native-maps (0.24.2):
     - React
+  - react-native-video/Video (5.0.0):
+    - React
+  - react-native-video/VideoCaching (5.0.0):
+    - DVAssetLoaderDelegate (~> 0.3.1)
+    - React
+    - react-native-video/Video
+    - SPTPersistentCache (~> 1.1.0)
   - react-native-webview (5.8.2):
     - React
   - React/Core (0.59.10):
@@ -148,6 +156,7 @@ PODS:
     - React
   - RNVectorIcons (6.4.2):
     - React
+  - SPTPersistentCache (1.1.0)
   - yoga (0.59.10.React)
 
 DEPENDENCIES:
@@ -159,6 +168,7 @@ DEPENDENCIES:
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-video/VideoCaching (from `../node_modules/react-native-video/react-native-video.podspec`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -177,6 +187,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
+    - DVAssetLoaderDelegate
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -191,6 +202,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
+    - SPTPersistentCache
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -207,6 +219,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-video:
+    :path: "../node_modules/react-native-video/react-native-video.podspec"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   ReactNativePermissions:
@@ -223,6 +237,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
+  DVAssetLoaderDelegate: 0caec20e4e08b8560b691131539e9180024d4bce
   Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
   FirebaseAnalytics: 48414ae5cbf6976d8a2f7177e0466540e5ab33ce
   FirebaseCore: 8c9e08bce0c72a3affd83927d8184cf244918bc8
@@ -243,13 +258,15 @@ SPEC CHECKSUMS:
   react-native-camera: 1a9833c4fd3da7594ce78518d34dc91a46e13546
   react-native-geolocation: a7b94614afbd5fd8350e0233a2025c8228fc8041
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
+  react-native-video: 6555881252c8ca039760e1cd6df28ac28ffb2baf
   react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
   ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
   RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
   RNSVG: ff9b094e39dd4a437ebe17d1c7ceed286e75f426
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
+  SPTPersistentCache: df36ea46762d7cf026502bbb86a8b79d0080dff4
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
-PODFILE CHECKSUM: 8783cd9bcf6f6724aefaf2b009d5921d8f28bd99
+PODFILE CHECKSUM: c747a48141cf8dd6df02dede620f4af4438aabe6
 
 COCOAPODS: 1.7.3
