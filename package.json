@@ -32,6 +32,7 @@
     "react-native-svg": "^9.6.2",
     "react-native-swiper": "^1.5.14",
     "react-native-vector-icons": "^6.4.2",
+    "react-native-video": "^5.0.0",
     "react-native-webview": "^5.8.2",
     "react-navigation": "^3.10.1",
     "react-navigation-header-buttons": "^2.1.2",
