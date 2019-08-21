@@ -27,5 +27,11 @@ export const styles = StyleSheet.create({
     width: '50%',
     left: "50%",
     transform: [{ translateX: -50 }],
+  },
+  video: {
+    flex: 2,
+    borderRadius: 9,
+    width: null,
+    overflow: 'hidden',
   }
 })
