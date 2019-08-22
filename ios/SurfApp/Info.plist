@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string/>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.289517847235-fkvas36olv4bnjk64414rbs1rlj7bt1p</string>
@@ -53,7 +53,7 @@
 			<key>localhost:3000</key>
 			<true/>
 			<key>localhost:8081</key>
-			<string></string>
+			<string/>
 		</dict>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
