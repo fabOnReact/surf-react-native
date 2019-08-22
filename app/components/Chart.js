@@ -26,7 +26,7 @@ export default class Chart extends Component {
         <LineChart
           data={data}
           width={screenWidth}
-          height={180}
+          height={200}
           chartConfig={chartConfig}
           withInnerLines={false}
           withOuterLines={false}
