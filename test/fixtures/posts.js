@@ -1,10 +1,108 @@
 export const posts_fixtures = [
     {
-        "id": 58,
+        "id": 67,
         "description": null,
-        "created_at": "2019-08-21 04:12:43 UTC",
-        "updated_at": "2019-08-21 04:12:43 UTC",
+        "created_at": "2019-08-22T10:03:08.241Z",
+        "updated_at": "2019-08-22T10:03:08.241Z",
         "user_id": 5,
+        "latitude": -8.792246,
+        "longitude": 115.11981,
+        "city": "Jimbaran",
+        "location": {
+            "name": "Balangan",
+            "latitude": -8.792246,
+            "longitude": 115.11981,
+            "forecast": {
+                "tide": {
+                    "hours": [
+                        "2019-08-22T10:00:00+00:00",
+                        "2019-08-22T11:00:00+00:00",
+                        "2019-08-22T12:00:00+00:00",
+                        "2019-08-22T13:00:00+00:00",
+                        "2019-08-22T14:00:00+00:00",
+                        "2019-08-22T15:00:00+00:00",
+                        "2019-08-22T16:00:00+00:00",
+                        "2019-08-22T17:00:00+00:00",
+                        "2019-08-22T18:00:00+00:00",
+                        "2019-08-22T19:00:00+00:00",
+                        "2019-08-22T20:00:00+00:00",
+                        "2019-08-22T21:00:00+00:00",
+                        "2019-08-22T22:00:00+00:00",
+                        "2019-08-22T23:00:00+00:00",
+                        "2019-08-23T00:00:00+00:00",
+                        "2019-08-23T01:00:00+00:00",
+                        "2019-08-23T02:00:00+00:00",
+                        "2019-08-23T03:00:00+00:00",
+                        "2019-08-23T04:00:00+00:00",
+                        "2019-08-23T05:00:00+00:00",
+                        "2019-08-23T06:00:00+00:00",
+                        "2019-08-23T07:00:00+00:00",
+                        "2019-08-23T08:00:00+00:00",
+                        "2019-08-23T09:00:00+00:00",
+                        "2019-08-23T10:00:00+00:00"
+                    ],
+                    "seaLevels": [
+                        0.4,
+                        0.2,
+                        0.19,
+                        0.35,
+                        0.67,
+                        1.05,
+                        1.42,
+                        1.68,
+                        1.77,
+                        1.68,
+                        1.43,
+                        1.08,
+                        0.73,
+                        0.45,
+                        0.31,
+                        0.33,
+                        0.49,
+                        0.75,
+                        1.02,
+                        1.24,
+                        1.34,
+                        1.29,
+                        1.12,
+                        0.87,
+                        0.6
+                    ]
+                },
+                "hourly": {
+                    "time": "2019-08-22T10:00:00+00:00",
+                    "windSpeed": 5.9,
+                    "waveHeight": 2.67,
+                    "swellHeight": 2.1,
+                    "swellPeriod": 15.02,
+                    "waveDirection": 192.38,
+                    "windDirection": 120.84,
+                    "swellDirection": 222.71
+                },
+                "daily": {
+                    "days": [
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday",
+                        "Monday",
+                        "Tuesday"
+                    ],
+                    "waveHeight": [
+                        2.9,
+                        3.0,
+                        2.6,
+                        2.7,
+                        2.4,
+                        2.3
+                    ]
+                }
+            }
+        },
+        "creation_date": "16 minutes ago",
+        "video": {
+            "url": "https://surfcheck.s3.eu-central-1.amazonaws.com/surfer_from_above.mp4"
+        },
         "picture": {
             "url": null,
             "thumb": {
@@ -19,466 +117,360 @@ export const posts_fixtures = [
             "mobile": {
                 "url": null
             }
-        },
-        "latitude": -33.903815,
-        "longitude": 151.269926,
-        "city": "Sydney",
-        "video": {
-            "url": "https://surfcheck.s3.eu-central-1.amazonaws.com/Bronte-min.mp4"
-        },
+        }
+    },
+    {
+        "id": 30,
+        "description": null,
+        "created_at": "2019-08-13T03:50:42.509Z",
+        "updated_at": "2019-08-13T03:50:42.509Z",
+        "user_id": 5,
+        "latitude": -8.792246,
+        "longitude": 115.11981,
+        "city": null,
         "location": {
-            "name": "Bronte Reef",
-            "latitude": -33.903815,
-            "longitude": 151.269926,
+            "name": "Balangan",
+            "latitude": -8.792246,
+            "longitude": 115.11981,
             "forecast": {
-                "tideChart": {
+                "tide": {
                     "hours": [
-                        "2019-08-21T04:00:00+00:00",
-                        "2019-08-21T05:00:00+00:00",
-                        "2019-08-21T06:00:00+00:00",
-                        "2019-08-21T07:00:00+00:00",
-                        "2019-08-21T08:00:00+00:00",
-                        "2019-08-21T09:00:00+00:00",
-                        "2019-08-21T10:00:00+00:00",
-                        "2019-08-21T11:00:00+00:00",
-                        "2019-08-21T12:00:00+00:00",
-                        "2019-08-21T13:00:00+00:00",
-                        "2019-08-21T14:00:00+00:00",
-                        "2019-08-21T15:00:00+00:00",
-                        "2019-08-21T16:00:00+00:00",
-                        "2019-08-21T17:00:00+00:00",
-                        "2019-08-21T18:00:00+00:00",
-                        "2019-08-21T19:00:00+00:00",
-                        "2019-08-21T20:00:00+00:00",
-                        "2019-08-21T21:00:00+00:00",
-                        "2019-08-21T22:00:00+00:00",
-                        "2019-08-21T23:00:00+00:00",
-                        "2019-08-22T00:00:00+00:00",
-                        "2019-08-22T01:00:00+00:00",
-                        "2019-08-22T02:00:00+00:00",
-                        "2019-08-22T03:00:00+00:00",
-                        "2019-08-22T04:00:00+00:00"
+                        "2019-08-22T10:00:00+00:00",
+                        "2019-08-22T11:00:00+00:00",
+                        "2019-08-22T12:00:00+00:00",
+                        "2019-08-22T13:00:00+00:00",
+                        "2019-08-22T14:00:00+00:00",
+                        "2019-08-22T15:00:00+00:00",
+                        "2019-08-22T16:00:00+00:00",
+                        "2019-08-22T17:00:00+00:00",
+                        "2019-08-22T18:00:00+00:00",
+                        "2019-08-22T19:00:00+00:00",
+                        "2019-08-22T20:00:00+00:00",
+                        "2019-08-22T21:00:00+00:00",
+                        "2019-08-22T22:00:00+00:00",
+                        "2019-08-22T23:00:00+00:00",
+                        "2019-08-23T00:00:00+00:00",
+                        "2019-08-23T01:00:00+00:00",
+                        "2019-08-23T02:00:00+00:00",
+                        "2019-08-23T03:00:00+00:00",
+                        "2019-08-23T04:00:00+00:00",
+                        "2019-08-23T05:00:00+00:00",
+                        "2019-08-23T06:00:00+00:00",
+                        "2019-08-23T07:00:00+00:00",
+                        "2019-08-23T08:00:00+00:00",
+                        "2019-08-23T09:00:00+00:00",
+                        "2019-08-23T10:00:00+00:00"
                     ],
                     "seaLevels": [
-                        0.7,
-                        0.5,
-                        0.34,
-                        0.26,
-                        0.28,
-                        0.39,
-                        0.56,
+                        0.4,
+                        0.2,
+                        0.19,
+                        0.35,
+                        0.67,
+                        1.05,
+                        1.42,
+                        1.68,
+                        1.77,
+                        1.68,
+                        1.43,
+                        1.08,
+                        0.73,
+                        0.45,
+                        0.31,
+                        0.33,
+                        0.49,
                         0.75,
-                        0.91,
-                        0.99,
-                        0.97,
-                        0.85,
-                        0.66,
-                        0.44,
-                        0.25,
-                        0.14,
-                        0.12,
-                        0.21,
-                        0.39,
-                        0.6,
-                        0.82,
-                        0.97,
-                        1.03,
-                        1.0,
-                        0.87
+                        1.02,
+                        1.24,
+                        1.34,
+                        1.29,
+                        1.12,
+                        0.87,
+                        0.6
                     ]
                 },
                 "hourly": {
-                    "time": "2019-08-21T04:00:00+00:00",
-                    "windSpeed": 10.48,
-                    "waveHeight": 1.31,
-                    "swellHeight": 1.13,
-                    "swellPeriod": 9.92,
-                    "waveDirection": 183.1,
-                    "windDirection": 256.64,
-                    "swellDirection": 171.22
+                    "time": "2019-08-22T10:00:00+00:00",
+                    "windSpeed": 5.9,
+                    "waveHeight": 2.67,
+                    "swellHeight": 2.1,
+                    "swellPeriod": 15.02,
+                    "waveDirection": 192.38,
+                    "windDirection": 120.84,
+                    "swellDirection": 222.71
                 },
                 "daily": {
                     "days": [
-                        "Wednesday",
                         "Thursday",
                         "Friday",
                         "Saturday",
                         "Sunday",
-                        "Monday"
+                        "Monday",
+                        "Tuesday"
                     ],
                     "waveHeight": [
-                        1.5,
-                        3.9,
-                        3.3,
-                        1.7,
-                        1.1,
-                        0.9
+                        2.9,
+                        3.0,
+                        2.6,
+                        2.7,
+                        2.4,
+                        2.3
                     ]
                 }
             }
         },
-        "liked": false,
-        "date": "28 minutes ago",
-        "url": "http://192.168.43.59:3000/posts/58.json"
-    },
-    {
-        "id": 56,
-        "description": null,
-        "created_at": "2019-08-13 04:32:47 UTC",
-        "updated_at": "2019-08-13 04:32:47 UTC",
-        "user_id": 5,
+        "creation_date": "9 days ago",
+        "video": null,
         "picture": {
-            "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/bondi_0596.JPG",
+            "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/balangan_0739.JPG",
             "thumb": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/thumb_bondi_0596.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/thumb_balangan_0739.JPG"
             },
             "card": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/card_bondi_0596.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/card_balangan_0739.JPG"
             },
             "web": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/web_bondi_0596.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/web_balangan_0739.JPG"
             },
             "mobile": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/mobile_bondi_0596.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/mobile_balangan_0739.JPG"
             }
-        },
-        "latitude": -33.89259,
-        "longitude": 151.278815,
-        "city": "Sydney",
-        "video": null,
+        }
+    },
+    {
+        "id": 29,
+        "description": null,
+        "created_at": "2019-08-13T03:48:51.856Z",
+        "updated_at": "2019-08-13T03:48:51.856Z",
+        "user_id": 5,
+        "latitude": -8.792246,
+        "longitude": 115.11981,
+        "city": "Jimbaran",
         "location": {
-            "name": "Bondi Beach",
-            "latitude": -33.89259,
-            "longitude": 151.278815,
+            "name": "Balangan",
+            "latitude": -8.792246,
+            "longitude": 115.11981,
             "forecast": {
-                "tideChart": {
+                "tide": {
                     "hours": [
-                        "2019-08-21T04:00:00+00:00",
-                        "2019-08-21T05:00:00+00:00",
-                        "2019-08-21T06:00:00+00:00",
-                        "2019-08-21T07:00:00+00:00",
-                        "2019-08-21T08:00:00+00:00",
-                        "2019-08-21T09:00:00+00:00",
-                        "2019-08-21T10:00:00+00:00",
-                        "2019-08-21T11:00:00+00:00",
-                        "2019-08-21T12:00:00+00:00",
-                        "2019-08-21T13:00:00+00:00",
-                        "2019-08-21T14:00:00+00:00",
-                        "2019-08-21T15:00:00+00:00",
-                        "2019-08-21T16:00:00+00:00",
-                        "2019-08-21T17:00:00+00:00",
-                        "2019-08-21T18:00:00+00:00",
-                        "2019-08-21T19:00:00+00:00",
-                        "2019-08-21T20:00:00+00:00",
-                        "2019-08-21T21:00:00+00:00",
-                        "2019-08-21T22:00:00+00:00",
-                        "2019-08-21T23:00:00+00:00",
-                        "2019-08-22T00:00:00+00:00",
-                        "2019-08-22T01:00:00+00:00",
-                        "2019-08-22T02:00:00+00:00",
-                        "2019-08-22T03:00:00+00:00",
-                        "2019-08-22T04:00:00+00:00"
+                        "2019-08-22T10:00:00+00:00",
+                        "2019-08-22T11:00:00+00:00",
+                        "2019-08-22T12:00:00+00:00",
+                        "2019-08-22T13:00:00+00:00",
+                        "2019-08-22T14:00:00+00:00",
+                        "2019-08-22T15:00:00+00:00",
+                        "2019-08-22T16:00:00+00:00",
+                        "2019-08-22T17:00:00+00:00",
+                        "2019-08-22T18:00:00+00:00",
+                        "2019-08-22T19:00:00+00:00",
+                        "2019-08-22T20:00:00+00:00",
+                        "2019-08-22T21:00:00+00:00",
+                        "2019-08-22T22:00:00+00:00",
+                        "2019-08-22T23:00:00+00:00",
+                        "2019-08-23T00:00:00+00:00",
+                        "2019-08-23T01:00:00+00:00",
+                        "2019-08-23T02:00:00+00:00",
+                        "2019-08-23T03:00:00+00:00",
+                        "2019-08-23T04:00:00+00:00",
+                        "2019-08-23T05:00:00+00:00",
+                        "2019-08-23T06:00:00+00:00",
+                        "2019-08-23T07:00:00+00:00",
+                        "2019-08-23T08:00:00+00:00",
+                        "2019-08-23T09:00:00+00:00",
+                        "2019-08-23T10:00:00+00:00"
                     ],
                     "seaLevels": [
-                        0.7,
-                        0.5,
-                        0.34,
-                        0.26,
-                        0.28,
-                        0.39,
-                        0.56,
+                        0.4,
+                        0.2,
+                        0.19,
+                        0.35,
+                        0.67,
+                        1.05,
+                        1.42,
+                        1.68,
+                        1.77,
+                        1.68,
+                        1.43,
+                        1.08,
+                        0.73,
+                        0.45,
+                        0.31,
+                        0.33,
+                        0.49,
                         0.75,
-                        0.91,
-                        0.99,
-                        0.97,
-                        0.85,
-                        0.66,
-                        0.44,
-                        0.25,
-                        0.14,
-                        0.12,
-                        0.21,
-                        0.39,
-                        0.6,
-                        0.82,
-                        0.97,
-                        1.03,
-                        1.0,
-                        0.87
+                        1.02,
+                        1.24,
+                        1.34,
+                        1.29,
+                        1.12,
+                        0.87,
+                        0.6
                     ]
                 },
                 "hourly": {
-                    "time": "2019-08-21T04:00:00+00:00",
-                    "windSpeed": 10.05,
-                    "waveHeight": 1.62,
-                    "swellHeight": 1.34,
-                    "swellPeriod": 10.26,
-                    "waveDirection": 189.9,
-                    "windDirection": 234.7,
-                    "swellDirection": 173.25
+                    "time": "2019-08-22T10:00:00+00:00",
+                    "windSpeed": 5.9,
+                    "waveHeight": 2.67,
+                    "swellHeight": 2.1,
+                    "swellPeriod": 15.02,
+                    "waveDirection": 192.38,
+                    "windDirection": 120.84,
+                    "swellDirection": 222.71
                 },
                 "daily": {
                     "days": [
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
                         "Sunday",
                         "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday"
+                        "Tuesday"
                     ],
                     "waveHeight": [
-                        1.4,
-                        1.4,
-                        1.4,
-                        1.7,
-                        3.8,
-                        3.6
+                        2.9,
+                        3.0,
+                        2.6,
+                        2.7,
+                        2.4,
+                        2.3
                     ]
                 }
             }
         },
-        "liked": false,
-        "date": "8 days ago",
-        "url": "http://192.168.43.59:3000/posts/56.json"
-    },
-    {
-        "id": 55,
-        "description": null,
-        "created_at": "2019-08-13 04:31:36 UTC",
-        "updated_at": "2019-08-13 04:31:36 UTC",
-        "user_id": 5,
+        "creation_date": "9 days ago",
+        "video": null,
         "picture": {
-            "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/bondi_0573.JPG",
+            "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/balangan_0737.JPG",
             "thumb": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/thumb_bondi_0573.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/thumb_balangan_0737.JPG"
             },
             "card": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/card_bondi_0573.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/card_balangan_0737.JPG"
             },
             "web": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/web_bondi_0573.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/web_balangan_0737.JPG"
             },
             "mobile": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/mobile_bondi_0573.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/mobile_balangan_0737.JPG"
             }
-        },
-        "latitude": -33.89259,
-        "longitude": 151.278815,
-        "city": "Sydney",
-        "video": null,
+        }
+    },
+    {
+        "id": 28,
+        "description": null,
+        "created_at": "2019-08-13T03:48:00.655Z",
+        "updated_at": "2019-08-13T03:48:00.655Z",
+        "user_id": 5,
+        "latitude": -8.792246,
+        "longitude": 115.11981,
+        "city": "Jimbaran",
         "location": {
-            "name": "Bondi Beach",
-            "latitude": -33.89259,
-            "longitude": 151.278815,
+            "name": "Balangan",
+            "latitude": -8.792246,
+            "longitude": 115.11981,
             "forecast": {
-                "tideChart": {
+                "tide": {
                     "hours": [
-                        "2019-08-21T04:00:00+00:00",
-                        "2019-08-21T05:00:00+00:00",
-                        "2019-08-21T06:00:00+00:00",
-                        "2019-08-21T07:00:00+00:00",
-                        "2019-08-21T08:00:00+00:00",
-                        "2019-08-21T09:00:00+00:00",
-                        "2019-08-21T10:00:00+00:00",
-                        "2019-08-21T11:00:00+00:00",
-                        "2019-08-21T12:00:00+00:00",
-                        "2019-08-21T13:00:00+00:00",
-                        "2019-08-21T14:00:00+00:00",
-                        "2019-08-21T15:00:00+00:00",
-                        "2019-08-21T16:00:00+00:00",
-                        "2019-08-21T17:00:00+00:00",
-                        "2019-08-21T18:00:00+00:00",
-                        "2019-08-21T19:00:00+00:00",
-                        "2019-08-21T20:00:00+00:00",
-                        "2019-08-21T21:00:00+00:00",
-                        "2019-08-21T22:00:00+00:00",
-                        "2019-08-21T23:00:00+00:00",
-                        "2019-08-22T00:00:00+00:00",
-                        "2019-08-22T01:00:00+00:00",
-                        "2019-08-22T02:00:00+00:00",
-                        "2019-08-22T03:00:00+00:00",
-                        "2019-08-22T04:00:00+00:00"
+                        "2019-08-22T10:00:00+00:00",
+                        "2019-08-22T11:00:00+00:00",
+                        "2019-08-22T12:00:00+00:00",
+                        "2019-08-22T13:00:00+00:00",
+                        "2019-08-22T14:00:00+00:00",
+                        "2019-08-22T15:00:00+00:00",
+                        "2019-08-22T16:00:00+00:00",
+                        "2019-08-22T17:00:00+00:00",
+                        "2019-08-22T18:00:00+00:00",
+                        "2019-08-22T19:00:00+00:00",
+                        "2019-08-22T20:00:00+00:00",
+                        "2019-08-22T21:00:00+00:00",
+                        "2019-08-22T22:00:00+00:00",
+                        "2019-08-22T23:00:00+00:00",
+                        "2019-08-23T00:00:00+00:00",
+                        "2019-08-23T01:00:00+00:00",
+                        "2019-08-23T02:00:00+00:00",
+                        "2019-08-23T03:00:00+00:00",
+                        "2019-08-23T04:00:00+00:00",
+                        "2019-08-23T05:00:00+00:00",
+                        "2019-08-23T06:00:00+00:00",
+                        "2019-08-23T07:00:00+00:00",
+                        "2019-08-23T08:00:00+00:00",
+                        "2019-08-23T09:00:00+00:00",
+                        "2019-08-23T10:00:00+00:00"
                     ],
                     "seaLevels": [
-                        0.7,
-                        0.5,
-                        0.34,
-                        0.26,
-                        0.28,
-                        0.39,
-                        0.56,
+                        0.4,
+                        0.2,
+                        0.19,
+                        0.35,
+                        0.67,
+                        1.05,
+                        1.42,
+                        1.68,
+                        1.77,
+                        1.68,
+                        1.43,
+                        1.08,
+                        0.73,
+                        0.45,
+                        0.31,
+                        0.33,
+                        0.49,
                         0.75,
-                        0.91,
-                        0.99,
-                        0.97,
-                        0.85,
-                        0.66,
-                        0.44,
-                        0.25,
-                        0.14,
-                        0.12,
-                        0.21,
-                        0.39,
-                        0.6,
-                        0.82,
-                        0.97,
-                        1.03,
-                        1.0,
-                        0.87
+                        1.02,
+                        1.24,
+                        1.34,
+                        1.29,
+                        1.12,
+                        0.87,
+                        0.6
                     ]
                 },
                 "hourly": {
-                    "time": "2019-08-21T04:00:00+00:00",
-                    "windSpeed": 10.05,
-                    "waveHeight": 1.62,
-                    "swellHeight": 1.34,
-                    "swellPeriod": 10.26,
-                    "waveDirection": 189.9,
-                    "windDirection": 234.7,
-                    "swellDirection": 173.25
+                    "time": "2019-08-22T10:00:00+00:00",
+                    "windSpeed": 5.9,
+                    "waveHeight": 2.67,
+                    "swellHeight": 2.1,
+                    "swellPeriod": 15.02,
+                    "waveDirection": 192.38,
+                    "windDirection": 120.84,
+                    "swellDirection": 222.71
                 },
                 "daily": {
                     "days": [
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
                         "Sunday",
                         "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday"
+                        "Tuesday"
                     ],
                     "waveHeight": [
-                        1.4,
-                        1.4,
-                        1.4,
-                        1.7,
-                        3.8,
-                        3.6
+                        2.9,
+                        3.0,
+                        2.6,
+                        2.7,
+                        2.4,
+                        2.3
                     ]
                 }
             }
         },
-        "liked": false,
-        "date": "8 days ago",
-        "url": "http://192.168.43.59:3000/posts/55.json"
-    },
-    {
-        "id": 54,
-        "description": null,
-        "created_at": "2019-08-13 04:30:22 UTC",
-        "updated_at": "2019-08-13 04:30:22 UTC",
-        "user_id": 5,
+        "creation_date": "9 days ago",
+        "video": null,
         "picture": {
-            "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/bondi_0572.JPG",
+            "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/balangan_0736.JPG",
             "thumb": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/thumb_bondi_0572.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/thumb_balangan_0736.JPG"
             },
             "card": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/card_bondi_0572.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/card_balangan_0736.JPG"
             },
             "web": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/web_bondi_0572.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/web_balangan_0736.JPG"
             },
             "mobile": {
-                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/mobile_bondi_0572.JPG"
+                "url": "https://s3.eu-central-1.amazonaws.com/surfcheck/uploads/post/2019/8/5/mobile_balangan_0736.JPG"
             }
-        },
-        "latitude": -33.89259,
-        "longitude": 151.278815,
-        "city": "Sydney",
-        "video": null,
-        "location": {
-            "name": "Bondi Beach",
-            "latitude": -33.89259,
-            "longitude": 151.278815,
-            "forecast": {
-                "tideChart": {
-                    "hours": [
-                        "2019-08-21T04:00:00+00:00",
-                        "2019-08-21T05:00:00+00:00",
-                        "2019-08-21T06:00:00+00:00",
-                        "2019-08-21T07:00:00+00:00",
-                        "2019-08-21T08:00:00+00:00",
-                        "2019-08-21T09:00:00+00:00",
-                        "2019-08-21T10:00:00+00:00",
-                        "2019-08-21T11:00:00+00:00",
-                        "2019-08-21T12:00:00+00:00",
-                        "2019-08-21T13:00:00+00:00",
-                        "2019-08-21T14:00:00+00:00",
-                        "2019-08-21T15:00:00+00:00",
-                        "2019-08-21T16:00:00+00:00",
-                        "2019-08-21T17:00:00+00:00",
-                        "2019-08-21T18:00:00+00:00",
-                        "2019-08-21T19:00:00+00:00",
-                        "2019-08-21T20:00:00+00:00",
-                        "2019-08-21T21:00:00+00:00",
-                        "2019-08-21T22:00:00+00:00",
-                        "2019-08-21T23:00:00+00:00",
-                        "2019-08-22T00:00:00+00:00",
-                        "2019-08-22T01:00:00+00:00",
-                        "2019-08-22T02:00:00+00:00",
-                        "2019-08-22T03:00:00+00:00",
-                        "2019-08-22T04:00:00+00:00"
-                    ],
-                    "seaLevels": [
-                        0.7,
-                        0.5,
-                        0.34,
-                        0.26,
-                        0.28,
-                        0.39,
-                        0.56,
-                        0.75,
-                        0.91,
-                        0.99,
-                        0.97,
-                        0.85,
-                        0.66,
-                        0.44,
-                        0.25,
-                        0.14,
-                        0.12,
-                        0.21,
-                        0.39,
-                        0.6,
-                        0.82,
-                        0.97,
-                        1.03,
-                        1.0,
-                        0.87
-                    ]
-                },
-                "hourly": {
-                    "time": "2019-08-21T04:00:00+00:00",
-                    "windSpeed": 10.05,
-                    "waveHeight": 1.62,
-                    "swellHeight": 1.34,
-                    "swellPeriod": 10.26,
-                    "waveDirection": 189.9,
-                    "windDirection": 234.7,
-                    "swellDirection": 173.25
-                },
-                "daily": {
-                    "days": [
-                        "Sunday",
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday"
-                    ],
-                    "waveHeight": [
-                        1.4,
-                        1.4,
-                        1.4,
-                        1.7,
-                        3.8,
-                        3.6
-                    ]
-                }
-            }
-        },
-        "liked": false,
-        "date": "8 days ago",
-        "url": "http://192.168.43.59:3000/posts/54.json"
+        }
     }
 ]
