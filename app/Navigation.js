@@ -11,7 +11,6 @@ import ForecastScreen from './screens/ForecastScreen';
 import NearbyScreen from './screens/NearbyScreen';
 
 const AppStack = createStackNavigator({ 
-  Nearby: NearbyScreen,
   Index: {
     screen: IndexScreen,
     navigationOptions: ({navigation}) => ({
@@ -19,6 +18,7 @@ const AppStack = createStackNavigator({
     }),
   }, Camera: CameraScreen, Profile: ProfileScreen, Map: MapScreen, 
      WebView: WebViewScreen,
+     Nearby: NearbyScreen,
      Forecast: ForecastScreen,
 });
 

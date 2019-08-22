@@ -13,8 +13,6 @@ import Forecast from './Forecast';
 import { buttons } from './styles/ButtonStyles';
 import { getResources } from '../lib/api';
 import { errorMessage } from '../lib/support';
-import { posts_fixtures } from '../../test/fixtures/posts.js';
-import { locations_fixtures } from '../../test/fixtures/locations.js';
 
 export default class PostsScreen extends Component {
   constructor(props){
@@ -40,7 +38,8 @@ export default class PostsScreen extends Component {
       navigation.navigate('Auth');
     }
     else {
-      this.setState({ posts: json, refreshing: false })
+      this.setState({ posts: json })
+      setTimeout(() => this.setState({ refreshing: false }), 1000)
     }
     loaded()
   }
@@ -51,15 +50,17 @@ export default class PostsScreen extends Component {
   }
 
   _setLocation = function() {
+    const { posts } = this.state
     Geolocation.getCurrentPosition(
       (position) => {
         this.setState({ 
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
         }, () => {
-          // getResources(this.setLocations, this.path("locations"))
-          // this._handleRefresh()
-          this.props.loaded()
+          getResources(this.setLocations, this.path("locations"))
+          if (posts.length == 0) { 
+            this.setState({ refreshing: true }, () => getResources(this.setPosts, this.path("posts")))
+          }
         });
       },
       (error) => { 
@@ -73,7 +74,7 @@ export default class PostsScreen extends Component {
   _handleRefresh = () => {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      getResources(this.setPosts, this.path("posts"))
+      // getResources(this.setPosts, this.path("posts"))
     })
   }
 
@@ -89,7 +90,7 @@ export default class PostsScreen extends Component {
     const { page, longitude, latitude } = this.state;
     switch (endpoint) {
       case "posts":
-        return `${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
+        return `api/v1/${endpoint}.json?page=${page}&per_page=3&longitude=${longitude}&latitude=${latitude}`
         break
       case "locations": 
         return `${endpoint}.json?page=1&per_page=6&longitude=${longitude}&latitude=${latitude}`
@@ -104,7 +105,7 @@ export default class PostsScreen extends Component {
   }
 
   _onEndReached = () => {
-    this._handleLoadMore()
+    if(!this.state.refreshing) { this._handleLoadMore() }
   };
 
   navigateToCamera = () => {
@@ -113,20 +114,17 @@ export default class PostsScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    // const { posts, locations, latitude, longitude } = this.state;
-    const { latitude, longitude } = this.state;
-    const locations = locations_fixtures 
-    const posts = posts_fixtures
+    const { posts, locations, latitude, longitude } = this.state;
     return (
       <React.Fragment>
-      <View style={{flex:1}}>
+        {/*<View style={{flex:1}}>*/}
         <FlatList
           data={posts} 
           keyExtractor={(item, index) => index.toString() }
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={0}
           extraData={locations}
           renderItem={({ item, index }) => (
             <Card trasparent>            
@@ -164,7 +162,7 @@ export default class PostsScreen extends Component {
           reverse
           onPress={() => navigation.navigate("Camera") }
         />
-      </View>
+      {/*</View>*/}
       </React.Fragment>
     );
   }

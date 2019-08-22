@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity } from 'react-native';
-import { Card, CardItem, Text, Button, Icon, Left, Body, Right, View } from 'native-base';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Header } from 'react-navigation';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
@@ -13,7 +12,7 @@ import { styles } from  './styles/PostStyles';
 export default class Post extends Component {
   constructor(props) {
     super(props)
-    this.state = { liked: null, style: '', portrait: null }
+    this.state = { liked: null, style: '', portrait: null, width: null, height: null, video_height: 0 }
   }
 
   componentWillMount() { Orientation.addOrientationListener(this._imageStyles) } 
@@ -21,12 +20,12 @@ export default class Post extends Component {
   componentDidMount() { this._imageStyles("PORTRAIT") }
 
   _imageStyles = (orientation) => {
+    const new_width = Dimensions.get('window').width
     if (orientation != 'PORTRAIT') { 
-      const new_width = Dimensions.get('window').width - Header.HEIGHT/2
-      this.setState({ width: new_width, portrait: false })
+      this.setState({ width: new_width - Header.HEIGHT/2, portrait: false })
     } else { 
-      const new_height = Dimensions.get('window').height - Header.HEIGHT
-      this.setState({ height: new_height, portrait: true })
+      const new_height = (Dimensions.get('window').height - Header.HEIGHT)/3
+      this.setState({ width: new_width, height: new_height, video_height: new_height - 40, portrait: true })
     }
   }
 
@@ -35,7 +34,7 @@ export default class Post extends Component {
     const style = { flex: 2, borderRadius: 9, width: null, height:null }
     switch(portrait) {
       case true:
-        return { ...style, height: height/3 }
+        return { ...style, height: height }
         break
       case false:
         return { ...style, height: width }
@@ -53,7 +52,7 @@ export default class Post extends Component {
   }
 
   render() {
-    const { liked } = this.state
+    const { height, video_height, width } = this.state
     const { navigation, post, index } = this.props
     const { location } = post
     const { forecast } = location
@@ -62,8 +61,7 @@ export default class Post extends Component {
         <TouchableOpacity 
           onPress={() => { 
             if (isPresent(forecast)) { navigation.navigate('Forecast', { location: location}) }
-          }}
-        >
+        }}>
           { !!post.picture.url && <Image 
             source={{uri: post.picture.mobile.url }} 
             style={this.style} /> 
@@ -71,7 +69,8 @@ export default class Post extends Component {
 
           { !!post.video && <Video 
             source={{uri: post.video.url }}
-            style={[this.style, styles.video, {borderRadius: 9, overflow: 'hidden', height: 210}]}
+            resizeMode={"cover"}
+            style={{ borderRadius: 9, aspectRatio: 1.7, width: "100%" }}
             repeat 
             muted />
           }

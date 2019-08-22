@@ -5,7 +5,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import Posts from '../components/Posts';
 import LocationPermission from '../components/LocationPermission';
 
-export default class MainScreen extends Component {
+export default class IndexScreen extends Component {
   state = { spinner: true };
 
   pageIsLoaded = () => { 
