@@ -5,7 +5,7 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.github.yamill.orientation.OrientationPackage;
 import com.brentvatne.react.ReactVideoPackage;
-import org.reactnative.camera.RNCameraPackage;
+// import org.reactnative.camera.RNCameraPackage;
 import com.horcrux.svg.SvgPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
@@ -38,7 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new OrientationPackage(),
             new ReactVideoPackage(),
-            new RNCameraPackage(),
+            // new RNCameraPackage(),
             new SvgPackage(),
             new AsyncStoragePackage(),
             new LocationServicesDialogBoxPackage(),
@@ -47,8 +47,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNGoogleSigninPackage(),
             new OrientationPackage(),
             new VectorIconsPackage(),
-            new RNGestureHandlerPackage()
-            new RNFusedLocationPackage()
+            new RNGestureHandlerPackage(),
+             new RNFusedLocationPackage()
       );
     }
 

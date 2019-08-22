@@ -166,7 +166,7 @@ android {
 dependencies {
     implementation project(':react-native-orientation')
     implementation project(':react-native-video')
-    implementation project(':react-native-camera')
+    // implementation project(':react-native-camera')
     compile project(':react-native-svg')
     compile project(':@react-native-community_async-storage')
     compile project(':react-native-android-location-services-dialog-box')
