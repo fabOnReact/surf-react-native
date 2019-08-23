@@ -69,6 +69,8 @@ export default class Post extends Component {
 
           { !!post.video && <Video 
             source={{uri: post.video.url }}
+            poster={post.video.poster}
+            posterResizeMode={"cover"}
             resizeMode={"cover"}
             style={{ borderRadius: 9, aspectRatio: 1.7, width: "100%" }}
             repeat 
