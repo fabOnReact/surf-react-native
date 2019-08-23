@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   arrow: {
     position: "absolute", 
-    top: 0, 
+    top: Dimensions.get("window").height, 
     left: 0,
     width: 200, 
     height: 200,
