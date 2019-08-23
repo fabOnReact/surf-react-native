@@ -38,8 +38,7 @@ export default class PostsScreen extends Component {
       navigation.navigate('Auth');
     }
     else {
-      this.setState({ posts: json })
-      setTimeout(() => this.setState({ refreshing: false }), 1000)
+      this.setState({ posts: json, refreshing: false })
     }
     loaded()
   }
@@ -74,7 +73,7 @@ export default class PostsScreen extends Component {
   _handleRefresh = () => {
     const { navigation } = this.props
     this.setState({ page: 1, refreshing: true, }, () => {
-      // getResources(this.setPosts, this.path("posts"))
+      getResources(this.setPosts, this.path("posts"))
     })
   }
 
@@ -90,7 +89,7 @@ export default class PostsScreen extends Component {
     const { page, longitude, latitude } = this.state;
     switch (endpoint) {
       case "posts":
-        return `api/v1/${endpoint}.json?page=${page}&per_page=3&longitude=${longitude}&latitude=${latitude}`
+        return `api/v1/${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
         break
       case "locations": 
         return `${endpoint}.json?page=1&per_page=6&longitude=${longitude}&latitude=${latitude}`
@@ -117,17 +116,16 @@ export default class PostsScreen extends Component {
     const { posts, locations, latitude, longitude } = this.state;
     return (
       <React.Fragment>
-        {/*<View style={{flex:1}}>*/}
         <FlatList
           data={posts} 
           keyExtractor={(item, index) => index.toString() }
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={0.01}
           extraData={locations}
           renderItem={({ item, index }) => (
-            <Card trasparent>            
+            <Card trasparent style={{flex: 1}}>
               <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations}) }>
                 <Forecast data={locations} index={index} />
               </TouchableOpacity>
@@ -162,7 +160,6 @@ export default class PostsScreen extends Component {
           reverse
           onPress={() => navigation.navigate("Camera") }
         />
-      {/*</View>*/}
       </React.Fragment>
     );
   }
