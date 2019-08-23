@@ -6,27 +6,31 @@ import { styles } from './styles/ForecastStyles';
 export default class Forecast extends Component {
   constructor(props) {
     super(props)
-    this.state = { data: null }
+    this.state = { locations: null }
   }
 
   renderRow (row) {
     const { hourly } = row.forecast
     return (
-      <Text key={row.id}>{ hourly && hourly.waveHeight } mt. at <Text style={{color:'red'}}>{ row.name }</Text> (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
+      <Text key={row.id}>{ this.renderText(hourly) }<Text style={{color:'red'}}>{ row.name }</Text> (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
     )
   }
 
-  renderForecast (data) {
+  renderText(locations) {
+    if(locations) { return `#{locations.waveHeight} mt. at` }
+  }
+
+  renderForecast (locations) {
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: "center"}}>{ data && data.map((row) => this.renderRow(row))}</Text>
+        <Text style={{textAlign: "center"}}>{ locations && locations.map((row) => this.renderRow(row))}</Text>
       </View>
     )
   }
 
   render () { 
-    const { data, index } = this.props
-    if (index == 0 && !!data) { return this.renderForecast(data); }
+    const { locations, index } = this.props
+    if (index == 0 && !!locations && locations.forecast) { return this.renderForecast(locations); }
     else { return null; }
   }
 }
