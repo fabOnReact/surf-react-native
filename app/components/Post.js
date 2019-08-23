@@ -46,8 +46,8 @@ export default class Post extends Component {
 
   _renderInfo() {
     const { location } = this.props.post
-    const { waveHeight } = location.forecast.hourly
-    if (waveHeight) { return `${waveHeight} mt. at ${location.name}` }
+    const { forecast } = location
+    if (forecast) { return `${forecast.waveHeight} mt. at ${location.name}` }
     else return location.name
   }
 
@@ -60,7 +60,7 @@ export default class Post extends Component {
       <React.Fragment>
         <TouchableOpacity 
           onPress={() => { 
-            if (isPresent(forecast)) { navigation.navigate('Forecast', { location: location}) }
+            if (forecast) { navigation.navigate('Forecast', { location: location}) }
         }}>
           { !!post.picture.url && <Image 
             source={{uri: post.picture.mobile.url }} 

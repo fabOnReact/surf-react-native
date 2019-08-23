@@ -10,7 +10,7 @@ export default class Item extends Component {
     const { hourly } = forecast
     return (
       <React.Fragment>
-        <ListItem onPress={() => navigation.navigate("Forecast", { location: location })}>
+        <ListItem onPress={() => navigation.navigate("Forecast", { location: location }) }>
           <Left>
             <Text>{ location.name } <Text style={{color:'red'}}>({ location.distance } km.)</Text></Text>
           </Left>
