@@ -10,8 +10,8 @@ export default class NearbyScreen extends Component {
   };
   render() {
     const { navigation } = this.props
-    // const locations = navigation.getParam('locations')
-    const locations = locations_fixtures
+    const locations = navigation.getParam('locations')
+    // const locations = locations_fixtures
     return (
       <React.Fragment>
         <Container>

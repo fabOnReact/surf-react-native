@@ -11,14 +11,14 @@ import { locations_fixtures } from '../../test/fixtures/locations.js';
 export default class ForecastScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      // title: navigation.getParam('location').name,
+      title: navigation.getParam('location').name,
     };
   };
 
   render() {
     const { navigation } = this.props;
-    // const location = navigation.getParam('location')
-    const location = locations_fixtures[0]
+    const location = navigation.getParam('location')
+    // const location = locations_fixtures[0]
     const { forecast } = location
     const { tide, daily } = forecast
     daily.waveHeight.pop()
