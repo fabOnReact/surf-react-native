@@ -5,7 +5,7 @@ import { styles } from './styles/ForecastHourlyStyles';
 
 export default class ForecastHourly extends Component { 
   render() {
-    const { hourly } = this.props.forecast
+    const { hourly } = this.props.forecast_info
     const { waveHeight, windSpeed, windDirection, waveDirection } = hourly
     return (
       <React.Fragment>

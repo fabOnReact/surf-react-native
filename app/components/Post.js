@@ -46,8 +46,8 @@ export default class Post extends Component {
 
   _renderInfo() {
     const { location } = this.props.post
-    const { forecast } = location
-    if (forecast) { return `${forecast.hourly.waveHeight} mt. at ${location.name}` }
+    const { forecast_info } = location
+    if (forecast_info) { return `${forecast_info.hourly.waveHeight} mt. at ${location.name}` }
     else return location.name
   }
 
@@ -55,12 +55,12 @@ export default class Post extends Component {
     const { height, video_height, width } = this.state
     const { navigation, post, index } = this.props
     const { location } = post
-    const { forecast } = location
+    const { forecast_info } = location
     return (
       <React.Fragment>
         <TouchableOpacity 
           onPress={() => { 
-            if (forecast) { navigation.navigate('Forecast', { location: location, post: post }) }
+            if (forecast_info) { navigation.navigate('Forecast', { location: location, post: post }) }
         }}>
           { !!post.picture.url && <Image 
             source={{uri: post.picture.mobile.url }} 

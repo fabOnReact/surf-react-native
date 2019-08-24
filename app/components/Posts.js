@@ -89,7 +89,7 @@ export default class PostsScreen extends Component {
     const { page, longitude, latitude } = this.state;
     switch (endpoint) {
       case "posts":
-        return `api/v1/${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
+        return `${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
         break
       case "locations": 
         return `${endpoint}.json?page=1&per_page=6&longitude=${longitude}&latitude=${latitude}`

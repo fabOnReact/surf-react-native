@@ -10,7 +10,7 @@ export default class Forecast extends Component {
   }
 
   renderRow (row) {
-    const { hourly } = row.forecast
+    const { hourly } = row.forecast_info
     return (
       <Text key={row.id}>{ this.renderText(hourly) }<Text style={{color:'red'}}>{ row.name }</Text> (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
     )
@@ -30,7 +30,7 @@ export default class Forecast extends Component {
 
   render () { 
     const { locations, index } = this.props
-    if (index == 0 && !!locations && locations.forecast) { return this.renderForecast(locations); }
+    if (index == 0 && !!locations && locations.forecast_info) { return this.renderForecast(locations); }
     else { return null; }
   }
 }

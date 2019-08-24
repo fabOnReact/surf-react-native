@@ -21,8 +21,8 @@ export default class ForecastScreen extends Component {
     const location = navigation.getParam('location')
     const post = navigation.getParam('post', null)
     // const location = locations_fixtures[0]
-    const { forecast } = location
-    const { tide, daily } = forecast
+    const { forecast_info } = location
+    const { tide, daily } = forecast_info
     daily.waveHeight.pop()
     daily.days.pop()
     var { hours, seaLevels } = tide
@@ -39,7 +39,7 @@ export default class ForecastScreen extends Component {
             muted />
           }
           <ForecastMap location={location} />
-          <ForecastHourly forecast={forecast} />
+          <ForecastHourly forecast_info={forecast_info} />
           <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 24h Tide mt.</H3>
           <Chart values={seaLevels} labels={hours} bezier={false} margin={50} />
           <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 7 days forecast in mt.</H3>
