@@ -4,7 +4,8 @@ import { Header } from 'react-navigation';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation';
-import { updatePost } from '../lib/api' 
+import { updatePost } from '../lib/api';
+import ForecastInfo from '../components/ForecastInfo';
 import { host } from '../config/constants';
 import { errorMessage, isPresent } from '../lib/support';
 import { styles } from  './styles/PostStyles';
@@ -44,17 +45,11 @@ export default class Post extends Component {
     }
   }
 
-  _renderInfo() {
-    const { location } = this.props.post
-    const { forecast_info } = location
-    if (forecast_info) { return `${forecast_info.hourly.waveHeight} mt. at ${location.name}` }
-    else return location.name
-  }
-
   render() {
     const { height, video_height, width } = this.state
     const { navigation, post, index } = this.props
-    const { location, forecast_info } = post
+    const { location } = post
+    const { forecast_info } = location
     return (
       <React.Fragment>
         <TouchableOpacity 
@@ -76,9 +71,7 @@ export default class Post extends Component {
             muted />
           }
 
-          <View style={[styles.wrapper]}>  
-            <Text style={styles.overlayText}>{ this._renderInfo() }</Text>
-          </View>
+          <ForecastInfo location={location} />
         </TouchableOpacity>
       </React.Fragment>
     );

@@ -133,7 +133,7 @@ export default class PostsScreen extends Component {
           extraData={locations}
           renderItem={({ item, index }) => (
             <Card trasparent style={{flex: 1}}>
-              <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations}) }>
+              <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations }) }>
                 <Forecast locations={locations} index={index} />
               </TouchableOpacity>
               <Post key={index} post={item} index={index} navigation={navigation} />
