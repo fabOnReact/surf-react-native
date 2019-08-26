@@ -3,7 +3,8 @@ import { Dimensions, StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   arrow: {
     position: "absolute", 
-    top: Dimensions.get("window").height, 
+    // top: Dimensions.get("window").height, 
+    top: 0,
     left: 0,
     width: 200, 
     height: 200,
