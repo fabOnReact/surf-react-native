@@ -10,6 +10,7 @@ export default class NearbyScreen extends Component {
   };
   render() {
     const { navigation } = this.props
+    const post = navigation.getParam('post')
     const locations = navigation.getParam('locations')
     // const locations = locations_fixtures
     return (
@@ -17,7 +18,7 @@ export default class NearbyScreen extends Component {
         <Container>
           <Content>
             <List>
-              { locations.map(location => <Item key={location.id} location={location} navigation={navigation} />) }
+              { locations.map(location => <Item key={location.id} post={post} location={location} navigation={navigation} />) }
             </List>
           </Content>
         </Container>

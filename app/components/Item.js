@@ -5,12 +5,12 @@ import ForecastHourly from './ForecastHourly';
 
 export default class Item extends Component {
   render(){
-    const { navigation, location } = this.props
+    const { navigation, location, post } = this.props
     const { forecast_info } = location 
     const { hourly } = forecast_info
     return (
       <React.Fragment>
-        <ListItem onPress={() => navigation.navigate("Forecast", { location: location }) }>
+        <ListItem onPress={() => navigation.navigate("Forecast", { post: post, location: location }) }>
           <Left>
             <Text>{ location.name } <Text style={{color:'red'}}>({ location.distance } km.)</Text></Text>
           </Left>
