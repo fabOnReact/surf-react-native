@@ -18,6 +18,7 @@ export default class PostsScreen extends Component {
   constructor(props){
     super(props);
     this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '' };
+    this.count = 0
   }
 
   componentDidMount() {
@@ -43,9 +44,15 @@ export default class PostsScreen extends Component {
     loaded()
   }
 
-  setLocations = async (json) => {
+  setLocations = (json) => {
     const { locations } = this.state
     this.setState({ locations: json })
+    const repeatRequest = setTimeout(()=>{
+      getResources(this.setLocations, this.path("locations"))
+      this.count += 1
+    }, 3000)
+    if (json.length == 0 && this.count < 4) { repeatRequest() } 
+    else { clearTimeout(repeatRequest) }
   }
 
   _setLocation = function() {

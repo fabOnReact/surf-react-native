@@ -54,8 +54,7 @@ export default class Post extends Component {
   render() {
     const { height, video_height, width } = this.state
     const { navigation, post, index } = this.props
-    const { location } = post
-    const { forecast_info } = location
+    const { location, forecast_info } = post
     return (
       <React.Fragment>
         <TouchableOpacity 
