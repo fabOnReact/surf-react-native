@@ -35,14 +35,14 @@ export default class ForecastScreen extends Component {
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
       <React.Fragment>
-        <ScrollView>
+        <ScrollView onScroll={() => console.warn()}>
           { !!post && !!post.picture.url && <Image 
             source={{uri: post.picture.mobile.url }} 
             style={{height: height}} /> 
           }
           { !!post && !!post.video && <Video 
             source={{uri: post.video.high.url }}
-            poster={post.video.poster}
+            poster={post.video.high.poster}
             resizeMode={"cover"}
             style={{height: height}}
             repeat 
