@@ -9,7 +9,7 @@ import ForecastInfo from '../components/ForecastInfo';
 import { host } from '../config/constants';
 import { errorMessage, isPresent } from '../lib/support';
 import { styles } from  './styles/PostStyles';
-import { videos } from '../lib/support';
+import { getAsset } from '../lib/support';
 
 export default class Post extends Component {
   constructor(props) {
@@ -51,9 +51,10 @@ export default class Post extends Component {
     const { navigation, post, index } = this.props
     const { location } = post
     const { forecast_info } = location
-    var source
-    if (!!post.video) { 
-      source = videos[post.video.url_name] || {uri: post.video.url}
+    var video_source, image_source
+    if (!!post && !!post.video) { 
+      video_source = getAsset(post.video.video_name) || {uri: post.video.url}
+      image_source = getAsset(post.video.poster_name) || post.video.poster
     } 
     return (
       <React.Fragment>
@@ -69,8 +70,8 @@ export default class Post extends Component {
 
           { 
             !!post.video && <Video 
-            source={source}
-            poster={post.video.poster}
+            source={video_source}
+            poster={image_source}
             posterResizeMode={"cover"}
             resizeMode={"cover"}
             style={{ borderRadius: 9, aspectRatio: 1.7, width: "100%" }}

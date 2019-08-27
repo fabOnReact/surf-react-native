@@ -8,7 +8,7 @@ import ForecastHourly from '../components/ForecastHourly';
 import ForecastInfo from '../components/ForecastInfo';
 import WeeklyForecast from '../components/WeeklyForecast';
 import { styles } from './styles/ShowStyles';
-import { videos } from '../lib/support';
+import { getAsset } from '../lib/support';
 
 export default class ForecastScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -62,9 +62,10 @@ export default class ForecastScreen extends Component {
     const { forecast_info } = location
     const { tide, daily } = forecast_info
     const height = Dimensions.get("window").height
-    var source
+    var video_source, image_source
     if (!!post && !!post.video) { 
-      source = videos[post.video.high.url_name] || {uri: post.video.high.url}
+      video_source = getAsset(post.video.high.video_name) || {uri: post.video.high.url}
+      image_source = getAsset(post.video.high.poster_name)  || post.video.high.poster
     } 
     daily.waveHeight.pop()
     daily.days.pop()
@@ -78,8 +79,8 @@ export default class ForecastScreen extends Component {
             style={{height: height}} /> 
           }
           { !!post && !!post.video && <Video 
-            source={source}
-            poster={post.video.high.poster}
+            source={video_source}
+            poster={image_source}
             posterResizeMode={"cover"}
             resizeMode={"cover"}
             style={{height: height}}
