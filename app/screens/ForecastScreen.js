@@ -64,11 +64,9 @@ export default class ForecastScreen extends Component {
     const height = Dimensions.get("window").height
     var video_source, image_source
     if (!!post && !!post.video) { 
-      video_source = getAsset(post.video.high.video_name) || {uri: post.video.high.url}
+      video_source = getAsset(post.video.high.url_name) || {uri: post.video.high.url}
       image_source = getAsset(post.video.high.poster_name)  || post.video.high.poster
     } 
-    daily.waveHeight.pop()
-    daily.days.pop()
     var { hours, seaLevels } = tide
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (

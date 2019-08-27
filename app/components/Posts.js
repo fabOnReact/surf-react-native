@@ -22,7 +22,7 @@ export default class PostsScreen extends Component {
   }
 
   componentDidMount() {
-    this._setLocation()
+    this.setCoordinates()
   }
 
   addPosts = (json) => {
@@ -55,7 +55,7 @@ export default class PostsScreen extends Component {
     else { clearTimeout(repeatRequest) }
   }
 
-  _setLocation = function() {
+  setCoordinates = function() {
     const { posts } = this.state
     Geolocation.getCurrentPosition(
       (position) => {
@@ -64,17 +64,16 @@ export default class PostsScreen extends Component {
           longitude: position.coords.longitude, 
         }, () => {
           getResources(this.setLocations, this.path("locations"))
-          if (posts.length == 0) { 
-            this.setState({ refreshing: true }, () => getResources(this.setPosts, this.path("posts")))
-          }
         });
       },
       (error) => { 
-        this._alertForLocationPermission()
         // console.warn(error)
       },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
+    if (posts.length == 0) { 
+      this.setState({ refreshing: true }, () => getResources(this.setPosts, this.path("posts")))
+    }
   }
 
   _handleRefresh = () => {

@@ -20,9 +20,10 @@ export default class MapScreen extends Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;
-    const lat = navigation.getParam('lat', -8)
-    const lon = navigation.getParam('lon', 115)
-    this.state = { data: [], latitude: lat, longitude: lon, inOverview: true, boundaries: { southWest: null, northEast: null }}
+    var lat = navigation.getParam('lat')
+    var lon = navigation.getParam('lon')
+    if (lat || lon == "") { lat = -8.634508; lon = 115.192803 }
+    this.state = { data: [], latitude: parseInt(lat), longitude: parseInt(lon), inOverview: true, boundaries: { southWest: null, northEast: null }}
   }
 
   handleRegionChange = () => {
