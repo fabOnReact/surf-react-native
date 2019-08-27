@@ -153,7 +153,7 @@ export default class PostsScreen extends Component {
           style={buttons.containerLeft}>
           <Image 
             style={buttons.buttonLeft} 
-            source={require('../images/planet-earth.png')}
+            source={require('../images/location.png')}
           />
         </TouchableOpacity>
         <Icon

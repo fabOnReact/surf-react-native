@@ -8,7 +8,6 @@ import ForecastHourly from '../components/ForecastHourly';
 import ForecastInfo from '../components/ForecastInfo';
 import WeeklyForecast from '../components/WeeklyForecast';
 import { styles } from './styles/ShowStyles';
-import { locations_fixtures } from '../../test/fixtures/locations.js';
 
 export default class ForecastScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -76,6 +75,7 @@ export default class ForecastScreen extends Component {
           { !!post && !!post.video && <Video 
             source={{uri: post.video.high.url }}
             poster={post.video.high.poster}
+            posterResizeMode={"cover"}
             resizeMode={"cover"}
             style={{height: height}}
             repeat 
