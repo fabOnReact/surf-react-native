@@ -10,14 +10,14 @@ export default class Forecast extends Component {
   }
 
   renderRow (row) {
-    const { hourly } = row
+    const { hourly } = row.forecast_info
     return (
       <Text key={row.id}>{ this.renderText(hourly) }<Text style={{color:'red'}}>{ row.name }</Text> (<Text style={{color:'blue'}}>{ row.distance } km.</Text>) </Text>
     )
   }
 
-  renderText(locations) {
-    if(locations) { return `#{locations.waveHeight} mt. at` }
+  renderText(hourly) {
+    if(hourly) { return `${hourly.waveHeight} mt. at ` }
   }
 
   renderForecast (locations) {

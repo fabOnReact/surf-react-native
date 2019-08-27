@@ -9,6 +9,7 @@ import ForecastInfo from '../components/ForecastInfo';
 import { host } from '../config/constants';
 import { errorMessage, isPresent } from '../lib/support';
 import { styles } from  './styles/PostStyles';
+import { videos } from '../lib/support';
 
 export default class Post extends Component {
   constructor(props) {
@@ -50,19 +51,25 @@ export default class Post extends Component {
     const { navigation, post, index } = this.props
     const { location } = post
     const { forecast_info } = location
+    var source
+    if (!!post.video) { 
+      source = videos[post.video.url_name] || {uri: post.video.url}
+    } 
     return (
       <React.Fragment>
         <TouchableOpacity 
           onPress={() => { 
             if (forecast_info) { navigation.navigate('Forecast', { location: location, post: post }) }
         }}>
-          { !!post.picture.url && <Image 
+          { 
+            !!post.picture.url && <Image 
             source={{uri: post.picture.mobile.url }} 
             style={this.style} /> 
           }
 
-          { !!post.video && <Video 
-            source={{uri: post.video.url }}
+          { 
+            !!post.video && <Video 
+            source={source}
             poster={post.video.poster}
             posterResizeMode={"cover"}
             resizeMode={"cover"}
