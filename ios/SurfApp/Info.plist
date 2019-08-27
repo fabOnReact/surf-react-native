@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string/>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.289517847235-fkvas36olv4bnjk64414rbs1rlj7bt1p</string>
@@ -41,20 +41,9 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<false/>
 		<key>NSExceptionDomains</key>
-		<dict>
-			<key>192.168.0.100</key>
-			<true/>
-			<key>localhost</key>
-			<true/>
-			<key>192.168.0.100:3000</key>
-			<true/>
-			<key>localhost:3000</key>
-			<true/>
-			<key>localhost:8081</key>
-			<string/>
-		</dict>
+		<dict/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
