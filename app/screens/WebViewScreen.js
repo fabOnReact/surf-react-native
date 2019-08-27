@@ -12,7 +12,7 @@ export default class WebViewScreen extends Component {
   render() {
     const { navigation } = this.props
     const path = navigation.getParam('path', '')
-    const url = host + path
+    const url = 'https://surfcheck.xyz' + path
     return (
       <WebView source={{uri: url}} />
     );
