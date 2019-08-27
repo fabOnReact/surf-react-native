@@ -70,7 +70,6 @@ export default class PostsScreen extends Component {
         });
       },
       (error) => { 
-        this._alertForLocationPermission()
         // console.warn(error)
       },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },

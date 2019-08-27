@@ -53,7 +53,7 @@ export default class Post extends Component {
     const { forecast_info } = location
     var video_source, image_source
     if (!!post && !!post.video) { 
-      video_source = getAsset(post.video.video_name) || {uri: post.video.url}
+      video_source = getAsset(post.video.url_name) || {uri: post.video.url}
       image_source = getAsset(post.video.poster_name) || post.video.poster
     } 
     return (
