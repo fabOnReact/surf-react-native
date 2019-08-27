@@ -30,8 +30,6 @@ export default class ForecastMap extends Component {
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
       <React.Fragment>
-      <Container>
-        <Content>
           <Card>
             <CardItem>
               <Left>
@@ -66,8 +64,6 @@ export default class ForecastMap extends Component {
             <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 7 days forecast in mt.</H3>
             <Chart values={daily.waveHeight} labels={daily.days} bezier={true} margin={0} />
           </Card>
-        </Content>
-      </Container>
       </React.Fragment>
     )
   }
