@@ -24,8 +24,8 @@ export default class ForecastMap extends Component {
     const options = "zoom=11&&size=1200x900&maptype=satellite"
     const uri = `${host}?center=${latitude},${longitude}&${options}&markers=${latitude},${longitude}&key=${GOOGLE_MAPS_API_KEY}`
     const { tide, daily } = forecast_info
-    daily.waveHeight.pop()
-    daily.days.pop()
+    // daily.waveHeight.pop()
+    // daily.days.pop()
     var { hours, seaLevels } = tide
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
