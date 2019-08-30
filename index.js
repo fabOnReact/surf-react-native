@@ -1,3 +1,4 @@
+import { BUGSNAG_ID } from 'react-native-dotenv';
 //import React, {Component} from 'react'
 import { AppRegistry } from 'react-native'
 
@@ -8,6 +9,9 @@ import App from './app/App';
 import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
+
+import { Client } from 'bugsnag-react-native';
+const bugsnag = new Client(BUGSNAG_ID);
 
 /*
 // Redux
