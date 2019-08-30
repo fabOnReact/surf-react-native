@@ -11,7 +11,7 @@ export const getFromStorage = async (item) => {
 }
 
 export function errorMessage(error) { 
-  // console.error(error)
+  console.error(error)
 }
 
 export const getCredentials = async () => {

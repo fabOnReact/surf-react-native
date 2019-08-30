@@ -33,7 +33,8 @@ export default class GoogleButton extends Component {
         break
       }
       default: {
-        errorMessage(error) 
+        setErrors({ error: error })
+        // errorMessage(error) 
       }
     }
   }
@@ -63,5 +64,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  }
+ react-native run-android --variant=release }
 });
