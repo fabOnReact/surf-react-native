@@ -42,7 +42,7 @@ export const getResources = async (success, path) => {
 
 export const getGoogleUser = async (success, failure) => {
   try {
-    await GoogleSignin.hasPlayServices();
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
     const userInfo = await GoogleSignin.signIn();
     success(userInfo)
   } catch (error) {
