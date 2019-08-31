@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, ScrollView, View, Image } from 'react-native';
+import { StatusBar, Platform, Dimensions, ScrollView, View, Image } from 'react-native';
 import { Header } from 'react-navigation';
 import { H1, H2, H3, H4 } from 'native-base';
 import Video from 'react-native-video';
@@ -14,12 +14,19 @@ export default class ForecastScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state
     const post = navigation.getParam('post')
-    if (!!post) {
+    if (!!post && Platform.OS == "ios") {
       return {
         title: navigation.getParam('location').name,
         headerTintColor: params.showHeader ? 'black' : 'white',
         headerTransparent: params.showHeader ? false : true,
-        headerStyle: { borderBottomWidth: 0 }
+        headerStyle: { borderBottomWidth: 0, }
+      };
+    } else if(!!post & Platform.OS != "ios") {
+      return {
+        title: navigation.getParam('location').name,
+        headerTintColor: params.showHeader ? 'black' : 'white',
+        headerTransparent: params.showHeader ? false : true,
+        headerStyle: { borderBottomWidth: 0, marginTop: 5 } 
       };
     } else {
       return {
@@ -43,7 +50,10 @@ export default class ForecastScreen extends Component {
 
   componentDidMount() {
     const {  showHeader } = this.state
-    this.height = Dimensions.get('window').height - Header.HEIGHT - 400
+    const height = Dimensions.get('window').height
+    this.height = height - Header.HEIGHT - height/3
+    console.warn(height)
+    console.warn(this.height)
   }
 
   handleScroll = (event: Object) => { 
@@ -57,6 +67,7 @@ export default class ForecastScreen extends Component {
 
   render() {
     const { navigation } = this.props;
+    const { showHeader } = this.state
     const location = navigation.getParam('location')
     const post = navigation.getParam('post', null)
     const { forecast_info } = location
@@ -71,6 +82,7 @@ export default class ForecastScreen extends Component {
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
       <React.Fragment>
+        { Platform.OS != 'ios' && !showHeader ? <StatusBar translucent backgroundColor="transparent" /> : null }
         <ScrollView onScroll={this.handleScroll}>
           { !!post && !!post.picture.url && <Image 
             source={{uri: post.picture.mobile.url }} 

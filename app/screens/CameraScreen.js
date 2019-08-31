@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text, StatusBar, ImageBackground } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import Geolocation from 'react-native-geolocation-service';
 import { Icon } from 'react-native-elements';
 import Orientation from 'react-native-orientation-locker';
 import { styles } from './styles/CameraStyles';
@@ -27,14 +28,16 @@ export default class CameraScreen extends Component {
   }
 
   _setLocation = function() {
-    navigator.geolocation.getCurrentPosition(
+    Geolocation.getCurrentPosition(
       (position) => {
         this.setState({ 
           latitude: position.coords.latitude, 
           longitude: position.coords.longitude, 
         });
       },
-      (error) => errorMessage(error),
+      (error) => { 
+        // console.warn(error)
+      },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
   }
