@@ -44,8 +44,6 @@ target 'SurfApp' do
   pod 'react-native-camera', path: '../node_modules/react-native-camera'
   pod 'react-native-video/VideoCaching', :path => '../node_modules/react-native-video/react-native-video.podspec'
 
-  pod 'react-native-video', :path => '../node_modules/react-native-video'
-
   pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
 
   target 'SurfAppTests' do
