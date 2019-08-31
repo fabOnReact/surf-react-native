@@ -18,8 +18,7 @@
       android:theme="@style/AppTheme">
       <meta-data
         android:name="com.bugsnag.android.API_KEY"
-        android:value="2fb2726bb8bc547ddc0f796a3cfddde6" />
-
+        android:value="@string/BUGSNAG_API" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
