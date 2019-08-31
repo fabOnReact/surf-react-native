@@ -52,8 +52,6 @@ export default class ForecastScreen extends Component {
     const {  showHeader } = this.state
     const height = Dimensions.get('window').height
     this.height = height - Header.HEIGHT - height/3
-    console.warn(height)
-    console.warn(this.height)
   }
 
   handleScroll = (event: Object) => { 
