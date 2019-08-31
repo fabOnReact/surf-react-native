@@ -33,7 +33,7 @@ export default class GoogleButton extends Component {
         break
       }
       default: {
-        errorMessage(error) 
+        // errorMessage(error) 
       }
     }
   }
