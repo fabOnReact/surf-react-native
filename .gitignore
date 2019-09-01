@@ -64,3 +64,11 @@ app/config/constants.js
 .env*
 app/config
 android/app/src/main/res/values/api_keys.xml
+android-debug.bundle
+android-debug.bundle.map
+android-release.bundle
+android-release.bundle.map
+ios-debug.bundle
+ios-debug.bundle.map
+ios-release.bundle
+ios-release.bundle.map
