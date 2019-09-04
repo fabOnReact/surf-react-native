@@ -22,7 +22,7 @@ export default class MapScreen extends Component {
     const { navigation } = this.props;
     var lat = navigation.getParam('lat')
     var lon = navigation.getParam('lon')
-    if (lat || lon == "") { lat = -8.634508; lon = 115.192803 }
+    if (lat == "" || lon == "") { lat = -8.634508; lon = 115.192803 }
     this.state = { data: [], latitude: parseInt(lat), longitude: parseInt(lon), inOverview: true, boundaries: { southWest: null, northEast: null }}
   }
 
