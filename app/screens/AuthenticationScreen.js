@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, View } from 'react-native';
+import { Platform, StatusBar, Dimensions, View } from 'react-native';
 import Video from 'react-native-video';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Input, Button } from 'react-native-elements';
@@ -15,13 +15,14 @@ import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 
 export default class AuthenticationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-      return {
-        title: 'Sign In',
-        headerTintColor: 'white',
-        headerTransparent: true,
-        headerStyle: { borderBottomWidth: 0, }
-      };
-  };
+    const header = Platform.OS == "android" ? 10 : 0
+    return {
+      title: 'Authenticate',
+      headerTintColor: 'white',
+      headerTransparent: true,
+      headerStyle: { marginTop: header }, 
+    };
+  }
 
   state = { email: '', password: '', errors: '' };
 
@@ -54,39 +55,40 @@ export default class AuthenticationScreen extends Component {
     const height = Dimensions.get("window").height;
     return (
       <React.Fragment>
-          <Video 
-            source={getAsset("costline-max.mp4")}
-            poster={getAsset("costline-poster-max.png")}
-            posterResizeMode={"cover"}
-            resizeMode={"cover"}
-            style={{height: height}}
-            repeat 
-            muted />
-          <View style={styles.container}>
-            <Input
-              inputContainerStyle={{borderBottomColor: "white"}}
-              inputStyle={{color: 'black'}}
-              placeholderTextColor="white"
-              placeholder="Email"
-              autoCapitalize="none"
-              onChangeText={text => this.setState({ email: text })}
-              value={email} />
-            <Input
-              secureTextEntry
-              inputContainerStyle={{borderBottomColor: "white"}}
-              inputStyle={{color: 'black'}}
-              placeholderTextColor="white"
-              autoCapitalize="none"
-              placeholder="Password"
-              onChangeText={text => this.setState({ password: text })}
-              value={password} />
-            { errors ? <ErrorMessage message={errors} /> : null }
-            <SignInButton 
-              submitForm={this.submitForm}
-              setErrors={this.setErrors} />
-            <GoogleButton 
-              saveCredentials={this.saveCredentials} />
-          </View>
+        <Video 
+          source={getAsset("costline-max.mp4")}
+          poster={getAsset("costline-poster-max.png")}
+          posterResizeMode={"cover"}
+          resizeMode={"cover"}
+          style={{height: height}}
+          repeat 
+          muted />
+        <StatusBar translucent backgroundColor="transparent" />
+        <View style={styles.container}>
+          <Input
+            inputContainerStyle={{borderBottomColor: "white"}}
+            inputStyle={{color: 'black'}}
+            placeholderTextColor="white"
+            placeholder="Email"
+            autoCapitalize="none"
+            onChangeText={text => this.setState({ email: text })}
+            value={email} />
+          <Input
+            secureTextEntry
+            inputContainerStyle={{borderBottomColor: "white"}}
+            inputStyle={{color: 'black'}}
+            placeholderTextColor="white"
+            autoCapitalize="none"
+            placeholder="Password"
+            onChangeText={text => this.setState({ password: text })}
+            value={password} />
+          { errors ? <ErrorMessage message={errors} /> : null }
+          <SignInButton 
+            submitForm={this.submitForm}
+            setErrors={this.setErrors} />
+          <GoogleButton 
+            saveCredentials={this.saveCredentials} />
+        </View>
       </React.Fragment>
     );
   }
