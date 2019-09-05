@@ -94,7 +94,7 @@ export default class ForecastScreen extends Component {
             style={{height: height}}
             repeat 
             muted />
-          }
+          } 
           <ForecastInfo location={location} style={"flexbox"}>
             <ForecastHourly forecast_info={forecast_info} style={"flexbox"} />
           </ForecastInfo>
