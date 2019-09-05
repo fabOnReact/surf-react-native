@@ -2,13 +2,12 @@ import { createSwitchNavigator, createStackNavigator, createAppContainer } from 
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import IndexScreen from './screens/IndexScreen';
 import CameraScreen from './screens/CameraScreen';
-import SignUpScreen from './screens/SignUpScreen';
-import SignInScreen from './screens/SignInScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import MapScreen from './screens/MapScreen';
 import WebViewScreen from './screens/WebViewScreen';
 import ForecastScreen from './screens/ForecastScreen';
 import NearbyScreen from './screens/NearbyScreen';
+import AuthenticationScreen from './screens/AuthenticationScreen';
 
 const AppStack = createStackNavigator({ 
   Index: {
@@ -22,8 +21,7 @@ const AppStack = createStackNavigator({
      Forecast: ForecastScreen,
 });
 
-const AuthStack = createStackNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen });
-
+const AuthStack = createStackNavigator({ Authentication: AuthenticationScreen });
 const AppNavigator = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
