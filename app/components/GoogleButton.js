@@ -45,14 +45,12 @@ export default class GoogleButton extends Component {
   render() {
     return (
       <React.Fragment>
-        <View style={styles.container}>
-          <GoogleSigninButton
-            style={{ width: 212, height: 48 }}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Auto}
-            onPress={this.signIn}
-          />
-        </View>
+        <GoogleSigninButton
+          style={{ width: 212, height: 48 }}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Auto}
+          onPress={this.signIn}
+        />
       </React.Fragment>
     );
   }
