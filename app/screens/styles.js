@@ -1,11 +1,14 @@
 /* eslint-disable import/prefer-default-export */
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    top: 0,
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    height: Dimensions.get("window").height, 
     width: '100%',
   },
   button: {
@@ -13,8 +16,9 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   textInput: {
+    backgroundColor: "white",
     height: 60,
-    borderColor: 'gray',
+    borderColor: 'white',
     borderWidth: 1,
     marginTop: 8
   },
