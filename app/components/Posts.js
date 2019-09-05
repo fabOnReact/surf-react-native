@@ -164,6 +164,19 @@ export default class PostsScreen extends Component {
           iconColor='black'
           reverseColor='black'
           reverse
+          raised
+          onPress={() => navigation.navigate("Camera") }
+        />
+        <Icon
+          containerStyle={buttons.buttonReverseAbsolute}
+          name='camera-retro'
+          type='font-awesome'
+          size={40}
+          color='white'
+          iconColor='black'
+          reverseColor='black'
+          reverse
+          raised
           onPress={() => navigation.navigate("Camera") }
         />
       </React.Fragment>
