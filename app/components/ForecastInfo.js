@@ -6,7 +6,7 @@ export default class ForecastInfo extends Component {
   _renderInfo() {
     const { location } = this.props
     const { forecast_info } = location
-    if (forecast_info) { return `${forecast_info.hourly.waveHeight} mt. at ${location.name}` }
+    if (forecast_info) { return `${forecast_info.hourly.waveHeight} mt. at ${location.name.slice(0,9)}` }
     else return location.name
   }
 
