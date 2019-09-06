@@ -3,6 +3,7 @@ import { Image } from 'react-native';
 
 export const userSettings = { endpoint: "users", responseStatus: 201 }
 export const sessionSettings = { endpoint: "users/sign_in", responseStatus: 200 }
+export const postSettings = { endpoint: "posts", responseStatus: 201 }
 export const headers = { "Accept": "application/json", "Content-Type": "application/json" }
 
 export const getFromStorage = async (item) => {

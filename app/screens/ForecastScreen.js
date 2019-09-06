@@ -26,7 +26,7 @@ export default class ForecastScreen extends Component {
         title: navigation.getParam('location').name,
         headerTintColor: params.showHeader ? 'black' : 'white',
         headerTransparent: params.showHeader ? false : true,
-        headerStyle: { borderBottomWidth: 0, marginTop: 5 } 
+        headerStyle: { borderBottomWidth: 0, marginTop: 10 } 
       };
     } else {
       return {

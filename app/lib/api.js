@@ -16,7 +16,7 @@ export const createResource = (success, failure, body, settings) => {
     .catch(error => errorMessage(error));
 }
 
-export const createPost = async (data) => {
+export const createPost = async (failure, data, settings) => {
   let credentials = await getCredentials()
   const config = { method: 'POST', body: data }
   headers['Content-Type'] = "multipart/form-data;"
@@ -26,8 +26,12 @@ export const createPost = async (data) => {
     "accept-encoding": "gzip, deflate"
   }
 
-  fetch(host + "/posts.json", config)
-    .then(response => {}) // console.log(response) 
+  fetch(`${host}/${settings.endpoint}.json`, config)
+    .then(response => { 
+      response.json().then(data => {
+        if (response.status != settings.responseStatus && data["location"]) { failure(data) }
+      })
+    })
     .catch(error => errorMessage(error))
 }
 
@@ -58,12 +62,3 @@ export const configureGoogleSignIn = () => {
     iosClientId: IOS_CLIENT_ID
   });
 }
-
-// export const updatePost = async (options) => {
-//   let credentials = await getCredentials()
-//   let config = { method: 'PUT', headers: { ...headers, ...credentials }, body: options.body}
-//   fetch(`${host}/posts/${options.id}.json`, config)
-//     .then(response => response.json())
-//     .then(json => /* console.log(json) */ )
-//     .catch(error => errorMessage(error));
-// }

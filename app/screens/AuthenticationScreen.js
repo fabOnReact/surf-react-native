@@ -49,9 +49,8 @@ export default class AuthenticationScreen extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, errors } = this.state;
     const { navigation } = this.props;
-    const { errors } = this.state;
     const height = Dimensions.get("window").height;
     return (
       <React.Fragment>

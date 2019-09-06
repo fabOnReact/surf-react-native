@@ -15,11 +15,11 @@ export default class SignInButton extends Component {
     const { submitForm } = this.props
     const { signUpScreen } = this.state
     const title = signUpScreen ? "Sign Up" : "Sign In"
-    const params = signUpScreen ? userSettings : sessionSettings
+    const settings = signUpScreen ? userSettings : sessionSettings
     return (
       <Button
         title={title}
-        onPress={() => submitForm(params) }
+        onPress={() => submitForm(settings) }
         buttonStyle={styles.button}
       />
     )
