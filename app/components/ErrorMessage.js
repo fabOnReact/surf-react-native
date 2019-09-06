@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 export default function ErrorMessage(props) {
-  const { message } = props;
+  const { message, styles } = props;
   return (
-    <View style={styles.errorContainer}>
-      <Text style={styles.errorText}>{ message }</Text>
+    <View style={[classes.errorContainer, styles]}>
+      <Text style={classes.errorText}>{ message }</Text>
     </View>
   );
 }
 
-export const styles = StyleSheet.create({
+export const classes = StyleSheet.create({
   errorContainer: {
     borderColor: 'black',
     borderWidth: 2,

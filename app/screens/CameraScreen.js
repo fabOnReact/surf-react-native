@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, StatusBar, ImageBackground } from 'react-native';
+import { Alert, StyleSheet, TouchableOpacity, View, Text, StatusBar, ImageBackground } from 'react-native';
+import Dimensions from 'Dimensions';
 import { RNCamera } from 'react-native-camera';
 import Geolocation from 'react-native-geolocation-service';
 import { Icon } from 'react-native-elements';
+import ErrorMessage from '../components/ErrorMessage'
 import Orientation from 'react-native-orientation-locker';
-import { styles } from './styles/CameraStyles';
 import Location from '../components/Location';
 import { buttons } from '../components/styles/ButtonStyles';
 import { createPost } from '../lib/api';
-import { errorMessage  } from '../lib/support';
+import { errorMessage, postSettings } from '../lib/support';
 import ClientDate from '../lib/client_date';
 
 export default class CameraScreen extends Component {
@@ -42,6 +43,17 @@ export default class CameraScreen extends Component {
     );
   }
 
+  _failure = (json) => {
+    Alert.alert(
+      'Sorry! Picture was not saved!',
+      json["location"][1],
+      [
+        {text: 'OK', onPress: () => {}},
+      ],
+      {cancelable: false},
+    );
+  }
+
   _takePicture = async function() {
     const { latitude, longitude } = this.state;
     const options = { quality: 0.5, base64: true, forceUpOrientation: true, fixOrientation: true };
@@ -53,12 +65,14 @@ export default class CameraScreen extends Component {
     data.append('post[picture][type]', 'image/png');
     data.append('post[latitude]', latitude);
     data.append('post[longitude]', longitude);
-    await createPost(data)
+    await createPost(this._failure, data, postSettings)
   };
 
   render() {
+    const { errors } = this.state
     return (
       <View style={styles.container}>
+        { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
         <RNCamera
           ref={ref => {
             this.camera = ref;
@@ -87,3 +101,27 @@ export default class CameraScreen extends Component {
     );
   }
 }
+
+export const styles = StyleSheet.create({
+  container: {
+    height: Dimensions.get('window').height,
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'transparent',
+  },
+  preview: {
+    height: Dimensions.get('window').height,
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: 'transparent',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20
+  }
+});
