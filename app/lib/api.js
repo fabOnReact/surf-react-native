@@ -16,7 +16,7 @@ export const createResource = (success, failure, body, settings) => {
     .catch(error => errorMessage(error));
 }
 
-export const createPost = async (failure, data, settings) => {
+export const createPost = async (success, data, settings) => {
   let credentials = await getCredentials()
   const config = { method: 'POST', body: data }
   headers['Content-Type'] = "multipart/form-data;"
@@ -28,9 +28,7 @@ export const createPost = async (failure, data, settings) => {
 
   fetch(`${host}/${settings.endpoint}.json`, config)
     .then(response => { 
-      response.json().then(data => {
-        if (response.status != settings.responseStatus && data["location"]) { failure(data) }
-      })
+      response.json().then(data => success(data, response.status))
     })
     .catch(error => errorMessage(error))
 }

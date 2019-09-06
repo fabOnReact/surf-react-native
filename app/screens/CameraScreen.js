@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, TouchableOpacity, View, Text, StatusBar, ImageBackground } from 'react-native';
+import { Alert, StyleSheet, TouchableOpacity, TouchableHighlight, View, Text, StatusBar, ImageBackground } from 'react-native';
 import Dimensions from 'Dimensions';
 import { RNCamera } from 'react-native-camera';
 import Geolocation from 'react-native-geolocation-service';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { Icon } from 'react-native-elements';
 import ErrorMessage from '../components/ErrorMessage'
 import Orientation from 'react-native-orientation-locker';
@@ -25,7 +26,7 @@ export default class CameraScreen extends Component {
     super(props)
     this._takePicture = this._takePicture.bind(this)
     this._setLocation()
-    this.state = { latitude: null, longitude: null }
+    this.state = { latitude: null, longitude: null, spinner: false }
   }
 
   _setLocation = function() {
@@ -43,15 +44,22 @@ export default class CameraScreen extends Component {
     );
   }
 
-  _failure = (json) => {
-    Alert.alert(
-      'Sorry! Picture was not saved!',
-      json["location"][1],
-      [
-        {text: 'OK', onPress: () => {}},
-      ],
-      {cancelable: false},
-    );
+  pageLoaded = () => {
+    this.setState({ spinner: false })
+  }
+
+  success = (json, status) => {
+    if (status == postSettings.responseStatus) { this.pageLoaded() }
+    else { 
+      Alert.alert(
+        'Sorry! Picture was not saved!',
+        json["location"][1],
+        [
+          {text: 'OK', onPress: () => this.pageLoaded() },
+        ],
+        {cancelable: false},
+      );
+    }
   }
 
   _takePicture = async function() {
@@ -65,11 +73,12 @@ export default class CameraScreen extends Component {
     data.append('post[picture][type]', 'image/png');
     data.append('post[latitude]', latitude);
     data.append('post[longitude]', longitude);
-    await createPost(this._failure, data, postSettings)
+    this.setState({ spinner: true })
+    await createPost(this.success, data, postSettings)
   };
 
   render() {
-    const { errors } = this.state
+    const { errors, spinner } = this.state
     return (
       <View style={styles.container}>
         { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
@@ -87,9 +96,14 @@ export default class CameraScreen extends Component {
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}>
+            <Spinner
+              visible={spinner}
+              textContent={'Saving picture...'}
+              textStyle={styles.spinnerTextStyle}
+            />
             <Icon
-              containerStyle={buttons.buttonAbsolute}
-              name='ios-radio-button-off'
+              containerStyle={[buttons.buttonAbsolute, {borderRadius: 10}]}
+              name='ios-radio-button-on'
               type='ionicon'
               size={80}
               color='#ffffff'
@@ -111,6 +125,7 @@ export const styles = StyleSheet.create({
   },
   preview: {
     height: Dimensions.get('window').height,
+    width: "100%",
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -123,5 +138,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignSelf: 'center',
     margin: 20
-  }
+  },
+  spinnerTextStyle: {
+    color: '#FFF'
+  },
 });
