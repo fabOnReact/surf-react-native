@@ -6,7 +6,7 @@ export default class ForecastInfo extends Component {
   _renderInfo() {
     const { location } = this.props
     const { forecast_info } = location
-    if (forecast_info) { return `${forecast_info.hourly.waveHeight} mt. at ${location.name.slice(0,9)}` }
+    if (forecast_info) { return `${forecast_info.hourly.swellHeight} mt. at ${location.name.slice(0,9)}` }
     else return location.name
   }
 
@@ -17,11 +17,10 @@ export default class ForecastInfo extends Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, style } = this.props
     return (
-      <View style={this._setStyle()}> 
+      <View style={style}> 
         <Text style={[styles.shadowHeader, styles.overlayText]}>{ this._renderInfo() }</Text>
-        { children } 
       </View>
     )
   }

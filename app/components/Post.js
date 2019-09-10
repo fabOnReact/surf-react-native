@@ -51,6 +51,10 @@ export default class Post extends Component {
       video_source = getAsset(post.video.url_name) || {uri: post.video.url}
       image_source = getAsset(post.video.poster_name) || post.video.poster
     } 
+    const absolute = { 
+      position: 'absolute', width: "100%",
+      alignItems: 'center', bottom: 5, 
+    }
     return (
       <React.Fragment>
         <TouchableOpacity 
@@ -81,7 +85,7 @@ export default class Post extends Component {
             )
           }
 
-          <ForecastInfo location={location} />
+          <ForecastInfo location={location} style={absolute} />
         </TouchableOpacity>
       </React.Fragment>
     );

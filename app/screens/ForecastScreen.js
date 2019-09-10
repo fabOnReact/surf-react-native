@@ -5,7 +5,6 @@ import { H3 } from 'native-base';
 import Video from 'react-native-video';
 import ForecastMap from '../components/ForecastMap';
 import ForecastHourly from '../components/ForecastHourly';
-import ForecastInfo from '../components/ForecastInfo';
 import TableView from '../components/TableView';
 import { getAsset } from '../lib/support';
 
@@ -99,11 +98,8 @@ export default class ForecastScreen extends Component {
             />
             )
           } 
-          <ForecastInfo location={location} display="flexbox">
-            <ForecastHourly forecast_info={forecast_info} />
-          </ForecastInfo>
+          <ForecastHourly location={location} forecast_info={forecast_info} />
           <ForecastMap location={location} />
-          <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 7 days forecast in mt.</H3>
           <TableView daily={daily} />
         </ScrollView>
       </React.Fragment>
