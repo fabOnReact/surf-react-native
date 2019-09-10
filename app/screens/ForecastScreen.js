@@ -98,7 +98,7 @@ export default class ForecastScreen extends Component {
             />
             )
           } 
-          <ForecastHourly location={location} forecast_info={forecast_info} />
+          { !!post && <ForecastHourly location={location} forecast_info={forecast_info} /> }
           <ForecastMap location={location} />
           <TableView daily={daily} />
         </ScrollView>
