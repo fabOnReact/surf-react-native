@@ -11,16 +11,17 @@ export default class ForecastInfo extends Component {
   }
 
   _setStyle() {
-    const { style } = this.props
-    if (style == "flexbox") { return styles.flexbox }
+    const { display } = this.props
+    if (display == "flexbox") { return styles.flexbox }
     else { return styles.absolute }
   }
 
   render() {
+    const { children } = this.props
     return (
       <View style={this._setStyle()}> 
         <Text style={[styles.shadowHeader, styles.overlayText]}>{ this._renderInfo() }</Text>
-        { this.props.children } 
+        { children } 
       </View>
     )
   }
