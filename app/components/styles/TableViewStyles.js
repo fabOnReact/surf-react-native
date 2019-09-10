@@ -69,12 +69,11 @@ export const styles = StyleSheet.create({
   arrowContainer: {
     height: "100%", 
     width: 50, 
-    backgroundColor: "#27ae60",
+    // backgroundColor: "#27ae60",
     justifyContent: "center",
     alignItems: "center",
   },
   icon : { 
-    tintColor: "white",
     height: 20, 
     width: 20, 
     marginBottom: 5,

@@ -21,8 +21,19 @@ export default class TableView extends Component {
       waveDirection, swellHeight, 
       swellPeriod, swellDirection, 
       optimal_swell, windSpeed, 
-      windDirection, wind_optimal 
+      windDirection, optimal_wind
     } = this.props.daily
+    var windColor = optimal_wind[i] ? "#27ae60" : "#e67e22"
+    var swellColor = optimal_swell[i] ? "#27ae60" : "#e67e22"
+    var windIconColor = swellIconColor = "white"
+    if (optimal_wind[i] == null) { 
+      windColor = "#ffffff" 
+      windIconColor = "black"
+    }
+    if (optimal_swell[i] == null) { 
+      swellColor = "#ffffff" 
+      swellIconColor = "black"
+    }
 
     return (
       <React.Fragment key={i}>
@@ -38,17 +49,22 @@ export default class TableView extends Component {
               </Text>
             </View>
             <View style={styles.swell}>
-              <View style={styles.forecastContainer}>
+              <View style={[styles.forecastContainer]}>
                 <Text>
                     { swellHeight[i] } mt.@
                     { swellPeriod[i] }s   
                 </Text>
-                <View style={styles.arrowContainer}>
+                <View 
+                  style={[
+                    { backgroundColor: swellColor }, 
+                    styles.arrowContainer
+                  ]}>
                   <Image 
                     source={require('../images/down-cursor-black.png')}
                     style={[
+                      { tintColor: swellIconColor },
                       styles.icon, 
-                      { transform: [{ rotateZ: `${waveDirection}deg`}] } 
+                      { transform: [{ rotateZ: `${swellDirection[i]}deg`}] } 
                     ]}
                   />
                 </View>
@@ -59,12 +75,16 @@ export default class TableView extends Component {
                 <Text>
                     { windSpeed[i] } mt/s.   
                 </Text>
-                <View style={styles.arrowContainer}>
+                <View style={[
+                  { backgroundColor: windColor },
+                  styles.arrowContainer
+                ]}>
                   <Image 
                     source={require('../images/down-cursor-black.png')}
                     style={[
+                      { tintColor: windIconColor }, 
                       styles.icon, 
-                      { transform: [{ rotateZ: `${windDirection}deg`}] } 
+                      { transform: [{ rotateZ: `${windDirection[i]}deg`}] } 
                     ]}
                   />
                 </View>
