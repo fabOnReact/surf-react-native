@@ -3,6 +3,7 @@ import { Dimensions, Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import { H1, H2, H3, H4 } from 'native-base';
 import Chart from '../components/Chart';
+import Table from '../components/Table';
 import { styles } from './styles/ForecastMapStyles';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 
@@ -61,6 +62,7 @@ export default class ForecastMap extends Component {
             <Chart values={seaLevels} labels={hours} bezier={false} margin={50} />
             <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 7 days forecast in mt.</H3>
             <Chart values={daily.waveHeight} labels={daily.days} bezier={true} margin={0} />
+            <Table daily={daily} />
           </Card>
       </React.Fragment>
     )
