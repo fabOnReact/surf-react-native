@@ -45,12 +45,12 @@ export default class ProfileScreen extends Component {
           />
           <Button
             title="Privacy Policy"
-            onPress={() => navigation.navigate("WebView", { path: "/pages/privacy", title: "Privacy" })}
+            onPress={() => navigation.navigate("WebView", { path: "/pages/privacy.html", title: "Privacy" })}
             buttonStyle={styles.button}
           />
           <Button
             title="Credits"
-            onPress={() => navigation.navigate("WebView", { path: "/pages/credits", title: "Credits" })}
+            onPress={() => navigation.navigate("WebView", { path: "/pages/credits.html", title: "Credits" })}
             buttonStyle={styles.button}
           />
         </View>
