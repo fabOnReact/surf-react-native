@@ -3,7 +3,6 @@ import { Alert, StyleSheet, TouchableOpacity, TouchableHighlight, View, Text, St
 import Dimensions from 'Dimensions';
 import { RNCamera } from 'react-native-camera';
 import Geolocation from 'react-native-geolocation-service';
-import Spinner from 'react-native-loading-spinner-overlay';
 import { Icon } from 'react-native-elements';
 import ErrorMessage from '../components/ErrorMessage'
 import Orientation from 'react-native-orientation-locker';
@@ -26,7 +25,7 @@ export default class CameraScreen extends Component {
     super(props)
     this._takePicture = this._takePicture.bind(this)
     this._setLocation()
-    this.state = { latitude: null, longitude: null, spinner: false }
+    this.state = { latitude: null, longitude: null }
   }
 
   _setLocation = function() {
@@ -44,18 +43,13 @@ export default class CameraScreen extends Component {
     );
   }
 
-  pageLoaded = () => {
-    this.setState({ spinner: false })
-  }
-
   success = (json, status) => {
-    if (status == postSettings.responseStatus) { this.pageLoaded() }
-    else { 
+    if (status != postSettings.responseStatus) { 
       Alert.alert(
         'Sorry! Picture was not saved!',
         json["location"][1],
         [
-          {text: 'OK', onPress: () => this.pageLoaded() },
+          {text: 'OK', onPress: () => {}},
         ],
         {cancelable: false},
       );
@@ -63,6 +57,8 @@ export default class CameraScreen extends Component {
   }
 
   _takePicture = async function() {
+    const { navigation } = this.props
+    const alert = navigation.getParam('alertCallback')
     const { latitude, longitude } = this.state;
     const options = { quality: 0.5, base64: true, forceUpOrientation: true, fixOrientation: true };
     const picture = await this.camera.takePictureAsync(options);
@@ -73,12 +69,11 @@ export default class CameraScreen extends Component {
     data.append('post[picture][type]', 'image/png');
     data.append('post[latitude]', latitude);
     data.append('post[longitude]', longitude);
-    this.setState({ spinner: true })
     await createPost(this.success, data, postSettings)
   };
 
   render() {
-    const { errors, spinner } = this.state
+    const { errors } = this.state
     return (
       <View style={styles.container}>
         { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
@@ -96,11 +91,6 @@ export default class CameraScreen extends Component {
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}>
-            <Spinner
-              visible={spinner}
-              textContent={'Saving picture...'}
-              textStyle={styles.spinnerTextStyle}
-            />
             <Icon
               containerStyle={[buttons.buttonAbsolute, {borderRadius: 10}]}
               name='ios-radio-button-on'
