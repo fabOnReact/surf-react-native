@@ -52,7 +52,7 @@ export default class ForecastScreen extends Component {
     this.height = height - Header.HEIGHT - height/3
   }
 
-  handleScroll = (event: Object) => { 
+  handleScroll = (event) => { 
     const { showHeader } = this.state
     const { navigation } = this.props
     const { y } = event.nativeEvent.contentOffset
