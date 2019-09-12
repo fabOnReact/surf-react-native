@@ -20,7 +20,6 @@ export default class ForecastMap extends Component {
     var { width } = this.state
     width -= 50
     const { latitude, longitude, forecast_info } = location
-    console.error(forecast_info)
     const { windDirection, waveDirection } = forecast_info.hourly
     const host = "https://maps.googleapis.com/maps/api/staticmap"
     const options = "zoom=11&&size=1200x900&maptype=satellite"
