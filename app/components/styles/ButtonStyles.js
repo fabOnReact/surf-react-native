@@ -6,7 +6,12 @@ export const buttons = StyleSheet.create({
     position: 'absolute',
     bottom:10,
     right:"50%",    
-    transform: [{translateX: 50}]
+    transform: [{translateX: 50}],
+    shadowColor: 'rgba(0,0,0, .4)', 
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    elevation: 3,
   },
   buttonAbsolute: {
     position: 'absolute',

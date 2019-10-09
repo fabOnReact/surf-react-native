@@ -15,10 +15,12 @@ const AppStack = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: null,
     }),
-  }, Camera: CameraScreen, Profile: ProfileScreen, Map: MapScreen, 
-     WebView: WebViewScreen,
-     Nearby: NearbyScreen,
-     Forecast: ForecastScreen,
+  }, 
+  WebView: WebViewScreen,
+  Profile: ProfileScreen, Map: MapScreen, 
+  Camera: CameraScreen,
+  Nearby: NearbyScreen,
+  Forecast: ForecastScreen,
 });
 
 const AuthStack = createStackNavigator({ Authentication: AuthenticationScreen });
