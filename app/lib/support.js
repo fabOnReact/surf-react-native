@@ -1,10 +1,21 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import Geolocation from 'react-native-geolocation-service';
 import { Image } from 'react-native';
 
 export const userSettings = { endpoint: "users", responseStatus: 201 }
 export const sessionSettings = { endpoint: "users/sign_in", responseStatus: 200 }
 export const postSettings = { method: "POST", endpoint: "posts", responseStatus: 201 }
 export const headers = { "Accept": "application/json", "Content-Type": "application/json" }
+
+export const getGps = async (callback) => {
+  Geolocation.getCurrentPosition(
+    (position) => callback(position.coords),
+    (error) => { 
+      // console.warn(error)
+    },
+    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+  );
+}
 
 export const getFromStorage = async (item) => {
   const entry = await AsyncStorage.getItem(item)
