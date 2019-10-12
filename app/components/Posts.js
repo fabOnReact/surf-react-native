@@ -1,184 +1,138 @@
-/* eslint no-underscore-dangle: 0 */
-/* eslint no-unused-vars: ["error", { "args": "none" }] */
 import React, { Component } from 'react';
-import { View, Text, FlatList, Alert, TouchableOpacity, Image } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import Geolocation from 'react-native-geolocation-service';
+import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
 import { Card } from 'native-base';
-import { Icon } from 'react-native-elements';
-import { Header } from 'react-navigation';
-import Location from './Location';
 import Post from './Post';
 import Forecast from './Forecast';
-import { buttons } from './styles/ButtonStyles';
-import { getResources } from '../lib/api';
-import { errorMessage } from '../lib/support';
+import { ProfileButton, MapButton, CameraButton } from './Buttons';
+import { getGps } from '../lib/support';
+import api from '../lib/api';
 
-export default class PostsScreen extends Component {
+export default class Posts extends Component {
   constructor(props){
     super(props);
-    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: '' };
+    this.state = { posts: [], page: 0, refreshing: false, latitude: '', longitude: '', locations: [] };
     this.count = 0
+    this.timer_on = 0;
   }
 
-  componentDidMount() {
-    this.setCoordinates()
-  }
-
-  addPosts = (json) => {
-    const { posts } = this.state
-    this.setState({ posts: [...posts, ...json], refreshing: false })
-  }
-
-  setPosts = async (json) => {
-    const { posts } = this.state 
-    const { navigation, loaded } = this.props
-    if (json["error"] != null) { 
-      //console.warn(json["error"])
-      await AsyncStorage.clear()
-      navigation.navigate('Auth');
+  get params() {
+    const { latitude, longitude, page } = this.state
+    return { 
+      latitude, 
+      longitude, 
+      page, 
     }
-    else {
-      this.setState({ posts: json, refreshing: false })
-    }
+  }
+
+  _setGps = ({ latitude, longitude }) => {
+    this.setState({ latitude, longitude })
+  }
+
+  _setLocations = async () => {
+    const { post, page } = this.state
+    var response = await api.getLocations()
+    var json = await response.json()
+    this.setState({ locations: json })
+  }
+
+  _setPosts = async () => {
+    const { posts, page } = this.state
+    const { loaded } = this.props
+    const new_page = page + 1
+    await this.setState({ page: new_page, refreshing: true })
+    api.page = new_page
+    const response = await api.getPosts()
+    const json = await response.json()
+    await this.setState({ posts: [...posts, ...json], refreshing: false })
     loaded()
   }
 
-  setLocations = (json) => {
-    const { locations } = this.state
-    this.setState({ locations: json })
-    const repeatRequest = setTimeout(()=>{
-      getResources(this.setLocations, this.path("locations"))
-      this.count += 1
-    }, 3000)
-    if (json.length == 0 && this.count < 4) { repeatRequest() } 
-    else { clearTimeout(repeatRequest) }
+  componentDidMount() {
+    const { posts } = this.state
+    const missing_posts = posts.length == 0
+    getGps(this._setGps)
   }
 
-  setCoordinates = function() {
-    const { posts } = this.state
-    Geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({ 
-          latitude: position.coords.latitude, 
-          longitude: position.coords.longitude, 
-        }, () => {
-          getResources(this.setLocations, this.path("locations"))
-        });
-      },
-      (error) => { 
-        // console.warn(error)
-      },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
-    if (posts.length == 0) { 
-      this.setState({ refreshing: true }, () => getResources(this.setPosts, this.path("posts")))
+  componentDidUpdate = async (prevProp, prevState) => {
+    const { locations, latitude, longitude, page } = this.state
+    const repeat_request = locations.length == 0 && this.count < 4
+    const latitude_change = prevState.latitude != latitude
+    const longitude_change = prevState.longitude != longitude
+    const gps_updated = latitude_change && longitude_change
+    const find_locations = gps_updated && !this.timer_on
+    const page_updated = prevState.page != page
+    api.params = this.params
+    if(find_locations) { 
+      this.timer_on = 1
+      this.timedRequest()
     }
+    if(gps_updated || page == 0) {
+      this._setPosts()
+    }
+  }
+
+  componentWillUnmount() {
+    this.stopTimedRequest()
+  }
+
+  timedRequest = async () => {
+    const { locations, latitude, longitude } = this.state
+    const locations_missing = locations.length == 0
+    const repeat_request = this.count < 4 && locations_missing
+    if(repeat_request) { 
+      await this._setLocations({ latitude, longitude })
+      this.timer = setTimeout(() => this.timedRequest(), 1000);
+      this.count = this.count + 1;
+    }
+  }
+
+  stopTimedRequest  = () => {
+    clearTimeout(this.timer);
+    this.timer_on = 0;
   }
 
   _handleRefresh = () => {
-    const { navigation } = this.props
-    this.setState({ page: 1, refreshing: true, }, () => {
-      getResources(this.setPosts, this.path("posts"))
-    })
-  }
-
-  _handleLoadMore = () => {
-    const { page } = this.state
-    const { navigation } = this.props
-    this.setState({ page: page + 1 }, () => {
-      getResources(this.addPosts, this.path("posts"))
-    })
-  }
-
-  path(endpoint) {
-    const { page, longitude, latitude } = this.state;
-    switch (endpoint) {
-      case "posts":
-        return `${endpoint}.json?page=${page}&per_page=4&longitude=${longitude}&latitude=${latitude}`
-        break
-      case "locations": 
-        return `${endpoint}.json?page=1&per_page=6&longitude=${longitude}&latitude=${latitude}`
-        break
-      default: 
-        // console.warn(`sorry, ${endpoint} does not exist`)
-    }
-  }
-
-  get locationsQuery () {
-    const { longitude, latitude } = this.props;
+    this.setState({
+      page: 0, posts: []
+    });
   }
 
   _onEndReached = () => {
-    if(!this.state.refreshing) { this._handleLoadMore() }
+    const { refreshing } = this.state
+    if(!refreshing) { this._setPosts() }
   };
 
-  navigateToCamera = () => {
-    this.props.navigation.navigate('New')
+  renderCard(item, index) {
+    const { navigation } = this.props
+    const { posts, locations } = this.state
+    return (
+      <Card trasparent style={{flex: 1}}>
+        <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations }) }>
+          <Forecast locations={locations} index={index} />
+        </TouchableOpacity>
+        <Post key={index} post={item} index={index} navigation={navigation} />
+      </Card>
+    )
   }
 
   render() {
     const { navigation } = this.props;
-    const { posts, locations, latitude, longitude } = this.state;
+    const { posts, latitude, longitude, refreshing, locations } = this.state;
     return (
       <React.Fragment>
         <FlatList
-          data={posts} 
+          data={posts}
           keyExtractor={(item, index) => index.toString() }
           refreshing={this.state.refreshing}
           onRefresh={this._handleRefresh}
           onEndReached={this._onEndReached}
           onEndReachedThreshold={0.01}
           extraData={locations}
-          renderItem={({ item, index }) => (
-            <Card trasparent style={{flex: 1}}>
-              <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations }) }>
-                <Forecast locations={locations} index={index} />
-              </TouchableOpacity>
-              <Post key={index} post={item} index={index} navigation={navigation} />
-            </Card>
-          )}
+          renderItem={({ item, index }) => this.renderCard(item, index)}
         />
-        <TouchableOpacity 
-          onPress={() => navigation.navigate("Profile") }
-          style={buttons.containerRight}>
-          <Image 
-            style={buttons.buttonRight} 
-            source={require('../images/profile-user.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity 
-          onPress={() => navigation.navigate("Map", { lat: latitude, lon: longitude }) }
-          style={buttons.containerLeft}>
-          <Image 
-            style={buttons.buttonLeft} 
-            source={require('../images/location.png')}
-          />
-        </TouchableOpacity>
-        <Icon
-          containerStyle={buttons.buttonReverseAbsolute}
-          name='camera-retro'
-          type='font-awesome'
-          size={40}
-          color='white'
-          iconColor='black'
-          reverseColor='black'
-          reverse
-          raised
-          onPress={() => navigation.navigate("Camera") }
-        />
-        <Icon
-          containerStyle={buttons.buttonReverseAbsolute}
-          name='camera-retro'
-          type='font-awesome'
-          size={40}
-          color='white'
-          iconColor='black'
-          reverseColor='black'
-          reverse
-          raised
-          onPress={() => navigation.navigate("Camera") }
-        />
+        <ProfileButton navigation={navigation} />
+        <MapButton navigation={navigation} />
+        <CameraButton navigation={navigation} />
       </React.Fragment>
     );
   }

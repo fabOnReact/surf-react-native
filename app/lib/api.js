@@ -4,13 +4,7 @@ import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 import { host } from '../config/constants';
 import { postSettings, getFromStorage, errorMessage, getCredentials, headers } from './support';
 
-export default class Api {
-  get post() {
-    return { 
-      responseStatus: 201,
-    }
-  }
-
+class Api {
   constructor() {
     this.setCredentials()
   }
@@ -35,11 +29,50 @@ export default class Api {
     return config
   }
 
-  getLocations = async (latitude, longitude) => {
+  set params(obj) {
+    const { latitude, longitude, page } = obj
+    this._coordinates = { latitude, longitude }
+    this._page = page
+  }
+
+  get latitude() {
+    const { latitude } = this._coordinates
+    return `latitude=${latitude}`
+  }
+
+  get longitude() {
+    const { longitude } = this._coordinates
+    return `longitude=${longitude}`
+  }
+
+  set coordinates(coords) {
+    this._coordinates = coords
+  }
+
+  get coordinates() {
+    return `${this.latitude}&${this.longitude}`
+  }
+
+  set page(number) {
+    this._page = number
+  }
+
+  get page() {
+    return `page=${this._page}&per_page=4`
+  }
+
+  get query() {
+    return `${this.coordinates}&${this.page}`
+  }
+
+  getLocations = async () => {
     const config = await this.getConfig("GET")
-    const gps = `latitude=${latitude}&longitude=${longitude}`
-    const pages = `page=1&per_page=1`
-    return await fetch(`${host}/locations.json?${gps}&${pages}`, config)
+    return await fetch(`${host}/locations.json?${this.query}`, config)
+  }
+
+  getPosts = async () => {
+    const config = await this.getConfig("GET")
+    return await fetch( `${host}/posts.json?${this.query}`, config)
   }
 
   createPost = async (data) => {
@@ -52,6 +85,9 @@ export default class Api {
     return await fetch(`${host}/posts/${id}.json`, config)
   }
 }
+
+const api = new Api
+export default api
 
 export const createResource = (success, failure, body, settings) => {
   const options = { method: 'POST', headers: headers, body: body }
@@ -66,14 +102,14 @@ export const createResource = (success, failure, body, settings) => {
     .catch(error => errorMessage(error));
 }
 
-export const getResources = async (success, path) => {
-  let credentials = await getCredentials()
-  let config = { method: 'GET', headers: {...headers, ...credentials} }
-  fetch(`${host}/${path}`, config)
-     .then(response => response.json())
-     .then(json => success(json))
-     .catch(error => errorMessage(error))
-}
+// export const getResources = async (success, path) => {
+//   let credentials = await getCredentials()
+//   let config = { method: 'GET', headers: {...headers, ...credentials} }
+//   fetch(`${host}/${path}`, config)
+//      .then(response => response.json())
+//      .then(json => success(json))
+//      .catch(error => errorMessage(error))
+// }
 
 export const uploadVideo = async (data) => {
   const endpoint = "https://api.cloudinary.com/v1_1/dhhzzcjq0/video/upload"
