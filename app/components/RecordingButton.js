@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
+import { StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { buttons } from '../components/styles/ButtonStyles';
 
 export default function RecordingButton({ recording, highlight }){
   return (
@@ -16,3 +16,12 @@ export default function RecordingButton({ recording, highlight }){
     />
   )
 }
+
+const buttons = StyleSheet.create({
+  buttonAbsolute: {
+    position: 'absolute',
+    bottom:10,
+    right:"50%",    
+    transform: [{translateX: 36}]
+  },
+})

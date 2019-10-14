@@ -3,7 +3,9 @@ import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-nati
 import { Card } from 'native-base';
 import Post from './Post';
 import Forecast from './Forecast';
-import { ProfileButton, MapButton, CameraButton } from './Buttons';
+import ProfileButton from './ProfileButton';
+import MapButton from './MapButton';
+import CameraButton from './CameraButton';
 import { getGps } from '../lib/support';
 import api from '../lib/api';
 
@@ -72,7 +74,8 @@ export default class Posts extends Component {
   }
 
   componentWillUnmount() {
-    this.stopTimedRequest()
+    clearTimeout(this.timer);
+    this.timer_on = 0;
   }
 
   timedRequest = async () => {
@@ -84,11 +87,6 @@ export default class Posts extends Component {
       this.timer = setTimeout(() => this.timedRequest(), 1000);
       this.count = this.count + 1;
     }
-  }
-
-  stopTimedRequest  = () => {
-    clearTimeout(this.timer);
-    this.timer_on = 0;
   }
 
   _handleRefresh = () => {
@@ -131,7 +129,11 @@ export default class Posts extends Component {
           renderItem={({ item, index }) => this.renderCard(item, index)}
         />
         <ProfileButton navigation={navigation} />
-        <MapButton navigation={navigation} />
+        <MapButton 
+          navigation={navigation} 
+          latitude={latitude} 
+          longitude={longitude}
+        />
         <CameraButton navigation={navigation} />
       </React.Fragment>
     );

@@ -3,14 +3,15 @@ import { StyleSheet, View, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Dimensions from 'Dimensions';
 import RecordingButton from './RecordingButton';
+import UploadButton from './UploadButton';
 import Player from './Player';
-import Api from '../lib/api';
+import api from '../lib/api';
 import { getGps } from '../lib/support';
 
 export default class Recorder extends Component {
   constructor(props) {
     super(props)
-    this.state = { latitude: null, longitude: null, recording: false, highlight: false, locations: [] }
+    this.state = { latitude: null, longitude: null, recording: false, highlight: false, locations: [], video: "" }
   }
 
   get options() {
@@ -32,18 +33,26 @@ export default class Recorder extends Component {
             in our database are accepted. Sorry!`
   }
 
+  get params() {
+    const { latitude, longitude } = this.state
+    return {
+      latitude,
+      longitude,
+    }
+  }
+
   componentDidMount = async () => {
     const { latitude, longitude } = this.state
     getGps(this._setLocation)
-    this.api = new Api()
-    var response = await this.api.getLocations(latitude, longitude)
-    var location = await response.json()[0]
-    this.setState({ location })
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
-    const { recording } = this.state
+    const { recording, latitude, longitude } = this.state
     const is_recording = prevState.recording == false && recording
+    const latitude_updated = prevState.latitude != latitude
+    const longitude_updated = prevState.longitude != longitude
+    const location_updated = latitude_updated && longitude_updated
+    api.params = this.params
     if (is_recording) {
       this.interval = setInterval(() => this.setState({
         highlight: !this.state.highlight
@@ -51,10 +60,19 @@ export default class Recorder extends Component {
       const video  = await this.camera.recordAsync(this.options)
       this.setState({ video })
     }
+    if (location_updated) {
+      var response = await api.getLocations(latitude, longitude, 1, 1)
+      var location = await response.json()[0]
+      this.setState({ location })
+    }
   }
 
   _setLocation = ({ latitude, longitude }) => {
     this.setState({ latitude, longitude })
+  }
+
+  _setVideo = () => {
+    this.setState({ video: null })
   }
 
   _startRecording = async function() {
@@ -111,7 +129,8 @@ export default class Recorder extends Component {
             longitude={longitude} 
             latitude={latitude} 
             video={video} 
-            api={this.api}
+            api={api}
+            deleteVideo={this._setVideo}
             /> 
           : this._renderCamera() 
         }

@@ -6,9 +6,9 @@ export default function Tutor({hide}) {
   const { height } = useDimensions().window
   return (
     <View style={[styles.container, { height: height }]}>
-      <Text style={styles.text}>Please take a short video of the surf set.</Text>
-      <Text style={styles.text}>The video should be 3-5 minutes long and showcase the best waves right now.</Text>
-      <Text style={styles.text}>You need to be at the beach.</Text>
+      <Text style={styles.text}>Record other surfers with your phone for 1-3 minutes.</Text>
+      <Text style={styles.text}>Use the zoom on your phone to better display the surfing condition and the type of wave.</Text>
+      <Text style={styles.text}>It will help us improve our surfing and better forecast the wave conditions.</Text>
       <TouchableOpacity
         style={styles.button}
         color="white"
