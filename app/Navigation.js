@@ -16,9 +16,9 @@ const AppStack = createStackNavigator({
       header: null,
     }),
   }, 
+  Camera: CameraScreen,
   WebView: WebViewScreen,
   Profile: ProfileScreen, Map: MapScreen, 
-  Camera: CameraScreen,
   Nearby: NearbyScreen,
   Forecast: ForecastScreen,
 });
