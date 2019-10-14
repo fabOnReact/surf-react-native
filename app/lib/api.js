@@ -65,6 +65,11 @@ class Api {
     return `${this.coordinates}&${this.page}`
   }
 
+  getLocationsWithQuery = async (query) => {
+    const config = await this.getConfig("GET")
+    return await fetch(`${host}/locations.json?${query}`, config)
+  }
+
   getLocations = async () => {
     const config = await this.getConfig("GET")
     return await fetch(`${host}/locations.json?${this.query}`, config)

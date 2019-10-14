@@ -5,6 +5,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { getResources } from '../lib/api';
 import Map from '../lib/map';
 import Spot from '../components/Spot';
+import api from '../lib/api';
 import { serialize } from '../lib/support';
 import { styles } from './styles/MapStyles';
 
@@ -23,28 +24,24 @@ export default class MapScreen extends Component {
     var lat = navigation.getParam('lat')
     var lon = navigation.getParam('lon')
     if (lat == "" || lon == "") { lat = -8.634508; lon = 115.192803 }
-    this.state = { data: [], latitude: parseInt(lat), longitude: parseInt(lon), inOverview: true, boundaries: { southWest: null, northEast: null }}
+    this.state = { data: [], latitude: parseInt(lat), longitude: parseInt(lon)}
   }
 
-  handleRegionChange = () => {
-    this.ref.getMapBoundaries().then((coords) => {
-      const { boundaries, inOverview } = this.state
-      const { southWest, northEast } = boundaries 
-      if (this.position) { 
-        const map = new Map(coords, this.position) 
-        if (map.inOverview != inOverview) { 
-          this.setState({ inOverview: !inOverview}); 
-        } 
-        if (map.shouldUpdate) { 
-          this.position = coords
-          getResources(this.setData, this.corners)
-        }
-      } else {
-        this.setState({ boundaries: coords }) 
-        this.position = coords 
-        getResources(this.setData, this.corners)
-      }
-    })
+  componentDidMount = async () => {
+    const current_position = await this.ref.getMapBoundaries()
+    this.map = new Map(current_position) 
+  }
+
+  handleRegionChange = async () => {
+    const current_position = await this.ref.getMapBoundaries()
+    this.map.current = current_position
+    if (this.map.shouldUpdate) { 
+      this.map.previous = current_position
+      const query = `${serialize(current_position)}`
+      const response = await api.getLocationsWithQuery(query)
+      const json = await response.json()
+      this.setState({ data: json })
+    }
   }
 
   setData = async (json) => {
@@ -54,11 +51,6 @@ export default class MapScreen extends Component {
   addData = (json) => {
     const { data } = this.state
     this.setState({ data: [...data, ...json] })
-  }
-
-  get corners() {
-    const { inOverview } = this.state
-    return `locations?${serialize(this.position)}&inOverview=${inOverview}`
   }
 
   render() {
