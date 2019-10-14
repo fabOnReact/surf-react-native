@@ -56,14 +56,14 @@ export default class Player extends React.Component {
     if (processing_finished) {
       api.createPost(this.post)
       this.setState({ url: null, poster: null, post: null })
+      this.props.setVideo(true)
     }
   }
 
   render() {
     const { processing } = this.state
-    const { deleteVideo, video } = this.props
+    const { setVideo, video } = this.props
     const { uri, codec = "mp4" } = video
-    // const uri = "https://surfcheck.s3.eu-central-1.amazonaws.com/seeds/videos/bronte-min.mp4"
     const height = Dimensions.get('window').height
     return (
       <React.Fragment>
@@ -75,7 +75,7 @@ export default class Player extends React.Component {
         <UploadButton 
           upload={this._uploadVideo} />
         <CancelButton 
-          deleteVideo={deleteVideo} />
+          setVideo={setVideo} />
         <Video
           source={{uri: uri}}
           posterResizeMode="cover"

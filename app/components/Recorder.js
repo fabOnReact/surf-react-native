@@ -71,7 +71,10 @@ export default class Recorder extends Component {
     this.setState({ latitude, longitude })
   }
 
-  _setVideo = () => {
+  _setVideo = (saved) => {
+    if(saved) {
+      alert("Your videos was saved and it is now available in the homepage")
+    } 
     this.setState({ video: null })
   }
 
@@ -130,7 +133,7 @@ export default class Recorder extends Component {
           latitude={latitude} 
           video={video} 
           api={api}
-          deleteVideo={this._setVideo}
+          setVideo={this._setVideo}
           /> 
         : this._renderCamera() 
           }

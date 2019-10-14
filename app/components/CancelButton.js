@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function CancelButton({ deleteVideo }){
+export default function CancelButton({ setVideo }){
   return (
     <TouchableOpacity
       text="Submit"
       style={styles.containerRight}
-      onPress={deleteVideo} >
+      onPress={() => setVideo(false)} >
       <Text>Cancel</Text>
       <Icon name="ios-close" 
         size={50} 
