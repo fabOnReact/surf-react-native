@@ -125,15 +125,15 @@ export default class Recorder extends Component {
     return (
       <React.Fragment>
         { video ?  
-          <Player 
-            longitude={longitude} 
-            latitude={latitude} 
-            video={video} 
-            api={api}
-            deleteVideo={this._setVideo}
-            /> 
-          : this._renderCamera() 
-        }
+        <Player 
+          longitude={longitude} 
+          latitude={latitude} 
+          video={video} 
+          api={api}
+          deleteVideo={this._setVideo}
+          /> 
+        : this._renderCamera() 
+          }
       </React.Fragment>
     )
   }

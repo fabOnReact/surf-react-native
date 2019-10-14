@@ -6,7 +6,8 @@ export default function UploadButton({ upload }){
   return (
     <TouchableOpacity
       text="Submit"
-      style={styles.containerLeft}>
+      style={styles.containerLeft}
+      onPress={upload}>
       <Icon name="ios-checkmark" 
         size={50} 
         color="black" />
