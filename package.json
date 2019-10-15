@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "lint": "eslint *.js **/*.js"
+    "lint": "eslint *.js **/*.js",
+    "postinstall": "jetifier -r"
   },
   "dependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
@@ -23,7 +24,7 @@
     "react-native-elements": "^1.0.0-beta7",
     "react-native-fit-image": "^1.5.4",
     "react-native-geolocation-service": "^3.0.0",
-    "react-native-gesture-handler": "^1.2.1",
+    "react-native-gesture-handler": "^1.4.1",
     "react-native-google-signin": "^1.2.1",
     "react-native-hooks": "^0.9.0",
     "react-native-loading-spinner-overlay": "^1.0.1",
@@ -55,6 +56,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.0",
+    "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "^0.54.1",
     "react-test-renderer": "^16.8.3",
     "reactotron-react-native": "^3.2.1"
