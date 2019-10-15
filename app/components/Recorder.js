@@ -47,7 +47,7 @@ export default class Recorder extends Component {
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
-    const { recording, latitude, longitude } = this.state
+    const { recording, latitude, longitude, saved } = this.state
     const is_recording = prevState.recording == false && recording
     const latitude_updated = prevState.latitude != latitude
     const longitude_updated = prevState.longitude != longitude
@@ -65,6 +65,9 @@ export default class Recorder extends Component {
       var location = await response.json()[0]
       this.setState({ location })
     }
+    if(saved) {
+      alert("Your videos was saved and it is now available in the homepage")
+    } 
   }
 
   _setLocation = ({ latitude, longitude }) => {
@@ -72,10 +75,7 @@ export default class Recorder extends Component {
   }
 
   _setVideo = (saved) => {
-    if(saved) {
-      alert("Your videos was saved and it is now available in the homepage")
-    } 
-    this.setState({ video: null })
+    this.setState({ video: null, saved: saved })
   }
 
   _startRecording = async function() {
