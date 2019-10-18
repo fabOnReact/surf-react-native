@@ -5,6 +5,7 @@ import Dimensions from 'Dimensions';
 import ErrorMessage from '../components/ErrorMessage'
 import Tutor from '../components/Tutor';
 import Recorder from '../components/Recorder';
+import ZoomView from '../components/ZoomView';
 
 export default class CameraScreen extends Component {
   static navigationOptions = {
@@ -17,7 +18,7 @@ export default class CameraScreen extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { tutor: true }
+    this.state = { tutor: true, zoom: '' }
   }
 
   hideTutor = () => {
@@ -30,7 +31,7 @@ export default class CameraScreen extends Component {
     return (
       <View style={styles.container}>
         { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
-        { tutor ? <Tutor hide={this.hideTutor} /> : <Recorder /> }
+        {tutor ? <Tutor hide={this.hideTutor} /> : <Recorder />}
       </View>
     );
   }
