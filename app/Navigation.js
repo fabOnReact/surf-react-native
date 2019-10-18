@@ -10,13 +10,13 @@ import NearbyScreen from './screens/NearbyScreen';
 import AuthenticationScreen from './screens/AuthenticationScreen';
 
 const AppStack = createStackNavigator({ 
+  Camera: CameraScreen,
   Index: {
     screen: IndexScreen,
     navigationOptions: ({navigation}) => ({
       header: null,
     }),
   }, 
-  Camera: CameraScreen,
   WebView: WebViewScreen,
   Profile: ProfileScreen, Map: MapScreen, 
   Nearby: NearbyScreen,
