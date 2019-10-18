@@ -46,6 +46,9 @@ target 'SurfApp' do
 
   pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
 
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
   target 'SurfAppTests' do
     inherit! :search_paths
     # Pods for testing
