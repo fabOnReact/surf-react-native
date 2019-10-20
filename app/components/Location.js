@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
-import { errorMessage } from '../lib/api';
+import { TouchableOpacity }  from 'react-native';
+import Cam from './Cam';
 
 export default class Location extends Component {
-  constructor(props) {
-    super(props)
-    if (!this.props.enabled) { return }
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.props.setLocation(position.coords)
-      },
-      (error) => errorMessage(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
+  forecastScreen = () => {
+    const { navigation } = this.props
+    const { location } = this.props
+    const { data: { attributes: location_attributes }} = location
+    // if (forecast_info) { 
+    //   navigation.navigate('Forecast', { location: location_attributes }) 
+    // }
   }
 
   render() {
-    return null;
+    const { data } = this.props
+    const { included: cameras } = data
+    const { attributes } = data
+    return (
+      <TouchableOpacity 
+        onPress={this.foreastScreen}>
+        { 
+          cameras.map(camera => 
+            <Cam 
+              key={camera.id}
+              data={camera} />
+          )
+        }
+        {/*
+          <ForecastInfo location={location} style={absolute} />
+        */}
+      </TouchableOpacity>
+    )
   }
 }
