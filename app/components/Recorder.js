@@ -33,9 +33,7 @@ export default class Recorder extends Component {
   }
 
   get message() {
-    return `Looks like you are very far from any surf destination, 
-            only videos that are taken at a surfspot present 
-            in our database are accepted. Sorry!`
+    return `Looks like you are very far from any surf destination, only videos that are taken at a surfspot present in our database are accepted. Sorry!`
   }
 
   get params() {
@@ -43,6 +41,8 @@ export default class Recorder extends Component {
     return {
       latitude,
       longitude,
+      page: 1,
+      per_page: 1,
     }
   }
 
@@ -66,8 +66,9 @@ export default class Recorder extends Component {
       this.setState({ video })
     }
     if (location_updated) {
-      var response = await api.getLocations(latitude, longitude, 1, 1)
-      var location = await response.json()[0]
+      var response = await api.getLocations({})
+      var json = await response.json()
+      var { data: { attributes: location }} = json[0]
       this.setState({ location })
     }
     if(saved) {
@@ -95,9 +96,8 @@ export default class Recorder extends Component {
   }
 
   _recording = () => {
-    console.warn('_recording');
     const { recording, location } = this.state
-    if (!!location) { 
+    if (!location) { 
       alert(this.message) 
       return
     }
