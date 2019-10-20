@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, View, Text } from 'react-native';
-// import { View } from 'react-native';
 import Dimensions from 'Dimensions';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 

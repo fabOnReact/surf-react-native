@@ -10,7 +10,7 @@ import { getGps } from '../lib/support';
 import ZoomView from './ZoomView';
 
 const MAX_ZOOM = 8; // iOS only
-const ZOOM_F = Platform.OS === 'ios' ? 0.0005 : 0.08;
+const ZOOM_F = Platform.OS === 'ios' ? 0.001 : 0.08;
 
 export default class Recorder extends Component {
 
@@ -116,13 +116,11 @@ export default class Recorder extends Component {
     let p2 = p - this._prevPinch
     if(p2 > 0 && p2 > ZOOM_F) {
       this._prevPinch = p
-      this.setState({zoom: Math.min(this.state.zoom + ZOOM_F, 1)}, () => {
-      })
+      this.setState({zoom: Math.min(this.state.zoom + ZOOM_F, 1)})
     }
     else if (p2 < 0 && p2 < -ZOOM_F) {
       this._prevPinch = p
-      this.setState({zoom: Math.max(this.state.zoom - ZOOM_F, 0)}, () => {
-      })
+      this.setState({zoom: Math.max(this.state.zoom - ZOOM_F, 0)})
     }
   }
 
