@@ -30,9 +30,10 @@ class Api {
   }
 
   set params(obj) {
-    const { latitude, longitude, page = null } = obj
+    const { latitude, longitude, page = 1, per_page = 4 } = obj
     this._coordinates = { latitude, longitude }
     this._page = page
+    this._per_page = per_page
   }
 
   get latitude() {
@@ -58,36 +59,56 @@ class Api {
   }
 
   get page() {
-    return `page=${this._page}&per_page=4`
+    return this._page
+  }
+
+  get pagination() {
+    return `page=${this.page}&per_page=${this.per_page}`
+  }
+
+  set per_page(number) {
+    this._per_page = number
+  }
+
+  get per_page() {
+    return this._per_page
   }
 
   get query() {
-    return `${this.coordinates}&${this.page}`
+    return `${this.coordinates}&${this.pagination}`
   }
 
-  getLocationsWithQuery = async (query) => {
-    const config = await this.getConfig("GET")
-    return await fetch(`${host}/locations.json?${query}`, config)
+  perform = async () => {
+    try {
+      return await fetch(this.url, this.config)
+    } catch(error) {
+      console.warn('api call failed with error: ', error)
+    }
   }
-
-  getLocations = async () => {
-    const config = await this.getConfig("GET")
-    return await fetch(`${host}/locations.json?${this.query}`, config)
+  
+  getLocations = async ({ query = this.query, flags = [""] }) => {
+    this.config = await this.getConfig("GET")
+    const and_flags = `${flags.join("")}`
+    this.url = `${host}/locations.json?${query + and_flags}`
+    return await this.perform()
   }
 
   getPosts = async () => {
-    const config = await this.getConfig("GET")
-    return await fetch( `${host}/posts.json?${this.query}`, config)
+    this.config = await this.getConfig("GET")
+    this.url = `${host}/posts.json?${this.query}`
+    return await this.perform()
   }
 
   createPost = async (data) => {
-    const config = await this.getConfig("POST", data) 
-    return await fetch(`${host}/posts.json`, config)
+    this.config = await this.getConfig("POST", data) 
+    this.url = `${host}/posts.json`
+    return await this.perform()
   }
 
   updatePost = async (id, data) => {
-    const config = await this.getConfig("PUT", data)
-    return await fetch(`${host}/posts/${id}.json`, config)
+    this.config = await this.getConfig("PUT", data)
+    this.url = `${host}/posts/${id}.json`
+    return await this.perform()
   }
 }
 
