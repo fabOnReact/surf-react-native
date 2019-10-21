@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
 import Forecast from './Forecast';
-import ProfileButton from './ProfileButton';
-import MapButton from './MapButton';
-import CameraButton from './CameraButton';
+import ProfileButton from './buttons/ProfileButton';
+import MapButton from './buttons/MapButton';
+import CameraButton from './buttons/CameraButton';
 import Location from './Location';
 import { getGps } from '../lib/support';
 import api from '../lib/api';

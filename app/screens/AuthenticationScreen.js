@@ -7,9 +7,9 @@ import { styles } from './styles';
 import ErrorMessage from '../components/ErrorMessage'
 import Message from '../lib/message'
 import { createResource } from '../lib/api'
-import SignInButton from '../components/SignInButton'
 import { sessionSettings } from '../lib/support'
-import GoogleButton from '../components/GoogleButton'
+import SignInButton from '../components/buttons/SignInButton'
+import GoogleButton from '../components/buttons/GoogleButton'
 import { getAsset } from '../lib/support'
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 
