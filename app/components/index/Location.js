@@ -4,11 +4,15 @@ import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
 import CamButton from '../buttons/CamButton';
 import { Header } from 'react-navigation';
-// import ForecastInfo from './ForecastInfo';
 
 export default class Location extends Component {
+  get attributes() {
+    const { location: { data: { attributes }}} = this.props
+    return attributes
+  }
+
   get forecastInfo() {
-    const { data: { forecast_info }} = this.props
+    const { forecast_info } = this.attributes
     return forecast_info
   }
 
@@ -23,7 +27,7 @@ export default class Location extends Component {
   }
 
   get name() {
-    const { data: { name }} = this.props
+    const { name } = this.attributes
     return name
   }
   
@@ -33,14 +37,28 @@ export default class Location extends Component {
     }
   }
 
+  navigateToForecast = () => {
+    const { navigation, location } = this.props
+    if(!!this.swellHeight) {
+      navigation.navigate('Forecast', { location: location })
+    }
+  }
+
   render() {
-    const { data, cameras, changeCamera } = this.props
+    const { cameras, changeCamera } = this.props
+    const { location: { data: { attributes }}} = this.props
     const previews = cameras
     previews.length = 5
     return (
       <React.Fragment>
+        <TouchableOpacity
+          onPress={this.navigateToForecast}
+          style={[styles.full_screen]}>
           <View
-            style={styles.button_container}>
+            style={[
+              styles.full_screen, 
+              styles.flex_evenly,
+            ]}>
             {
               previews.map((camera, index) => 
                 <CamButton 
@@ -54,23 +72,26 @@ export default class Location extends Component {
             style={styles.header}>
               { this.title }
           </Text>
+        </TouchableOpacity>
       </React.Fragment>
     )
   }
 }
 
 export const styles = StyleSheet.create({
-  button_container: {
-    zIndex: 1,
+  full_screen: {
     position: 'absolute',
-    top: 0,
-    left:0,
-    bottom:0,
-    right:0,
+    top:0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  flex_evenly: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-evenly',
+    zIndex: 1,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 5,

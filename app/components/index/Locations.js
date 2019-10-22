@@ -102,27 +102,26 @@ export default class Locations extends Component {
     // if(!refreshing) { this._setPosts() }
   };
 
-  renderCard(item, index) {
-    const { navigation } = this.props
-    return (
-      <Cameras location={item} />
-    )
-  }
-
   renderList() {
+    const { navigation } = this.props
     const { locations } = this.state
     return (
       <FlatList
         data={locations}
-        // data={posts}
         keyExtractor={(item, index) => index.toString() }
         refreshing={this.state.refreshing}
         onRefresh={this._handleRefresh}
         onEndReached={this._onEndReached}
         onEndReachedThreshold={0.01}
-        // extraData={locations}
-        listFooterComponent={<Text>Testing</Text>}
-        renderItem={({ item, index }) => this.renderCard(item, index)}
+        // listFooterComponent={<Text>Testing</Text>}
+        renderItem={({ item, index }) => {
+          return ( 
+            <Cameras 
+              location={item} 
+              navigation={navigation}
+            />
+          )
+        }}
       />
     )
   }
