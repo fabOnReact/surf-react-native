@@ -7,15 +7,6 @@ import { Header } from 'react-navigation';
 // import ForecastInfo from './ForecastInfo';
 
 export default class Location extends Component {
-  forecastScreen = () => {
-    const { navigation } = this.props
-    const { location } = this.props
-    const { data: { attributes: location_attributes }} = location
-    // if (forecast_info) { 
-    //   navigation.navigate('Forecast', { location: location_attributes }) 
-    // }
-  }
-
   get forecastInfo() {
     const { data: { forecast_info }} = this.props
     return forecast_info
@@ -44,23 +35,25 @@ export default class Location extends Component {
 
   render() {
     const { data, cameras, changeCamera } = this.props
+    const previews = cameras
+    previews.length = 5
     return (
       <React.Fragment>
-        <View
-          style={styles.button_container}>
-          {
-            cameras.map((camera, index) => 
-              <CamButton 
-                key={index}
-                index={index}
-                action={changeCamera} />
-            )
-          }
-        </View>
-        <Text 
-          style={styles.header}>
-            { this.title }
-        </Text>
+          <View
+            style={styles.button_container}>
+            {
+              previews.map((camera, index) => 
+                <CamButton 
+                  key={index}
+                  index={index}
+                  action={changeCamera} />
+              )
+            }
+          </View>
+          <Text 
+            style={styles.header}>
+              { this.title }
+          </Text>
       </React.Fragment>
     )
   }
