@@ -4,15 +4,15 @@ import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 export default function CamButton({ action, index }) {
   return (
     <React.Fragment>
-    <TouchableOpacity 
-      style={styles.button}
-      onPress={() => action(index)}
-    >
-      <Text
-        style={styles.text}>
-        CAM { index + 1 } 
-      </Text>
-    </TouchableOpacity>
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => action(index)}
+      >
+        <Text
+          style={styles.text}>
+          CAM { index + 1 } 
+        </Text>
+      </TouchableOpacity>
     </React.Fragment>
   )
 }

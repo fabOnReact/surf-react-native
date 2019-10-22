@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
 import { Card } from 'native-base';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
@@ -9,6 +9,11 @@ import CamButton from '../buttons/CamButton';
 import Location from './Location';
 
 export default class Cameras extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: true }
+  }
+
   componentWillMount() { 
     Orientation.addOrientationListener(this._imageStyles) 
     const { location: { included: cameras }} = this.props
@@ -50,7 +55,8 @@ export default class Cameras extends Component {
     const { location } = this.props
     const { included: cameras } = location
     const location_attributes = this.props.location.data.attributes
-    const { camera: { attributes: { posts }}} = this.state
+    const { camera: { attributes: { posts }} } = this.state
+    const { loading } = this.state
     const { video: { url, poster }} = posts[0]
     return (
       <TouchableOpacity 
@@ -62,9 +68,18 @@ export default class Cameras extends Component {
             posterResizeMode="cover"
             resizeMode="cover"
             style={styles.video}
+            onLoadStart={() => this.setState({loading: true })}
+            onReadyForDisplay={() => this.setState({loading: false})}
             repeat 
             muted 
           />
+          <View style={styles.loading}>
+            <ActivityIndicator 
+              size="large" 
+              color="white"
+              animating={loading}
+            />
+          </View>
           <Location 
             data={location_attributes} 
             cameras={cameras} 
@@ -83,4 +98,14 @@ const styles = StyleSheet.create({
     width: "100%",
     zIndex: 0,
   },
+  loading: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 })
