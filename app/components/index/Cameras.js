@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { StatusBar, ActivityIndicator, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
+import { Platform, StatusBar, ActivityIndicator, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
 import { Card } from 'native-base';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     // aspectRatio: 1.7, 
     width: "100%",
     // height: "100%",
-    height: Dimensions.get('window').height - StatusBar.currentHeight,
+    height: Dimensions.get('window').height,
     zIndex: 0,
     marginLeft: 0,
   },

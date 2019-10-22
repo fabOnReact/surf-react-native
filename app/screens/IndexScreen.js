@@ -15,6 +15,7 @@ export default class IndexScreen extends Component {
   _iosLocations() {
     return ( 
       <SafeAreaView style={{flex:1}}>
+        <StatusBar translucent backgroundColor="red" />
         <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} />
       </SafeAreaView>
     )
@@ -25,13 +26,15 @@ export default class IndexScreen extends Component {
     return (
       <React.Fragment>
         { ios ? <LocationPermission /> : null } 
-        <StatusBar backgroundColor="white" barStyle="dark-content" />
+        {/* <StatusBar backgroundColor="white" barStyle="dark-content" /> */}
+        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
         <Spinner
           visible={this.state.spinner}
           textContent={'Loading...'}
           textStyle={styles.spinnerTextStyle}
         />
-        { ios ? this._iosLocations() : <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> } 
+        {/* ios ? this._iosLocations() : <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> */} 
+        { <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> }
       </React.Fragment>
     )
   }
