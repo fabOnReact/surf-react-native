@@ -45,8 +45,8 @@ export default class Location extends Component {
 
   render() {
     const { location: { included: cameras }} = this.props
-    const { camera: { attributes: { posts }}} = this.state
-    const { video: { url, poster }} = posts[0]
+    // const { camera: { attributes: { posts }}} = this.state
+    // const { video: { url, poster }} = posts[0]
     return (
       <React.Fragment>
       <TouchableOpacity 
@@ -54,32 +54,6 @@ export default class Location extends Component {
         <Cameras 
           cameras={cameras} 
         />
-        <Card trasparent style={{flex: 1, zIndex: 0}}>
-          <Video 
-            source={{ uri: url }}
-            poster={poster}
-            posterResizeMode="cover"
-            resizeMode="cover"
-            style={styles.video}
-            repeat 
-            muted 
-          />
-          <View
-            style={styles.button_container}>
-            {
-              cameras.map((camera, index) => 
-                <CamButton 
-                  key={index}
-                  index={index}
-                  action={this.changeCam} />
-              )
-            }
-          </View>
-          <Text 
-            style={styles.header}>
-              { this.title }
-          </Text>
-        </Card>
       </TouchableOpacity>
       </React.Fragment>
     )
