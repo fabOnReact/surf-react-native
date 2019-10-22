@@ -3,6 +3,7 @@ package com.surfapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.bugsnag.BugsnagReactNative;
 import com.brentvatne.react.ReactVideoPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
             new RNScreensPackage(),
             BugsnagReactNative.getPackage(),
             new ReactVideoPackage(),

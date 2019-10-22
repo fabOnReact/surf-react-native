@@ -49,6 +49,8 @@ target 'SurfApp' do
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
   target 'SurfAppTests' do
     inherit! :search_paths
     # Pods for testing

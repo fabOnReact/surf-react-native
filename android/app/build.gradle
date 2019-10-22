@@ -164,6 +164,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-device-info')
     implementation project(':react-native-screens')
     implementation project(':bugsnag-react-native')
     implementation project(':react-native-orientation')
