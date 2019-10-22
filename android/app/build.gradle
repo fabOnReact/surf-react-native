@@ -116,6 +116,7 @@ android {
       }
       defaultConfig {
         missingDimensionStrategy 'react-native-camera', 'general'
+        multiDexEnabled true
       }
       config {
       }
