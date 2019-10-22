@@ -21,6 +21,8 @@ const AppStack = createStackNavigator({
   Profile: ProfileScreen, Map: MapScreen, 
   Nearby: NearbyScreen,
   Forecast: ForecastScreen,
+},{
+  headerMode: 'none',
 });
 
 const AuthStack = createStackNavigator({ Authentication: AuthenticationScreen });
