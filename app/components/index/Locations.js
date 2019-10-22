@@ -4,7 +4,7 @@ import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-nati
 import ProfileButton from '../buttons/ProfileButton';
 import MapButton from '../buttons/MapButton';
 import CameraButton from '../buttons/CameraButton';
-import Location from './Location';
+import Cameras from './Cameras';
 import { getGps } from '../../lib/support';
 import api from '../../lib/api';
 
@@ -105,7 +105,7 @@ export default class Locations extends Component {
   renderCard(item, index) {
     const { navigation } = this.props
     return (
-      <Location location={item} />
+      <Cameras location={item} />
     )
   }
 
