@@ -7,6 +7,30 @@ export const sessionSettings = { endpoint: "users/sign_in", responseStatus: 200 
 export const postSettings = { method: "POST", endpoint: "posts", responseStatus: 201 }
 export const headers = { "Accept": "application/json", "Content-Type": "application/json" }
 
+import Dimensions from 'Dimensions';
+import { Header } from 'react-navigation';
+class Element {
+  get width() {
+    return Dimensions.get('window').width
+  }
+
+  get height() {
+    return Dimensions.get('window').height
+  }
+
+  style = (orientation, component) => {
+    const new_width = this.width - Header.HEIGHT/2
+    if (orientation != 'PORTRAIT') { 
+      component.setState({ width: new_width, portrait: false })
+    } else { 
+      const new_height = (this.height - Header.HEIGHT)/3
+      component.setState({ width: new_width, height: new_height, portrait: true })
+    }
+  }
+}
+
+export const element = new Element
+
 export const getGps = async (callback) => {
   Geolocation.getCurrentPosition(
     (position) => callback(position.coords),
