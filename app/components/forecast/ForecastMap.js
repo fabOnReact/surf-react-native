@@ -3,7 +3,7 @@ import { Dimensions, Image } from 'react-native';
 import { H3, Card, CardItem, Text, Left, Body } from 'native-base';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import Chart from './Chart';
-import { styles } from './styles/ForecastMapStyles';
+import { styles } from '../styles/ForecastMapStyles';
 
 export default class ForecastMap extends Component {
   constructor(props) {
@@ -48,14 +48,14 @@ export default class ForecastMap extends Component {
                 styles.arrow, 
                 { transform: [{ rotateZ: `${windDirection}deg`}] }
               ]}
-              source={require('../images/down-arrow.png')} 
+              source={require('../../images/down-arrow.png')} 
             />
             <Image 
               style={[
                 styles.arrow,
                 { transform: [{ rotateZ: `${waveDirection}deg`}] } 
               ]}
-              source={require('../images/down-cursor.png')} 
+              source={require('../../images/down-cursor.png')} 
             />
           </CardItem>
           <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 24h Tide mt.</H3>

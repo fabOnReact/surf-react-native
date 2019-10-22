@@ -8,7 +8,7 @@ export default function ProfileButton({ navigation }){
       style={buttons.containerRight}>
       <Image 
         style={buttons.buttonRight} 
-        source={require('../images/profile-user.png')}
+        source={require('../../images/profile-user.png')}
       />
     </TouchableOpacity>
   )

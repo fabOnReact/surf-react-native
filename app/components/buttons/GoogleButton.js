@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GoogleSigninButton, statusCodes } from 'react-native-google-signin';
-import { configureGoogleSignIn, getGoogleUser, createResource } from '../lib/api';
-import { errorMessage, userSettings } from '../lib/support';
+import { configureGoogleSignIn, getGoogleUser, createResource } from '../../lib/api';
+import { errorMessage, userSettings } from '../../lib/support';
 
 export default class GoogleButton extends Component {
   async componentDidMount() {

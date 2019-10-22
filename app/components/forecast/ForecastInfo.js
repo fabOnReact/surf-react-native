@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { styles } from  './styles/ForecastStyles';
+import { styles } from  '../styles/ForecastStyles';
 
 export default class ForecastInfo extends Component {
   _renderInfo() {
@@ -19,9 +19,18 @@ export default class ForecastInfo extends Component {
   render() {
     const { children, style } = this.props
     return (
-      <View style={style}> 
+      <View> 
         <Text style={[styles.shadowHeader, styles.overlayText]}>{ this._renderInfo() }</Text>
       </View>
     )
   }
 }
+
+// const style = StyleSheet.create({
+//   absolute: {
+//     position: 'absolute', 
+//     width: "100%",
+//     alignItems: 'center', 
+//     bottom: 5,
+//   }
+// })

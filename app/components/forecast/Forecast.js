@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'native-base';
-import { styles } from './styles/ForecastStyles';
+import { styles } from '../styles/ForecastStyles';
 
 export default class Forecast extends Component {
   constructor(props) {

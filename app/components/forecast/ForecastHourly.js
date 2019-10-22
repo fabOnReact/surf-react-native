@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { H3 } from 'native-base';
-import ForecastInfo from '../components/ForecastInfo';
-import { styles } from './styles/ForecastStyles';
+import ForecastInfo from './ForecastInfo';
+import { styles } from '../styles/ForecastStyles';
 
 export default function ForecastHourly(props) {
   const { forecast_info, location } = props
@@ -35,7 +35,7 @@ export default function ForecastHourly(props) {
           { windSpeed } m/s wind
         </Text>
         <Image 
-          source={require('../images/down-cursor-black.png')}
+          source={require('../../images/down-cursor-black.png')}
           style={[
             { left: "15%", tintColor: swellColor },
             styles.icon, 
@@ -43,7 +43,7 @@ export default function ForecastHourly(props) {
           ]}
         />
         <Image 
-          source={require('../images/down-arrow-black.png')}
+          source={require('../../images/down-arrow-black.png')}
           style={[ 
               { right: "15%", tintColor: windColor },
               styles.icon,

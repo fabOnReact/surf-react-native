@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, View, Text } from 'react-native';
-import { styles } from './styles/TableViewStyles';
+import { styles } from '../styles/TableViewStyles';
 
 export default class TableView extends Component {
 
@@ -60,7 +60,7 @@ export default class TableView extends Component {
                     styles.arrowContainer
                   ]}>
                   <Image 
-                    source={require('../images/down-cursor-black.png')}
+                    source={require('../../images/down-cursor-black.png')}
                     style={[
                       { tintColor: swellIconColor },
                       styles.icon, 
@@ -80,7 +80,7 @@ export default class TableView extends Component {
                   styles.arrowContainer
                 ]}>
                   <Image 
-                    source={require('../images/down-cursor-black.png')}
+                    source={require('../../images/down-cursor-black.png')}
                     style={[
                       { tintColor: windIconColor }, 
                       styles.icon, 

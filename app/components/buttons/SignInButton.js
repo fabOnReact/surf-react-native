@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import { sessionSettings, userSettings } from '../lib/support'
+import { sessionSettings, userSettings } from '../../lib/support'
 
 export default class SignInButton extends Component {
   state = { signUpScreen: false };

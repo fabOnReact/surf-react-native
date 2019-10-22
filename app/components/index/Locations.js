@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
-import Forecast from './Forecast';
-import ProfileButton from './buttons/ProfileButton';
-import MapButton from './buttons/MapButton';
-import CameraButton from './buttons/CameraButton';
+// import Forecast from './Forecast';
+import ProfileButton from '../buttons/ProfileButton';
+import MapButton from '../buttons/MapButton';
+import CameraButton from '../buttons/CameraButton';
 import Location from './Location';
-import { getGps } from '../lib/support';
-import api from '../lib/api';
+import { getGps } from '../../lib/support';
+import api from '../../lib/api';
 
 export default class Locations extends Component {
   constructor(props){
@@ -105,7 +105,7 @@ export default class Locations extends Component {
   renderCard(item, index) {
     const { navigation } = this.props
     return (
-      <Location data={item} />
+      <Location location={item} />
     )
   }
 
@@ -121,18 +121,19 @@ export default class Locations extends Component {
         onEndReached={this._onEndReached}
         onEndReachedThreshold={0.01}
         // extraData={locations}
+        listFooterComponent={<Text>Testing</Text>}
         renderItem={({ item, index }) => this.renderCard(item, index)}
       />
     )
   }
 
-  renderForecastPreview() {
-    return (
-      <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations }) }>
-        <Forecast locations={locations} index={index} />
-      </TouchableOpacity>
-    )
-  }
+  //  renderForecastPreview() {
+  //    return (
+  //      <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations }) }>
+  //        <Forecast locations={locations} index={index} />
+  //      </TouchableOpacity>
+  //    )
+  //  }
 
   render() {
     const { navigation } = this.props;

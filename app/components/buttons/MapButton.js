@@ -8,7 +8,7 @@ export default function MapButton({ navigation, latitude, longitude }) {
       style={buttons.containerLeft}>
       <Image 
         style={buttons.buttonLeft} 
-        source={require('../images/location.png')}
+        source={require('../../images/location.png')}
       />
     </TouchableOpacity>
   )

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Platform, StyleSheet, View, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Dimensions from 'Dimensions';
-import RecordingButton from './buttons/RecordingButton';
-import UploadButton from './buttons/UploadButton';
+import RecordingButton from '../buttons/RecordingButton';
+import UploadButton from '../buttons/UploadButton';
 import Player from './Player';
-import api from '../lib/api';
-import { getGps } from '../lib/support';
+import api from '../../lib/api';
+import { getGps } from '../../lib/support';
 import ZoomView from './ZoomView';
 
 const MAX_ZOOM = 8; // iOS only
