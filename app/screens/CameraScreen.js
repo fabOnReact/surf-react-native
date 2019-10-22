@@ -3,9 +3,9 @@ import { StyleSheet, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Dimensions from 'Dimensions';
 import ErrorMessage from '../components/ErrorMessage'
-import Tutor from '../components/Tutor';
-import Recorder from '../components/Recorder';
-import ZoomView from '../components/ZoomView';
+import Tutor from '../components/camera/Tutor';
+import Recorder from '../components/camera/Recorder';
+import ZoomView from '../components/camera/ZoomView';
 
 export default class CameraScreen extends Component {
   static navigationOptions = {

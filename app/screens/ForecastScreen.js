@@ -3,9 +3,9 @@ import { StatusBar, Platform, Dimensions, ScrollView, Image } from 'react-native
 import { Header } from 'react-navigation';
 import { H3 } from 'native-base';
 import Video from 'react-native-video';
-import ForecastMap from '../components/ForecastMap';
-import ForecastHourly from '../components/ForecastHourly';
-import TableView from '../components/TableView';
+import ForecastMap from '../components/forecast/ForecastMap';
+import ForecastHourly from '../components/forecast/ForecastHourly';
+import TableView from '../components/forecast/TableView';
 import { getAsset } from '../lib/support';
 
 export default class ForecastScreen extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BackHandler, DeviceEventEmitter, Alert, View, Text, StatusBar, Platform, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
-import Posts from '../components/Posts';
+import Locations from '../components/index/Locations';
 import LocationPermission from '../components/LocationPermission';
 
 export default class IndexScreen extends Component {
@@ -12,10 +12,10 @@ export default class IndexScreen extends Component {
     this.setState({ spinner: false }) 
   }
 
-  _iosPosts() {
+  _iosLocations() {
     return ( 
       <SafeAreaView style={{flex:1}}>
-        <Posts navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} />
+        <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} />
       </SafeAreaView>
     )
   }
@@ -31,7 +31,7 @@ export default class IndexScreen extends Component {
           textContent={'Loading...'}
           textStyle={styles.spinnerTextStyle}
         />
-        { ios ? this._iosPosts() : <Posts navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> } 
+        { ios ? this._iosLocations() : <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> } 
       </React.Fragment>
     )
   }

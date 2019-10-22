@@ -10,7 +10,6 @@ import NearbyScreen from './screens/NearbyScreen';
 import AuthenticationScreen from './screens/AuthenticationScreen';
 
 const AppStack = createStackNavigator({ 
-  Camera: CameraScreen,
   Index: {
     screen: IndexScreen,
     navigationOptions: ({navigation}) => ({
@@ -18,6 +17,7 @@ const AppStack = createStackNavigator({
     }),
   }, 
   WebView: WebViewScreen,
+  Camera: CameraScreen,
   Profile: ProfileScreen, Map: MapScreen, 
   Nearby: NearbyScreen,
   Forecast: ForecastScreen,
