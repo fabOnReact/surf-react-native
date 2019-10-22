@@ -22,7 +22,7 @@ const AppStack = createStackNavigator({
   Nearby: NearbyScreen,
   Forecast: ForecastScreen,
 },{
-  headerMode: 'none',
+  // headerMode: 'none',
 });
 
 const AuthStack = createStackNavigator({ Authentication: AuthenticationScreen });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BackHandler, DeviceEventEmitter, Alert, View, Text, StatusBar, Platform, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import DeviceInfo from 'react-native-device-info';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Locations from '../components/index/Locations';
 import LocationPermission from '../components/LocationPermission';
@@ -12,17 +13,9 @@ export default class IndexScreen extends Component {
     this.setState({ spinner: false }) 
   }
 
-  _iosLocations() {
-    return ( 
-      <SafeAreaView style={{flex:1}}>
-        <StatusBar translucent backgroundColor="red" />
-        <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} />
-      </SafeAreaView>
-    )
-  }
-
   render() {
     const ios = Platform.OS === 'ios'
+    const has_notch = DeviceInfo.hasNotch()
     return (
       <React.Fragment>
         { ios ? <LocationPermission /> : null } 
@@ -33,8 +26,11 @@ export default class IndexScreen extends Component {
           textContent={'Loading...'}
           textStyle={styles.spinnerTextStyle}
         />
-        {/* ios ? this._iosLocations() : <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> */} 
-        { <Locations navigation={this.props.navigation} loaded={this.pageIsLoaded} locationAlert={this._alertForLocationPermission} /> }
+        <Locations 
+          navigation={this.props.navigation} 
+          loaded={this.pageIsLoaded} 
+          locationAlert={this._alertForLocationPermission} 
+        /> 
       </React.Fragment>
     )
   }
