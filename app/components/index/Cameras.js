@@ -1,10 +1,11 @@
 import React, { Component }  from 'react';
 import { Platform, StatusBar, ActivityIndicator, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
 import { Card } from 'native-base';
+import DeviceInfo from 'react-native-device-info';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation';
-import { Header } from 'react-navigation';
+import { Header, SafeAreaView } from 'react-navigation';
 import CamButton from '../buttons/CamButton';
 import Location from './Location';
 import { element } from '../../lib/support';
@@ -71,45 +72,70 @@ export default class Cameras extends Component {
     this.setState({ camera: cameras[key] })
   }
 
-  render() {
-    const { location, forecastScreen, navigation } = this.props
-    const { included: cameras } = location
-    // const location_attributes = location.data.attributes
-    const { camera: { attributes: { posts }} } = this.state
+  renderText = () => {
     const { loading } = this.state
-    const { video: { url, poster }} = posts[0]
-    return (
-        <View style={{flex: 1, zIndex: 0}}>
-          <Video 
-            source={{ uri: url }}
-            poster={poster}
-            posterResizeMode="cover"
-            resizeMode="cover"
-            style={styles.video}
-            onLoadStart={() => this.setState({loading: true })}
-            onReadyForDisplay={() => this.setState({loading: false})}
-            repeat 
-            muted 
-          />
-          <View style={styles.loading}>
-            <ActivityIndicator 
-              size="large" 
-              color="white"
-              animating={loading}
-            />
-          </View>
-          <Location 
-            location={location}
-            cameras={cameras} 
-            changeCamera={this.changeCamera}
-            navigation={navigation}
+    const { location, navigation } = this.props
+    const { included: cameras } = location
+    return ( 
+      <React.Fragment>
+        <View style={styles.loading}>
+          <ActivityIndicator 
+            size="large" 
+            color="white"
+            animating={loading}
           />
         </View>
+        <Location 
+          location={location}
+          cameras={cameras} 
+          changeCamera={this.changeCamera}
+          navigation={navigation}
+        />
+      </React.Fragment>
+    )
+  }
+
+  renderSafeArea = () => {
+    return (
+      <SafeAreaView style={styles.safe_area}> 
+        { this.renderText() }
+      </SafeAreaView>
+    )
+  }
+  
+  render() {
+    // const location_attributes = location.data.attributes
+    const { camera: { attributes: { posts }} } = this.state
+    const { video: { url, poster }} = posts[0]
+    const has_notch = DeviceInfo.hasNotch()
+    return (
+      <View style={{flex: 1, zIndex: 0}}>
+        <Video 
+          source={{ uri: url }}
+          poster={poster}
+          posterResizeMode="cover"
+          resizeMode="cover"
+          style={styles.video}
+          onLoadStart={() => this.setState({loading: true })}
+          onReadyForDisplay={() => this.setState({loading: false})}
+          repeat 
+          muted 
+        />
+        { has_notch ? this.renderSafeArea() : this.renderText() }
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  safe_area: {
+    flex: 1,
+    position: 'absolute',
+    top: Header.HEIGHT,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
   video: { 
     // borderRadius: 9, 
     // aspectRatio: 1.7, 

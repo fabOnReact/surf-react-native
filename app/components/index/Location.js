@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
 import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
 import CamButton from '../buttons/CamButton';
+import DeviceInfo from 'react-native-device-info';
 import { Header } from 'react-navigation';
 
 export default class Location extends Component {
@@ -78,6 +79,7 @@ export default class Location extends Component {
   }
 }
 
+const has_notch = DeviceInfo.hasNotch()
 export const styles = StyleSheet.create({
   full_screen: {
     position: 'absolute',
@@ -94,11 +96,11 @@ export const styles = StyleSheet.create({
     zIndex: 1,
     marginLeft: 10,
     marginRight: 10,
-    marginBottom: 5,
+    marginBottom: 110,
   },
   header: {
     position: 'absolute',
-    top: 0,
+    top: has_notch ? 0 : 30,
     width: Dimensions.get('window').width,
     color: 'white',
     fontWeight: 'bold',
