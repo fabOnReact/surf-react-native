@@ -13,59 +13,64 @@ import { element } from '../../lib/support';
 export default class Cameras extends Component {
   constructor(props) {
     super(props)
-    this.state = { loading: true }
+    this.state = { loading: true, height: Dimensions.get('window').height }
   }
 
   componentWillMount() { 
-    Orientation.addOrientationListener(this._imageStyles) 
+    Orientation.addOrientationListener(this.setHeight) 
     const { location: { included: cameras }} = this.props
     this.setState({ camera: cameras[0] })
   }
 
-  componentDidMount() { 
-    // this._imageStyles("PORTRAIT") 
-  }
+  // componentDidMount() { 
+  //   // this._imageStyles("PORTRAIT") 
+  // }
 
   componentWillUnmount() { 
-    Orientation.removeOrientationListener(this._imageStyles) 
+    Orientation.removeOrientationListener(this.setHeight) 
   }
 
-  get width() {
-    return Dimensions.get('window').width
-  }
+  // get width() {
+  //   return Dimensions.get('window').width
+  // }
 
-  get height() {
-    return Dimensions.get('window').height
-  }
+  // get height() {
+  //   return Dimensions.get('window').height
+  // }
 
   // _imageStyles = (orientation) => {
   //   element.style(orientation, this)
   // }
 
-  get style() {
-    const { height, width, portrait } = this.state
-    const style = { flex: 2, borderRadius: 9, width: null, height:null }
-    switch(portrait) {
-      case true:
-        return { ...style, height: height };
-        break;
-      case false:
-        return { ...style, height: width };
-        break;
-      default:
-        // console.log("impossible to choose correct style")
-    }
+  //  get style() {
+  //    const { height, width, portrait } = this.state
+  //    const style = { flex: 2, borderRadius: 9, width: null, height:null }
+  //    switch(portrait) {
+  //      case true:
+  //        return { ...style, height: height };
+  //        break;
+  //      case false:
+  //        return { ...style, height: width };
+  //        break;
+  //      default:
+  //        // console.log("impossible to choose correct style")
+  //    }
+  //  }
+
+  setHeight = () => {
+    const new_height = Dimensions.get('window').height
+    this.setState({ height: new_height })
   }
 
-  _imageStyles = (orientation) => {
-    const new_width = this.width - Header.HEIGHT/2
-    if (orientation != 'PORTRAIT') { 
-      this.setState({ width: new_width, portrait: false })
-    } else { 
-      const new_height = (this.height - Header.HEIGHT)/3
-      this.setState({ width: new_width, height: new_height, portrait: true })
-    }
-  }
+  // _imageStyles = (orientation) => {
+  //   // const new_width = this.width - Header.HEIGHT/2
+  //   // if (orientation != 'PORTRAIT') { 
+  //   //   this.setState({ width: new_width, portrait: false })
+  //   // } else { 
+  //   //   const new_height = (this.height - Header.HEIGHT)/3
+  //   //   this.setState({ width: new_width, height: new_height, portrait: true })
+  //   // }
+  // }
 
   changeCamera = (key) => {
     const { location: { included: cameras }} = this.props
@@ -115,7 +120,7 @@ export default class Cameras extends Component {
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
-          style={styles.video}
+          style={[styles.video, {height: this.state.height}]}
           onLoadStart={() => this.setState({loading: true })}
           onReadyForDisplay={() => this.setState({loading: false})}
           repeat 
@@ -141,7 +146,6 @@ const styles = StyleSheet.create({
     // aspectRatio: 1.7, 
     width: "100%",
     // height: "100%",
-    height: Dimensions.get('window').height,
     zIndex: 0,
     marginLeft: 0,
   },

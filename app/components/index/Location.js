@@ -101,7 +101,8 @@ export const styles = StyleSheet.create({
   header: {
     position: 'absolute',
     top: has_notch ? 0 : 30,
-    width: Dimensions.get('window').width,
+    // width: Dimensions.get('window').width,
+    width: "100%",
     color: 'white',
     fontWeight: 'bold',
     fontSize: 30,
