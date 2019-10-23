@@ -44,19 +44,19 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>169.254.162.157:3000</key>
-			<true/>
 			<key>169.254.162.157</key>
 			<true/>
+			<key>169.254.162.157:3000</key>
+			<true/>
 			<key>192.168.0.100</key>
+			<true/>
+			<key>192.168.0.100:3000</key>
+			<true/>
+			<key>192.168.0.100:8081</key>
 			<true/>
 			<key>localhost</key>
 			<true/>
 			<key>localhost:8081</key>
-			<true/>
-			<key>192.168.0.100:8081</key>
-			<true/>
-			<key>192.168.0.100:3000</key>
 			<true/>
 		</dict>
 	</dict>
@@ -118,6 +118,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

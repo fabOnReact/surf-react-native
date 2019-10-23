@@ -101,6 +101,8 @@ PODS:
     - React
   - react-native-maps (0.24.2):
     - React
+  - react-native-orientation-locker (1.1.6):
+    - React
   - react-native-video/Video (5.0.0):
     - React
   - react-native-video/VideoCaching (5.0.0):
@@ -178,6 +180,7 @@ DEPENDENCIES:
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
   - react-native-video/VideoCaching (from `../node_modules/react-native-video/react-native-video.podspec`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React/Core (from `../node_modules/react-native`)
@@ -233,6 +236,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-orientation-locker:
+    :path: "../node_modules/react-native-orientation-locker"
   react-native-video:
     :path: "../node_modules/react-native-video/react-native-video.podspec"
   react-native-webview:
@@ -277,6 +282,7 @@ SPEC CHECKSUMS:
   react-native-camera: f1fbfc336ba8ca6de5296190341d1b6022c71cff
   react-native-geolocation: a7b94614afbd5fd8350e0233a2025c8228fc8041
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
+  react-native-orientation-locker: 23918c400376a7043e752c639c122fcf6bce8f1c
   react-native-video: 6555881252c8ca039760e1cd6df28ac28ffb2baf
   react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
   ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
@@ -288,6 +294,6 @@ SPEC CHECKSUMS:
   SPTPersistentCache: df36ea46762d7cf026502bbb86a8b79d0080dff4
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
-PODFILE CHECKSUM: ce31a1b5660ce35b0ac0e1ab3096f36215a7ec26
+PODFILE CHECKSUM: 4914f764a4735dc6c79be07501b0d5351d89fe7a
 
 COCOAPODS: 1.7.3
