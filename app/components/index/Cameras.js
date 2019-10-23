@@ -4,6 +4,7 @@ import { Card } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
+import Orientation from 'react-native-orientation-locker';
 import { Header, SafeAreaView } from 'react-navigation';
 import CamButton from '../buttons/CamButton';
 import Location from './Location';
@@ -15,9 +16,30 @@ export default class Cameras extends Component {
     this.state = { loading: true, height: Dimensions.get('window').height }
   }
 
+  _onOrientationDidChange = (orientation) => {
+    if (['PORTRAIT','PORTRAIT-UPSIDEDOWN'].includes(orientation)) {
+      const height = Dimensions.get('window').height
+      const screen_height = Dimensions.get('screen').height
+      this.setState({ height, screen_height })
+    } else {
+      const height = Dimensions.get('window').height
+      const screen_height = Dimensions.get('screen').height
+      this.setState({ height, screen_height })
+    }
+  };
+
+
   componentWillMount() { 
     const { location: { included: cameras }} = this.props
     this.setState({ camera: cameras[0] })
+  }
+
+  componentDidMount() {
+    Orientation.addOrientationListener(this._onOrientationDidChange);
+  }
+
+  componentWillUnmount = () => {
+    Orientation.removeOrientationListener(this._onOrientationDidChange);
   }
 
   setHeight = () => {
@@ -62,18 +84,21 @@ export default class Cameras extends Component {
   }
   
   render() {
-    // const location_attributes = location.data.attributes
+    const { height, screen_height } = this.state
     const { camera: { attributes: { posts }} } = this.state
     const { video: { url, poster }} = posts[0]
     const has_notch = DeviceInfo.hasNotch()
     return (
-      <View style={styles.container}>
+      <View style={[
+        styles.container,
+        { height: screen_height }
+      ]}>
         <Video 
           source={{ uri: url }}
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
-          style={[styles.video]} //, {height: this.state.height}]}
+          style={[styles.video, {height: height}]} 
           onLoadStart={() => this.setState({loading: true })}
           onReadyForDisplay={() => this.setState({loading: false})}
           repeat 
@@ -89,8 +114,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     zIndex: 0, 
-    height: Dimensions.get('screen').height,
-    marginBottom: 10,
+    marginBottom: 0,
+    borderBottomWidth:.5,
+    borderBottomColor:'#f2f2f2',
   },
   safe_area: {
     flex: 1,
@@ -101,7 +127,6 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   video: { 
-    height: Dimensions.get('screen').height,
     zIndex: 0,
     marginLeft: 0,
   },

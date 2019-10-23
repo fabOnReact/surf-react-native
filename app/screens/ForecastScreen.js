@@ -43,7 +43,7 @@ export default class ForecastScreen extends Component {
           <ForecastMap 
             location={location_attributes} 
             cameras={cameras} 
-            // orientation={orientation}
+            navigation={navigation}
           />
           <TableView daily={daily} />
         </ScrollView>

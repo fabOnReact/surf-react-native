@@ -15,7 +15,7 @@ export default function CameraButton({ navigation }) {
       // reverseColor='black'
       // reverse
       raised
-      onPress={() => console.warn('camera') }// navigation.navigate("Camera") }
+      onPress={() => navigation.navigate("Camera") }
     />
   )
 }

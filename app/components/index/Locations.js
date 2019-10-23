@@ -15,8 +15,7 @@ export default class Locations extends Component {
     this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: [] };
     this.count = 0
     this.timer_on = 0;
-    const color = '#ffffff'
-    changeNavigationBarColor(color);
+    changeNavigationBarColor('#ffffff');
   }
 
   get params() {
@@ -41,18 +40,6 @@ export default class Locations extends Component {
     this.setState({ locations: json })
     loaded()
   }
-
-  //  _setPosts = async () => {
-  //    const { posts, page } = this.state
-  //    const { loaded } = this.props
-  //    const new_page = page + 1
-  //    await this.setState({ page: new_page, refreshing: true })
-  //    api.page = new_page
-  //    const response = await api.getPosts()
-  //    const json = await response.json()
-  //    await this.setState({ posts: [...posts, ...json], refreshing: false })
-  //    loaded()
-  //  }
 
   componentDidMount() {
     const { posts } = this.state
@@ -116,7 +103,8 @@ export default class Locations extends Component {
         onRefresh={this._handleRefresh}
         onEndReached={this._onEndReached}
         onEndReachedThreshold={0.01}
-        // listFooterComponent={<Text>Testing</Text>}
+        pagingEnabled
+        // listHeaderComponent={<Text>Testing</Text>}
         renderItem={({ item, index }) => {
           return ( 
             <Cameras 
