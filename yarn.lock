@@ -5955,11 +5955,6 @@ react-native-navigation-bar-color@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-1.0.0.tgz#04ff752a58049af93ceea9ccf266b8d3fbc6514a"
   integrity sha512-djBE0zSp+JT65VeUm4UpIpr9DA9SpE9YTLwDAcqkWfB9JI8l3djSx+SmrIYfc7dUs216Y6qo2dr0qR3+M5qbOQ==
 
-react-native-orientation-locker@^1.1.1:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/react-native-orientation-locker/-/react-native-orientation-locker-1.1.4.tgz#5363f02c6033c2981bc193c37313ad98f6951182"
-  integrity sha512-fM/1U6zVjxXknc1YqpKCM8zLTWG3JPRVF9Z/W4+Ruml8eAcx6jTlFLr899HWd0AnfjeBEUzhQnTmUJeapTX5BA==
-
 react-native-permissions@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.2.0.tgz#0deb616bf1565c17c91f1cb1f953809b2892c29e"
