@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Dimensions, Image } from 'react-native';
+import { StyleSheet, Dimensions, Image } from 'react-native';
 import { H3, Card, CardItem, Text, Left, Body } from 'native-base';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import Chart from './Chart';
-import { styles } from '../styles/ForecastMapStyles';
+// import { styles } from '../styles/ForecastMapStyles';
 
 export default class ForecastMap extends Component {
   constructor(props) {
@@ -65,3 +65,17 @@ export default class ForecastMap extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  arrow: {
+    position: "absolute", 
+    top: 0,
+    left: 0,
+    width: 200, 
+    height: 200,
+    marginTop: 50,
+    marginBottom: 50,
+    marginLeft: 100,
+    marginRight: 100,
+  },
+})
