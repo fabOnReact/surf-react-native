@@ -4,7 +4,6 @@ import { Card } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
-import Orientation from 'react-native-orientation';
 import { Header, SafeAreaView } from 'react-navigation';
 import CamButton from '../buttons/CamButton';
 import Location from './Location';
@@ -17,60 +16,14 @@ export default class Cameras extends Component {
   }
 
   componentWillMount() { 
-    Orientation.addOrientationListener(this.setHeight) 
     const { location: { included: cameras }} = this.props
     this.setState({ camera: cameras[0] })
   }
-
-  // componentDidMount() { 
-  //   // this._imageStyles("PORTRAIT") 
-  // }
-
-  componentWillUnmount() { 
-    Orientation.removeOrientationListener(this.setHeight) 
-  }
-
-  // get width() {
-  //   return Dimensions.get('window').width
-  // }
-
-  // get height() {
-  //   return Dimensions.get('window').height
-  // }
-
-  // _imageStyles = (orientation) => {
-  //   element.style(orientation, this)
-  // }
-
-  //  get style() {
-  //    const { height, width, portrait } = this.state
-  //    const style = { flex: 2, borderRadius: 9, width: null, height:null }
-  //    switch(portrait) {
-  //      case true:
-  //        return { ...style, height: height };
-  //        break;
-  //      case false:
-  //        return { ...style, height: width };
-  //        break;
-  //      default:
-  //        // console.log("impossible to choose correct style")
-  //    }
-  //  }
 
   setHeight = () => {
     const new_height = Dimensions.get('window').height
     this.setState({ height: new_height })
   }
-
-  // _imageStyles = (orientation) => {
-  //   // const new_width = this.width - Header.HEIGHT/2
-  //   // if (orientation != 'PORTRAIT') { 
-  //   //   this.setState({ width: new_width, portrait: false })
-  //   // } else { 
-  //   //   const new_height = (this.height - Header.HEIGHT)/3
-  //   //   this.setState({ width: new_width, height: new_height, portrait: true })
-  //   // }
-  // }
 
   changeCamera = (key) => {
     const { location: { included: cameras }} = this.props
@@ -148,11 +101,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   video: { 
-    // borderRadius: 9, 
-    // aspectRatio: 1.7, 
-    // width: "100%",
     height: Dimensions.get('screen').height,
-    // height: "100%",
     zIndex: 0,
     marginLeft: 0,
   },
