@@ -5,6 +5,7 @@ import Dimensions from 'Dimensions';
 import CamButton from '../buttons/CamButton';
 import DeviceInfo from 'react-native-device-info';
 import SafeArea from '../SafeArea';
+import DisplayButton from '../buttons/DisplayButton';
 import { Header } from 'react-navigation';
 
 export default class Location extends Component {
@@ -71,6 +72,8 @@ export default class Location extends Component {
                   action={changeCamera} />
               )
             }
+            <DisplayButton 
+              action={this.navigateToForecast} />
           </View>
           <Text 
             style={styles.header}>

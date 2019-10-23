@@ -1,6 +1,12 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
-import { Image } from 'react-native';
+import { Platform, Image } from 'react-native';
+
+export function platformIcon(icon) {
+  const is_ios = Platform.OS === 'ios'
+  const name = is_ios ? `ios-${icon}` : `md-${icon}`
+  return name
+}
 
 export const userSettings = { endpoint: "users", responseStatus: 201 }
 export const sessionSettings = { endpoint: "users/sign_in", responseStatus: 200 }
