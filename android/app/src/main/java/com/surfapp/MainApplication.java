@@ -51,7 +51,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNCWebViewPackage(),
             new MapsPackage(),
             new RNGoogleSigninPackage(),
-            new OrientationPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
              new RNFusedLocationPackage()
