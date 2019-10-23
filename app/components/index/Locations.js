@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
-import changeNavigationBarColor, {
-  HideNavigationBar,
-  ShowNavigationBar,
-} from 'react-native-navigation-bar-color';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import ProfileButton from '../buttons/ProfileButton';
 import MapButton from '../buttons/MapButton';
 import CameraButton from '../buttons/CameraButton';

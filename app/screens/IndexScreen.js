@@ -19,7 +19,6 @@ export default class IndexScreen extends Component {
     return (
       <React.Fragment>
         { ios ? <LocationPermission /> : null } 
-        {/* <StatusBar backgroundColor="white" barStyle="dark-content" /> */}
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
         <Spinner
           visible={this.state.spinner}

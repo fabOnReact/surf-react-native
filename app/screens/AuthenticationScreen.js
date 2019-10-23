@@ -62,7 +62,7 @@ export default class AuthenticationScreen extends Component {
           style={{height: height}}
           repeat 
           muted />
-        <StatusBar translucent backgroundColor="transparent" />
+          <StatusBar translucent backgroundColor="transparent" />
         <View style={styles.container}>
           <Input
             inputContainerStyle={{borderBottomColor: "white"}}

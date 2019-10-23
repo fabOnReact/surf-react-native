@@ -18,11 +18,10 @@ const AppStack = createStackNavigator({
   }, 
   WebView: WebViewScreen,
   Camera: CameraScreen,
-  Profile: ProfileScreen, Map: MapScreen, 
+  Profile: ProfileScreen, 
+  Map: MapScreen, 
   Nearby: NearbyScreen,
   Forecast: ForecastScreen,
-},{
-  // headerMode: 'none',
 });
 
 const AuthStack = createStackNavigator({ Authentication: AuthenticationScreen });
