@@ -114,13 +114,13 @@ export default class Cameras extends Component {
     const { video: { url, poster }} = posts[0]
     const has_notch = DeviceInfo.hasNotch()
     return (
-      <View style={{flex: 1, zIndex: 0}}>
+      <View style={styles.container}>
         <Video 
           source={{ uri: url }}
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
-          style={[styles.video, {height: this.state.height}]}
+          style={[styles.video]} //, {height: this.state.height}]}
           onLoadStart={() => this.setState({loading: true })}
           onReadyForDisplay={() => this.setState({loading: false})}
           repeat 
@@ -133,6 +133,12 @@ export default class Cameras extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    zIndex: 0, 
+    height: Dimensions.get('screen').height,
+    marginBottom: 10,
+  },
   safe_area: {
     flex: 1,
     position: 'absolute',
@@ -144,7 +150,8 @@ const styles = StyleSheet.create({
   video: { 
     // borderRadius: 9, 
     // aspectRatio: 1.7, 
-    width: "100%",
+    // width: "100%",
+    height: Dimensions.get('screen').height,
     // height: "100%",
     zIndex: 0,
     marginLeft: 0,

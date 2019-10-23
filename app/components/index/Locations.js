@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
-// import Forecast from './Forecast';
+import changeNavigationBarColor, {
+  HideNavigationBar,
+  ShowNavigationBar,
+} from 'react-native-navigation-bar-color';
 import ProfileButton from '../buttons/ProfileButton';
 import MapButton from '../buttons/MapButton';
 import CameraButton from '../buttons/CameraButton';
 import Cameras from './Cameras';
 import { getGps } from '../../lib/support';
+import SafeArea from '../SafeArea';
 import api from '../../lib/api';
 
 export default class Locations extends Component {
@@ -14,6 +18,8 @@ export default class Locations extends Component {
     this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: [] };
     this.count = 0
     this.timer_on = 0;
+    const color = '#ffffff'
+    changeNavigationBarColor(color);
   }
 
   get params() {
@@ -138,16 +144,24 @@ export default class Locations extends Component {
     const { navigation } = this.props;
     const { posts, latitude, longitude, refreshing, locations } = this.state;
     const locations_present = locations.length > 0
+    const flex = {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    }
     return (
       <React.Fragment>
         { locations_present ? this.renderList() : null }
-        <ProfileButton navigation={navigation} />
-        <MapButton 
-          navigation={navigation} 
-          latitude={latitude} 
-          longitude={longitude}
-        />
-        <CameraButton navigation={navigation} />
+        <SafeArea
+          style={flex}>
+          <ProfileButton navigation={navigation} />
+          <MapButton 
+            navigation={navigation} 
+            latitude={latitude} 
+            longitude={longitude}
+          />
+          <CameraButton navigation={navigation} />
+        </SafeArea>
       </React.Fragment>
     );
   }

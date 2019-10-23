@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
+import { Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
 import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
 import CamButton from '../buttons/CamButton';
 import DeviceInfo from 'react-native-device-info';
+import SafeArea from '../SafeArea';
 import { Header } from 'react-navigation';
 
 export default class Location extends Component {
@@ -52,9 +53,11 @@ export default class Location extends Component {
     previews.length = 5
     return (
       <React.Fragment>
+        {/*
         <TouchableOpacity
           onPress={this.navigateToForecast}
           style={[styles.full_screen]}>
+        */}
           <View
             style={[
               styles.full_screen, 
@@ -73,13 +76,20 @@ export default class Location extends Component {
             style={styles.header}>
               { this.title }
           </Text>
+        {/*
         </TouchableOpacity>
+        */}
       </React.Fragment>
     )
   }
 }
 
 const has_notch = DeviceInfo.hasNotch()
+const is_ios = Platform.OS === 'ios'
+let deviceH = Dimensions.get('screen').height;
+let windowH = Dimensions.get('window').height;
+let bottomNavBarH = deviceH - windowH;
+const cameraHeight = 150
 export const styles = StyleSheet.create({
   full_screen: {
     position: 'absolute',
@@ -93,10 +103,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-evenly',
-    zIndex: 1,
+    zIndex: 2,
     marginLeft: 10,
     marginRight: 10,
-    marginBottom: 110,
+    marginBottom: is_ios ? cameraHeight : bottomNavBarH + cameraHeight,
   },
   header: {
     position: 'absolute',

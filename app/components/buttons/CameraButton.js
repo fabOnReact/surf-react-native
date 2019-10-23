@@ -9,26 +9,25 @@ export default function CameraButton({ navigation }) {
       name='camera-retro'
       type='font-awesome'
       size={40}
-      color='white'
+      // color='white'
+      color='black'
       iconColor='black'
-      reverseColor='black'
-      reverse
+      // reverseColor='black'
+      // reverse
       raised
-      onPress={() => navigation.navigate("Camera") }
+      onPress={() => console.warn('camera') }// navigation.navigate("Camera") }
     />
   )
 }
 
 const buttons = StyleSheet.create({
   buttonReverseAbsolute: {
-    position: 'absolute',
-    bottom:10,
-    right:"50%",    
-    transform: [{translateX: 50}],
+    zIndex: 10,
     shadowColor: 'rgba(0,0,0, .4)', 
     shadowOffset: { height: 1, width: 1 },
     shadowOpacity: 1,
     shadowRadius: 1,
     elevation: 3,
+    marginBottom: 20,
   },
 })
