@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, Image } from 'react-native';
+import { TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import { H3, Card, CardItem, Text, Left, Body } from 'native-base';
 import { Header } from 'react-navigation';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
@@ -25,25 +25,28 @@ export default class ForecastMap extends Component {
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
       <React.Fragment>
-        <Image 
-          resizeMode="cover"
-          style={[styles.map]}
-          source={{uri: uri}} 
-        />
-        <Image 
-          style={[ 
-            styles.arrow, 
-            { transform: [{ rotateZ: `${windDirection}deg`}] }
-          ]}
-          source={require('../../images/down-arrow.png')} 
-        />
-        <Image 
-          style={[
-            styles.arrow,
-            { transform: [{ rotateZ: `${waveDirection}deg`}] } 
-          ]}
-          source={require('../../images/down-cursor.png')} 
-        />
+        <TouchableOpacity
+          onPress={this.navigateToMap}>
+          <Image 
+            resizeMode="cover"
+            style={[styles.map]}
+            source={{uri: uri}} 
+          />
+          <Image 
+            style={[ 
+              styles.arrow, 
+              { transform: [{ rotateZ: `${windDirection}deg`}] }
+            ]}
+            source={require('../../images/down-arrow.png')} 
+          />
+          <Image 
+            style={[
+              styles.arrow,
+              { transform: [{ rotateZ: `${waveDirection}deg`}] } 
+            ]}
+            source={require('../../images/down-cursor.png')} 
+          />
+        </TouchableOpacity>
         <RoundDisplayButton 
           action={this.navigateToMap} />
         <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 24h Tide mt.</H3>

@@ -12,7 +12,7 @@ import api from '../../lib/api';
 export default class Locations extends Component {
   constructor(props){
     super(props);
-    this.state = { posts: [], page: 1, refreshing: false, latitude: '', longitude: '', locations: [] };
+    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [] };
     this.count = 0
     this.timer_on = 0;
     changeNavigationBarColor('#ffffff');
@@ -42,8 +42,6 @@ export default class Locations extends Component {
   }
 
   componentDidMount() {
-    const { posts } = this.state
-    const missing_posts = posts.length == 0
     getGps(this._setGps)
   }
 
@@ -83,14 +81,9 @@ export default class Locations extends Component {
 
   _handleRefresh = () => {
     this.setState({
-      page: 0, posts: []
+      page: 0, locations: []
     });
   }
-
-  _onEndReached = () => {
-    const { refreshing } = this.state
-    // if(!refreshing) { this._setPosts() }
-  };
 
   renderList() {
     const { navigation } = this.props
@@ -104,7 +97,6 @@ export default class Locations extends Component {
         onEndReached={this._onEndReached}
         onEndReachedThreshold={0.01}
         pagingEnabled
-        // listHeaderComponent={<Text>Testing</Text>}
         renderItem={({ item, index }) => {
           return ( 
             <Cameras 
@@ -117,17 +109,9 @@ export default class Locations extends Component {
     )
   }
 
-  //  renderForecastPreview() {
-  //    return (
-  //      <TouchableOpacity onPress={() => navigation.navigate("Nearby", { locations: locations }) }>
-  //        <Forecast locations={locations} index={index} />
-  //      </TouchableOpacity>
-  //    )
-  //  }
-
   render() {
     const { navigation } = this.props;
-    const { posts, latitude, longitude, refreshing, locations } = this.state;
+    const { latitude, longitude, refreshing, locations } = this.state;
     const locations_present = locations.length > 0
     const flex = {
       display: 'flex',
@@ -142,6 +126,7 @@ export default class Locations extends Component {
           <ProfileButton navigation={navigation} />
           <MapButton 
             navigation={navigation} 
+            locations={locations}
             latitude={latitude} 
             longitude={longitude}
           />
