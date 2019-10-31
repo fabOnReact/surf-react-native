@@ -85,20 +85,21 @@ export default class Cameras extends Component {
   
   render() {
     const { height, screen_height } = this.state
-    const { camera: { attributes: { posts }} } = this.state
+    const { camera: { attributes: { posts }}} = this.state
     const { video: { url, poster }} = posts[0]
     const has_notch = DeviceInfo.hasNotch()
+    const screen = Dimensions.get('screen').height
     return (
       <View style={[
         styles.container,
-        { height: screen_height }
+        { height: screen }
       ]}>
         <Video 
           source={{ uri: url }}
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
-          style={[styles.video, {height: height}]} 
+          style={[styles.video, {height: screen}]} 
           onLoadStart={() => this.setState({loading: true })}
           onReadyForDisplay={() => this.setState({loading: false})}
           repeat 

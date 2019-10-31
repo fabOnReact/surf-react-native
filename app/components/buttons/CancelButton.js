@@ -19,7 +19,7 @@ export default function CancelButton({ setVideo }){
 const styles = StyleSheet.create({
   containerRight: {
     position: "absolute",
-    bottom: 120,
+    bottom: 20,
     right: 5,
     height: 50,
     width: 100,

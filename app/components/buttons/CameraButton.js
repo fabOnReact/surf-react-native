@@ -9,11 +9,8 @@ export default function CameraButton({ navigation }) {
       name='camera-retro'
       type='font-awesome'
       size={40}
-      // color='white'
       color='black'
       iconColor='black'
-      // reverseColor='black'
-      // reverse
       raised
       onPress={() => navigation.navigate("Camera") }
     />

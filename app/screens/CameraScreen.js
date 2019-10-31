@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StatusBar, StyleSheet, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Dimensions from 'Dimensions';
 import ErrorMessage from '../components/ErrorMessage'
@@ -8,13 +8,16 @@ import Recorder from '../components/camera/Recorder';
 import ZoomView from '../components/camera/ZoomView';
 
 export default class CameraScreen extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      backgroundColor: 'rgba(0,0,0,0.0)',
-    },
-    headerTintColor: 'white',
-    headerTransparent: true,
-  };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTintColor: 'white',
+      headerTransparent: true,
+      headerStyle: { 
+        backgroundColor: 'rgba(0,0,0,0.0)',
+        marginTop: StatusBar.currentHeight,
+      },
+    }
+  }
 
   constructor(props) {
     super(props)

@@ -19,7 +19,7 @@ export default function UploadButton({ upload }){
 const styles = StyleSheet.create({
   containerLeft: {
     position: "absolute",
-    bottom: 120,
+    bottom: 20,
     left: 5,
     height: 50,
     width: 100,

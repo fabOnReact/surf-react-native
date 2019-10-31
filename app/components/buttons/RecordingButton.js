@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 export default function RecordingButton({ recording, highlight }){
   return (
     <Icon
-      containerStyle={[buttons.buttonAbsolute, {borderRadius: 10}]}
+      containerStyle={[buttons.buttonAbsolute]}
       name='ios-radio-button-on'
       type='ionicon'
       size={80}
@@ -19,9 +19,12 @@ export default function RecordingButton({ recording, highlight }){
 
 const buttons = StyleSheet.create({
   buttonAbsolute: {
-    position: 'absolute',
-    bottom:10,
-    right:"50%",    
-    transform: [{translateX: 36}]
+    zIndex: 10,
+    shadowColor: 'rgba(0,0,0, .4)', 
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    elevation: 3,
+    marginBottom: 20,
   },
 })

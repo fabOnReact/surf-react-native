@@ -7,6 +7,7 @@ import CancelButton from './../buttons/CancelButton';
 import Api from '../../lib/api';
 import Dimensions from 'Dimensions';
 import Video from 'react-native-video';
+import SafeArea from '../SafeArea';
 
 export default class Player extends React.Component {
   constructor(props) {
@@ -72,17 +73,21 @@ export default class Player extends React.Component {
           textContent={'Processing...'}
           textStyle={styles.spinnerTextStyle}
         />
-        <UploadButton 
-          upload={this._uploadVideo} />
-        <CancelButton 
-          setVideo={setVideo} />
-        <Video
-          source={{uri: uri}}
-          posterResizeMode="cover"
-          resizeMode="cover"
-          controls
-          style={{height: height}}
-        />
+        <SafeArea> 
+          <UploadButton 
+            upload={this._uploadVideo} />
+          <CancelButton 
+            setVideo={setVideo} />
+          <Video
+            source={{uri: uri}}
+            posterResizeMode="cover"
+            resizeMode="cover"
+            muted
+            repeat
+            controls={false}
+            style={{height: height}}
+          />
+        </SafeArea>
       </React.Fragment>
     )
   }

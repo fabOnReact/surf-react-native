@@ -8,6 +8,7 @@ import Player from './Player';
 import api from '../../lib/api';
 import { getGps } from '../../lib/support';
 import ZoomView from './ZoomView';
+import SafeArea from '../SafeArea';
 
 const MAX_ZOOM = 8; // iOS only
 const ZOOM_F = Platform.OS === 'ios' ? 0.001 : 0.08;
@@ -146,10 +147,12 @@ export default class Recorder extends Component {
           onPinchEnd={this._onPinchEnd}
           onPinchStart={this._onPinchStart}
           onPinchProgress={this._onPinchProgress}>
-          <RecordingButton 
-            recording={this._recording}
-            highlight={highlight}
-          />
+          <SafeArea>
+            <RecordingButton 
+              recording={this._recording}
+              highlight={highlight}
+            />
+          </SafeArea>
         </ZoomView>
       </RNCamera>
     )
