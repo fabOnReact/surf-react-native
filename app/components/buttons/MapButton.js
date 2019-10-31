@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-export default function MapButton({ navigation, latitude, longitude }) {
+export default function MapButton({ navigation, locations, latitude, longitude }) {
   return (
     <TouchableOpacity 
-      onPress={() => navigation.navigate("Map", { lat: latitude, lon: longitude }) }
+      onPress={() => navigation.navigate("Map", { 
+        lat: latitude, 
+        lon: longitude, 
+        locations: locations 
+      }) }
       style={buttons.containerLeft}>
       <Image 
         style={buttons.buttonLeft} 

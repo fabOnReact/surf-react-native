@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { StatusBar, View, Text, StyleSheet, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { getResources } from '../lib/api';
@@ -10,26 +10,50 @@ import { serialize } from '../lib/support';
 import { styles } from './styles/MapStyles';
 
 export default class MapScreen extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      backgroundColor: 'rgba(0,0,0,0.0)',
-    },
-    headerTintColor: 'black',
-    headerTransparent: true,
-  };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTintColor: 'black',
+      headerTransparent: true,
+      headerStyle: { 
+        backgroundColor: 'rgba(0,0,0,0.0)',
+        marginTop: StatusBar.currentHeight,
+      },
+    }
+  }
 
   constructor(props) {
     super(props);
-    const { navigation } = this.props;
-    var lat = navigation.getParam('lat')
-    var lon = navigation.getParam('lon')
-    if (lat == "" || lon == "") { lat = -8.634508; lon = 115.192803 }
-    this.state = { data: [], latitude: parseInt(lat), longitude: parseInt(lon)}
+    this.state = { locations: [], latitude: -8.634508, longitude: 115.192803 }
   }
 
   componentDidMount = async () => {
     const current_position = await this.ref.getMapBoundaries()
     this.map = new Map(current_position) 
+    this.setState({ 
+      locations: this.locations, 
+      latitude: this.lat, 
+      longitude: this.long 
+    })
+  }
+
+  get lat() {
+    const { navigation } = this.props;
+    const lat = navigation.getParam('lat')
+    this._lat = !!lat ? parseInt(lat) : -8.634508
+    return this._lat
+  }
+
+  get long() {
+    const { navigation } = this.props;
+    const long = navigation.getParam('lon')
+    this._long = !!long ? parseInt(long) : -115.192803
+    return this._long
+  }
+
+  get locations() {
+    const { navigation } = this.props;
+    this._locations = navigation.getParam('locations')
+    return this._locations
   }
 
   handleRegionChange = async () => {
@@ -38,23 +62,30 @@ export default class MapScreen extends Component {
     if (this.map.shouldUpdate) { 
       this.map.previous = current_position
       const query = `${serialize(current_position)}`
-      const response = await api.getLocationsWithQuery(query)
+      const response = await api.getLocations({ query })
       const json = await response.json()
-      this.setState({ data: json })
+      this.setState({ locations: json })
     }
   }
 
   setData = async (json) => {
-    this.setState({ data: json })
+    this.setState({ locations: json })
   }
 
   addData = (json) => {
-    const { data } = this.state
-    this.setState({ data: [...data, ...json] })
+    const { locations } = this.state
+    this.setState({ locations: [...locations, ...json] })
+  }
+
+  renderSpot(location) {
+    const { data: { attributes }} = location
+    return (
+      <Spot key={attributes.id} data={attributes} /> 
+    )
   }
 
   render() {
-    const { data, latitude, longitude, inOverview } = this.state;
+    const { locations, latitude, longitude, inOverview } = this.state;
     const region = { 
       latitude: latitude,
       longitude: longitude,
@@ -65,14 +96,14 @@ export default class MapScreen extends Component {
     return (
       <MapView
         style={{flex: 1}}
-        data={this.state.data}
+        data={this.state.locations}
         initialRegion={region}
         ref={(r) => this.ref = r}
         renderMarker={this.renderMarker}
         showCompass={false}
         onRegionChangeComplete={this.handleRegionChange}
       >
-        { data && data.map((data) => <Spot key={data.id} data={data} /> )}
+        { locations && locations.map(location => this.renderSpot(location)) } 
       </MapView>
     )
   }

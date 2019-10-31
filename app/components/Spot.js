@@ -5,7 +5,7 @@ import { Marker } from 'react-native-maps';
 
 export default class Spot extends Component {
   render() {
-    const { data, inOverview } = this.props;
+    const { data } = this.props
     return (
       <Marker 
         key={data.id}
