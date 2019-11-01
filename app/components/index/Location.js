@@ -41,14 +41,14 @@ export default class Location extends Component {
   }
 
   navigateToForecast = () => {
-    const { navigation, location } = this.props
+    const { navigation, locations, location } = this.props
     if(!!this.swellHeight) {
-      navigation.navigate('Forecast', { location: location })
+      navigation.navigate('Forecast', { location: location, locations: locations })
     }
   }
 
   render() {
-    const { cameras, changeCamera } = this.props
+    const { cameras, changeCamera, cameraIndex } = this.props
     const { location: { data: { attributes }}} = this.props
     const previews = cameras
     previews.length = 5
@@ -69,7 +69,9 @@ export default class Location extends Component {
                 <CamButton 
                   key={index}
                   index={index}
-                  action={changeCamera} />
+                  action={changeCamera}
+                  selected={cameraIndex}
+                />
               )
             }
             <DisplayButton 

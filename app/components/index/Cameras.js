@@ -13,7 +13,7 @@ import { element } from '../../lib/support';
 export default class Cameras extends Component {
   constructor(props) {
     super(props)
-    this.state = { loading: true, height: Dimensions.get('window').height }
+    this.state = { loading: true, height: Dimensions.get('window').height, cameraIndex: 0 }
   }
 
   _onOrientationDidChange = (orientation) => {
@@ -49,12 +49,12 @@ export default class Cameras extends Component {
 
   changeCamera = (key) => {
     const { location: { included: cameras }} = this.props
-    this.setState({ camera: cameras[key] })
+    this.setState({ camera: cameras[key], cameraIndex: key })
   }
 
   renderText = () => {
-    const { loading } = this.state
-    const { location, navigation } = this.props
+    const { loading, cameraIndex } = this.state
+    const { locations, location, navigation } = this.props
     const { included: cameras } = location
     return ( 
       <React.Fragment>
@@ -66,10 +66,12 @@ export default class Cameras extends Component {
           />
         </View>
         <Location 
+          locations={locations}
           location={location}
           cameras={cameras} 
           changeCamera={this.changeCamera}
           navigation={navigation}
+          cameraIndex={cameraIndex}
         />
       </React.Fragment>
     )
