@@ -73,6 +73,7 @@ export default class Recorder extends Component {
       this.setState({ location })
     }
     if(saved) {
+      this.setState({ saved: false })
       alert("Your videos was saved and it is now available in the homepage")
     } 
   }

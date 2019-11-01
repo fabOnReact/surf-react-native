@@ -29,6 +29,7 @@ export default class MapScreen extends Component {
   componentDidMount = async () => {
     const current_position = await this.ref.getMapBoundaries()
     this.map = new Map(current_position) 
+    // console.error(this.map);
     this.setState({ 
       locations: this.locations, 
       latitude: this.lat, 
