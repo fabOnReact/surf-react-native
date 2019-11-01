@@ -30,6 +30,7 @@ export default class ForecastScreen extends Component {
 
   render() {
     const { navigation } = this.props
+    const locations = navigation.getParam('locations')
     const { data: { attributes: location_attributes }} = this.location
     const { forecast_info } = location_attributes
     const { daily } = forecast_info
@@ -41,6 +42,7 @@ export default class ForecastScreen extends Component {
         <ScrollView>
           {/* !!post && <ForecastHourly location={location_attributes} forecast_info={forecast_info} /> */}
           <ForecastMap 
+            locations={locations}
             location={location_attributes} 
             cameras={cameras} 
             navigation={navigation}

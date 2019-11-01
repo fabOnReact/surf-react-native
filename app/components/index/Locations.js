@@ -100,6 +100,7 @@ export default class Locations extends Component {
         renderItem={({ item, index }) => {
           return ( 
             <Cameras 
+              locations={locations}
               location={item} 
               navigation={navigation}
             />
@@ -130,7 +131,10 @@ export default class Locations extends Component {
             latitude={latitude} 
             longitude={longitude}
           />
-          <CameraButton navigation={navigation} />
+          <CameraButton 
+            navigation={navigation} 
+            styles={{zIndex: 10}}
+          />
         </SafeArea>
       </React.Fragment>
     );

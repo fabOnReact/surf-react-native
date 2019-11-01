@@ -4,13 +4,13 @@ import { H3, Card, CardItem, Text, Left, Body } from 'native-base';
 import { Header } from 'react-navigation';
 import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import Chart from './Chart';
-import RoundDisplayButton from '../buttons/RoundDisplayButton';
+import DisplayButton from '../buttons/DisplayButton';
 
 export default class ForecastMap extends Component {
   navigateToMap = () => {
-    const { navigation, location } = this.props
+    const { navigation, locations, location } = this.props
     const { latitude, longitude } = location
-    navigation.navigate("Map", { lat: latitude, lon: longitude })
+    navigation.navigate("Map", { lat: latitude, lon: longitude, locations: locations })
   }
 
   render() {
@@ -47,8 +47,10 @@ export default class ForecastMap extends Component {
             source={require('../../images/down-cursor.png')} 
           />
         </TouchableOpacity>
-        <RoundDisplayButton 
-          action={this.navigateToMap} />
+        <DisplayButton 
+          action={this.navigateToMap} 
+          styles={styles.icon}
+        />
         <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 24h Tide mt.</H3>
         <Chart values={seaLevels} labels={hours} bezier={false} margin={50} />
       </React.Fragment>
@@ -79,5 +81,16 @@ const styles = StyleSheet.create({
     marginRight: horizontalMargin,
     marginTop: verticalMargin,
     marginBottom: verticalMargin,
+  },
+  icon: {
+    position: 'absolute',
+    top: 450,
+    right: 20,
+    height: 200,
+    zIndex:4,
+    textShadowColor: 'grey',
+    shadowOpacity: 2,
+    textShadowRadius: 10,
+    textShadowOffset:{width: 5,height: 2},
   },
 })
