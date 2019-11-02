@@ -12,7 +12,7 @@ import api from '../../lib/api';
 export default class Locations extends Component {
   constructor(props){
     super(props);
-    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [] };
+    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], nearby_locations: [] };
     this.count = 0
     this.timer_on = 0;
     changeNavigationBarColor('#ffffff');
@@ -27,17 +27,18 @@ export default class Locations extends Component {
     }
   }
 
-  _setGps = ({ latitude, longitude }) => {
+  _setGps = async ({ latitude, longitude }) => {
     this.setState({ latitude, longitude })
   }
 
   _setLocations = async () => {
     const { post, page } = this.state
     const { loaded } = this.props
-    const flags = ["&with_cameras=true"]
-    var response = await api.getLocations({ flags })
-    var json = await response.json()
-    this.setState({ locations: json })
+    const locations_request =  await api.getLocations({ flags: ["&with_cameras=true"] })
+    var locations = await locations_request.json()
+    var nearby_locations_request = await api.getLocations({ flags: [""] })
+    const nearby_locations = await nearby_locations_request.json()
+    this.setState({ locations, nearby_locations })
     loaded()
   }
 
@@ -54,12 +55,13 @@ export default class Locations extends Component {
     const find_locations = gps_updated && !this.timer_on
     const page_updated = prevState.page != page
     api.params = this.params
-    if(find_locations) { 
-      this.timer_on = 1
-      this.timedRequest()
-    }
+    // console.warn('this.params', this.params);
+    // if(find_locations) { 
+    //   this.timer_on = 1
+    //   this.timedRequest()
+    // }
     if(gps_updated || page == 0) {
-      // this._setPosts()
+      this._setLocations()
     }
   }
 
@@ -68,21 +70,29 @@ export default class Locations extends Component {
     this.timer_on = 0;
   }
 
-  timedRequest = async () => {
-    const { locations, latitude, longitude } = this.state
-    const locations_missing = locations.length == 0
-    const repeat_request = this.count < 4 && locations_missing
-    if(repeat_request) { 
-      await this._setLocations({ latitude, longitude })
-      this.timer = setTimeout(() => this.timedRequest(), 1000);
-      this.count = this.count + 1;
-    }
-  }
+  // timedRequest = async () => {
+  //   const { locations, latitude, longitude } = this.state
+  //   const locations_missing = locations.length == 0
+  //   const repeat_request = this.count < 4 && locations_missing
+  //   if(repeat_request) { 
+  //     await this._setLocations({ latitude, longitude })
+  //     this.timer = setTimeout(() => this.timedRequest(), 1000);
+  //     this.count = this.count + 1;
+  //   }
+  // }
 
   _handleRefresh = () => {
     this.setState({
       page: 0, locations: []
     });
+  }
+
+  navigateToCamera = () => {
+    const { navigation } = this.props
+    const { nearby_locations } = this.state
+    navigation.navigate('Camera', {
+      locations: nearby_locations,
+    })
   }
 
   renderList() {
@@ -112,7 +122,7 @@ export default class Locations extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { latitude, longitude, refreshing, locations } = this.state;
+    const { latitude, longitude, refreshing, locations, nearby_locations } = this.state;
     const locations_present = locations.length > 0
     const flex = {
       display: 'flex',
@@ -127,13 +137,12 @@ export default class Locations extends Component {
           <ProfileButton navigation={navigation} />
           <MapButton 
             navigation={navigation} 
-            locations={locations}
+            locations={nearby_locations}
             latitude={latitude} 
             longitude={longitude}
           />
           <CameraButton 
-            navigation={navigation} 
-            styles={{zIndex: 10}}
+            action={this.navigateToCamera} 
           />
         </SafeArea>
       </React.Fragment>
