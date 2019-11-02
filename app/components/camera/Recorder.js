@@ -99,7 +99,7 @@ export default class Recorder extends Component {
 
   _recording = () => {
     const { recording, location } = this.state
-    if (!location) { 
+    if (!location && !this.props.location) { 
       alert(this.message) 
       return
     }
