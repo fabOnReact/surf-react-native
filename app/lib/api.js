@@ -86,10 +86,11 @@ class Api {
     }
   }
   
-  getLocations = async ({ query = this.query, flags = [""] }) => {
+  getLocations = async ({ query = null, flags = [""] }) => {
     this.config = await this.getConfig("GET")
     const and_flags = `${flags.join("")}`
-    this.url = `${host}/locations.json?${query + and_flags}`
+    const query_string = query || this.query
+    this.url = `${host}/locations.json?${query_string + and_flags}`
     return await this.perform()
   }
 
