@@ -24,17 +24,23 @@ export default class CameraScreen extends Component {
     this.state = { tutor: true, zoom: '' }
   }
 
+  componentDidMount = async () => {
+    const { navigation } = this.props
+    const location = await navigation.getParam('locations')[0]
+    this.setState({ location })
+  }
+
   hideTutor = () => {
     AsyncStorage.setItem('tutor', "false")
     this.setState({ tutor: false })
   }
 
   render() {
-    const { errors, tutor } = this.state
+    const { errors, tutor, location } = this.state
     return (
       <View style={styles.container}>
         { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
-        {tutor ? <Tutor hide={this.hideTutor} /> : <Recorder />}
+        {tutor ? <Tutor hide={this.hideTutor} /> : <Recorder location={location}/>}
       </View>
     );
   }
