@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-export default function CameraButton({ navigation }) {
+export default function CameraButton({ action }) {
   return (
     <Icon
       containerStyle={buttons.buttonReverseAbsolute}
@@ -12,7 +12,7 @@ export default function CameraButton({ navigation }) {
       color='black'
       iconColor='black'
       raised
-      onPress={() => navigation.navigate("Camera") }
+      onPress={action}
     />
   )
 }
