@@ -40,7 +40,7 @@ export default class CameraScreen extends Component {
     return (
       <View style={styles.container}>
         { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
-        {tutor ? <Tutor hide={this.hideTutor} /> : <Recorder location={location}/>}
+        { tutor ? <Tutor hide={this.hideTutor} /> : <Recorder location={location}/> }
       </View>
     );
   }
