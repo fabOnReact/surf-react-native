@@ -13,7 +13,7 @@ import { element } from '../../lib/support';
 export default class Cameras extends Component {
   constructor(props) {
     super(props)
-    this.state = { loading: true, height: Dimensions.get('window').height, cameraIndex: 0 }
+    this.state = { loading: true, height: Dimensions.get('window').height, cameraIndex: 0, postIndex: 0 }
   }
 
   _onOrientationDidChange = (orientation) => {
@@ -52,8 +52,22 @@ export default class Cameras extends Component {
     this.setState({ camera: cameras[key], cameraIndex: key })
   }
 
+  changePostIndex = (key) => {
+    this.setState({ postIndex : key })
+  }
+
+
+  renderSafeArea = () => {
+    return (
+      <SafeAreaView style={styles.safe_area}> 
+        { this.renderText() }
+      </SafeAreaView>
+    )
+  }
+  
+
   renderText = () => {
-    const { loading, cameraIndex } = this.state
+    const { loading, cameraIndex, postIndex } = this.state
     const { locations, location, navigation } = this.props
     const { included: cameras } = location
     return ( 
@@ -70,21 +84,15 @@ export default class Cameras extends Component {
           location={location}
           cameras={cameras} 
           changeCamera={this.changeCamera}
+          changePostIndex={this.changePostIndex}
           navigation={navigation}
           cameraIndex={cameraIndex}
+          postIndex={postIndex}
         />
       </React.Fragment>
     )
   }
 
-  renderSafeArea = () => {
-    return (
-      <SafeAreaView style={styles.safe_area}> 
-        { this.renderText() }
-      </SafeAreaView>
-    )
-  }
-  
   render() {
     const { height, screen_height } = this.state
     const { camera: { attributes: { posts }}} = this.state
