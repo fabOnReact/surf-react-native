@@ -115,7 +115,6 @@ export default class Recorder extends Component {
   }
 
   _onPinchProgress = (p) => {
-    console.warn(p);
     let p2 = p - this._prevPinch
     if(p2 > 0 && p2 > ZOOM_F) {
       this._prevPinch = p
