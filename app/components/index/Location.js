@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
 import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
-import CamButton from '../buttons/CamButton';
 import DeviceInfo from 'react-native-device-info';
 import SafeArea from '../SafeArea';
+import CamButton from '../buttons/CamButton';
+import PostButton from '../buttons/PostButton';
 import DisplayButton from '../buttons/DisplayButton';
 import { Header } from 'react-navigation';
 
@@ -48,42 +49,47 @@ export default class Location extends Component {
   }
 
   render() {
-    const { cameras, changeCamera, cameraIndex } = this.props
-    const { location: { data: { attributes }}} = this.props
+    const { cameras, changeCamera, changePostIndex, cameraIndex, postIndex, location } = this.props
+    const { data: { attributes }} = location
     const previews = cameras
+    const camera = cameras[cameraIndex]
+    const { attributes: { posts }} = camera
     previews.length = 5
     return (
       <React.Fragment>
-        {/*
-        <TouchableOpacity
-          onPress={this.navigateToForecast}
-          style={[styles.full_screen]}>
-        */}
-          <View
-            style={[
-              styles.full_screen, 
-              styles.flex_evenly,
-            ]}>
-            {
-              previews.map((camera, index) => 
-                <CamButton 
-                  key={index}
-                  index={index}
-                  action={changeCamera}
-                  selected={cameraIndex}
-                />
-              )
-            }
-            <DisplayButton 
-              action={this.navigateToForecast} />
-          </View>
-          <Text 
-            style={styles.header}>
-              { this.title }
-          </Text>
-        {/*
-        </TouchableOpacity>
-        */}
+        <View
+          style={[
+            styles.full_screen, 
+            styles.flex_evenly,
+          ]}>
+          {
+            previews.map((camera, index) => 
+              <CamButton 
+                key={index}
+                index={index}
+                action={changeCamera}
+                selected={cameraIndex}
+              />
+            )
+          }
+          { 
+            posts.map((post, index) => 
+              <PostButton 
+                key={index}
+                data={post}
+                action={changePostIndex}
+                index={index}
+                selected={postIndex}
+              />
+            )
+          }
+          <DisplayButton 
+            action={this.navigateToForecast} />
+        </View>
+        <Text 
+          style={styles.header}>
+            { this.title }
+        </Text>
       </React.Fragment>
     )
   }
