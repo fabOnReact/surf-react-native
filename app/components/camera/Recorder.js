@@ -11,7 +11,7 @@ import ZoomView from './ZoomView';
 import SafeArea from '../SafeArea';
 
 const MAX_ZOOM = 8; // iOS only
-const ZOOM_F = Platform.OS === 'ios' ? 0.001 : 0.08;
+const ZOOM_F = Platform.OS === 'ios' ? 0.0008 : 0.08;
 
 export default class Recorder extends Component {
 
@@ -115,6 +115,7 @@ export default class Recorder extends Component {
   }
 
   _onPinchProgress = (p) => {
+    console.warn(p);
     let p2 = p - this._prevPinch
     if(p2 > 0 && p2 > ZOOM_F) {
       this._prevPinch = p
