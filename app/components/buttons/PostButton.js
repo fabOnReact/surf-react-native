@@ -5,7 +5,7 @@ import DateHelper from '../../lib/date_helper';
 export default function PostButton({ data, action, index, selected }) {
   const is_selected = index == selected
   const color = is_selected ? styles.highlight : styles.normal
-  const date = DateHelper.new(data.created_at)
+  const date = new DateHelper(data.created_at)
   const how_long_ago = date.distance
   return (
     <React.Fragment>
