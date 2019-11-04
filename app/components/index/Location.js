@@ -60,31 +60,44 @@ export default class Location extends Component {
         <View
           style={[
             styles.full_screen, 
-            styles.flex_evenly,
           ]}>
-          {
-            previews.map((camera, index) => 
-              <CamButton 
-                key={index}
-                index={index}
-                action={changeCamera}
-                selected={cameraIndex}
-              />
-            )
-          }
-          { 
-            posts.map((post, index) => 
-              <PostButton 
-                key={index}
-                data={post}
-                action={changePostIndex}
-                index={index}
-                selected={postIndex}
-              />
-            )
-          }
-          <DisplayButton 
-            action={this.navigateToForecast} />
+          <View
+            style={[
+              styles.flex_evenly,
+              styles.absolute,
+              styles.cameras,
+            ]}>
+            {
+              previews.map((camera, index) => 
+                <CamButton 
+                  key={index}
+                  index={index}
+                  action={changeCamera}
+                  selected={cameraIndex}
+                />
+              )
+            }
+            <DisplayButton 
+              action={this.navigateToForecast} />
+          </View>
+          <View
+            style={[
+              styles.flex_evenly,
+              styles.absolute,
+              styles.posts,
+            ]}>
+            { 
+              posts.map((post, index) => 
+                <PostButton 
+                  key={index}
+                  data={post}
+                  action={changePostIndex}
+                  index={index}
+                  selected={postIndex}
+                />
+              )
+            }
+          </View>
         </View>
         <Text 
           style={styles.header}>
@@ -108,6 +121,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    // backgroundColor: 'red',
   },
   flex_evenly: {
     display: 'flex',
@@ -118,6 +132,21 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginBottom: is_ios ? cameraHeight : bottomNavBarH + cameraHeight,
+  },
+  absolute : {
+    position: 'absolute', 
+    left: 0,
+    right: 0,
+  },
+  cameras: {
+    // backgroundColor: 'green',
+    bottom: 50,
+  },
+  posts: {
+    // backgroundColor: 'yellow',
+    bottom: 0,
+    left : 0,
+    right: 0,
   },
   header: {
     position: 'absolute',
