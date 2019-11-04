@@ -8,19 +8,19 @@ class DateHelper extends Date {
     // console.log('The current case was not managed. Seconds has value of: ' + this.seconds)
   }
 	get in_seconds() {
-		return `${this.seconds} seconds ago`
+		return `${this.seconds}s ago`
   }
 	get in_minutes() {
-		return `${this.minutes} minutes ago`
+		return `${this.minutes}m ago`
   }
 	get in_hours() {
-		return `${this.hours} hours ago`
+		return `${this.hours}h ago`
   }
   get in_days() {
-    return `${this.days} days ago`
+    return `${this.days}d ago`
   }
   get in_months() {
-    return `${this.months} months ago`
+    return `${this.months} month ago`
   }
   get is_seconds() {
     return this.seconds < 60 

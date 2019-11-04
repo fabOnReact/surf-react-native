@@ -4,6 +4,7 @@ import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
 import DeviceInfo from 'react-native-device-info';
 import SafeArea from '../SafeArea';
+import Row from '../buttons/Row';
 import CamButton from '../buttons/CamButton';
 import PostButton from '../buttons/PostButton';
 import DisplayButton from '../buttons/DisplayButton';
@@ -55,18 +56,14 @@ export default class Location extends Component {
     const camera = cameras[cameraIndex]
     const { attributes: { posts }} = camera
     previews.length = 5
+    posts.lenght = 5
     return (
       <React.Fragment>
         <View
           style={[
             styles.full_screen, 
           ]}>
-          <View
-            style={[
-              styles.flex_evenly,
-              styles.absolute,
-              styles.cameras,
-            ]}>
+          <Row options={styles.cameras}>
             {
               previews.map((camera, index) => 
                 <CamButton 
@@ -79,13 +76,8 @@ export default class Location extends Component {
             }
             <DisplayButton 
               action={this.navigateToForecast} />
-          </View>
-          <View
-            style={[
-              styles.flex_evenly,
-              styles.absolute,
-              styles.posts,
-            ]}>
+          </Row>
+          <Row options={styles.posts}>
             { 
               posts.map((post, index) => 
                 <PostButton 
@@ -97,7 +89,7 @@ export default class Location extends Component {
                 />
               )
             }
-          </View>
+          </Row>
         </View>
         <Text 
           style={styles.header}>
@@ -109,11 +101,6 @@ export default class Location extends Component {
 }
 
 const has_notch = DeviceInfo.hasNotch()
-const is_ios = Platform.OS === 'ios'
-let deviceH = Dimensions.get('screen').height;
-let windowH = Dimensions.get('window').height;
-let bottomNavBarH = deviceH - windowH;
-const cameraHeight = 150
 export const styles = StyleSheet.create({
   full_screen: {
     position: 'absolute',
@@ -121,37 +108,21 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    // backgroundColor: 'red',
-  },
-  flex_evenly: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-evenly',
-    zIndex: 2,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: is_ios ? cameraHeight : bottomNavBarH + cameraHeight,
-  },
-  absolute : {
-    position: 'absolute', 
-    left: 0,
-    right: 0,
   },
   cameras: {
-    // backgroundColor: 'green',
-    bottom: 50,
+    bottom: 70,
+    flexWrap: 'nowrap',
   },
   posts: {
-    // backgroundColor: 'yellow',
+    height: 70,
     bottom: 0,
     left : 0,
     right: 0,
+    flexWrap: 'wrap',
   },
   header: {
     position: 'absolute',
     top: has_notch ? 0 : 30,
-    // width: Dimensions.get('window').width,
     width: "100%",
     color: 'white',
     fontWeight: 'bold',
