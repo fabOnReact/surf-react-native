@@ -47,9 +47,9 @@ export default class Cameras extends Component {
     this.setState({ height: new_height })
   }
 
-  changeCamera = (key) => {
+  changeCameraIndex = (key) => {
     const { location: { included: cameras }} = this.props
-    this.setState({ camera: cameras[key], cameraIndex: key })
+    this.setState({ camera: cameras[key], cameraIndex: key, postIndex: 0 })
   }
 
   changePostIndex = (key) => {
@@ -83,7 +83,7 @@ export default class Cameras extends Component {
           locations={locations}
           location={location}
           cameras={cameras} 
-          changeCamera={this.changeCamera}
+          changeCamera={this.changeCameraIndex}
           changePostIndex={this.changePostIndex}
           navigation={navigation}
           cameraIndex={cameraIndex}
@@ -94,9 +94,9 @@ export default class Cameras extends Component {
   }
 
   render() {
-    const { height, screen_height } = this.state
+    const { height, screen_height, postIndex } = this.state
     const { camera: { attributes: { posts }}} = this.state
-    const { video: { url, poster }} = posts[0]
+    const { video: { url, poster }} = posts[postIndex]
     const has_notch = DeviceInfo.hasNotch()
     const screen = Dimensions.get('screen').height
     return (
