@@ -20,8 +20,8 @@ export default class ForecastMap extends Component {
     const host = "https://maps.googleapis.com/maps/api/staticmap"
     const options = "zoom=11&&size=1200x900&maptype=satellite"
     const uri = `${host}?center=${latitude},${longitude}&${options}&markers=${latitude},${longitude}&key=${GOOGLE_MAPS_API_KEY}`
-    const { tide } = forecast_info
-    var { hours, seaLevels } = tide
+    const { tide_chart } = forecast_info
+    var { hours, seaLevels } = tide_chart
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
       <React.Fragment>
