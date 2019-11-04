@@ -4,7 +4,8 @@ import DateHelper from '../../lib/date_helper';
 
 export default function PostButton({ data, action, index, selected }) {
   const is_selected = index == selected
-  const color = is_selected ? styles.highlight : styles.normal
+  const button_color = is_selected ? styles.highlight : styles.normal
+  const text_color = is_selected ? styles.text_highlight: styles.text_normal
   const date = new DateHelper(data.created_at)
   const how_long_ago = date.distance
   return (
@@ -12,12 +13,12 @@ export default function PostButton({ data, action, index, selected }) {
       <TouchableOpacity 
         style={[
           styles.button,
-          color
+          button_color
         ]}
         onPress={() => action(index)}
       >
         <Text
-          style={styles.text}>
+          style={text_color}>
           { how_long_ago }
         </Text>
       </TouchableOpacity>
@@ -27,30 +28,29 @@ export default function PostButton({ data, action, index, selected }) {
 
 const styles = StyleSheet.create({
   button: {
-    // height: 50,
-    // width: 70,
-    // borderRadius: 10,
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // zIndex: 2,
+    height: 30,
+    width: 100,
+    borderRadius: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
   }, 
   highlight: {
-    // borderColor: '#e6e6e6',
-    // backgroundColor: '#66ff66',
-    // backgroundColor: '#66ff66',
-    // borderWidth: 1,
+    borderColor: 'red',
+    backgroundColor: '#ffff66',
+    borderWidth: 2,
   },
   normal: {
-    // borderColor: 'white',
-    // borderWidth: 2,
+    borderColor: 'white',
+    borderWidth: 2,
   },
-  text: {
-    color: 'white',
+  text_highlight: {
+    color: 'red',
     fontWeight: '900',
-    // textShadowColor: 'rgba(0, 0, 0, 1)',
-    // textShadowOffset: {width: -1, height: 1},
-    // textShadowRadius: 1,
-    // zIndex:2,
+  },
+  text_normal: {
+    color: 'white',
+    fontWeight: '500',
   }
 })
