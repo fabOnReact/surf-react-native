@@ -27,14 +27,14 @@ export default class MapScreen extends Component {
   }
 
   componentDidMount = async () => {
-    const current_position = await this.ref.getMapBoundaries()
-    this.map = new Map(current_position) 
+    // const current_position = await this.ref.getMapBoundaries()
+    // this.map = new Map(current_position) 
     // console.error(this.map);
-    this.setState({ 
-      locations: this.locations, 
-      latitude: this.lat, 
-      longitude: this.long 
-    })
+    // this.setState({ 
+    //   locations: this.locations, 
+    //   latitude: this.lat, 
+    //   longitude: this.long 
+    // })
   }
 
   get lat() {
@@ -59,6 +59,9 @@ export default class MapScreen extends Component {
 
   handleRegionChange = async () => {
     const current_position = await this.ref.getMapBoundaries()
+    if (!this.map) {
+      this.map = new Map(current_position) 
+    }
     this.map.current = current_position
     if (this.map.shouldUpdate) { 
       this.map.previous = current_position
@@ -97,10 +100,10 @@ export default class MapScreen extends Component {
     return (
       <MapView
         style={{flex: 1}}
-        data={this.state.locations}
+        // data={this.state.locations}
         initialRegion={region}
         ref={(r) => this.ref = r}
-        renderMarker={this.renderMarker}
+        // renderMarker={this.renderMarker}
         showCompass={false}
         onRegionChangeComplete={this.handleRegionChange}
       >
