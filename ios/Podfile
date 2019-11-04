@@ -30,7 +30,6 @@ target 'SurfApp' do
   # pod 'react-native-icons', :path => '../node_modules/react-native-icons'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
@@ -52,6 +51,8 @@ target 'SurfApp' do
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
   pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
   target 'SurfAppTests' do
     inherit! :search_paths
