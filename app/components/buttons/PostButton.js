@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import DateHelper from '../../lib/date_helper';
 
 export default function PostButton({ data, action, index, selected }) {
   const is_selected = index == selected
   const color = is_selected ? styles.highlight : styles.normal
-  console.warn(data.created_at);
+  const date = DateHelper.new(data.created_at)
+  const how_long_ago = date.distance
   return (
     <React.Fragment>
       <TouchableOpacity 
@@ -16,7 +18,7 @@ export default function PostButton({ data, action, index, selected }) {
       >
         <Text
           style={styles.text}>
-          { data.created_at }
+          { how_long_ago }
         </Text>
       </TouchableOpacity>
     </React.Fragment>
@@ -44,8 +46,8 @@ const styles = StyleSheet.create({
     // borderWidth: 2,
   },
   text: {
-    // color: 'white',
-    // fontWeight: '900',
+    color: 'white',
+    fontWeight: '900',
     // textShadowColor: 'rgba(0, 0, 0, 1)',
     // textShadowOffset: {width: -1, height: 1},
     // textShadowRadius: 1,
