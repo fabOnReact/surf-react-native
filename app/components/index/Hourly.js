@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import Swell from '../forecast/Swell';
 import Wind from '../forecast/Wind';
 import Arrow from '../icons/Arrow';
-import DeviceInfo from 'react-native-device-info';
+import MenuButton from '../buttons/MenuButton';
+import FlagButton from '../buttons/FlagButton';
 import { header } from '../forecast/styles';
 
 export default class Hourly extends Component {
+  renderMenu() {
+    console.warn('renderMenu');
+  }
+
+  flagPost() {
+    console.warn('flagPost')
+  }
+
   renderHourly(hourly) {
     const { 
       waveHeight, swellHeight, swellPeriod, 
@@ -41,6 +51,8 @@ export default class Hourly extends Component {
     return (
       <React.Fragment>
         <View style={styles.container}>
+          <MenuButton action={this.renderMenu}/>
+          <FlagButton action={this.flagPost} />
           <Text style={[
             header.shadowHeader,
             header.text,
@@ -61,6 +73,7 @@ export const styles = StyleSheet.create({
     top: has_notch ? 0 : 30,
     width: "100%",
     zIndex: 4,
-    height: 100,
+    height: 90,
+    // backgroundColor: 'red',
   }, 
 })
