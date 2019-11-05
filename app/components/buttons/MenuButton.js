@@ -5,7 +5,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 export default function MenuButton({ action }){
   return (
     <TouchableOpacity
-      onPress={() => console.warn('press')}
+      onPress={action}
       style={styles.container}
     >
       <Icon name="md-menu" 
@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   icon: {
-    shadowColor: 'rgba(0,0,0, 1)', 
-    shadowOffset: { height: 3, width: 3 },
+    shadowColor: 'black', 
+    shadowOffset: { height: 1, width: 1 },
     shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 3,
+    shadowRadius: 1,
+    textShadowOffset: { height: 1, width: 1},
+    textShadowRadius: 1,
+    elevation: 1,
     marginTop: -5,
   },
 })

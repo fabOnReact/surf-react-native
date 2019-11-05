@@ -1,32 +1,35 @@
+import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function FlagButton({ setVideo }){
+export default function FlagButton({ action }){
   return (
     <TouchableOpacity
-      text="Submit"
-      style={styles.containerRight}
-      onPress={() => setVideo(false)} >
-      <Text>Cancel</Text>
-      <Icon name="ios-flag" 
-        size={50} 
-        color="black" />
+      onPress={action}
+      style={styles.container}
+    >
+      <Icon name="md-flag" 
+        size={25} 
+        color="white"
+        style={styles.icon}/>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-  containerRight: {
+  container: {
     position: "absolute",
-    bottom: 120,
-    right: 5,
-    height: 50,
-    width: 100,
-    backgroundColor: 'white',
-    borderRadius: 15,
-    zIndex: 1,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
+    bottom: 0,
+    right: 25,
+    zIndex: 3,
+  },
+  icon: {
+    shadowColor: 'black', 
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    textShadowOffset: { height: 1, width: 1},
+    textShadowRadius: 1,
+    elevation: 1,
   },
 })
