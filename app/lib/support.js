@@ -59,47 +59,10 @@ export function isPresent(obj) {
   return !( Object.entries(obj).length === 0 && obj.constructor === Object )
 }
 
-// image_source = Image.resolveAssetSource(getAsset(post.video.high.poster_name)).uri  // || post.video.high.poster
 export const getAsset = (key) => {
   const assetsArray = {
-    "surfer-max.mp4": require('../videos/surfer-max.mp4'),
-    "surfer-min.mp4": require('../videos/surfer-min.mp4'),
-    "seaside-max.mp4": require('../videos/seaside-max.mp4'),
-    "seaside-min.mp4": require('../videos/seaside-min.mp4'),
-    "seaside-poster.png": Image.resolveAssetSource(require('../images/seaside-poster.png')).uri,
-    "seaside-poster-max.png": Image.resolveAssetSource(require('../images/seaside-poster-max.png')).uri,
-    "bronte-max.mp4": require('../videos/bronte-max.mp4'),
-    "bronte-min.mp4": require('../videos/bronte-min.mp4'),
-    "bronte-poster.png": Image.resolveAssetSource(require('../images/bronte-poster.png')).uri,
-    "bronte-poster-max.png": Image.resolveAssetSource(require('../images/bronte-poster-max.png')).uri,
     "costline-max.mp4": require('../videos/costline-max.mp4'),
-    "costline-min.mp4": require('../videos/costline-min.mp4'),
-    "costline-poster.png": Image.resolveAssetSource(require('../images/costline-poster.png')).uri,
     "costline-poster-max.png": Image.resolveAssetSource(require('../images/costline-poster-max.png')).uri,
-    "surfer-poster-max.png": Image.resolveAssetSource(require('../images/surfer-poster-max.png')).uri,
-    "surfer-poster.png": Image.resolveAssetSource(require('../images/surfer-poster.png')).uri,
   }
   return assetsArray[key];
 };
-
-// import Dimensions from 'Dimensions';
-// import { Header } from 'react-navigation';
-// class Element {
-//   get width() {
-//     return Dimensions.get('window').width
-//   }
-// 
-//   get height() {
-//     return Dimensions.get('window').height
-//   }
-// 
-//   style = (orientation, component) => {
-//     const new_width = this.width - Header.HEIGHT/2
-//     if (orientation != 'PORTRAIT') { 
-//       component.setState({ width: new_width, portrait: false })
-//     } else { 
-//       const new_height = (this.height - Header.HEIGHT)/3
-//       component.setState({ width: new_width, height: new_height, portrait: true })
-//     }
-//   }
-// }
