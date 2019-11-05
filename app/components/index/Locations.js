@@ -95,6 +95,21 @@ export default class Locations extends Component {
     })
   }
 
+  navigateToMap = () => {
+    const { navigation } = this.props
+    const { latitude, longitude, locations } = this.state
+    navigation.navigate("Map", { 
+      lat: latitude, 
+      lon: longitude, 
+      locations: locations,
+    }) 
+  }
+
+  navigateToProfile = () => {
+    const { navigation } = this.props
+    navigation.navigate("Profile")
+  }
+
   renderList() {
     const { navigation } = this.props
     const { locations } = this.state
@@ -134,13 +149,8 @@ export default class Locations extends Component {
         { locations_present ? this.renderList() : null }
         <SafeArea
           style={flex}>
-          <ProfileButton navigation={navigation} />
-          <MapButton 
-            navigation={navigation} 
-            locations={nearby_locations}
-            latitude={latitude} 
-            longitude={longitude}
-          />
+          <ProfileButton action={this.navigateToProfile} />
+          <MapButton action={this.navigateToMap} />
           <CameraButton 
             action={this.navigateToCamera} 
           />
