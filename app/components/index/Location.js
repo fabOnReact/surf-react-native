@@ -30,6 +30,7 @@ export default class Location extends Component {
     posts.lenght = 5
     return (
       <React.Fragment>
+        <Hourly location={attributes} />
         <View
           style={[
             styles.full_screen, 
@@ -63,7 +64,6 @@ export default class Location extends Component {
             }
           </Row>
         </View>
-        <Hourly location={attributes} />
       </React.Fragment>
     )
   }
