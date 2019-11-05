@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List } from 'native-base';
-import ForecastMap from '../components/forecast/ForecastMap';
-import Item from '../components/forecast/Item';
+import Map from '../components/forecast/Map';
+// import Item from '../components/forecast/Item';
 // import { locations_fixtures } from '../../test/fixtures/locations.js';
 
 export default class NearbyScreen extends Component { 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
+import Hourly from './Hourly';
 import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
-import DeviceInfo from 'react-native-device-info';
 import SafeArea from '../SafeArea';
 import Row from '../buttons/Row';
 import CamButton from '../buttons/CamButton';
@@ -11,37 +11,6 @@ import DisplayButton from '../buttons/DisplayButton';
 import { Header } from 'react-navigation';
 
 export default class Location extends Component {
-  get attributes() {
-    const { location: { data: { attributes }}} = this.props
-    return attributes
-  }
-
-  get forecastInfo() {
-    const { forecast_info } = this.attributes
-    return forecast_info
-  }
-
-  get hourly() {
-    const { hourly } = this.forecastInfo
-    return hourly
-  }
-
-  get swellHeight() {
-    const { swellHeight } = this.hourly
-    return swellHeight
-  }
-
-  get name() {
-    const { name } = this.attributes
-    return name
-  }
-  
-  get title() {
-    if (!!this.swellHeight) { 
-      return `${this.swellHeight} mt. at ${this.name}`
-    }
-  }
-
   navigateToForecast = () => {
     const { navigation, locations, location } = this.props
     if(!!this.swellHeight) {
@@ -55,6 +24,8 @@ export default class Location extends Component {
     const previews = cameras
     const camera = cameras[cameraIndex]
     const { attributes: { posts }} = camera
+    const { forecast_info: { hourly }} = attributes
+    this.swellHeight = hourly.swellHeight
     previews.length = 5
     posts.lenght = 5
     return (
@@ -75,7 +46,8 @@ export default class Location extends Component {
               )
             }
             <DisplayButton 
-              action={this.navigateToForecast} />
+              action={this.navigateToForecast} 
+            />
           </Row>
           <Row options={styles.posts}>
             { 
@@ -91,16 +63,13 @@ export default class Location extends Component {
             }
           </Row>
         </View>
-        <Text 
-          style={styles.header}>
-            { this.title }
-        </Text>
+        <Hourly location={attributes} />
       </React.Fragment>
     )
   }
 }
 
-const has_notch = DeviceInfo.hasNotch()
+// const has_notch = DeviceInfo.hasNotch()
 export const styles = StyleSheet.create({
   full_screen: {
     position: 'absolute',
@@ -120,17 +89,17 @@ export const styles = StyleSheet.create({
     right: 0,
     flexWrap: 'wrap',
   },
-  header: {
-    position: 'absolute',
-    top: has_notch ? 0 : 30,
-    width: "100%",
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 30,
-    textShadowColor: 'rgb(0, 0, 0)',
-    textShadowOffset: {width: -2, height: 2},
-    textShadowRadius: 1,
-    textAlign: 'center',
-    marginBottom: 5,
-  }, 
+  //   header: {
+  //     position: 'absolute',
+  //     top: has_notch ? 0 : 30,
+  //     width: "100%",
+  //     color: 'white',
+  //     fontWeight: 'bold',
+  //     fontSize: 30,
+  //     textShadowColor: 'rgb(0, 0, 0)',
+  //     textShadowOffset: {width: -2, height: 2},
+  //     textShadowRadius: 1,
+  //     textAlign: 'center',
+  //     marginBottom: 5,
+  //   }, 
 })

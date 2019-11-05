@@ -4,10 +4,11 @@ import { Header } from 'react-navigation';
 import { H3 } from 'native-base';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Video from 'react-native-video';
-import ForecastMap from '../components/forecast/ForecastMap';
+import Map from '../components/forecast/Map';
+import Hourly from '../components/forecast/Hourly';
 // import Orientation from 'react-native-orientation';
-import ForecastHourly from '../components/forecast/ForecastHourly';
 import TableView from '../components/forecast/TableView';
+import Current from '../components/forecast/Current';
 import { getAsset } from '../lib/support';
 
 export default class ForecastScreen extends Component {
@@ -33,20 +34,21 @@ export default class ForecastScreen extends Component {
     const locations = navigation.getParam('locations')
     const { data: { attributes: location_attributes }} = this.location
     const { forecast_info } = location_attributes
-    const { daily } = forecast_info
+    const { daily, hourly } = forecast_info
     const { included: cameras } = this.location
     const height = Dimensions.get("window").height
     return (
       <React.Fragment>
         <StatusBar backgroundColor="black" hidden={false} barStyle="dark-content" translucent={false} />
         <ScrollView>
-          {/* !!post && <ForecastHourly location={location_attributes} forecast_info={forecast_info} /> */}
-          <ForecastMap 
+          <Map 
             locations={locations}
             location={location_attributes} 
             cameras={cameras} 
             navigation={navigation}
           />
+          <Hourly
+            hourly={hourly} />
           <TableView daily={daily} />
         </ScrollView>
       </React.Fragment>

@@ -6,7 +6,7 @@ import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import Chart from './Chart';
 import DisplayButton from '../buttons/DisplayButton';
 
-export default class ForecastMap extends Component {
+export default class Map extends Component {
   navigateToMap = () => {
     const { navigation, locations, location } = this.props
     const { latitude, longitude } = location
