@@ -69,7 +69,6 @@ export default class Location extends Component {
   }
 }
 
-// const has_notch = DeviceInfo.hasNotch()
 export const styles = StyleSheet.create({
   full_screen: {
     position: 'absolute',
@@ -79,27 +78,14 @@ export const styles = StyleSheet.create({
     right: 0,
   },
   cameras: {
-    bottom: 70,
+    bottom: 80,
     flexWrap: 'nowrap',
   },
   posts: {
     height: 70,
-    bottom: 0,
+    bottom: 10,
     left : 0,
     right: 0,
     flexWrap: 'wrap',
   },
-  //   header: {
-  //     position: 'absolute',
-  //     top: has_notch ? 0 : 30,
-  //     width: "100%",
-  //     color: 'white',
-  //     fontWeight: 'bold',
-  //     fontSize: 30,
-  //     textShadowColor: 'rgb(0, 0, 0)',
-  //     textShadowOffset: {width: -2, height: 2},
-  //     textShadowRadius: 1,
-  //     textAlign: 'center',
-  //     marginBottom: 5,
-  //   }, 
 })
