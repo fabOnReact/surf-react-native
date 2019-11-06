@@ -13,8 +13,9 @@ export default class Hourly extends Component {
     console.warn('renderMenu');
   }
 
-  flagPost() {
-    console.warn('flagPost')
+  onFlagPress = () => {
+    const { navigation, post } = this.props
+    navigation.navigate("Flag", { post: post })
   }
 
   renderHourly(hourly) {
@@ -45,14 +46,14 @@ export default class Hourly extends Component {
   }
 
   render() {
-    const { location} = this.props
+    const { location } = this.props
     const { name, forecast_info: { hourly, tide_data }} = location
     const { swellHeight } = hourly
     return (
       <React.Fragment>
         <View style={styles.container}>
           <MenuButton action={this.renderMenu}/>
-          <FlagButton action={this.flagPost} />
+          <FlagButton action={this.onFlagPress} />
           <Text style={[
             header.shadowHeader,
             header.text,
@@ -74,6 +75,5 @@ export const styles = StyleSheet.create({
     width: "100%",
     zIndex: 4,
     height: 90,
-    // backgroundColor: 'red',
   }, 
 })
