@@ -45,12 +45,6 @@ class Api {
     return await this.perform()
   }
 
-  // getPosts = async () => {
-  //   this.config = await this.getConfig("GET")
-  //   this.url = `${host}/posts.json?${this.query}`
-  //   return await this.perform()
-  // }
-
   createPost = async (data) => {
     this.config = await this.getConfig("POST", data) 
     this.url = `${host}/posts.json`

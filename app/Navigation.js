@@ -6,9 +6,10 @@ import ProfileScreen from './screens/ProfileScreen';
 import MapScreen from './screens/MapScreen';
 import WebViewScreen from './screens/WebViewScreen';
 import ForecastScreen from './screens/ForecastScreen';
-import NearbyScreen from './screens/NearbyScreen';
 import AuthenticationScreen from './screens/AuthenticationScreen';
 import FlagScreen from './screens/FlagScreen';
+import MenuScreen from './screens/MenuScreen';
+import ShowScreen from './screens/ShowScreen';
 
 const AppStack = createStackNavigator({ 
   Index: {
@@ -21,9 +22,10 @@ const AppStack = createStackNavigator({
   Camera: CameraScreen,
   Profile: ProfileScreen, 
   Map: MapScreen, 
-  Nearby: NearbyScreen,
   Forecast: ForecastScreen,
   Flag: FlagScreen,
+  Menu: MenuScreen,
+  Show: ShowScreen,
 });
 
 const AuthStack = createStackNavigator({ Authentication: AuthenticationScreen });
