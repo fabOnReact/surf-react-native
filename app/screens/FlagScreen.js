@@ -5,9 +5,15 @@ import Validator from '../lib/validator';
 
 
 export default class FlagScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Flag Post',
+    };
+  };
+
   constructor(props) {
     super(props)
-    this.state = { email: "", reason: "", errors: false, errorMessage: "" }
+    this.state = { email: "", flag_reason: "", password: "", errors: false, errorMessage: "" }
   }
 
   componentDidMount() {
@@ -17,9 +23,9 @@ export default class FlagScreen extends Component {
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
-    const { email, reason } = this.state
+    const { email, flag_reason } = this.state
     const email_changed = prevState.email != email
-    const reason_changed = prevState.reason != reason
+    const reason_changed = prevState.flag_reason != flag_reason
     const form_changed = email_changed || reason_changed
     if (form_changed) { 
       this.validator.params = this.params
@@ -27,30 +33,25 @@ export default class FlagScreen extends Component {
   }
 
   get params() {
-    const { email, reason } = this.state
+    const { email, flag_reason, password } = this.state
     return {
       post: {
-        reported: true,
         email,
-        reason,
-      }
+        flag_reason,
+        reported: 'true',
+      },
+      password
     }
   }
 
-  onChangeEmail = (new_email) => {
-    this.setState({ email: new_email })
-  }
+  onChangeEmail = (new_email) => this.setState({ email: new_email })
+  onChangeReason = (new_reason) => this.setState({ flag_reason: new_reason })
+  onChangePassword = (new_password) => this.setState({ password: new_password })
 
-  onChangeReason = (new_reason) => {
-    this.setState({ reason: new_reason })
-  }
-
-  updatePost = () => {
+  updatePost = async () => {
     const { id } = this.post
-    const { email, reason } = this.state
     if (this.validator.valid) {
-      this.setState({ errors: false, errorMessage: "" })
-      api.updatePost(id, this.params)
+      const response = await api.updatePost(id, this.params)
     } else {
       const errorMessage = this.validator.errors
       this.setState({ errors: true, errorMessage })
@@ -58,7 +59,7 @@ export default class FlagScreen extends Component {
   }
 
   render() {
-    const { email, reason, errors, errorMessage } = this.state
+    const { email, flag_reason, errors, errorMessage, password } = this.state
     const borderColor = errors ? styles.error : styles.normal
     return (
       <View style={styles.container}>
@@ -80,7 +81,7 @@ export default class FlagScreen extends Component {
             borderColor
           ]}
           placeholder="Your Email" 
-          placeholderTextColor={"black"}
+          placeholderTextColor={"#a6a6a6"}
           autoCompleteType="email"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -93,11 +94,24 @@ export default class FlagScreen extends Component {
             styles.text,
             borderColor
           ]}
-          multiline
-          placeholder="Please explain why you want the video removed" 
-          placeholderTextColor={"black"}
+          // multiline
+          placeholder="EXPLANATION - Please explain" 
+          placeholderTextColor={"#a6a6a6"}
           onChangeText={text => this.onChangeReason(text)}
-          value={reason}
+          value={flag_reason}
+        />
+        <TextInput
+          style={[
+            styles.input,
+            styles.email,
+            borderColor
+          ]}
+          placeholder="OPTIONAL - FOR ADMINISTRATORS ONLY" 
+          placeholderTextColor={"#a6a6a6"}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          onChangeText={password=> this.onChangePassword(password)}
+          value={password}
         />
         <Button
           title="submit"
@@ -119,7 +133,7 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   text: { 
-    height: "30%",
+    height: "15%",
     textAlignVertical: 'top',
   },
   error: {

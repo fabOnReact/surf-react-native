@@ -18,7 +18,7 @@ class Api {
   }
 
   getConfig =  async (method, body) => {
-    const config = { method, body }
+    const config = { method, body: JSON.stringify(body) }
     if (!this._credentials) {
       this._credentials = await this.setCredentials()
     }
@@ -27,6 +27,40 @@ class Api {
       ...this._credentials,
     }
     return config
+  }
+
+  perform = async () => {
+    try {
+      return await fetch(this.url, this.config)
+    } catch(error) {
+      console.warn('api call failed with error: ', error)
+    }
+  }
+  
+  getLocations = async ({ query = null, flags = [""] }) => {
+    this.config = await this.getConfig("GET")
+    const and_flags = `${flags.join("")}`
+    const query_string = query || this.query
+    this.url = `${host}/locations.json?${query_string + and_flags}`
+    return await this.perform()
+  }
+
+  // getPosts = async () => {
+  //   this.config = await this.getConfig("GET")
+  //   this.url = `${host}/posts.json?${this.query}`
+  //   return await this.perform()
+  // }
+
+  createPost = async (data) => {
+    this.config = await this.getConfig("POST", data) 
+    this.url = `${host}/posts.json`
+    return await this.perform()
+  }
+
+  updatePost = async (id, data) => {
+    this.config = await this.getConfig("PATCH", data)
+    this.url = `${host}/posts/${id}.json`
+    return await this.perform()
   }
 
   set params(obj) {
@@ -77,65 +111,22 @@ class Api {
   get query() {
     return `${this.coordinates}&${this.pagination}`
   }
-
-  perform = async () => {
-    try {
-      return await fetch(this.url, this.config)
-    } catch(error) {
-      console.warn('api call failed with error: ', error)
-    }
-  }
-  
-  getLocations = async ({ query = null, flags = [""] }) => {
-    this.config = await this.getConfig("GET")
-    const and_flags = `${flags.join("")}`
-    const query_string = query || this.query
-    this.url = `${host}/locations.json?${query_string + and_flags}`
-    return await this.perform()
-  }
-
-  getPosts = async () => {
-    this.config = await this.getConfig("GET")
-    this.url = `${host}/posts.json?${this.query}`
-    return await this.perform()
-  }
-
-  createPost = async (data) => {
-    this.config = await this.getConfig("POST", data) 
-    this.url = `${host}/posts.json`
-    return await this.perform()
-  }
-
-  updatePost = async (id, data) => {
-    this.config = await this.getConfig("PUT", data)
-    this.url = `${host}/posts/${id}.json`
-    return await this.perform()
-  }
 }
 
 const api = new Api
 export default api
 
-export const createResource = (success, failure, body, settings) => {
-  const options = { method: 'POST', headers: headers, body: body }
-
-  fetch(`${host}/${settings.endpoint}.json`, options)
-    .then(response => { 
-      response.json().then(data => { 
-        if (response.status == settings.responseStatus) { success(data) }
-        else { failure(data) }
-      })
-    })
-    .catch(error => errorMessage(error));
-}
-
-// export const getResources = async (success, path) => {
-//   let credentials = await getCredentials()
-//   let config = { method: 'GET', headers: {...headers, ...credentials} }
-//   fetch(`${host}/${path}`, config)
-//      .then(response => response.json())
-//      .then(json => success(json))
-//      .catch(error => errorMessage(error))
+// export const createResource = (success, failure, body, settings) => {
+//   const options = { method: 'POST', headers: headers, body: body }
+// 
+//   fetch(`${host}/${settings.endpoint}.json`, options)
+//     .then(response => { 
+//       response.json().then(data => { 
+//         if (response.status == settings.responseStatus) { success(data) }
+//         else { failure(data) }
+//       })
+//     })
+//     .catch(error => errorMessage(error));
 // }
 
 export const uploadVideo = async (data) => {

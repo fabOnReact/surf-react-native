@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function FlagButton({ action }){
+export default function FlagButton({ action, style }){
   return (
     <TouchableOpacity
       onPress={action}
@@ -10,8 +10,9 @@ export default function FlagButton({ action }){
     >
       <Icon name="md-flag" 
         size={25} 
-        color="white"
-        style={styles.icon}/>
+        color={style}
+        style={styles.icon}
+      />
     </TouchableOpacity>
   )
 }
