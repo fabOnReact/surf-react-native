@@ -54,11 +54,13 @@ export default class Hourly extends Component {
     return (
       <React.Fragment>
         <View style={styles.container}>
-          <MenuButton action={this.renderMenu}/>
-            <FlagButton 
-              action={this.onFlagPress} 
-              style={iconColor}
-            />
+          <MenuButton 
+            action={this.renderMenu}
+          />
+          <FlagButton 
+            action={this.onFlagPress} 
+            style={iconColor}
+          />
           <Text style={[
             header.shadowHeader,
             header.text,
