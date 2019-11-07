@@ -6,7 +6,29 @@ import Wind from '../forecast/Wind';
 import Arrow from '../icons/Arrow';
 import MenuButton from '../buttons/MenuButton';
 import FlagButton from '../buttons/FlagButton';
+import Menu from '../Menu';
 import { header } from '../forecast/styles';
+
+const Menu = require('react-native-side-menu');
+
+class ContentView extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.ios.js
+        </Text>
+        <Text style={styles.instructions}>
+          Press Cmd+R to reload,{'\n'}
+          Cmd+Control+Z for dev menu
+        </Text>
+      </View>
+    );
+  }
+}
 
 export default class Hourly extends Component {
   renderMenu() {
@@ -51,8 +73,10 @@ export default class Hourly extends Component {
     const iconColor = reported ? "red" : "white"
     const { name, forecast_info: { hourly, tide_data }} = location
     const { swellHeight } = hourly
+    const menu = <Menu navigator={navigator}/>;
     return (
       <React.Fragment>
+        <Menu menu={menu}>
         <View style={styles.container}>
           <MenuButton 
             action={this.renderMenu}
@@ -69,6 +93,7 @@ export default class Hourly extends Component {
           </Text>
           { !!swellHeight && this.renderHourly(hourly) }
         </View>
+        </Menu>
       </React.Fragment>
     )
   }
