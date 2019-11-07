@@ -4,7 +4,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { uploadVideo } from '../../lib/api';
 import UploadButton from './../buttons/UploadButton';
 import CancelButton from './../buttons/CancelButton';
-import Api from '../../lib/api';
+// import Api from '../../lib/api';
 import Dimensions from 'Dimensions';
 import Video from 'react-native-video';
 import SafeArea from '../SafeArea';
