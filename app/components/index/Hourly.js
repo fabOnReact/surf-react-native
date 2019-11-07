@@ -6,7 +6,6 @@ import Wind from '../forecast/Wind';
 import Arrow from '../icons/Arrow';
 import MenuButton from '../buttons/MenuButton';
 import FlagButton from '../buttons/FlagButton';
-import Menu from '../../Menu';
 import { header } from '../forecast/styles';
 import api from '../../lib/api';
 
@@ -24,8 +23,9 @@ export default class Hourly extends Component {
   }
 
   renderMenu = () => {
-    const visible  = !this.state.visible
-    this.setState({ visible })
+    const { navigation } = this.props
+    const { locations } = this.state
+    navigation.navigate("Menu", { locations: locations })
   }
 
   onFlagPress = () => {
@@ -34,6 +34,7 @@ export default class Hourly extends Component {
   }
 
   toggleModal = () => {
+    console.warn('toggleModal');
     this.setState({ visible: false });
   };
 
@@ -68,18 +69,14 @@ export default class Hourly extends Component {
   render() {
     const { location, post } = this.props
     const { visible, locations } = this.state
+    const with_locations = locations.length > 0
+    // if(with_locations) { console.error(locations); }
     const { reported } = post
     const iconColor = reported ? "red" : "white"
     const { name, forecast_info: { hourly, tide_data }} = location
     const { swellHeight } = hourly
-    const menu = <Menu navigator={navigator}/>;
     return (
       <React.Fragment>
-        <Menu 
-          visible={visible} 
-          locations={locations}
-          toggle={this.toggleModal}
-        />
         <View style={styles.container}>
           <MenuButton 
             action={this.renderMenu}

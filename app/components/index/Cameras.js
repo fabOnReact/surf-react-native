@@ -8,7 +8,7 @@ import Orientation from 'react-native-orientation-locker';
 import { Header, SafeAreaView } from 'react-navigation';
 import CamButton from '../buttons/CamButton';
 import Location from './Location';
-import { element } from '../../lib/support';
+// import { element } from '../../lib/support';
 
 export default class Cameras extends Component {
   constructor(props) {
@@ -28,8 +28,8 @@ export default class Cameras extends Component {
     }
   };
 
-
   componentWillMount() { 
+    if (this.props.location == undefined) { console.error(this.props.location) }
     const { location: { included: cameras }} = this.props
     this.setState({ camera: cameras[0] })
   }

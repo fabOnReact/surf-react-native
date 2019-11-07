@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Dimensions, Platform } from 'react-native'
+import { View, StyleSheet, Dimensions, Platform, StatusBar } from 'react-native'
 import { Header, SafeAreaView } from 'react-navigation';
 
 export default class SafeArea extends Component {
@@ -29,5 +29,5 @@ const styles = StyleSheet.create({
     bottom: is_ios ? 7 : bottomNavBarH,
     left: 0,
     right: 0,
-  }
+  },
 })

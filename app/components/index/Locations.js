@@ -55,11 +55,6 @@ export default class Locations extends Component {
     const find_locations = gps_updated && !this.timer_on
     const page_updated = prevState.page != page
     api.params = this.params
-    // console.warn('this.params', this.params);
-    // if(find_locations) { 
-    //   this.timer_on = 1
-    //   this.timedRequest()
-    // }
     if(gps_updated || page == 0) {
       this._setLocations()
     }
@@ -69,17 +64,6 @@ export default class Locations extends Component {
     clearTimeout(this.timer);
     this.timer_on = 0;
   }
-
-  // timedRequest = async () => {
-  //   const { locations, latitude, longitude } = this.state
-  //   const locations_missing = locations.length == 0
-  //   const repeat_request = this.count < 4 && locations_missing
-  //   if(repeat_request) { 
-  //     await this._setLocations({ latitude, longitude })
-  //     this.timer = setTimeout(() => this.timedRequest(), 1000);
-  //     this.count = this.count + 1;
-  //   }
-  // }
 
   _handleRefresh = () => {
     this.setState({
@@ -141,7 +125,7 @@ export default class Locations extends Component {
     const locations_present = locations.length > 0
     const flex = {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-end',
       alignItems: 'center',
     }
     return (
