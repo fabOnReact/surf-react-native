@@ -46,14 +46,19 @@ export default class Hourly extends Component {
   }
 
   render() {
-    const { location } = this.props
+    const { location, post } = this.props
+    const { reported } = post
+    const iconColor = reported ? "red" : "white"
     const { name, forecast_info: { hourly, tide_data }} = location
     const { swellHeight } = hourly
     return (
       <React.Fragment>
         <View style={styles.container}>
           <MenuButton action={this.renderMenu}/>
-          <FlagButton action={this.onFlagPress} />
+            <FlagButton 
+              action={this.onFlagPress} 
+              style={iconColor}
+            />
           <Text style={[
             header.shadowHeader,
             header.text,
