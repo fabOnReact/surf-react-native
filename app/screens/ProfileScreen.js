@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { NavigationEvents } from 'react-navigation';
 import { Input, Button } from 'react-native-elements';
 import UnitsOption from '../components/buttons/UnitsOption';
 import { styles } from './styles';
@@ -12,18 +13,18 @@ export default class ProfileScreen extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { email: '', feet: null }
+    this.state = { email: '', imperial: null }
   }
 
   componentDidMount = async () => {
     let email = await AsyncStorage.getItem('userEmail')
-    const unit = await AsyncStorage.getItem('feet')
-    const feet = !!unit ? JSON.parse(unit) : this.saveUnits()
-    this.setState({ email, feet })  
+    const unit = await AsyncStorage.getItem('imperial')
+    const imperial = !!unit ? JSON.parse(unit) : this.saveUnits()
+    this.setState({ email, imperial })  
   }
 
   saveUnits = () => {
-    AsyncStorage.setItem('feet', 'true')
+    AsyncStorage.setItem('imperial', 'true')
     return true
   }
 
@@ -34,18 +35,22 @@ export default class ProfileScreen extends Component {
   }
 
   changeUnit = () => {
-    const { feet } = this.state
-    const unit = JSON.stringify(!feet)
-    AsyncStorage.setItem('feet', unit)
-    this.setState({ feet: !feet })
+    const { imperial } = this.state
+    const unit = JSON.stringify(!imperial)
+    AsyncStorage.setItem('imperial', unit)
+    this.setState({ imperial: !imperial })
   }
 
   render() {
-    const { email, feet } = this.state
-    const options_loaded = feet != null
     const { navigation } = this.props
+    const updateProfileSettings = navigation.getParam('updateProfileSettings')
+    const { email, imperial } = this.state
+    const options_loaded = imperial != null
     return (
       <React.Fragment>
+        <NavigationEvents
+          onWillBlur={() => updateProfileSettings()}
+        />
         <View style={styles.container}>
           <Input
             style={styles.container}
@@ -56,7 +61,7 @@ export default class ProfileScreen extends Component {
           { 
             options_loaded  && <UnitsOption 
               action={this.changeUnit}
-              feet={feet} />
+              imperial={imperial} />
           }
           <Button
             title="Logout"

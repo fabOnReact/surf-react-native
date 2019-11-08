@@ -16,17 +16,18 @@ function RadioButton({ action, styles, selected}){
   )
 }
 
-export default function UnitsOption({ action, feet}) {
+export default function UnitsOption({ action, imperial}) {
   return (
     <View
       style={styles.container}> 
+      <Text>Units</Text>
       <RadioButton 
         action={action}
-        selected={!feet} />
+        selected={!imperial} />
       <Text>mt.</Text>
       <RadioButton 
         action={action}
-        selected={feet} />
+        selected={imperial} />
       <Text>ft.</Text>
     </View>
   )
