@@ -37,11 +37,22 @@ class Api {
     }
   }
   
-  getLocations = async ({ query = null, flags = [""] }) => {
+  getLocations = async ({ query, flags = [""] }) => {
     this.config = await this.getConfig("GET")
     const and_flags = `${flags.join("")}`
-    const query_string = query || this.query
-    this.url = `${host}/locations.json?${query_string + and_flags}`
+    this.url = `${host}/locations.json?${this.pagination}&${and_flags}`
+    return await this.perform()
+  }
+
+  getLocationsNearby = async () => {
+    this.config = await this.getConfig("GET")
+    this.url = `${host}/locations.json?${this.query}`
+    return await this.perform()
+  }
+
+  getLocationsBoundary = async ({ query }) => {
+    this.config = await this.getConfig("GET")
+    this.url = `${host}/locations.json?${query}`
     return await this.perform()
   }
 
@@ -58,7 +69,7 @@ class Api {
   }
 
   set params(obj) {
-    const { latitude, longitude, page = 1, per_page = 4 } = obj
+    const { latitude, longitude, page = 1, per_page = 2 } = obj
     this._coordinates = { latitude, longitude }
     this._page = page
     this._per_page = per_page

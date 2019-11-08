@@ -63,7 +63,7 @@ export default class MapScreen extends Component {
     if (this.map.shouldUpdate) { 
       this.map.previous = current_position
       const query = `${serialize(current_position)}`
-      const response = await api.getLocations({ query })
+      const response = await api.getLocationsBoundary({ query })
       const json = await response.json()
       this.setState({ locations: json })
     }

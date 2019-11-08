@@ -38,14 +38,21 @@ export default class Locations extends Component {
     this.setState({ latitude, longitude })
   }
 
+  // _nearbyLocations = async () => {
+  //   api.per_page = 20
+  //   api.page = 1
+  //   const request  = await api.getLocationsNearby()
+  //   const nearby_locations = await request.json()
+  //   this.setState({ nearby_locations })
+  // }
+
   _setLocations = async () => {
-    const { post, page } = this.state
+    const { locations, page } = this.state
     const { loaded } = this.props
-    const locations_request =  await api.getLocations({ flags: ["&with_cameras=true"] })
-    var locations = await locations_request.json()
-    var nearby_locations_request = await api.getLocations({ flags: [""] })
-    const nearby_locations = await nearby_locations_request.json()
-    this.setState({ locations, nearby_locations })
+    api.page =  page
+    const locations_request =  await api.getLocations({ flags: ["with_cameras=true"] })
+    const new_locations = await locations_request.json()
+    this.setState({ locations: [...locations, ...new_locations] })
     loaded()
   }
 
@@ -55,17 +62,20 @@ export default class Locations extends Component {
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
-    const { locations, latitude, longitude, page } = this.state
-    const repeat_request = locations.length == 0 && this.count < 4
-    const latitude_change = prevState.latitude != latitude
-    const longitude_change = prevState.longitude != longitude
-    const gps_updated = latitude_change && longitude_change
-    const find_locations = gps_updated && !this.timer_on
-    const page_updated = prevState.page != page
+    const { page, locations } = this.state
+    const locations_missing = locations.length == 0
+    const page_refresh = locations_missing && page == 1
+    const next_page = prevState.page < page
+    // const latitude_change = prevState.latitude != latitude
+    // const longitude_change = prevState.longitude != longitude
+    // const gps_change = latitude_change && longitude_change
     api.params = this.params
-    if(gps_updated || page == 0) {
+    if(page_refresh || next_page) {
       this._setLocations()
     }
+    // if(gps_change) {
+    //   this._nearbyLocations()
+    // }
   }
 
   componentWillUnmount() {
@@ -75,25 +85,30 @@ export default class Locations extends Component {
 
   _handleRefresh = () => {
     this.setState({
-      page: 0, locations: []
+      page: 1, locations: []
     });
+  }
+
+  _onEndReached = () => {
+    const { page } = this.state
+    this.setState({ 
+      page: page + 1
+    })
   }
 
   navigateToCamera = () => {
     const { navigation } = this.props
     const { nearby_locations } = this.state
-    navigation.navigate('Camera', {
-      locations: nearby_locations,
-    })
+    navigation.navigate('Camera')
   }
 
   navigateToMap = () => {
     const { navigation } = this.props
-    const { latitude, longitude, locations } = this.state
+    const { latitude, longitude, nearby_locations } = this.state
     navigation.navigate("Map", { 
       lat: latitude, 
       lon: longitude, 
-      locations: locations,
+      locations: nearby_locations,  
     }) 
   }
 

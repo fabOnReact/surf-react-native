@@ -10,7 +10,7 @@ export default class Map extends Component {
   navigateToMap = () => {
     const { navigation, locations, location } = this.props
     const { latitude, longitude } = location
-    navigation.navigate("Map", { lat: latitude, lon: longitude, locations: locations })
+    navigation.navigate("Map", { lat: latitude, lon: longitude })
   }
 
   render() {
