@@ -35,6 +35,7 @@ export default class AuthenticationScreen extends Component {
     const { navigation } = this.props;
     await AsyncStorage.setItem('userToken', json.authentication_token);
     await AsyncStorage.setItem('userEmail', json.email);
+    await AsyncStorage.setItem('feet', 'true');
     navigation.navigate('App');
   }
 

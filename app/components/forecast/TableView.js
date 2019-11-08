@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image, View, Text } from 'react-native';
 import { styles } from '../styles/TableViewStyles';
+import Daily from '../../lib/daily';
 
 export default class TableView extends Component {
 
@@ -23,6 +24,8 @@ export default class TableView extends Component {
       optimal_swell, windSpeed, 
       windDirection, optimal_wind
     } = this.props.daily
+    const { imperial } = this.props
+    const daily = new Daily({...this.props.daily, imperial, i})
     var windColor = optimal_wind[i] ? "#27ae60" : "#e67e22"
     var swellColor = optimal_swell[i] ? "#27ae60" : "#e67e22"
     var windIconColor = swellIconColor = "white"
@@ -45,14 +48,13 @@ export default class TableView extends Component {
         <View style={[styles.row]}>
             <View style={[styles.surf]}>
               <Text style={{ width: "100%", textAlign: "center"}}>
-                  { waveHeight[i] }mt.
+                { daily.waveHeight }
               </Text>
             </View>
             <View style={styles.swell}>
               <View style={[styles.forecastContainer]}>
                 <Text>
-                    { swellHeight[i] } mt.@
-                    { swellPeriod[i] }s   
+                  { daily.swell }
                 </Text>
                 <View 
                   style={[
@@ -73,7 +75,7 @@ export default class TableView extends Component {
             <View style={[styles.wind]}>
               <View style={styles.forecastContainer}>
                 <Text>
-                    { windSpeed[i] } mt/s.   
+                  { daily.wind }
                 </Text>
                 <View style={[
                   { backgroundColor: windColor },

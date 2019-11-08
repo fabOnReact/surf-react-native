@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import AsyncStorage from '@react-native-community/async-storage';
 import ProfileButton from '../buttons/ProfileButton';
 import MapButton from '../buttons/MapButton';
 import CameraButton from '../buttons/CameraButton';
@@ -12,7 +13,7 @@ import api from '../../lib/api';
 export default class Locations extends Component {
   constructor(props){
     super(props);
-    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], nearby_locations: [] };
+    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], nearby_locations: [], imperial: true };
     this.count = 0
     this.timer_on = 0;
     changeNavigationBarColor('#ffffff');
@@ -25,6 +26,12 @@ export default class Locations extends Component {
       longitude, 
       page, 
     }
+  }
+
+  updateSettings = async () => {
+    const unit = await AsyncStorage.getItem('imperial')
+    const imperial = JSON.parse(unit)
+    this.setState({ imperial })
   }
 
   _setGps = async ({ latitude, longitude }) => {
@@ -91,15 +98,18 @@ export default class Locations extends Component {
 
   navigateToProfile = () => {
     const { navigation } = this.props
-    navigation.navigate("Profile")
+    navigation.navigate("Profile", { 
+      updateProfileSettings: this.updateSettings 
+    })
   }
 
   renderList() {
     const { navigation } = this.props
-    const { locations } = this.state
+    const { locations, imperial } = this.state
     return (
       <FlatList
         data={locations}
+        extraData={imperial}
         keyExtractor={(item, index) => index.toString() }
         refreshing={this.state.refreshing}
         onRefresh={this._handleRefresh}
@@ -112,6 +122,7 @@ export default class Locations extends Component {
               locations={locations}
               location={item} 
               navigation={navigation}
+              imperial={imperial}
             />
           )
         }}

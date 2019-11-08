@@ -68,7 +68,7 @@ export default class Cameras extends Component {
 
   renderText = () => {
     const { loading, cameraIndex, postIndex } = this.state
-    const { locations, location, navigation } = this.props
+    const { locations, location, navigation, imperial } = this.props
     const { included: cameras } = location
     return ( 
       <React.Fragment>
@@ -88,6 +88,7 @@ export default class Cameras extends Component {
           navigation={navigation}
           cameraIndex={cameraIndex}
           postIndex={postIndex}
+          imperial={imperial}
         />
       </React.Fragment>
     )

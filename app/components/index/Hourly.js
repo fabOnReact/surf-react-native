@@ -8,6 +8,7 @@ import MenuButton from '../buttons/MenuButton';
 import FlagButton from '../buttons/FlagButton';
 import { header } from '../forecast/styles';
 import api from '../../lib/api';
+import Data from '../../lib/data';
 
 export default class Hourly extends Component {
   constructor(props) {
@@ -33,30 +34,18 @@ export default class Hourly extends Component {
     navigation.navigate("Flag", { post: post })
   }
 
-  toggleModal = () => {
-    console.warn('toggleModal');
-    this.setState({ visible: false });
-  };
-
-  renderHourly(hourly) {
-    const { 
-      waveHeight, swellHeight, swellPeriod, 
-      optimal_swell, swellDirection, swellDirectionInWord, 
-      windSpeed, windDirection, optimal_wind, windDirectionInWord,
-    } = hourly
-
+  renderHourly(data) {
     return (
       <React.Fragment>
         <Swell
-          period={swellPeriod} 
-          swellHeight={swellHeight} 
+          text={data.swell}
           styles={[
             header.text,
             header.shadowHeader,
           ]}
         />
         <Wind 
-          windSpeed={windSpeed}
+          text={data.wind}
           styles={[
             header.text,
             header.shadowHeader, 
@@ -67,14 +56,15 @@ export default class Hourly extends Component {
   }
 
   render() {
-    const { location, post } = this.props
+    const { location, post, imperial } = this.props
     const { visible, locations } = this.state
     const with_locations = locations.length > 0
-    // if(with_locations) { console.error(locations); }
     const { reported } = post
     const iconColor = reported ? "red" : "white"
     const { name, forecast_info: { hourly, tide_data }} = location
     const { swellHeight } = hourly
+    const data = new Data({...hourly, imperial })
+
     return (
       <React.Fragment>
         <View style={styles.container}>
@@ -91,7 +81,7 @@ export default class Hourly extends Component {
           ]}>
             { name }
           </Text>
-          { !!swellHeight && this.renderHourly(hourly) }
+          { !!swellHeight && this.renderHourly(data) }
         </View>
       </React.Fragment>
     )

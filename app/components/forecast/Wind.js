@@ -5,11 +5,11 @@ import { header } from './styles';
 
 export default class Wind extends Component {
   render() {
-    const { windSpeed, styles } = this.props
+    const { text, styles } = this.props
     return (
       <React.Fragment>
         <Text style={styles}>
-          { windSpeed } m/s wind
+          { text } wind
         </Text>
       </React.Fragment>
     )

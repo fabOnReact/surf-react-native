@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Hourly from './Hourly';
 import Cameras from './Cameras';
 import Dimensions from 'Dimensions';
@@ -12,14 +13,14 @@ import { Header } from 'react-navigation';
 
 export default class Location extends Component {
   navigateToForecast = () => {
-    const { navigation, locations, location } = this.props
+    const { navigation, locations, location, imperial } = this.props
     if(!!this.swellHeight) {
-      navigation.navigate('Forecast', { location: location, locations: locations })
+      navigation.navigate('Forecast', { location, locations, imperial })
     }
   }
 
   render() {
-    const { navigation, cameras, changeCamera, changePostIndex, cameraIndex, postIndex, location } = this.props
+    const { navigation, cameras, changeCamera, changePostIndex, cameraIndex, postIndex, location, imperial } = this.props
     const { data: { attributes }} = location
     const previews = cameras
     const camera = cameras[cameraIndex]
@@ -35,6 +36,7 @@ export default class Location extends Component {
           location={attributes} 
           post={post}
           navigation={navigation}
+          imperial={imperial}
         />
         <View
           style={[

@@ -4,15 +4,17 @@ import Swell from '../forecast/Swell';
 import Wind from '../forecast/Wind';
 import Arrow from '../icons/Arrow';
 import DeviceInfo from 'react-native-device-info';
+import Data from '../../lib/data';
 import { header } from '../forecast/styles';
 
 export default class Hourly extends Component {
   renderHourly(hourly) {
+    const { imperial } = this.props
     const { 
-      waveHeight, swellHeight, swellPeriod, 
       optimal_swell, swellDirection, swellDirectionInWord, 
-      windSpeed, windDirection, optimal_wind, windDirectionInWord,
-    } = hourly
+      windDirection, optimal_wind, windDirectionInWord,
+      swellPeriod } = hourly
+    const data = new Data({...hourly, imperial })
     const swellIcon = require('../../images/down-cursor-black.png')
     const windIcon = require('../../images/down-arrow-black.png')
     return (
@@ -24,14 +26,14 @@ export default class Hourly extends Component {
             icon={swellIcon} />
           <Swell
             period={swellPeriod} 
-            swellHeight={swellHeight} 
+            text={data.swell}
             styles={[
               { marginLeft: 10 },
               header.shadowHeader,
             ]}
           />
           <Wind 
-            windSpeed={windSpeed}
+            text={data.wind}
             styles={[
               { marginLeft: 10 },
               header.shadowHeader,
@@ -71,38 +73,3 @@ export const styles = StyleSheet.create({
     padding: 15,
   }, 
 })
-
-      {/*
-      <View style={{position: "absolute", top: 0}}>
-        <View style={styles.flexbox}>
-          <Image 
-            source={require('../../images/down-cursor-black.png')}
-            style={[
-              { left: "15%", tintColor: swellColor },
-              styles.icon, 
-              { transform: [{ rotateZ: `${swellDirection}deg`}] } 
-            ]}
-          />
-          <Image 
-            source={require('../../images/down-arrow-black.png')}
-            style={[ 
-                { right: "15%", tintColor: windColor },
-                styles.icon,
-                { transform: [{ rotateZ: `${windDirection}deg`}] }
-            ]}
-          />
-        </View>
-        <Text style={[styles.shadowHeader, { position: "absolute", top: "87%", left: "25%" }]}>
-          { swellDirectionInWord }
-        </Text>
-        <Text style={[styles.shadowHeader, { position: "absolute", top: "87%", right: "25%" }]}>
-          { windDirectionInWord }
-        </Text>
-        <Text style={[styles.shadowHeader, { position: "absolute", top: "93%", left: "5%" }]}>
-          @ { swellPeriod } seconds
-        </Text>
-        <Text style={[styles.shadowHeader, { position: "absolute", top: "93%", right: "5%" }]}>
-          { optimal_wind != null && optimal_wind ? "offshore wind" : "onshore wind"  }
-        </Text>
-      </View>
-      */}

@@ -25,7 +25,9 @@ export default class ForecastScreen extends Component {
 
   constructor(props) {
     super(props)
-    this.location = this.props.navigation.getParam('location')
+    const { navigation } = this.props
+    this.location = navigation.getParam('location')
+    this.imperial  = navigation.getParam('imperial')
     changeNavigationBarColor('white');
   }
 
@@ -48,8 +50,13 @@ export default class ForecastScreen extends Component {
             navigation={navigation}
           />
           <Hourly
-            hourly={hourly} />
-          <TableView daily={daily} />
+            hourly={hourly} 
+            imperial={this.imperial}
+          />
+          <TableView 
+            daily={daily} 
+            imperial={this.imperial}
+          />
         </ScrollView>
       </React.Fragment>
     )
