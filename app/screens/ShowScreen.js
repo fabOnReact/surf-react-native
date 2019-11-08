@@ -14,17 +14,19 @@ export default class ShowScreen extends Component {
       },
     }
   }
+
   state = { location: undefined };
 
   componentDidMount = () => {
     const { navigation } = this.props
     const location = navigation.getParam('location')
-    this.setState({ location }) 
+    const imperial = navigation.getParam('imperial')
+    this.setState({ location, imperial }) 
   }
 
   render() {
     const { navigation } = this.props
-    const { location } = this.state
+    const { location, imperial } = this.state
     const location_present = location != undefined
     return (
       <React.Fragment>
@@ -33,6 +35,7 @@ export default class ShowScreen extends Component {
             location_present && <Cameras 
               locations={[]}
               location={location} 
+              imperial={imperial}
               navigation={navigation}
             />
         }

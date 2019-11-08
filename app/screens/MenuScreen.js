@@ -9,6 +9,7 @@ export default class MenuScreen extends Component {
   render() {
     const { navigation } = this.props
     const locations = navigation.getParam("locations")
+    const imperial = navigation.getParam("imperial")
     return (
       <Content>
         <List>
@@ -17,7 +18,14 @@ export default class MenuScreen extends Component {
             keyExtractor={(item, index) => index.toString() }
             pagingEnabled
             style={styles.list}
-            renderItem={({ item, index }) => <Link location={item} {...this.props} /> }
+            renderItem={({ item, index }) => { 
+              return (
+                <Link 
+                  location={item} 
+                  imperial={imperial} 
+                  {...this.props} /> 
+              )
+            }}
           />
         </List>
       </Content>

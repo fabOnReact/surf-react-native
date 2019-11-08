@@ -51,6 +51,7 @@ export default class Locations extends Component {
 
   componentDidMount() {
     getGps(this._setGps)
+    this.updateSettings()
   }
 
   componentDidUpdate = async (prevProp, prevState) => {

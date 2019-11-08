@@ -4,8 +4,8 @@ import { ListItem, Left, Right, Icon } from 'native-base';
 
 export default class Link extends Component {
   showPost = () => {
-    const { location, navigation } = this.props
-    navigation.navigate("Show", { location })
+    const { location, navigation, imperial } = this.props
+    navigation.navigate("Show", { location, imperial })
   }
 
   render() {

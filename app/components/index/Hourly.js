@@ -24,9 +24,9 @@ export default class Hourly extends Component {
   }
 
   renderMenu = () => {
-    const { navigation } = this.props
+    const { navigation, imperial } = this.props
     const { locations } = this.state
-    navigation.navigate("Menu", { locations: locations })
+    navigation.navigate("Menu", { locations, imperial })
   }
 
   onFlagPress = () => {
