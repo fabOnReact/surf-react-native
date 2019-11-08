@@ -15,12 +15,6 @@ export default function CloseModal({ action, styles }){
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   position: "absolute",
-  //   top: 0,
-  //   right: 15,
-  //   zIndex: 3,
-  // },
   icon: {
     shadowColor: 'black', 
     shadowOffset: { height: 1, width: 1 },
