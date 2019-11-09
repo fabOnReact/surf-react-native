@@ -17,7 +17,9 @@ export default class Recorder extends Component {
 
   constructor(props) {
     super(props)
+    const { credentials } = this.props
     this.state = { latitude: null, longitude: null, recording: false, highlight: false, locations: [], video: "", zoom: 0.0 }
+    this.api = new Api(credentials)
   }
 
   get options() {
@@ -160,6 +162,7 @@ export default class Recorder extends Component {
   }
 
   render() {
+    const { credentials } = this.props
     const { video, longitude, latitude } = this.state
     return (
       <React.Fragment>
@@ -169,6 +172,7 @@ export default class Recorder extends Component {
           latitude={latitude} 
           video={video} 
           setVideo={this._setVideo}
+          credentials={credentials}
           /> 
         : this._renderCamera() 
           }

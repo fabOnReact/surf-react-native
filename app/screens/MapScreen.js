@@ -22,8 +22,10 @@ export default class MapScreen extends Component {
 
   constructor(props) {
     super(props);
+    const { navigation } = this.props
+    const credentials = navigation.getParam('credentials')
     this.state = { locations: [], latitude: -8.634508, longitude: 115.192803 }
-    this.api = new Api()
+    this.api = new Api(credentials)
   }
 
   componentDidMount = async () => {

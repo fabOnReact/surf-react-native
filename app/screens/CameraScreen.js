@@ -21,6 +21,8 @@ export default class CameraScreen extends Component {
 
   constructor(props) {
     super(props)
+    const { navigation } = this.props
+    this.credentials = navigation.getParam('credentials')
     this.state = { tutor: true, zoom: '' }
   }
 
@@ -34,7 +36,7 @@ export default class CameraScreen extends Component {
     return (
       <View style={styles.container}>
         { errors ? <ErrorMessage styles={{marginTop: 100}} message={errors} /> : null }
-        { tutor ? <Tutor hide={this.hideTutor} /> : <Recorder location={location}/> }
+        { tutor ? <Tutor hide={this.hideTutor} /> : <Recorder location={location} credentials={this.credentials} /> }
       </View>
     );
   }

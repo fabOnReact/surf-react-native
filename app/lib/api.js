@@ -1,38 +1,18 @@
 import { GoogleSignin } from 'react-native-google-signin';
-import AsyncStorage from '@react-native-community/async-storage';
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 import { host } from '../config/constants';
 import { postSettings, getFromStorage, errorMessage, getCredentials, headers } from './support';
 
-class Auth {
-  constructor() {
-    this.setCredentials() 
-  }
-
-  setCredentials = async () => {
-    this._credentials = { 
-      'X-User-Email': await AsyncStorage.getItem('userEmail'),
-      'X-User-Token': await AsyncStorage.getItem('userToken'),
-    } 
-  }
-
-  get credentials() {
-    return this._credentials
-  }
-}
-
-const auth = new Auth()
-
 class Api {
-  constructor() {
-    this._auth = auth
+  constructor(auth) {
+    this._credentials = auth
   }
 
   getConfig =  async (method, body) => {
     const config = { method, body: JSON.stringify(body) }
     config["headers"] = {
       ...headers,
-      ...this.credentials,
+      ...this._credentials,
     }
     return config
   }
@@ -81,10 +61,6 @@ class Api {
     this._coordinates = { latitude, longitude }
     this._page = page
     this._per_page = per_page
-  }
-
-  get credentials() {
-    return this._auth.credentials
   }
 
   get latitude() {

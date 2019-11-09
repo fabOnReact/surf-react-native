@@ -12,8 +12,9 @@ import Api from '../../lib/api';
 export default class Player extends React.Component {
   constructor(props) {
     super(props)
+    const { credentials } = this.props
     this.state = { processing: false, url: null, poster: null }
-    this.api = new Api()
+    this.api = new Api(credentials)
   }
   
   get data() {
