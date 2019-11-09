@@ -9,14 +9,16 @@ import Cameras from './Cameras';
 import { getGps } from '../../lib/support';
 import SafeArea from '../SafeArea';
 import Api from '../../lib/api';
+import auth from '../../screens/IndexScreen';
 
 export default class Locations extends Component {
   constructor(props){
     super(props);
+    const { credentials } = this.props
     this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], nearby_locations: [], imperial: true };
     this.count = 0
     this.timer_on = 0;
-    this.api = new Api()
+    this.api = new Api(credentials)
     changeNavigationBarColor('#ffffff');
   }
 
@@ -98,18 +100,19 @@ export default class Locations extends Component {
   }
 
   navigateToCamera = () => {
-    const { navigation } = this.props
+    const { navigation, credentials } = this.props
     const { nearby_locations } = this.state
-    navigation.navigate('Camera')
+    navigation.navigate('Camera', { credentials })
   }
 
   navigateToMap = () => {
-    const { navigation } = this.props
+    const { navigation, credentials } = this.props
     const { latitude, longitude, nearby_locations } = this.state
     navigation.navigate("Map", { 
       lat: latitude, 
       lon: longitude, 
       locations: nearby_locations,  
+      credentials,
     }) 
   }
 
@@ -121,12 +124,12 @@ export default class Locations extends Component {
   }
 
   renderList() {
-    const { navigation } = this.props
+    const { navigation, credentials } = this.props
     const { locations, imperial } = this.state
     return (
       <FlatList
         data={locations}
-        extraData={imperial}
+        extraData={[imperial, credentials]}
         keyExtractor={(item, index) => index.toString() }
         refreshing={this.state.refreshing}
         onRefresh={this._handleRefresh}
@@ -140,6 +143,7 @@ export default class Locations extends Component {
               location={item} 
               navigation={navigation}
               imperial={imperial}
+              credentias={credentials}
             />
           )
         }}
@@ -158,6 +162,19 @@ export default class Locations extends Component {
     }
     return (
       <React.Fragment>
+        <TouchableOpacity
+          onPress={() => console.warn('touch')}
+          style={{
+            position: 'absolute',
+            top: 90,
+            left: 10,
+            height: 40,
+            width: 80,
+            backgroundColor: 'red',
+            zIndex: 10,
+          }}>
+          <Text>TEst</Text>
+        </TouchableOpacity>
         { locations_present ? this.renderList() : null }
         <SafeArea
           style={flex}>
