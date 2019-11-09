@@ -28,7 +28,6 @@ export default class AuthenticationScreen extends Component {
 
   constructor(props) {
     super(props)
-    this.setErrors = this.setErrors.bind(this)
   }
 
   saveCredentials = async (json) => {
@@ -46,7 +45,8 @@ export default class AuthenticationScreen extends Component {
   }
 
   setErrors = (obj) => {
-    this.setState({ errors: new Message(obj).errors });
+    const errors = new Message(obj).errors
+    this.setState({ errors });
   }
 
   render() {
@@ -87,7 +87,9 @@ export default class AuthenticationScreen extends Component {
             submitForm={this.submitForm}
             setErrors={this.setErrors} />
           <GoogleButton 
-            saveCredentials={this.saveCredentials} />
+            saveCredentials={this.saveCredentials} 
+            setErrors={this.setErrors}
+          />
         </View>
       </React.Fragment>
     );
