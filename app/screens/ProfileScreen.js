@@ -49,8 +49,7 @@ export default class ProfileScreen extends Component {
     return (
       <React.Fragment>
         <NavigationEvents
-          onWillBlur={() => updateProfileSettings()}
-        />
+          onWillBlur={() => updateProfileSettings()} />
         <View style={styles.container}>
           <Input
             style={styles.container}

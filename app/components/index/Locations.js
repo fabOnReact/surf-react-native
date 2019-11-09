@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, FlatList, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import AsyncStorage from '@react-native-community/async-storage';
+import DeviceInfo from 'react-native-device-info';
 import ProfileButton from '../buttons/ProfileButton';
 import MapButton from '../buttons/MapButton';
 import CameraButton from '../buttons/CameraButton';
+import MenuButton from '../buttons/MenuButton';
 import Cameras from './Cameras';
 import { getGps } from '../../lib/support';
 import SafeArea from '../SafeArea';
@@ -14,10 +16,10 @@ import auth from '../../screens/IndexScreen';
 export default class Locations extends Component {
   constructor(props){
     super(props);
-    const { credentials } = this.props
-    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], nearby_locations: [], imperial: true };
+    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], imperial: true };
     this.count = 0
     this.timer_on = 0;
+    const { credentials } = this.props
     this.api = new Api(credentials)
     changeNavigationBarColor('#ffffff');
   }
@@ -40,14 +42,6 @@ export default class Locations extends Component {
   _setGps = async ({ latitude, longitude }) => {
     this.setState({ latitude, longitude })
   }
-
-  // _nearbyLocations = async () => {
-  //   api.per_page = 20
-  //   api.page = 1
-  //   const request  = await api.getLocationsNearby()
-  //   const nearby_locations = await request.json()
-  //   this.setState({ nearby_locations })
-  // }
 
   _setLocations = async () => {
     const { locations, page } = this.state
@@ -101,7 +95,6 @@ export default class Locations extends Component {
 
   navigateToCamera = () => {
     const { navigation, credentials } = this.props
-    const { nearby_locations } = this.state
     navigation.navigate('Camera', { credentials })
   }
 
@@ -111,7 +104,6 @@ export default class Locations extends Component {
     navigation.navigate("Map", { 
       lat: latitude, 
       lon: longitude, 
-      locations: nearby_locations,  
       credentials,
     }) 
   }
@@ -121,6 +113,12 @@ export default class Locations extends Component {
     navigation.navigate("Profile", { 
       updateProfileSettings: this.updateSettings 
     })
+  }
+
+  navigateToMenu = () => {
+    const { navigation, credentials } = this.props
+    const { imperial } = this.state
+    navigation.navigate("Menu", { imperial, credentials })
   }
 
   renderList() {
@@ -162,19 +160,11 @@ export default class Locations extends Component {
     }
     return (
       <React.Fragment>
-        <TouchableOpacity
-          onPress={() => console.warn('touch')}
-          style={{
-            position: 'absolute',
-            top: 90,
-            left: 10,
-            height: 40,
-            width: 80,
-            backgroundColor: 'red',
-            zIndex: 10,
-          }}>
-          <Text>TEst</Text>
-        </TouchableOpacity>
+        <View style={styles.container}>
+          <MenuButton 
+            action={this.navigateToMenu}
+          />
+        </View>
         { locations_present ? this.renderList() : null }
         <SafeArea
           style={flex}>
@@ -188,3 +178,14 @@ export default class Locations extends Component {
     );
   }
 }
+
+const has_notch = DeviceInfo.hasNotch()
+export const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: has_notch ? 60 : 30,
+    width: "100%",
+    zIndex: 4,
+    height: 90,
+  }, 
+})
