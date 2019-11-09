@@ -33,7 +33,6 @@ export default class ForecastScreen extends Component {
 
   render() {
     const { navigation } = this.props
-    const locations = navigation.getParam('locations')
     const { data: { attributes: location_attributes }} = this.location
     const { forecast_info } = location_attributes
     const { daily, hourly } = forecast_info
@@ -44,7 +43,7 @@ export default class ForecastScreen extends Component {
         <StatusBar backgroundColor="black" hidden={false} barStyle="dark-content" translucent={false} />
         <ScrollView>
           <Map 
-            locations={locations}
+            // locations={locations}
             location={location_attributes} 
             cameras={cameras} 
             navigation={navigation}

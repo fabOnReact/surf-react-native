@@ -14,7 +14,6 @@ export default class Link extends Component {
     const { swellHeight, swellPeriod } = hourly
     return (
       <ListItem
-        // style={styles.list}
         onPress={this.showPost}
         noIndent>
         <Left

@@ -8,6 +8,13 @@ import Link from '../components/menu/Link';
 import Api from '../lib/api';
 
 export default class MenuScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Cameras',
+      headerTintColor: 'black' ,
+      headerStyle: { marginTop: StatusBar.currentHeight },
+    };
+  };
   constructor(props) {
     super(props)
     this.state = { locations: [], spinner: true }
