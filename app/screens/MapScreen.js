@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { StatusBar, View, Text, StyleSheet, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { getResources } from '../lib/api';
 import Map from '../lib/map';
 import Spot from '../components/Spot';
-import api from '../lib/api';
+import Api from '../lib/api';
 import { serialize } from '../lib/support';
 import { styles } from './styles/MapStyles';
 
@@ -24,6 +23,7 @@ export default class MapScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { locations: [], latitude: -8.634508, longitude: 115.192803 }
+    this.api = new Api()
   }
 
   componentDidMount = async () => {
@@ -63,7 +63,7 @@ export default class MapScreen extends Component {
     if (this.map.shouldUpdate) { 
       this.map.previous = current_position
       const query = `${serialize(current_position)}`
-      const response = await api.getLocationsBoundary({ query })
+      const response = await this.api.getLocationsBoundary({ query })
       const json = await response.json()
       this.setState({ locations: json })
     }

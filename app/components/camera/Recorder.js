@@ -5,7 +5,7 @@ import Dimensions from 'Dimensions';
 import RecordingButton from '../buttons/RecordingButton';
 import UploadButton from '../buttons/UploadButton';
 import Player from './Player';
-import api from '../../lib/api';
+import Api from '../../lib/api';
 import { getGps } from '../../lib/support';
 import ZoomView from './ZoomView';
 import SafeArea from '../SafeArea';
@@ -58,7 +58,7 @@ export default class Recorder extends Component {
     const latitude_updated = prevState.latitude != latitude
     const longitude_updated = prevState.longitude != longitude
     const location_updated = latitude_updated && longitude_updated
-    api.params = this.params
+    this.api.params = this.params
     if (is_recording) {
       this.interval = setInterval(() => this.setState({
         highlight: !this.state.highlight
@@ -67,7 +67,7 @@ export default class Recorder extends Component {
       this.setState({ video })
     }
     if (location_updated) {
-      var response = await api.getLocations({})
+      var response = await this.api.getLocations({})
       var json = await response.json()
       var { data: { attributes: location }} = json[0]
       this.setState({ location })
@@ -168,7 +168,6 @@ export default class Recorder extends Component {
           longitude={longitude} 
           latitude={latitude} 
           video={video} 
-          api={api}
           setVideo={this._setVideo}
           /> 
         : this._renderCamera() 

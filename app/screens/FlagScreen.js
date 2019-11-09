@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, TouchableOpacity, View, Button, TextInput, Text } from 'react-native';
-import api from '../lib/api';
+import Api from '../lib/api';
 import Validator from '../lib/validator';
 
 
@@ -14,6 +14,7 @@ export default class FlagScreen extends Component {
   constructor(props) {
     super(props)
     this.state = { email: "", flag_reason: "", password: "", errors: false, errorMessage: "" }
+    this.api = new Api()
   }
 
   componentDidMount() {
@@ -51,7 +52,7 @@ export default class FlagScreen extends Component {
   updatePost = async () => {
     const { id } = this.post
     if (this.validator.valid) {
-      const response = await api.updatePost(id, this.params)
+      const response = await this.api.updatePost(id, this.params)
     } else {
       const errorMessage = this.validator.errors
       this.setState({ errors: true, errorMessage })

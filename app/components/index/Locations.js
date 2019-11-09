@@ -8,7 +8,7 @@ import CameraButton from '../buttons/CameraButton';
 import Cameras from './Cameras';
 import { getGps } from '../../lib/support';
 import SafeArea from '../SafeArea';
-import api from '../../lib/api';
+import Api from '../../lib/api';
 
 export default class Locations extends Component {
   constructor(props){
@@ -16,6 +16,7 @@ export default class Locations extends Component {
     this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], nearby_locations: [], imperial: true };
     this.count = 0
     this.timer_on = 0;
+    this.api = new Api()
     changeNavigationBarColor('#ffffff');
   }
 
@@ -49,8 +50,8 @@ export default class Locations extends Component {
   _setLocations = async () => {
     const { locations, page } = this.state
     const { loaded } = this.props
-    api.page =  page
-    const locations_request =  await api.getLocations({ flags: ["with_cameras=true"] })
+    this.api.page =  page
+    const locations_request =  await this.api.getLocations({ flags: ["with_cameras=true"] })
     const new_locations = await locations_request.json()
     this.setState({ locations: [...locations, ...new_locations] })
     loaded()
@@ -69,7 +70,7 @@ export default class Locations extends Component {
     // const latitude_change = prevState.latitude != latitude
     // const longitude_change = prevState.longitude != longitude
     // const gps_change = latitude_change && longitude_change
-    api.params = this.params
+    this.api.params = this.params
     if(page_refresh || next_page) {
       this._setLocations()
     }

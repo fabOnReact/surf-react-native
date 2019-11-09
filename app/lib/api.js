@@ -4,9 +4,9 @@ import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 import { host } from '../config/constants';
 import { postSettings, getFromStorage, errorMessage, getCredentials, headers } from './support';
 
-class Api {
+class Auth {
   constructor() {
-    this.setCredentials()
+    this.setCredentials() 
   }
 
   setCredentials = async () => {
@@ -14,17 +14,25 @@ class Api {
       'X-User-Email': await AsyncStorage.getItem('userEmail'),
       'X-User-Token': await AsyncStorage.getItem('userToken'),
     } 
-    return await this._credentials
+  }
+
+  get credentials() {
+    return this._credentials
+  }
+}
+
+const auth = new Auth()
+
+class Api {
+  constructor() {
+    this._auth = auth
   }
 
   getConfig =  async (method, body) => {
     const config = { method, body: JSON.stringify(body) }
-    if (!this._credentials) {
-      this._credentials = await this.setCredentials()
-    }
     config["headers"] = {
       ...headers,
-      ...this._credentials,
+      ...this.credentials,
     }
     return config
   }
@@ -37,7 +45,7 @@ class Api {
     }
   }
   
-  getLocations = async ({ query, flags = [""] }) => {
+  getLocations = async ({ flags = [""] }) => {
     this.config = await this.getConfig("GET")
     const and_flags = `${flags.join("")}`
     this.url = `${host}/locations.json?${this.pagination}&${and_flags}`
@@ -73,6 +81,10 @@ class Api {
     this._coordinates = { latitude, longitude }
     this._page = page
     this._per_page = per_page
+  }
+
+  get credentials() {
+    return this._auth.credentials
   }
 
   get latitude() {
@@ -118,21 +130,21 @@ class Api {
   }
 }
 
-const api = new Api
-export default api
+// const api = new Api
+export default Api
 
-// export const createResource = (success, failure, body, settings) => {
-//   const options = { method: 'POST', headers: headers, body: body }
-// 
-//   fetch(`${host}/${settings.endpoint}.json`, options)
-//     .then(response => { 
-//       response.json().then(data => { 
-//         if (response.status == settings.responseStatus) { success(data) }
-//         else { failure(data) }
-//       })
-//     })
-//     .catch(error => errorMessage(error));
-// }
+export const createResource = (success, failure, body, settings) => {
+  const options = { method: 'POST', headers: headers, body: body }
+
+  fetch(`${host}/${settings.endpoint}.json`, options)
+    .then(response => { 
+      response.json().then(data => { 
+        if (response.status == settings.responseStatus) { success(data) }
+        else { failure(data) }
+      })
+    })
+    .catch(error => errorMessage(error));
+}
 
 export const uploadVideo = async (data) => {
   const endpoint = "https://api.cloudinary.com/v1_1/dhhzzcjq0/video/upload"

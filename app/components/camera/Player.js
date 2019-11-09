@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, View, TouchableOpacity } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { uploadVideo } from '../../lib/api';
 import UploadButton from './../buttons/UploadButton';
 import CancelButton from './../buttons/CancelButton';
-// import Api from '../../lib/api';
 import Dimensions from 'Dimensions';
 import Video from 'react-native-video';
 import SafeArea from '../SafeArea';
+import { uploadVideo } from '../../lib/api';
+import Api from '../../lib/api';
 
 export default class Player extends React.Component {
   constructor(props) {
     super(props)
     this.state = { processing: false, url: null, poster: null }
+    this.api = new Api()
   }
   
   get data() {
@@ -52,10 +53,9 @@ export default class Player extends React.Component {
   
   componentDidUpdate = async (prevProp, prevState) => {
     const { processing } = this.state
-    const { api } = this.props
     const processing_finished = prevState.processing == true && !processing
     if (processing_finished) {
-      api.createPost(this.post)
+      this.api.createPost(this.post)
       this.setState({ url: null, poster: null, post: null })
       this.props.setVideo(true)
     }

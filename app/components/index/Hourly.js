@@ -7,26 +7,29 @@ import Arrow from '../icons/Arrow';
 import MenuButton from '../buttons/MenuButton';
 import FlagButton from '../buttons/FlagButton';
 import { header } from '../forecast/styles';
-import api from '../../lib/api';
+import Api from '../../lib/api';
 import Data from '../../lib/data';
 
 export default class Hourly extends Component {
   constructor(props) {
     super(props)
     this.state = { visible: false, locations: [] }
+    this.api = new Api()
   }
 
   componentDidMount = async () => {
-    api.per_page = 15
-    const locations_request =  await api.getLocations({ flags: ["&with_cameras=true"] })
-    var locations = await locations_request.json()
+    this.api.page = 1
+    this.api.per_page = 15
+    const locations_request =  await this.api.getLocations({ flags: ["&with_cameras=true"] })
+    // console.warn(locations_request);
+    const locations = await locations_request.json()
     this.setState({ locations })
   }
 
   renderMenu = () => {
     const { navigation, imperial } = this.props
     const { locations } = this.state
-    navigation.navigate("Menu", { locations, imperial })
+    navigation.navigate("Menu", { imperial, locations })
   }
 
   onFlagPress = () => {
