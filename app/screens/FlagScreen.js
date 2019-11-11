@@ -51,10 +51,11 @@ export default class FlagScreen extends Component {
   onChangePassword = (new_password) => this.setState({ password: new_password })
 
   updatePost = async () => {
-    const { id, navigation } = this.post
+    const { id } = this.post
+    const { goBack } = this.props.navigation
     if (this.validator.valid) {
       const response = await this.api.updatePost(id, this.params)
-      // navigation.navigate.goBack()
+      goBack()
     } else {
       const errorMessage = this.validator.errors
       this.setState({ errors: true, errorMessage })
