@@ -14,9 +14,7 @@ import { Header } from 'react-navigation';
 export default class Location extends Component {
   navigateToForecast = () => {
     const { navigation, locations, location, imperial } = this.props
-    if(!!this.swellHeight) {
-      navigation.navigate('Forecast', { location, locations, imperial })
-    }
+    navigation.navigate('Forecast', { location, locations, imperial })
   }
 
   render() {
@@ -27,7 +25,6 @@ export default class Location extends Component {
     const { attributes: { posts }} = camera
     const { forecast_info: { hourly }} = attributes
     const post = posts[postIndex]
-    this.swellHeight = hourly.swellHeight
     previews.length = 5
     posts.length = 5
     return (
@@ -54,9 +51,11 @@ export default class Location extends Component {
                 />
               )
             }
-            <DisplayButton 
-              action={this.navigateToForecast} 
-            />
+            { 
+              !!hourly && <DisplayButton 
+                action={this.navigateToForecast} 
+              />
+            }
           </Row>
           <Row options={styles.posts}>
             { 

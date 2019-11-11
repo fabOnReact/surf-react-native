@@ -46,7 +46,6 @@ export default class Hourly extends Component {
     const { reported } = post
     const iconColor = reported ? "red" : "white"
     const { name, forecast_info: { hourly, tide_data }} = location
-    const { swellHeight } = hourly
     const data = new Data({...hourly, imperial })
 
     return (
@@ -62,7 +61,7 @@ export default class Hourly extends Component {
           ]}>
             { name }
           </Text>
-          { !!swellHeight && this.renderHourly(data) }
+          { !!hourly && this.renderHourly(data) }
         </View>
       </React.Fragment>
     )

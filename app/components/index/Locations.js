@@ -33,7 +33,7 @@ export default class Locations extends Component {
     }
   }
 
-  updateSettings = async () => {
+  _updateSettings = async () => {
     const unit = await AsyncStorage.getItem('imperial')
     const imperial = JSON.parse(unit)
     this.setState({ imperial })
@@ -55,21 +55,20 @@ export default class Locations extends Component {
 
   componentDidMount() {
     getGps(this._setGps)
-    this.updateSettings()
+    this._updateSettings()
+    this._setLocations()
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
     const { page, locations } = this.state
-    const locations_missing = locations.length == 0
-    const page_refresh = locations_missing && page == 1
-    const next_page = prevState.page < page
+    // const next_page = prevState.page < page
     // const latitude_change = prevState.latitude != latitude
     // const longitude_change = prevState.longitude != longitude
     // const gps_change = latitude_change && longitude_change
     this.api.params = this.params
-    if(page_refresh || next_page) {
-      this._setLocations()
-    }
+    // if(next_page) {
+    //   this._setLocations()
+    // }
     // if(gps_change) {
     //   this._nearbyLocations()
     // }
@@ -84,14 +83,15 @@ export default class Locations extends Component {
     this.setState({
       page: 1, locations: []
     });
+    this._setLocations()
   }
 
-  _onEndReached = () => {
-    const { page } = this.state
-    this.setState({ 
-      page: page + 1
-    })
-  }
+  // _onEndReached = () => {
+  //   const { page } = this.state
+  //   this.setState({ 
+  //     page: page + 1
+  //   })
+  // }
 
   navigateToCamera = () => {
     const { navigation, credentials } = this.props
@@ -111,7 +111,7 @@ export default class Locations extends Component {
   navigateToProfile = () => {
     const { navigation } = this.props
     navigation.navigate("Profile", { 
-      updateProfileSettings: this.updateSettings 
+      updateProfileSettings: this._updateSettings 
     })
   }
 
@@ -133,7 +133,7 @@ export default class Locations extends Component {
         refreshing={this.state.refreshing}
         onRefresh={this._handleRefresh}
         // onEndReached={this._onEndReached}
-        onEndReachedThreshold={0.01}
+        // onEndReachedThreshold={0.01}
         pagingEnabled
         renderItem={({ item, index }) => {
           return ( 
