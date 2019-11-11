@@ -8,7 +8,6 @@ import Orientation from 'react-native-orientation-locker';
 import { Header, SafeAreaView } from 'react-navigation';
 import CamButton from '../buttons/CamButton';
 import Location from './Location';
-// import { element } from '../../lib/support';
 
 export default class Cameras extends Component {
   constructor(props) {
@@ -77,7 +76,6 @@ export default class Cameras extends Component {
     }
     return ( 
       <React.Fragment>
-        {/*
         <View style={styles.loading}>
           <ActivityIndicator 
             size="large" 
@@ -85,7 +83,6 @@ export default class Cameras extends Component {
             animating={loading}
           />
         </View>
-        */}
         <Location 
           changePostIndex={this.changePostIndex}
           changeCamera={this.changeCameraIndex}
