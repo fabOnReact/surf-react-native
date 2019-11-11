@@ -33,13 +33,13 @@ export default class Player extends React.Component {
   get post() {
     const { latitude, longitude } = this.props
     const { url = "", poster = "" } = this.state
-    return JSON.stringify({ 
+    return { 
       post: { 
         latitude, 
         longitude, 
         video: { url, poster }
       }
-    })
+    }
   }
   
   _uploadVideo = async () => {

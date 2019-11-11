@@ -57,7 +57,7 @@ class Api {
   }
 
   set params(obj) {
-    const { latitude, longitude, page = 1, per_page = 2 } = obj
+    const { latitude, longitude, page = 1, per_page = 3 } = obj
     this._coordinates = { latitude, longitude }
     this._page = page
     this._per_page = per_page

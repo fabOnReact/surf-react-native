@@ -1,5 +1,6 @@
 // export const host = 'https://surfcheck.xyz/api/v1'
-export const host = 'http://192.168.0.201:3000/api/v1'
+// export const host = 'http://192.168.0.201:3000/api/v1'
+export const host = "http://192.168.1.168:3000/api/v1"
 // starbucks beach
 // export const host = 'http://10.114.67.188:3000/api/v1'
 // export const host = 'http://192.168.1.100:3000/api/v1'

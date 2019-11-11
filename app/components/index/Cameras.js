@@ -67,9 +67,14 @@ export default class Cameras extends Component {
   
 
   renderText = () => {
+    const { locations, location, navigation, imperial, credentials } = this.props
     const { loading, cameraIndex, postIndex } = this.state
-    const { locations, location, navigation, imperial } = this.props
     const { included: cameras } = location
+    const new_props = { 
+      locations, location, cameras, 
+      cameraIndex, postIndex, 
+      imperial, navigation, credentials
+    }
     return ( 
       <React.Fragment>
         <View style={styles.loading}>
@@ -80,15 +85,9 @@ export default class Cameras extends Component {
           />
         </View>
         <Location 
-          locations={locations}
-          location={location}
-          cameras={cameras} 
-          changeCamera={this.changeCameraIndex}
           changePostIndex={this.changePostIndex}
-          navigation={navigation}
-          cameraIndex={cameraIndex}
-          postIndex={postIndex}
-          imperial={imperial}
+          changeCamera={this.changeCameraIndex}
+          { ...new_props }
         />
       </React.Fragment>
     )

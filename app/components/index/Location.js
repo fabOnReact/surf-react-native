@@ -20,7 +20,7 @@ export default class Location extends Component {
   }
 
   render() {
-    const { navigation, cameras, changeCamera, changePostIndex, cameraIndex, postIndex, location, imperial } = this.props
+    const { navigation, cameras, changeCamera, changePostIndex, cameraIndex, postIndex, location, imperial, credentials } = this.props
     const { data: { attributes }} = location
     const previews = cameras
     const camera = cameras[cameraIndex]
@@ -29,13 +29,14 @@ export default class Location extends Component {
     const post = posts[postIndex]
     this.swellHeight = hourly.swellHeight
     previews.length = 5
-    posts.lenght = 5
+    posts.length = 5
     return (
       <React.Fragment>
         <Hourly 
           location={attributes} 
           post={post}
           navigation={navigation}
+          credentials={credentials}
           imperial={imperial}
         />
         <View

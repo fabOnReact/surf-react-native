@@ -20,6 +20,8 @@ export default class Recorder extends Component {
     const { credentials } = this.props
     this.state = { latitude: null, longitude: null, recording: false, highlight: false, locations: [], video: "", zoom: 0.0 }
     this.api = new Api(credentials)
+    this.api.page = 1
+    this.api.per_page = 1
   }
 
   get options() {
@@ -30,11 +32,7 @@ export default class Recorder extends Component {
         videoOrientation: 1,
         deviceOrientation: 1,
         mute: true,
-        mirrorVideo: false,
-        maxDuration: 300,
-      }
-  }
-
+        mirrorVideo: false, maxDuration: 300, } } 
   get message() {
     return `Looks like you are very far from any surf destination, only videos that are taken at a surfspot present in our database are accepted. Sorry!`
   }
@@ -69,7 +67,7 @@ export default class Recorder extends Component {
       this.setState({ video })
     }
     if (location_updated) {
-      var response = await this.api.getLocations({})
+      var response = await this.api.getLocationsNearby()
       var json = await response.json()
       var { data: { attributes: location }} = json[0]
       this.setState({ location })

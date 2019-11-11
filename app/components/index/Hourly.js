@@ -15,8 +15,8 @@ export default class Hourly extends Component {
   }
 
   onFlagPress = () => {
-    const { navigation, post } = this.props
-    navigation.navigate("Flag", { post: post })
+    const { navigation, post, credentials } = this.props
+    navigation.navigate("Flag", { post, credentials })
   }
 
   renderHourly(data) {

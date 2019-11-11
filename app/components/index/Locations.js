@@ -49,6 +49,7 @@ export default class Locations extends Component {
     this.api.page =  page
     const locations_request =  await this.api.getLocations({ flags: ["with_cameras=true"] })
     const new_locations = await locations_request.json()
+    console.log(locations_request);
     this.setState({ locations: [...locations, ...new_locations] })
     loaded()
   }
@@ -124,6 +125,7 @@ export default class Locations extends Component {
   renderList() {
     const { navigation, credentials } = this.props
     const { locations, imperial } = this.state
+    const new_props = { navigation, credentials, locations, imperial }
     return (
       <FlatList
         data={locations}
@@ -137,11 +139,8 @@ export default class Locations extends Component {
         renderItem={({ item, index }) => {
           return ( 
             <Cameras 
-              locations={locations}
               location={item} 
-              navigation={navigation}
-              imperial={imperial}
-              credentias={credentials}
+              { ...new_props }
             />
           )
         }}
@@ -186,6 +185,6 @@ export const styles = StyleSheet.create({
     top: has_notch ? 60 : 30,
     width: "100%",
     zIndex: 4,
-    height: 90,
+    height: 50,
   }, 
 })

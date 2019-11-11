@@ -10,7 +10,7 @@ class Validator {
   }
 
   set params(props) {
-    const { post: { email, flag_reason }} = props
+    const { post: { flag_data: { email, flag_reason }}} = props
     this._email = email
     this._flag_reason = flag_reason
   }

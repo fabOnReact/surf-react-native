@@ -14,7 +14,9 @@ export default class FlagScreen extends Component {
   constructor(props) {
     super(props)
     this.state = { email: "", flag_reason: "", password: "", errors: false, errorMessage: "" }
-    this.api = new Api()
+    const { navigation } = this.props
+    const credentials = navigation.getParam('credentials')
+    this.api = new Api(credentials)
   }
 
   componentDidMount() {
@@ -37,8 +39,7 @@ export default class FlagScreen extends Component {
     const { email, flag_reason, password } = this.state
     return {
       post: {
-        email,
-        flag_reason,
+        flag_data: { flag_reason, email },
         reported: 'true',
       },
       password
@@ -50,9 +51,10 @@ export default class FlagScreen extends Component {
   onChangePassword = (new_password) => this.setState({ password: new_password })
 
   updatePost = async () => {
-    const { id } = this.post
+    const { id, navigation } = this.post
     if (this.validator.valid) {
       const response = await this.api.updatePost(id, this.params)
+      // navigation.navigate.goBack()
     } else {
       const errorMessage = this.validator.errors
       this.setState({ errors: true, errorMessage })
