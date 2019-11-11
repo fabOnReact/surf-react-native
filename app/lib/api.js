@@ -106,7 +106,6 @@ class Api {
   }
 }
 
-// const api = new Api
 export default Api
 
 export const createResource = (success, failure, body, settings) => {

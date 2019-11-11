@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, View, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import Spinner from 'react-native-loading-spinner-overlay';
 import Dimensions from 'Dimensions';
 import RecordingButton from '../buttons/RecordingButton';
 import UploadButton from '../buttons/UploadButton';
@@ -10,15 +11,15 @@ import { getGps } from '../../lib/support';
 import ZoomView from './ZoomView';
 import SafeArea from '../SafeArea';
 
-const MAX_ZOOM = 8; // iOS only
-const ZOOM_F = Platform.OS === 'ios' ? 0.0008 : 0.08;
+const MAX_ZOOM = 7; // iOS only
+const ZOOM_F = Platform.OS === 'ios' ? 0.001 : 0.08;
 
 export default class Recorder extends Component {
 
   constructor(props) {
     super(props)
     const { credentials } = this.props
-    this.state = { latitude: null, longitude: null, recording: false, highlight: false, locations: [], video: "", zoom: 0.0 }
+    this.state = { latitude: null, longitude: null, recording: false, highlight: false, locations: [], video: "", zoom: 0.0, spinner: true }
     this.api = new Api(credentials)
     this.api.page = 1
     this.api.per_page = 1
@@ -32,7 +33,10 @@ export default class Recorder extends Component {
         videoOrientation: 1,
         deviceOrientation: 1,
         mute: true,
-        mirrorVideo: false, maxDuration: 300, } } 
+      mirrorVideo: false, maxDuration: 300, 
+    } 
+  } 
+
   get message() {
     return `Looks like you are very far from any surf destination, only videos that are taken at a surfspot present in our database are accepted. Sorry!`
   }
@@ -49,7 +53,7 @@ export default class Recorder extends Component {
 
   componentDidMount = async () => {
     const { latitude, longitude } = this.state
-    getGps(this._setLocation)
+    getGps(this._setLatLong)
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
@@ -57,7 +61,7 @@ export default class Recorder extends Component {
     const is_recording = prevState.recording == false && recording
     const latitude_updated = prevState.latitude != latitude
     const longitude_updated = prevState.longitude != longitude
-    const location_updated = latitude_updated && longitude_updated
+    const position_updated = latitude_updated && longitude_updated
     this.api.params = this.params
     if (is_recording) {
       this.interval = setInterval(() => this.setState({
@@ -66,24 +70,30 @@ export default class Recorder extends Component {
       const video  = await this.camera.recordAsync(this.options)
       this.setState({ video })
     }
-    if (location_updated) {
-      var response = await this.api.getLocationsNearby()
-      var json = await response.json()
-      var { data: { attributes: location }} = json[0]
-      this.setState({ location })
-    }
+    if (position_updated) { this._setLocations() }
     if(saved) {
       this.setState({ saved: false })
       alert("Your videos was saved and it is now available in the homepage")
     } 
   }
 
-  _setLocation = ({ latitude, longitude }) => {
+  _setLocations = async () => {
+    var response = await this.api.getLocationsNearby()
+    const locations = await response.json()
+    this.setState({ locations })
+    this.pageIsLoaded()
+  }
+
+  _setLatLong = ({ latitude, longitude }) => {
     this.setState({ latitude, longitude })
   }
 
   _setVideo = (saved) => {
     this.setState({ video: null, saved: saved })
+  }
+
+  pageIsLoaded = () => { 
+    this.setState({ spinner: false }) 
   }
 
   _startRecording = async function() {
@@ -98,8 +108,9 @@ export default class Recorder extends Component {
   }
 
   _recording = () => {
-    const { recording, location } = this.state
-    if (!location && !this.props.location) { 
+    const { recording, locations } = this.state
+    const surfspots_found = locations.length > 0
+    if (!surfspots_found) { 
       alert(this.message) 
       return
     }
@@ -138,6 +149,7 @@ export default class Recorder extends Component {
         flashMode={RNCamera.Constants.FlashMode.on}
         captureAudio={false}
         zoom={this.state.zoom}
+        maxZoom={MAX_ZOOM}
         androidCameraPermissionOptions={{
           title: 'Permission to use camera',
           message: 'We need your permission to use your camera',
@@ -164,6 +176,11 @@ export default class Recorder extends Component {
     const { video, longitude, latitude } = this.state
     return (
       <React.Fragment>
+        <Spinner
+          visible={this.state.spinner}
+          textContent={'Verifing your position on the Beach'}
+          textStyle={styles.spinnerTextStyle}
+        />
         { video ?  
         <Player 
           longitude={longitude} 
@@ -186,5 +203,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+  spinnerTextStyle: {
+    color: 'white'
   },
 });

@@ -44,12 +44,12 @@ export default class Locations extends Component {
   }
 
   _setLocations = async () => {
-    const { locations, page } = this.state
+    const { page } = this.state
     const { loaded } = this.props
     this.api.page =  page
     const locations_request =  await this.api.getLocations({ flags: ["with_cameras=true"] })
-    const new_locations = await locations_request.json()
-    this.setState({ locations: [...locations, ...new_locations] })
+    const locations = await locations_request.json()
+    this.setState({ locations })
     loaded()
   }
 
@@ -131,7 +131,7 @@ export default class Locations extends Component {
         extraData={[imperial, credentials]}
         keyExtractor={(item, index) => index.toString() }
         refreshing={this.state.refreshing}
-        // onRefresh={this._handleRefresh}
+        onRefresh={this._handleRefresh}
         // onEndReached={this._onEndReached}
         onEndReachedThreshold={0.01}
         pagingEnabled
