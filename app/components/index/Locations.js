@@ -80,6 +80,7 @@ export default class Locations extends Component {
   }
 
   _handleRefresh = () => {
+    this.props.loading()
     this.setState({
       page: 1, locations: []
     });
