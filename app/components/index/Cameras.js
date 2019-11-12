@@ -79,7 +79,6 @@ export default class Cameras extends Component {
       <React.Fragment>
         <Spinner
           visible={this.state.spinner}
-          textContent={'Loading...'}
           textStyle={styles.spinnerTextStyle}
           color="white"
         />
