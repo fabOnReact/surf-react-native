@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
-import { Platform, StatusBar, ActivityIndicator, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
+import { Platform, StatusBar, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
 import { Card } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 import DeviceInfo from 'react-native-device-info';
 import Video from 'react-native-video';
 import Dimensions from 'Dimensions';
@@ -12,7 +13,7 @@ import Location from './Location';
 export default class Cameras extends Component {
   constructor(props) {
     super(props)
-    this.state = { loading: true, height: Dimensions.get('window').height, cameraIndex: 0, postIndex: 0 }
+    this.state = { spinner: true, height: Dimensions.get('window').height, cameraIndex: 0, postIndex: 0 }
   }
 
   _onOrientationDidChange = (orientation) => {
@@ -67,7 +68,7 @@ export default class Cameras extends Component {
 
   renderText = () => {
     const { locations, location, navigation, imperial, credentials } = this.props
-    const { loading, cameraIndex, postIndex } = this.state
+    const { spinner, cameraIndex, postIndex } = this.state
     const { included: cameras } = location
     const new_props = { 
       locations, location, cameras, 
@@ -76,13 +77,12 @@ export default class Cameras extends Component {
     }
     return ( 
       <React.Fragment>
-        <View style={styles.loading}>
-          <ActivityIndicator 
-            size="large" 
-            color="white"
-            animating={loading}
-          />
-        </View>
+        <Spinner
+          visible={this.state.spinner}
+          textContent={'Loading...'}
+          textStyle={styles.spinnerTextStyle}
+          color="white"
+        />
         <Location 
           changePostIndex={this.changePostIndex}
           changeCamera={this.changeCameraIndex}
@@ -109,8 +109,8 @@ export default class Cameras extends Component {
           posterResizeMode="cover"
           resizeMode="cover"
           style={[styles.video, {height: screen}]} 
-          onLoadStart={() => this.setState({loading: true })}
-          onReadyForDisplay={() => this.setState({loading: false})}
+          onLoadStart={() => this.setState({spinner: true })}
+          onReadyForDisplay={() => this.setState({spinner: false})}
           repeat 
           muted 
         />
@@ -140,14 +140,4 @@ const styles = StyleSheet.create({
     zIndex: 0,
     marginLeft: 0,
   },
-  loading: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
 })
