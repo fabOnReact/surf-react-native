@@ -40,6 +40,7 @@ export default class IndexScreen extends Component {
           visible={this.state.spinner}
           textContent={'Loading...'}
           textStyle={styles.spinnerTextStyle}
+          color="black"
         />
         { 
           credentials_found && <Locations 
