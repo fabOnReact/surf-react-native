@@ -40,7 +40,11 @@ export default class ForecastScreen extends Component {
     const height = Dimensions.get("window").height
     return (
       <React.Fragment>
-        <StatusBar backgroundColor="black" hidden={false} barStyle="dark-content" translucent={false} />
+        <StatusBar 
+          backgroundColor="black" 
+          hidden={false} 
+          barStyle="dark-content" 
+          translucent={false} />
         <ScrollView>
           <Map 
             // locations={locations}
