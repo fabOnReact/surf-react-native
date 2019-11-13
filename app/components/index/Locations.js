@@ -47,6 +47,7 @@ export default class Locations extends Component {
     const { page } = this.state
     const { loaded } = this.props
     this.api.page =  page
+    this.api.per_page = 20
     const locations_request =  await this.api.getLocations({ flags: ["with_cameras=true"] })
     const locations = await locations_request.json()
     this.setState({ locations })
@@ -80,7 +81,6 @@ export default class Locations extends Component {
   }
 
   _handleRefresh = () => {
-    this.props.loading()
     this.setState({
       page: 1, locations: []
     });

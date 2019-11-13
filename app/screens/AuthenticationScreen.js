@@ -99,7 +99,7 @@ export default class AuthenticationScreen extends Component {
 
 const style1 = StyleSheet.create({
   text: {
-    fontSize: 2,
+    fontSize: 4,
     position: 'absolute',
     bottom: 30,
     width: "100%",
