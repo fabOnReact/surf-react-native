@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, Dimensions, View } from 'react-native';
+import { StyleSheet, Platform, StatusBar, Dimensions, View, Text } from 'react-native';
 import Video from 'react-native-video';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Input, Button } from 'react-native-elements';
@@ -90,8 +90,20 @@ export default class AuthenticationScreen extends Component {
             saveCredentials={this.saveCredentials} 
             setErrors={this.setErrors}
           />
+          <Text style={style1.text}>Goodbye Sergey</Text>
         </View>
       </React.Fragment>
     );
   }
 }
+
+const style1 = StyleSheet.create({
+  text: {
+    fontSize: 2,
+    position: 'absolute',
+    bottom: 30,
+    width: "100%",
+    textAlign: 'center',
+    color: 'white', 
+  }
+})
