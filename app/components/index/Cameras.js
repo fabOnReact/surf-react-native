@@ -99,7 +99,6 @@ export default class Cameras extends Component {
     const image_resolution = `${image_format},q_auto,w_${screen_width},dpr_1.0,c_limit`
     const poster_mobile = `${poster_array[0]}upload/${image_resolution}/${poster_array[1]}`
     const video_mobile = `${video_array[0]}upload/${video_format},c_limit/${video_array[1]}`
-    console.log(poster_mobile);
     const has_notch = DeviceInfo.hasNotch()
     return (
       <View style={[
