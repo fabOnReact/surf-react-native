@@ -12,7 +12,7 @@ import ZoomView from './ZoomView';
 import SafeArea from '../SafeArea';
 
 const MAX_ZOOM = 7; // iOS only
-const ZOOM_F = Platform.OS === 'ios' ? 0.001 : 0.08;
+const ZOOM_F = Platform.OS === 'ios' ? 0.0009 : 0.08;
 
 export default class Recorder extends Component {
 
@@ -33,7 +33,8 @@ export default class Recorder extends Component {
         videoOrientation: 1,
         deviceOrientation: 1,
         mute: true,
-      mirrorVideo: false, maxDuration: 300, 
+        mirrorVideo: false, 
+        maxDuration: 300, 
     } 
   } 
 
