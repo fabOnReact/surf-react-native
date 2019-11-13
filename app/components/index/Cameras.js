@@ -108,7 +108,7 @@ export default class Cameras extends Component {
           muted 
           hideShutterView={true}
         />
-        { 
+        {
           spinner && <View style={[styles.indicator]}>
             <ActivityIndicator 
               size="large"
@@ -116,7 +116,7 @@ export default class Cameras extends Component {
               color="white"
             />
           </View>
-      }
+        }
         { has_notch ? this.renderSafeArea() : this.renderText() }
       </View>
     )
