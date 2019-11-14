@@ -16,7 +16,7 @@ import auth from '../../screens/IndexScreen';
 export default class Locations extends Component {
   constructor(props){
     super(props);
-    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], imperial: true };
+    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], data: null, imperial: true };
     this.count = 0
     this.timer_on = 0;
     const { credentials } = this.props
@@ -43,37 +43,42 @@ export default class Locations extends Component {
     this.setState({ latitude, longitude })
   }
 
-  _setLocations = async () => {
-    // fix later handle_refresh
-    const { locations, page } = this.state
+  _setData = async () => {
+    const request =  await this.api.getLocations({ flags: ["with_cameras=true"] })
+    this.data = await request.json()
+  }
+
+  get begin() {
+    const { page } = this.state
+    return page * 2
+  }
+
+  get end () {
+    return this.begin + 2
+  }
+
+  _setLocations = () => {
+    const { locations } = this.state
     const { loaded } = this.props
-    this.api.page =  page
-    this.api.per_page = 2
-    const locations_request =  await this.api.getLocations({ flags: ["with_cameras=true"] })
-    const new_locations = await locations_request.json()
-    this.setState({ locations: [...locations, ...new_locations] })
+    const new_locations = this.data.slice(this.begin, this.end)
+    this.setState({ locations: [...locations, ...new_locations ]})
     loaded()
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     getGps(this._setGps)
     this._updateSettings()
+    await this._setData()
     this._setLocations()
   }
 
   componentDidUpdate = async (prevProp, prevState) => {
-    const { page, locations } = this.state
+    const { page, data, locations } = this.state
     const next_page = prevState.page < page
-    // const latitude_change = prevState.latitude != latitude
-    // const longitude_change = prevState.longitude != longitude
-    // const gps_change = latitude_change && longitude_change
     this.api.params = this.params
     if(next_page) {
       this._setLocations()
     }
-    // if(gps_change) {
-    //   this._nearbyLocations()
-    // }
   }
 
   componentWillUnmount() {
@@ -135,7 +140,6 @@ export default class Locations extends Component {
         refreshing={this.state.refreshing}
         onRefresh={this._handleRefresh}
         onEndReached={this._onEndReached}
-        onEndReachedThreshold={2}
         pagingEnabled
         renderItem={({ item, index }) => {
           return ( 
