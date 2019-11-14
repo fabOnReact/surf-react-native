@@ -46,7 +46,8 @@ export default class Hourly extends Component {
     const { reported } = post
     const iconColor = reported ? "red" : "white"
     const { name, forecast_info: { hourly, tide_data }} = location
-    const data = new Data({...hourly, imperial })
+    const { forecast } = post
+    const data = new Data({...forecast, imperial })
 
     return (
       <React.Fragment>

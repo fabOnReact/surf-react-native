@@ -16,7 +16,7 @@ import auth from '../../screens/IndexScreen';
 export default class Locations extends Component {
   constructor(props){
     super(props);
-    this.state = { page: 1, refreshing: false, latitude: '', longitude: '', locations: [], data: null, imperial: true };
+    this.state = { page: 0, refreshing: false, latitude: '', longitude: '', locations: [], data: null, imperial: true };
     this.count = 0
     this.timer_on = 0;
     const { credentials } = this.props
@@ -86,10 +86,11 @@ export default class Locations extends Component {
     this.timer_on = 0;
   }
 
-  _handleRefresh = () => {
+  _handleRefresh = async () => {
     this.setState({
       page: 1, locations: []
     });
+    await this._setData()
     this._setLocations()
   }
 
