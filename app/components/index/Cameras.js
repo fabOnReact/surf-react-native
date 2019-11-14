@@ -94,7 +94,7 @@ export default class Cameras extends Component {
     const ios = Platform.OS == 'ios'
     const image_format = ios ? "fl_lossy" : "f_webp"
     const ios_format = `f_mp4,vc_h265,w_${screen_width}`
-    const android_format = `f_webm,vc_vp9,w_${screen_width}` 
+    const android_format = `vc_auto,w_${screen_width}` 
     const video_format = ios ? ios_format : android_format
     const image_resolution = `${image_format},q_auto,w_${screen_width},dpr_1.0,c_limit`
     const poster_mobile = `${poster_array[0]}upload/${image_resolution}/${poster_array[1]}`
