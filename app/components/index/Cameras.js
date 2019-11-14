@@ -122,7 +122,7 @@ export default class Cameras extends Component {
             <ActivityIndicator 
               size="large"
               animating={true}
-              color="white"
+              color="black"
             />
           </View>
         }

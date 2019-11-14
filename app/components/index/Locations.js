@@ -88,7 +88,7 @@ export default class Locations extends Component {
 
   _handleRefresh = async () => {
     this.setState({
-      page: 1, locations: []
+      page: 0, locations: []
     });
     await this._setData()
     this._setLocations()
