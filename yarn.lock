@@ -5932,6 +5932,11 @@ react-native-hooks@^0.9.0:
   resolved "https://registry.yarnpkg.com/react-native-hooks/-/react-native-hooks-0.9.0.tgz#589fc2390296d9afe03327298dabcf0a1f350910"
   integrity sha512-yqSAH0zxqjYHYPo6mPut3dEROoB5qMvsAbN3EK0MDQrWA5zdqmzgTEpS9/qwXaIyllk6hQbHxYnRTWq2uq4tJQ==
 
+react-native-infinite-flatlist-patch@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-infinite-flatlist-patch/-/react-native-infinite-flatlist-patch-1.0.3.tgz#9fc1ecdc1bd48701547453eb520864fc4668e01f"
+  integrity sha512-EziBgoEXlGjGlYYdUWsk0pQ3m0j8bUafbZTYgphMc6sPjH0CuOstIu4bJhKMj1fwRY+UnmTlfCerKUi0xQ1MEQ==
+
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
