@@ -12,7 +12,7 @@
   "dependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@react-native-community/async-storage": "^1.6.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bugsnag-react-native": "^2.23.0",
     "native-base": "^2.12.1",
     "react": "16.8.3",
