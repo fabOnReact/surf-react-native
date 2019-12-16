@@ -7,9 +7,11 @@ class DateHelper extends Date {
     if (this.is_months) { return this.in_months }
     // console.log('The current case was not managed. Seconds has value of: ' + this.seconds)
   }
-	get in_seconds() {
+
+  get in_seconds() {
 		return `${this.seconds}s ago`
   }
+
 	get in_minutes() {
 		return `${this.minutes}m ago`
   }
