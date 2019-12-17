@@ -1,0 +1,57 @@
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/src/main/res/values/api_keys.xml" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/src/main/res/values/api_keys_example.xml" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/keystores/old/debug-surfcheck.keystore" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/keystores/old/surfcheck.keystore" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/keystores/debug.keystore" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/keystores/production.keystore" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android/app/google-services.json" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch .env" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android-debug.bundle" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android-debug.bundle.map" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android-release.bundle" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch android-release.bundle.map" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch ios-debug.bundle" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch ios-debug.bundle.map" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch ios-release.bundle" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch ios-release.bundle.map" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch yarn-error.log" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch yarn.log" \
+  --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch clean_repo_history" \
+  --prune-empty --tag-name-filter cat -- --all
