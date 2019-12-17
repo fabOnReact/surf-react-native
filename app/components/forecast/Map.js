@@ -7,12 +7,6 @@ import Chart from './Chart';
 import DisplayButton from '../buttons/DisplayButton';
 
 export default class Map extends Component {
-  // navigateToMap = () => {
-  //   const { navigation, location } = this.props
-  //   const { latitude, longitude } = location
-  //   navigation.navigate("Map", { lat: latitude, lon: longitude })
-  // }
-
   render() {
     const { location } = this.props
     const { latitude, longitude, forecast_info } = location
@@ -25,10 +19,6 @@ export default class Map extends Component {
     hours  = hours.map(date => new Date(date).getHours()).filter(hour => hour % 3 == 0) 
     return (
       <React.Fragment>
-        {/*
-        <TouchableOpacity
-          onPress={this.navigateToMap}>
-        */}
           <Image 
             resizeMode="cover"
             style={[styles.map]}
@@ -48,13 +38,6 @@ export default class Map extends Component {
             ]}
             source={require('../../images/down-cursor.png')} 
           />
-        {/*
-        </TouchableOpacity>
-        <DisplayButton 
-          action={this.navigateToMap} 
-          styles={styles.icon}
-        />
-        */}
         <H3 style={{ textAlign: 'center', marginTop: 30 }}>Next 24h Tide mt.</H3>
         <Chart values={seaLevels} labels={hours} bezier={false} margin={50} />
       </React.Fragment>

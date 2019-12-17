@@ -8,7 +8,7 @@ import Map from '../components/forecast/Map';
 import Hourly from '../components/forecast/Hourly';
 // import Orientation from 'react-native-orientation';
 import TableView from '../components/forecast/TableView';
-import Current from '../components/forecast/Current';
+// import Current from '../components/forecast/Current';
 import { getAsset } from '../lib/support';
 
 export default class ForecastScreen extends Component {
