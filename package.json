@@ -76,6 +76,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "setupFiles": [
+      "./testenv.js"
+    ],
     "setupFilesAfterEnv": [
       "jest-enzyme"
     ],
