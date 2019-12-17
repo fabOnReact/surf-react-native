@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -18,6 +17,7 @@
 		03F7689F8C358CB44DF1B7B8 /* libPods-SurfApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 821880CFF3B2D06DE0C355E7 /* libPods-SurfApp-tvOS.a */; };
 		05ED95A55D314AC7B85423F2 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D87F98F39E144B0D83B99DC3 /* Entypo.ttf */; };
 		09A8F980FBDE42608A434A61 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E04E350F1449A48B18F046 /* libRNGoogleSignin.a */; };
+		0BEE11E5FA06467387CA2495 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDCB0146D1294356BD767CB6 /* Fontisto.ttf */; };
 		0F1910E8489244979E645FEC /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3CBBD3E035924F67AB5A367F /* AntDesign.ttf */; };
 		0F4C64AC554E48ACB3A8F686 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 043A0BA533734E34B7B22D36 /* Foundation.ttf */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -463,6 +463,7 @@
 		B496B448B89D49B5B4123C10 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		BA65821777BC65EE2BAAF940 /* Pods-SurfApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurfApp.release.xcconfig"; path = "Target Support Files/Pods-SurfApp/Pods-SurfApp.release.xcconfig"; sourceTree = "<group>"; };
 		BC5D7B23220349F6ADE56BAC /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		BDCB0146D1294356BD767CB6 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		C325EDB00CBD444A81EABA43 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		C3E04E350F1449A48B18F046 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
 		C457C5F6D688472586921406 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
@@ -707,6 +708,7 @@
 				1AEADA565E7B4B1587E8DC20 /* Octicons.ttf */,
 				66B201A93A374F3CA4EE95B5 /* SimpleLineIcons.ttf */,
 				5C2D6C89AF204F129D08F95A /* Zocial.ttf */,
+				BDCB0146D1294356BD767CB6 /* Fontisto.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1392,6 +1394,7 @@
 				1637856B8D134464936FB636 /* Octicons.ttf in Resources */,
 				D3CA76736A8C4883A6713EF1 /* SimpleLineIcons.ttf in Resources */,
 				C7221EE3EB5D47D29619B5FE /* Zocial.ttf in Resources */,
+				0BEE11E5FA06467387CA2495 /* Fontisto.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
