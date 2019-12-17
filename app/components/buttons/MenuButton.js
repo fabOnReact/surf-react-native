@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function MenuButton({ action, style }){
-  return (
-    <TouchableOpacity
-      onPress={action}
-      style={styles.container}
-    >
-      <Icon name="md-menu" 
-        size={50} 
-        color="white"
-        style={styles.icon}/>
-    </TouchableOpacity>
-  )
+export default class MenuButton extends Component {
+  render() {
+    const { action, style } = this.props
+    return (
+      <TouchableOpacity
+        onPress={action}
+        style={styles.container}
+      >
+        <Icon name="md-menu" 
+          size={50} 
+          color="white"
+          style={styles.icon}/>
+      </TouchableOpacity>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
