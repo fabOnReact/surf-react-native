@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import {shallow} from 'enzyme';
 import Locations from '../../../app/components/index/Locations';
 import GoogleSignin from 'react-native-google-signin';
@@ -33,6 +33,11 @@ describe('Locations', () => {
         it('renders the View component', () => {
           const component = shallow(<Locations />)
           expect(component.find(View).length).toBe(1)
+        });
+        
+        it('renders the FlatList component', () => {
+          const component = shallow(<Locations />)
+          expect(component.find(FlatList).length).toBe(1)
         });
     });
 });
