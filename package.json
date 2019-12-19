@@ -14,6 +14,7 @@
     "@react-native-community/async-storage": "^1.6.2",
     "axios": "^0.18.0",
     "bugsnag-react-native": "^2.23.0",
+    "detox": "^14.9.1",
     "jest": "^24.9.0",
     "native-base": "^2.12.1",
     "react": "16.8.3",
@@ -86,5 +87,18 @@
     "testEnvironmentOptions": {
       "enzymeAdapter": "react16"
     }
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/SurfApp.app",
+        "build": "xcodebuild -workspace ios/SurfApp.xcworkspace -scheme SurfApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11 Pro"
+        }
+      }
+    },
+    "test-runner": "jest"
   }
 }
