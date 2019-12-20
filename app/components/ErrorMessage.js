@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function ErrorMessage(props) {
   const { message, styles } = props;
   return (
-    <View style={[classes.errorContainer, styles]}>
+    <View style={[classes.errorContainer, styles]} testID="errorMessage">
       <Text style={classes.errorText}>{ message }</Text>
     </View>
   );
