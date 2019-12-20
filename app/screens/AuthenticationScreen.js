@@ -72,7 +72,9 @@ export default class AuthenticationScreen extends Component {
             placeholder="Email"
             autoCapitalize="none"
             onChangeText={text => this.setState({ email: text })}
-            value={email} />
+            value={email} 
+            textID='email'
+          />
           <Input
             secureTextEntry
             inputContainerStyle={{borderBottomColor: "white"}}
