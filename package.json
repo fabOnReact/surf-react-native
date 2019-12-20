@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "test:e2e": "detox test -c ios.sim.debug -a e2e",
     "lint": "eslint *.js **/*.js",
     "postinstall": "jetifier -r; yarn run infinite-flatlist-patch",
     "postuninstall": "yarn run infinite-flatlist-patch"
@@ -79,7 +80,8 @@
     "preset": "react-native",
     "setupFiles": [
       "./testenv.js",
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./e2e/__mocks__/react-native-permissions.js"
     ],
     "setupFilesAfterEnv": [
       "jest-enzyme",
@@ -97,7 +99,7 @@
         "build": "xcodebuild -workspace ios/SurfApp.xcworkspace -scheme SurfApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone 11 Pro"
+          "type": "iPhone 11"
         }
       }
     },
