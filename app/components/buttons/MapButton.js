@@ -8,6 +8,7 @@ export default function MapButton({ action }){
     <TouchableOpacity
       onPress={action}
       style={styles.container}
+      testID={"mapButton"}
     >
       <Icon name="md-globe" 
         size={60} 

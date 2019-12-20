@@ -142,6 +142,7 @@ export default class Locations extends Component {
         onRefresh={this._handleRefresh}
         onEndReached={this._onEndReached}
         pagingEnabled
+        testID={"flatlist"}
         renderItem={({ item, index }) => {
           return ( 
             <Cameras 

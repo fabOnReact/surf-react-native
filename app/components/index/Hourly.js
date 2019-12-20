@@ -59,7 +59,9 @@ export default class Hourly extends Component {
           <Text style={[
             header.shadowHeader,
             header.text,
-          ]}>
+          ]}
+            testID={"postHeader"}
+          >
             { name }
           </Text>
           { !!hourly && this.renderHourly(data) }
