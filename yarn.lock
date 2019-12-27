@@ -2894,10 +2894,10 @@ detox-cli@^10.0.7:
     commander "^2.9.0"
     minimist "^1.2.0"
 
-detox@^14.9.1:
-  version "14.9.1"
-  resolved "https://registry.yarnpkg.com/detox/-/detox-14.9.1.tgz#e86eb3c3349c8a5951ba0e06208dac97496d2b59"
-  integrity sha512-/xbxVZYRsVlCeN+e0UP3ybjOPZ231KXDvjlJ911H/ALoipLYXIomEIVk7WgArWNxCa5KUy0EvdpVCF7q7o64eQ==
+detox@^14.9.2:
+  version "14.9.2"
+  resolved "https://registry.yarnpkg.com/detox/-/detox-14.9.2.tgz#129096099301058b95b80009850275527b284e2c"
+  integrity sha512-Ai+NJLvqh91esSxXW4u3RQ+BgSWq5rk75yv832U1LvCuDhzWWT9g7ijkOiXbHynkGY3LkvcSVSyHb4ZvhzJgKw==
   dependencies:
     "@babel/core" "^7.4.5"
     bunyan "^1.8.12"
@@ -3991,6 +3991,11 @@ fsevents@^1.2.3, fsevents@^1.2.7:
   dependencies:
     nan "^2.9.2"
     node-pre-gyp "^0.10.0"
+
+fsevents@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.2.tgz#4c0a1fb34bc68e543b4b82a9ec392bfbda840805"
+  integrity sha512-R4wDiBwZ0KzpgOWetKDug1FZcYhqYnUYKtfZYt4mD5SBz76q0KR4Q9o7GIPamsVPGmW3EYPPJ0dOOjvx32ldZA==
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -7544,10 +7549,10 @@ react-native-geolocation-service@^3.0.0:
   dependencies:
     "@react-native-community/geolocation" "^1.4.2"
 
-react-native-gesture-handler@^1.4.1:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.2.tgz#281111550bf1eee10b7feba5278d142169892731"
-  integrity sha512-Xp03dq4XYVTD0xmWx4DW4eX+ox1NQLjHmbykspTdS5FCNIVIOekVXRLFCw1698/v8dYUHApNo6K3s3BCD8fqPA==
+react-native-gesture-handler@1.4.x:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.4.1.tgz#c38d9e57637b95e221722a79f2bafac62e3aeb21"
+  integrity sha512-Ffcs+SbEbkGaal0CClYL+v7A9y4OA5G5lW01qrzjxaqASp5C8BfnWSKuqYKE00s6bLwE5L4xnlHkG0yIxAtbrQ==
   dependencies:
     hammerjs "^2.0.8"
     hoist-non-react-statics "^2.3.1"

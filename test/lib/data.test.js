@@ -2,9 +2,10 @@ import Data from '../../app/lib/data';
 import Unit from '../../app/lib/unit';
 
 jest.mock('../../app/lib/unit');
+const props = { swellHeight: 0, swellPeriod: 0, windSpeed: 0, imperial: true, i: 0 }
 describe('Data', () => {
   beforeEach(() => {
-    // Unit.mockClear()
+    Unit.mockClear()
   });
 
   describe('constructor', () => {
@@ -16,7 +17,6 @@ describe('Data', () => {
 
   describe('#swellHeight', () => {
     it('returns the swell height in feet', () => {
-      const props = { swellHeight: 0, swellPeriod: 0, windSpeed: 0, imperial: true, i: 0 }
       const data = new Data(props)
       const mockUnitInstance = Unit.mock.instances[0]
       mockUnitInstance.ft = jest.fn()
