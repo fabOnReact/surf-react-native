@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hourly Rendering matches to snapshot 1`] = `
+<Fragment>
+  <View
+    style={
+      Object {
+        "height": 90,
+        "position": "absolute",
+        "top": 30,
+        "width": "100%",
+        "zIndex": 4,
+      }
+    }
+  >
+    <FlagButton
+      action={[Function]}
+      style="white"
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "white",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "marginBottom": 5,
+            "textShadowColor": "rgb(0, 0, 0)",
+            "textShadowOffset": Object {
+              "height": 2,
+              "width": -2,
+            },
+            "textShadowRadius": 1,
+          },
+          Object {
+            "color": "white",
+            "fontSize": 30,
+            "fontWeight": "bold",
+            "marginBottom": 5,
+            "textAlign": "center",
+            "textShadowColor": "rgb(0, 0, 0)",
+            "textShadowOffset": Object {
+              "height": 2,
+              "width": -2,
+            },
+            "textShadowRadius": 1,
+            "width": "100%",
+          },
+        ]
+      }
+      testID="postHeader"
+    />
+  </View>
+</Fragment>
+`;

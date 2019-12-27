@@ -34,10 +34,5 @@ describe('Locations', () => {
           const component = shallow(<Locations />)
           expect(component.find(View).length).toBe(1)
         });
-        
-        it('renders the FlatList component', () => {
-          const component = shallow(<Locations />)
-          expect(component.find(FlatList).length).toBe(1)
-        });
     });
 });

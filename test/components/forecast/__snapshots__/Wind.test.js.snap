@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wind Rendering matches to snapshot 1`] = `
+<Fragment>
+  <Text>
+     wind
+  </Text>
+</Fragment>
+`;
