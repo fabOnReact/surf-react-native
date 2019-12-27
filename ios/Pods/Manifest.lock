@@ -1,9 +1,9 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - BugsnagReactNative (2.23.0):
-    - BugsnagReactNative/Core (= 2.23.0)
+  - BugsnagReactNative (2.23.3):
+    - BugsnagReactNative/Core (= 2.23.3)
     - React
-  - BugsnagReactNative/Core (2.23.0):
+  - BugsnagReactNative/Core (2.23.3):
     - React
   - DoubleConversion (1.1.6)
   - DVAssetLoaderDelegate (0.3.3)
@@ -101,16 +101,16 @@ PODS:
     - React
   - react-native-maps (0.26.1):
     - React
-  - react-native-orientation-locker (1.1.6):
+  - react-native-orientation-locker (1.1.7):
     - React
-  - react-native-video/Video (5.0.0):
+  - react-native-video/Video (5.0.2):
     - React
-  - react-native-video/VideoCaching (5.0.0):
+  - react-native-video/VideoCaching (5.0.2):
     - DVAssetLoaderDelegate (~> 0.3.1)
     - React
     - react-native-video/Video
     - SPTPersistentCache (~> 1.1.0)
-  - react-native-webview (5.8.2):
+  - react-native-webview (5.12.1):
     - React
   - React/Core (0.59.10):
     - yoga (= 0.59.10.React)
@@ -155,17 +155,17 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - ReactNativePermissions (1.2.0):
+  - ReactNativePermissions (1.2.1):
     - React
-  - RNCAsyncStorage (1.6.2):
+  - RNCAsyncStorage (1.7.1):
     - React
   - RNDeviceInfo (4.0.1):
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
-  - RNSVG (9.6.2):
+  - RNSVG (9.13.6):
     - React
-  - RNVectorIcons (6.4.2):
+  - RNVectorIcons (6.6.0):
     - React
   - SPTPersistentCache (1.1.0)
   - yoga (0.59.10.React)
@@ -259,7 +259,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  BugsnagReactNative: a469858d1040621a04247bb4ec15ca18dceabfd6
+  BugsnagReactNative: 34f9500e304c2667ce7a3e76037d91e41eca2ffe
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   DVAssetLoaderDelegate: 0caec20e4e08b8560b691131539e9180024d4bce
   Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
@@ -279,18 +279,18 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   React: 36d0768f9e93be2473b37e7fa64f92c1d5341eef
-  react-native-camera: f1fbfc336ba8ca6de5296190341d1b6022c71cff
-  react-native-geolocation: a7b94614afbd5fd8350e0233a2025c8228fc8041
+  react-native-camera: 96a3c81f27da57b816fbb6808dde20dc96d1431e
+  react-native-geolocation: 79c743ad7a2e86617811ef23f49308824e92520c
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
-  react-native-orientation-locker: 23918c400376a7043e752c639c122fcf6bce8f1c
-  react-native-video: 6555881252c8ca039760e1cd6df28ac28ffb2baf
-  react-native-webview: 45010be37680adba5ffb0e5a9e8822c6ca117049
-  ReactNativePermissions: f3beb8871251594a8ea2c6b19a3f8252d5c7379d
-  RNCAsyncStorage: 60a80e72d95bf02a01cace55d3697d9724f0d77f
-  RNDeviceInfo: 687c1b2ab6d86ff1ca1208783320cd144138c7f2
+  react-native-orientation-locker: ec7d590e2a52ae4abda5b5b79ce71e50ffcd52a5
+  react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
+  react-native-webview: 21c396687cb983fadc6ccc0751cc74f554131f3f
+  ReactNativePermissions: e7db6c38a2f3fb8f26dbfdcaeb5c5e9364657a6d
+  RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
+  RNDeviceInfo: 12faae605ba42a1a5041c3c41a77834bc23f049d
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
-  RNSVG: ff9b094e39dd4a437ebe17d1c7ceed286e75f426
-  RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
+  RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
+  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SPTPersistentCache: df36ea46762d7cf026502bbb86a8b79d0080dff4
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
