@@ -4,7 +4,7 @@ import Unit from '../../lib/unit';
 
 export default class Swell extends Component {
   render() {
-    const { text, styles} = this.props
+    const { text, styles } = this.props
     return (
       <Text style={styles}>
         { text }

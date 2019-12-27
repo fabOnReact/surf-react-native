@@ -9,6 +9,11 @@ import { header } from '../forecast/styles';
 import Data from '../../lib/data';
 
 export default class Hourly extends Component {
+  static defaultProps = { 
+    post: { forecast: {}, reported: false },
+    location: { forecast_info: {}},
+  }
+
   constructor(props) {
     super(props)
     this.state = { visible: false }

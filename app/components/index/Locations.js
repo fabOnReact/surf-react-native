@@ -14,6 +14,9 @@ import Api from '../../lib/api';
 import auth from '../../screens/IndexScreen';
 
 export default class Locations extends Component {
+  static defaultProps = {
+  }
+
   constructor(props){
     super(props);
     this.state = { page: 0, refreshing: false, latitude: '', longitude: '', locations: [], data: null, imperial: true };
