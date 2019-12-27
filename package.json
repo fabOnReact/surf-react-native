@@ -14,8 +14,11 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@react-native-community/async-storage": "^1.6.2",
     "axios": "^0.18.0",
+    "babel": "^6.23.0",
     "bugsnag-react-native": "^2.23.0",
     "detox": "^14.9.1",
+    "detox-cli": "^10.0.7",
+    "global": "^4.4.0",
     "jest": "^24.9.0",
     "native-base": "^2.12.1",
     "react": "16.8.3",
@@ -29,7 +32,7 @@
     "react-native-elements": "^1.0.0-beta7",
     "react-native-fit-image": "^1.5.4",
     "react-native-geolocation-service": "^3.0.0",
-    "react-native-gesture-handler": "^1.4.1",
+    "react-native-gesture-handler": "1.4.x",
     "react-native-google-signin": "^1.2.1",
     "react-native-hooks": "^0.9.0",
     "react-native-loading-spinner-overlay": "^1.0.1",
@@ -80,8 +83,7 @@
     "preset": "react-native",
     "setupFiles": [
       "./testenv.js",
-      "./node_modules/react-native-gesture-handler/jestSetup.js",
-      "./e2e/__mocks__/react-native-permissions.js"
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
     ],
     "setupFilesAfterEnv": [
       "jest-enzyme",
