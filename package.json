@@ -7,8 +7,7 @@
     "test": "jest",
     "test:e2e": "detox test -c ios.sim.debug -a e2e",
     "lint": "eslint *.js **/*.js",
-    "postinstall": "jetifier -r; yarn run infinite-flatlist-patch",
-    "postuninstall": "yarn run infinite-flatlist-patch"
+    "postinstall": "npx jetify"
   },
   "dependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
