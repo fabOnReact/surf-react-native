@@ -55,7 +55,6 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
-
 # Added from developer
 .notes
 .cutout
@@ -72,3 +71,4 @@ ios-debug.bundle
 ios-debug.bundle.map
 ios-release.bundle
 ios-release.bundle.map
+/ios/Pods/
