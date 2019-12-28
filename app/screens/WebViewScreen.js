@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StatusBar, WebView } from 'react-native-webview';
+import StatusBar from '@react-native-community/status-bar'
+import { WebView } from 'react-native-webview';
 import { host } from '../config/constants';
 
 export default class WebViewScreen extends Component {
@@ -7,7 +8,7 @@ export default class WebViewScreen extends Component {
     return {
       title: navigation.getParam('title', ''),
       headerTintColor: 'black' ,
-      headerStyle: { marginTop: StatusBar.currentHeight },
+      // headerStyle: { marginTop: StatusBar.currentHeight },
     }
   }
 
