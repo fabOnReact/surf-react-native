@@ -1,1 +1,0 @@
-../../../SPTPersistentCache/Sources/SPTPersistentCacheObjectDescription.h

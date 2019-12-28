@@ -26,23 +26,6 @@ target 'SurfApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  # Pods for Libraries
-  #  pod 'GoogleSignIn', '~> 4.4.0'
-  #  pod 'Firebase/Core'
-  #  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  #  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
-  #  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-  #  pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
-  #  pod 'RNSVG', :path => '../node_modules/react-native-svg'
-  #  pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
-  #  pod 'react-native-camera', path: '../node_modules/react-native-camera'
-  #  pod 'react-native-video/VideoCaching', :path => '../node_modules/react-native-video/react-native-video.podspec'
-  #  pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
-  #  pod 'RNScreens', :path => '../node_modules/react-native-screens'
-  #  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  #  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
-  #  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
-
   target 'SurfAppTests' do
     inherit! :search_paths
     # Pods for testing
@@ -60,18 +43,3 @@ target 'SurfApp-tvOS' do
   end
 
 end
-
-# install! 'cocoapods', :deterministic_uuids => false
-# 
-# post_install do |installer|
-#   installer.pods_project.targets.each do |target|
-#     if target.name == 'react-native-google-maps'
-#       target.build_configurations.each do |config|
-#         config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
-#       end
-#     end
-#     if target.name == "React"
-#       target.remove_from_project
-#     end
-#   end
-# end
