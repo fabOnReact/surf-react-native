@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
+Icon.loadFont();
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
 function RadioButton({ action, styles, selected}){

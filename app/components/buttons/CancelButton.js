@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+Icon.loadFont();
 
 export default function CancelButton({ setVideo }){
   return (
