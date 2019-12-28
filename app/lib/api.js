@@ -1,4 +1,4 @@
-import { GoogleSignin } from 'react-native-google-signin';
+import { GoogleSignin } from '@react-native-community/google-signin';
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 import { host } from '../config/constants';
 import { postSettings, getFromStorage, errorMessage, getCredentials, headers } from './support';

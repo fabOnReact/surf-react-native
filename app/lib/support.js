@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from '@react-native-community/geolocation';
 import { Platform, Image } from 'react-native';
 
 export function platformIcon(icon) {
