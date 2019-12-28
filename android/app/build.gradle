@@ -178,8 +178,6 @@ dependencies {
     compile project(':react-native-maps')
     compile project(':react-native-google-signin')
     compile project(':react-native-orientation-locker')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:0.59.10"
