@@ -3,6 +3,7 @@ package com.surfapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
             new NavigationBarColorPackage(),
             new RNDeviceInfo(),
             new RNScreensPackage(),
