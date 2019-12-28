@@ -165,11 +165,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-signin')
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:0.59.10"
-    implementation project(':react-native-geolocation-service')
     // From node_modules
 }
 
@@ -182,3 +177,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.bugsnag.android.gradle'
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

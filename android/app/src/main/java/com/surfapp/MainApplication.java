@@ -2,13 +2,7 @@ package com.surfapp;
 
 import android.app.Application;
 
-import com.facebook.react.ReactApplication;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import com.facebook.soloader.SoLoader;
-import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+import com.facebook.react.PackageList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,11 +17,12 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNGoogleSigninPackage(),
-             new RNFusedLocationPackage()
-      );
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      // Manually add any missing packages like this
+      // packages.add(new PostsnapPackage());
+      packages.add(new MainReactPackage());
+      packages.add(new RNFusedLocationPackage());
+      return packages;
     }
 
     @Override
