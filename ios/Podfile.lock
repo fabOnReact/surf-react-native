@@ -152,6 +152,8 @@ PODS:
     - React
   - react-native-orientation-locker (1.1.7):
     - React
+  - react-native-statusbar (1.0.3):
+    - React
   - react-native-video (5.0.2):
     - React
     - react-native-video/Video (= 5.0.2)
@@ -218,6 +220,7 @@ DEPENDENCIES:
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
+  - "react-native-statusbar (from `../node_modules/@react-native-community/status-bar`)"
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -290,6 +293,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-orientation-locker:
     :path: "../node_modules/react-native-orientation-locker"
+  react-native-statusbar:
+    :path: "../node_modules/@react-native-community/status-bar"
   react-native-video:
     :path: "../node_modules/react-native-video"
   react-native-webview:
@@ -365,6 +370,7 @@ SPEC CHECKSUMS:
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
   react-native-orientation-locker: ec7d590e2a52ae4abda5b5b79ce71e50ffcd52a5
+  react-native-statusbar: 2504f4fd9b83ec4c42eda01bc102fc6979c55fb8
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
   react-native-webview: 21c396687cb983fadc6ccc0751cc74f554131f3f
   React-RCTActionSheet: 49f6a67a7efa6688f637296383d453b97ef13645
