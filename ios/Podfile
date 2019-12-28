@@ -29,7 +29,6 @@ target 'SurfApp' do
 
   # added from Developer
   pod 'Firebase'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'SurfAppTests' do
     inherit! :search_paths
