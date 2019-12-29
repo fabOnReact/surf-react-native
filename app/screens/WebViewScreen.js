@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import StatusBar from '@react-native-community/status-bar'
+import { StatusBar} from 'react-native';
+// import StatusBar from '@react-native-community/status-bar'
 import { WebView } from 'react-native-webview';
 import { host } from '../config/constants';
 
