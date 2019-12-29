@@ -12,8 +12,8 @@ export default class GoogleButton extends Component {
   success = (userInfo) => {
     const { saveCredentials } = this.props
     const { email } = userInfo.user
-    const { accessToken } = userInfo
-    let body = JSON.stringify({ user: { email, accessToken } })
+    const { idToken } = userInfo
+    let body = JSON.stringify({ user: { email, idToken } })
     createResource(saveCredentials, this.failure, body, userSettings)
   }
 
