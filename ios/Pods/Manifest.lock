@@ -159,7 +159,7 @@ PODS:
     - react-native-video/Video (= 5.0.2)
   - react-native-video/Video (5.0.2):
     - React
-  - react-native-webview (5.12.1):
+  - react-native-webview (8.0.2):
     - React
   - React-RCTActionSheet (0.60.6):
     - React-Core (= 0.60.6)
@@ -372,7 +372,7 @@ SPEC CHECKSUMS:
   react-native-orientation-locker: ec7d590e2a52ae4abda5b5b79ce71e50ffcd52a5
   react-native-statusbar: 2504f4fd9b83ec4c42eda01bc102fc6979c55fb8
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
-  react-native-webview: 21c396687cb983fadc6ccc0751cc74f554131f3f
+  react-native-webview: 88b0a0453a88cd7e3c0729ce8723a66783814dd6
   React-RCTActionSheet: 49f6a67a7efa6688f637296383d453b97ef13645
   React-RCTAnimation: e8047438b2927ebbe630bbf600c7309374075df3
   React-RCTBlob: 2c4b28daca5b3e6e356706d8e0c7436a0e8ef492
@@ -393,6 +393,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 5079887aa3e4c62142d6bcee493022643ee4d730
 
-PODFILE CHECKSUM: de738e14b70bd81036dfce601f87ed71b1f1f546
+PODFILE CHECKSUM: 21bd1c38fc1330436836e52bc824e93d21a29538
 
 COCOAPODS: 1.7.3

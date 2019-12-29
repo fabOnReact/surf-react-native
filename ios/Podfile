@@ -29,7 +29,7 @@ target 'SurfApp' do
 
   # added from Developer
   pod 'Firebase'
-
+  pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
 
   target 'SurfAppTests' do
     inherit! :search_paths
