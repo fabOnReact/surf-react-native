@@ -138,21 +138,19 @@ PODS:
     - React-cxxreact (= 0.60.6)
     - React-jsi (= 0.60.6)
   - React-jsinspector (0.60.6)
-  - react-native-camera (2.11.1):
+  - react-native-camera (3.15.0):
     - React
-    - react-native-camera/RCT (= 2.11.1)
-    - react-native-camera/RN (= 2.11.1)
-  - react-native-camera/RCT (2.11.1):
+    - react-native-camera/RCT (= 3.15.0)
+    - react-native-camera/RN (= 3.15.0)
+  - react-native-camera/RCT (3.15.0):
     - React
-  - react-native-camera/RN (2.11.1):
+  - react-native-camera/RN (3.15.0):
     - React
   - react-native-geolocation (2.0.2):
     - React
   - react-native-maps (0.26.1):
     - React
   - react-native-orientation-locker (1.1.7):
-    - React
-  - react-native-statusbar (1.0.3):
     - React
   - react-native-video (5.0.2):
     - React
@@ -195,7 +193,9 @@ PODS:
   - RNGoogleSignin (3.0.3):
     - GoogleSignIn (~> 5.0.0)
     - React
-  - RNScreens (1.0.0-alpha.23):
+  - RNReanimated (1.4.0):
+    - React
+  - RNScreens (2.0.0-alpha.22):
     - React
   - RNSVG (9.13.6):
     - React
@@ -220,7 +220,6 @@ DEPENDENCIES:
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
-  - "react-native-statusbar (from `../node_modules/@react-native-community/status-bar`)"
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -238,6 +237,7 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-community/google-signin`)"
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -293,8 +293,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-orientation-locker:
     :path: "../node_modules/react-native-orientation-locker"
-  react-native-statusbar:
-    :path: "../node_modules/@react-native-community/status-bar"
   react-native-video:
     :path: "../node_modules/react-native-video"
   react-native-webview:
@@ -329,6 +327,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
     :path: "../node_modules/@react-native-community/google-signin"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -366,11 +366,10 @@ SPEC CHECKSUMS:
   React-jsi: 1a4248256b96fa453536a8dafe11b784e24e789d
   React-jsiexecutor: 2279e559b921d02dfc6253ebef3dcb3a9dc6c07e
   React-jsinspector: a58b86545a0185f69768e78ac96ca9fe43fa3694
-  react-native-camera: 96a3c81f27da57b816fbb6808dde20dc96d1431e
+  react-native-camera: 6eaa78f9afda93fab531ba92f597c0b137244777
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
   react-native-orientation-locker: ec7d590e2a52ae4abda5b5b79ce71e50ffcd52a5
-  react-native-statusbar: 2504f4fd9b83ec4c42eda01bc102fc6979c55fb8
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
   react-native-webview: 88b0a0453a88cd7e3c0729ce8723a66783814dd6
   React-RCTActionSheet: 49f6a67a7efa6688f637296383d453b97ef13645
@@ -388,7 +387,8 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 12faae605ba42a1a5041c3c41a77834bc23f049d
   RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNGoogleSignin: a10b849c165088c737d4465de6c2062f24d06002
-  RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
+  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
+  RNScreens: 6adf01eb4080f44af6cca551207c6b0505066857
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 5079887aa3e4c62142d6bcee493022643ee4d730
