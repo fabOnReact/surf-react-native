@@ -11,6 +11,7 @@ PODS:
   - BugsnagReactNative/Core (2.23.3):
     - React
   - DoubleConversion (1.1.6)
+  - DVAssetLoaderDelegate (0.3.3)
   - Firebase (6.14.0):
     - Firebase/Core (= 6.14.0)
   - Firebase/Core (6.14.0):
@@ -152,11 +153,13 @@ PODS:
     - React
   - react-native-orientation-locker (1.1.7):
     - React
-  - react-native-video (5.0.2):
-    - React
-    - react-native-video/Video (= 5.0.2)
   - react-native-video/Video (5.0.2):
     - React
+  - react-native-video/VideoCaching (5.0.2):
+    - DVAssetLoaderDelegate (~> 0.3.1)
+    - React
+    - react-native-video/Video
+    - SPTPersistentCache (~> 1.1.0)
   - react-native-webview (8.0.2):
     - React
   - React-RCTActionSheet (0.60.6):
@@ -201,6 +204,7 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - SPTPersistentCache (1.1.0)
   - yoga (0.60.6.React)
 
 DEPENDENCIES:
@@ -221,7 +225,7 @@ DEPENDENCIES:
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
-  - react-native-video (from `../node_modules/react-native-video`)
+  - react-native-video/VideoCaching (from `../node_modules/react-native-video/react-native-video.podspec`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -248,6 +252,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AppAuth
     - boost-for-react-native
+    - DVAssetLoaderDelegate
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -262,6 +267,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - nanopb
+    - SPTPersistentCache
 
 EXTERNAL SOURCES:
   BugsnagReactNative:
@@ -295,7 +301,7 @@ EXTERNAL SOURCES:
   react-native-orientation-locker:
     :path: "../node_modules/react-native-orientation-locker"
   react-native-video:
-    :path: "../node_modules/react-native-video"
+    :path: "../node_modules/react-native-video/react-native-video.podspec"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-RCTActionSheet:
@@ -344,6 +350,7 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BugsnagReactNative: 34f9500e304c2667ce7a3e76037d91e41eca2ffe
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  DVAssetLoaderDelegate: 0caec20e4e08b8560b691131539e9180024d4bce
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
   FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
   FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
@@ -392,8 +399,9 @@ SPEC CHECKSUMS:
   RNScreens: 6adf01eb4080f44af6cca551207c6b0505066857
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  SPTPersistentCache: df36ea46762d7cf026502bbb86a8b79d0080dff4
   yoga: 5079887aa3e4c62142d6bcee493022643ee4d730
 
-PODFILE CHECKSUM: 1c6ffc16c3f319c917cec3704744cc01a34c6a44
+PODFILE CHECKSUM: df5466117403852477b3305d7e6f3216a3c183c4
 
 COCOAPODS: 1.7.3

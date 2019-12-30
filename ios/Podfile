@@ -30,7 +30,7 @@ target 'SurfApp' do
   # added from Developer
   pod 'Firebase'
   pod 'GoogleSignIn', '~> 5.0.2'
-  # pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
+  pod 'react-native-video/VideoCaching', :path => '../node_modules/react-native-video/react-native-video.podspec'
 
   target 'SurfAppTests' do
     inherit! :search_paths
