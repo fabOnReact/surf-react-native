@@ -12,7 +12,8 @@ import Location from './Location';
 export default class Cameras extends Component {
   constructor(props) {
     super(props)
-    this.state = { spinner: false, height: Dimensions.get('window').height, cameraIndex: 0, postIndex: 0 }
+    const { location: { included: cameras }} = this.props
+    this.state = { spinner: false, height: Dimensions.get('window').height, cameraIndex: 0, postIndex: 0, camera: cameras[0] }
   }
 
   _onOrientationDidChange = (orientation) => {
@@ -26,12 +27,6 @@ export default class Cameras extends Component {
       this.setState({ height, screen_height })
     }
   };
-
-  componentWillMount() { 
-    if (this.props.location == undefined) { console.error(this.props.location) }
-    const { location: { included: cameras }} = this.props
-    this.setState({ camera: cameras[0] })
-  }
 
   componentDidMount() {
     Orientation.addOrientationListener(this._onOrientationDidChange);
