@@ -1,4 +1,4 @@
-import { GoogleSignin } from 'react-native-google-signin';
+// import { GoogleSignin } from 'react-native-google-signin';
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 import { host } from '../config/constants';
 import { postSettings, getFromStorage, errorMessage, getCredentials, headers } from './support';
@@ -129,21 +129,21 @@ export const uploadVideo = async (data) => {
   });
 }
 
-export const getGoogleUser = async (success, failure) => {
-  try {
-    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    const userInfo = await GoogleSignin.signIn();
-    success(userInfo)
-  } catch (error) {
-    failure(error)
-  }
-}
-
-export const configureGoogleSignIn = () => {
-  GoogleSignin.configure({
-    scopes: ['email', 'profile'],
-    webClientId: WEB_CLIENT_ID,
-    offlineAccess: true,
-    iosClientId: IOS_CLIENT_ID
-  });
-}
+// export const getGoogleUser = async (success, failure) => {
+//   try {
+//     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+//     const userInfo = await GoogleSignin.signIn();
+//     success(userInfo)
+//   } catch (error) {
+//     failure(error)
+//   }
+// }
+// 
+// export const configureGoogleSignIn = () => {
+//   GoogleSignin.configure({
+//     scopes: ['email', 'profile'],
+//     webClientId: WEB_CLIENT_ID,
+//     offlineAccess: true,
+//     iosClientId: IOS_CLIENT_ID
+//   });
+// }
