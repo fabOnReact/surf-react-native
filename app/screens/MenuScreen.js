@@ -6,6 +6,9 @@ import { Header } from 'react-navigation';
 import DeviceInfo from 'react-native-device-info';
 import Link from '../components/menu/Link';
 import Api from '../lib/api';
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 export default class MenuScreen extends Component {
   static navigationOptions = ({ navigation }) => {
