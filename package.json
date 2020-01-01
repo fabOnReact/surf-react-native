@@ -12,6 +12,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@react-native-community/async-storage": "^1.7.1",
     "@react-native-community/geolocation": "^2.0.2",
+    "acorn": "^7.1.0",
     "axios": "^0.18.0",
     "babel": "^6.23.0",
     "bugsnag-react-native": "^2.23.3",
