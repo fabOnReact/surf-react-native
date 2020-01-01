@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Button, View, TouchableOpacity } from 'react-native';
+import { Dimensions, StyleSheet, Button, View, TouchableOpacity } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import UploadButton from './../buttons/UploadButton';
 import CancelButton from './../buttons/CancelButton';
-import Dimensions from 'Dimensions';
 import Video from 'react-native-video';
 import SafeArea from '../SafeArea';
 import { uploadVideo } from '../../lib/api';

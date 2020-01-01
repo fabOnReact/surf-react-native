@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
+import { Dimensions, Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Hourly from './Hourly';
 import Cameras from './Cameras';
-import Dimensions from 'Dimensions';
 import SafeArea from '../SafeArea';
 import Row from '../buttons/Row';
 import CamButton from '../buttons/CamButton';

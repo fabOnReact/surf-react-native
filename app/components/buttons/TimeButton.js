@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
+import { Dimensions, Platform, Text, View, TouchableOpacity, StyleSheet }  from 'react-native';
 import Cameras from './Cameras';
-import Dimensions from 'Dimensions';
 import CamButton from '../buttons/CamButton';
 import DeviceInfo from 'react-native-device-info';
 import SafeArea from '../SafeArea';

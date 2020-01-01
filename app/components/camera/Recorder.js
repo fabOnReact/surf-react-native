@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, View, Text } from 'react-native';
+import { Dimensions, Platform, StyleSheet, View, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Spinner from 'react-native-loading-spinner-overlay';
-import Dimensions from 'Dimensions';
 import RecordingButton from '../buttons/RecordingButton';
 import UploadButton from '../buttons/UploadButton';
 import Player from './Player';

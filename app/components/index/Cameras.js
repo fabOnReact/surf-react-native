@@ -1,9 +1,8 @@
 import React, { Component }  from 'react';
-import { ActivityIndicator, Platform, StatusBar, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
+import { Dimensions, ActivityIndicator, Platform, StatusBar, View, StyleSheet, TouchableOpacity, Button, Text } from 'react-native';
 import { Card } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
 import Video from 'react-native-video';
-import Dimensions from 'Dimensions';
 import Orientation from 'react-native-orientation-locker';
 import { Header, SafeAreaView } from 'react-navigation';
 import CamButton from '../buttons/CamButton';

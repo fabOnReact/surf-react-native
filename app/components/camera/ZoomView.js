@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View, Text } from 'react-native';
-import Dimensions from 'Dimensions';
+import { Dimensions, Platform, StyleSheet, View, Text } from 'react-native';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 
 export default class ZoomView extends Component {
@@ -36,9 +35,7 @@ export default class ZoomView extends Component {
 
 const styles = StyleSheet.create({
   preview: {
-    // marginTop:200,
     height: Dimensions.get('window').height,
     width: "100%",
-    // backgroundColor: 'red',
   },
 });

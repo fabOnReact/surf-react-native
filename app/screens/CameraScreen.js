@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StatusBar, StyleSheet, View, Text } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import Dimensions from 'Dimensions';
 import ErrorMessage from '../components/ErrorMessage'
 import Tutor from '../components/camera/Tutor';
 import Recorder from '../components/camera/Recorder';
