@@ -9,7 +9,7 @@ import Message from '../lib/message'
 import { createResource } from '../lib/api'
 import { sessionSettings } from '../lib/support'
 import SignInButton from '../components/buttons/SignInButton'
-// import GoogleButton from '../components/buttons/GoogleButton'
+import GoogleButton from '../components/buttons/GoogleButton'
 import { getAsset } from '../lib/support'
 import { WEB_CLIENT_ID, IOS_CLIENT_ID } from 'react-native-dotenv';
 
@@ -88,12 +88,10 @@ export default class AuthenticationScreen extends Component {
           <SignInButton 
             submitForm={this.submitForm}
             setErrors={this.setErrors} />
-          {/*
             <GoogleButton 
               saveCredentials={this.saveCredentials} 
               setErrors={this.setErrors}
             />
-          */}
           <Text style={style1.text}>Goodbye Sergey</Text>
         </View>
       </React.Fragment>
