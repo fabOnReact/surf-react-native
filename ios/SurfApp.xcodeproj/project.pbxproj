@@ -18,6 +18,7 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* SurfAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SurfAppTests.m */; };
 		5C24F64953C82FCA20C655A0 /* libPods-SurfApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 173B2485696F064FDD0D8236 /* libPods-SurfApp.a */; };
+		653E787C23BF95BD00F6C0AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6554D6492241651F00BEC37D /* GoogleService-Info.plist */; };
 		65A53DA5230931A2004B455E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A53D70230931A2004B455E /* JavaScriptCore.framework */; };
 		91CD7A5364BF6F22D6206137 /* libPods-SurfApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E69A70F84B5C1D889B02F378 /* libPods-SurfApp-tvOSTests.a */; };
 		97EB74587BB84D02487D727F /* libPods-SurfApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 821880CFF3B2D06DE0C355E7 /* libPods-SurfApp-tvOS.a */; };
@@ -401,6 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653E787C23BF95BD00F6C0AD /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				EBFB474323EB491283A707F4 /* Roboto_medium.ttf in Resources */,
@@ -506,6 +508,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SurfApp/Pods-SurfApp-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -525,6 +528,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
