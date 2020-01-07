@@ -1,6 +1,7 @@
 describe('public', () => {
   beforeEach(async () => {
     await device.reloadReactNative();
+    // await device.launchApp()
     console.disableYellowBox = true;
   });
 

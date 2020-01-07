@@ -1,6 +1,7 @@
 describe('authenticated', () => {
   beforeEach(async () => {
-    await device.reloadReactNative();
+    // await device.reloadReactNative();
+    // await device.launchApp()
     console.disableYellowBox = true;
   });
 
@@ -26,12 +27,14 @@ describe('authenticated', () => {
   })
 
   it('displays the profile page', async () => {
+    await element(by.traits(['button'])).atIndex(0).tap();
     var flatlist = await element(by.id("flatlist"))
     await element(by.id("profileButton")).tap()
     await expect(flatlist).toBeNotVisible()
   })
-
+  
   it('displays the forecast page', async () => {
+    await element(by.traits(['button'])).atIndex(0).tap();
     var flatlist = await element(by.id("flatlist"))
     await element(by.id("profileButton")).tap()
     await expect(flatlist).toBeNotVisible()
