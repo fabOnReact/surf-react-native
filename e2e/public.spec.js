@@ -1,6 +1,7 @@
 describe('public', () => {
   beforeEach(async () => {
     await device.reloadReactNative();
+    console.disableYellowBox = true;
   });
 
   it('finds the Email input', async () => {

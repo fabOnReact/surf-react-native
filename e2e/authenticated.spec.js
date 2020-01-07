@@ -1,6 +1,7 @@
 describe('authenticated', () => {
   beforeEach(async () => {
     await device.reloadReactNative();
+    console.disableYellowBox = true;
   });
 
   it('authenticates the test user', async () => {
