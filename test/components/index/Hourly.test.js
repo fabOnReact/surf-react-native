@@ -36,15 +36,5 @@ describe('Hourly', () => {
           expect(component.find(Text).children().text()).toBe('test')
         });
     });
-
-  describe('Events', () => {
-    it('triggers the flagPress event', () => {
-      const navigate = jest.fn()
-      const navigationMock = { navigate }
-      const component = shallow(<Hourly navigation={navigationMock} />)
-      component.find(FlagButton).simulate('click')
-      expect(navigate).toHaveBeenCalled()
-    })
-  })
 });
 
