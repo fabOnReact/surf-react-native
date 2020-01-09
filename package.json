@@ -21,6 +21,7 @@
     "fsevents": "^2.1.2",
     "global": "^4.4.0",
     "jest": "^24.9.0",
+    "mock-async-storage": "^2.2.0",
     "native-base": "^2.12.1",
     "react": "16.9.0",
     "react-devtools": "^3.4.3",
