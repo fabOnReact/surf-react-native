@@ -39,10 +39,11 @@ describe('Hourly', () => {
 
   describe('Events', () => {
     it('triggers the flagPress event', () => {
-      const navigationMock = jest.fn()
-      const component = mount(<Hourly navigation={navigationMock} />)
+      const navigate = jest.fn()
+      const navigationMock = { navigate }
+      const component = shallow(<Hourly navigation={navigationMock} />)
       component.find(FlagButton).simulate('click')
-      expect(navigationMock).toHaveBeenCalled()
+      expect(navigate).toHaveBeenCalled()
     })
   })
 });
