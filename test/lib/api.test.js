@@ -15,7 +15,6 @@ describe('class Api {}', () => {
   beforeEach(function() {
     api = new Api()  
     jest.clearAllMocks()
-    // global.fetch.mockReset()
   });
   
   describe('#getConfig()', () => {
@@ -72,7 +71,7 @@ describe('class Api {}', () => {
   })
 
   describe('#getLocations()', function() {
-    it('correctly sets the url', async function() {
+    it('fetches with params url and config', async function() {
       const page = jest.fn()
       const per_page = jest.fn()
       api.page = page
@@ -83,5 +82,15 @@ describe('class Api {}', () => {
       const url = `http://host.com/locations.json?page=${page}&per_page=${per_page}&`
       expect(global.fetch).toHaveBeenCalledWith(url, config)
     });
+
+    it('passes custom flags', async function() {
+      const flags = jest.fn(() => {
+        return {
+          join: jest.fn().mockReturnThis()
+        }
+      })
+      await api.getLocations({ flags })
+    });
+    
   });
 })
