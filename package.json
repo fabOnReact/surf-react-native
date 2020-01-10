@@ -90,6 +90,9 @@
       "jest-enzyme",
       "./node_modules/react-native-gesture-handler/jestSetup.js"
     ],
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.test.js?(x)"
+    ],
     "testEnvironment": "enzyme",
     "testEnvironmentOptions": {
       "enzymeAdapter": "react16"
