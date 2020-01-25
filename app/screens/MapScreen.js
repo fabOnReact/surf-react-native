@@ -30,7 +30,6 @@ export default class MapScreen extends Component {
 
   componentDidMount = async () => {
     this.setState({ 
-      // locations: this.locations, 
       latitude: this.lat, 
       longitude: this.long 
     })
@@ -49,12 +48,6 @@ export default class MapScreen extends Component {
     this._long = !!long ? parseInt(long) : -115.192803
     return this._long
   }
-
-  // get locations() {
-  //   const { navigation } = this.props;
-  //   this._locations = navigation.getParam('locations')
-  //   return this._locations
-  // }
 
   handleRegionChange = async () => {
     const current_position = await this.ref.getMapBoundaries()
