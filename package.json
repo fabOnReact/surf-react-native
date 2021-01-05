@@ -16,7 +16,7 @@
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/google-signin": "^3.0.4",
     "acorn": "^7.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bugsnag-react-native": "^2.23.3",
     "fsevents": "^2.1.2",
     "global": "^4.4.0",
