@@ -41,7 +41,7 @@
     "react-native-navigation-bar-color": "^1.0.0",
     "react-native-orientation-locker": "^1.1.8",
     "react-native-permissions": "^1.2.0",
-    "react-native-reanimated": "^1.4.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-svg": "^9.6.2",
     "react-native-swiper": "^1.5.14",
     "react-native-table-component": "^1.2.0",
